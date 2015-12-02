@@ -1,0 +1,14 @@
+app:
+    resource: "@AppBundle/Controller/"
+    type:     annotation
+
+api:
+    type:     rest
+    resource: "@AppBundle/Controller/RestController/RestSecurityController.php"
+
+remove_trailing_slash:
+    path: /{url}
+    defaults: { _controller: AppBundle:Redirect:removeTrailingSlash }
+    requirements:
+        url: .*/$
+    methods: [GET]

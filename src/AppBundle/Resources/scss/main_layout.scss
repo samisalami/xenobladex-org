@@ -1,0 +1,62 @@
+.nav, .pagination, .carousel, .panel-title a { cursor: pointer; } //bootstrap overwrite
+
+body {
+  .main-header {
+    .top {
+      position: relative;
+      overflow: hidden;
+      height: 120px;
+      img {
+        position: absolute;
+        right: 0;
+
+        &.logo {
+          @extend .vertical-align;
+          margin-right: $default-element-margin;
+        }
+      }
+    }
+
+    nav {
+      ul {
+        list-style-type: none;
+        margin: 0;
+
+        li {
+          display: inline-block;
+          padding: $default-padding;
+
+          a {
+            color: $font-color-bright;
+            text-decoration: none;
+          }
+        }
+      }
+    }
+  }
+
+  [role="main"] {
+    //comming soon page only
+    .comming-soon-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      z-index: -1;
+      min-width: 100%;
+      max-width: none;
+      min-height: 100%;
+    }
+
+    .container {
+      @extend .vertical-align;
+      position: absolute;
+      width: 100%;
+      text-align: center;
+    }
+
+    .panel {
+      display: inline-block;
+    }
+  }
+}
+
