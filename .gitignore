@@ -7,12 +7,12 @@
 /app/phpunit.xml
 /bin/
 /composer.phar
-/vendor/*
+/vendor
 /web/bundles/
 
 .idea
 *.iml
-node_modules/*
+node_modules
 web/css/*
 web/js/*
 web/libraries/*
