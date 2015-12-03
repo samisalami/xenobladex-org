@@ -11,8 +11,7 @@
 /web/bundles/
 
 .idea
-xenoblade-symfony.iml
-xenoblade-org.iml
+*.iml
 node_modules/*
 web/css/*
 web/js/*
