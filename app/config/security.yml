@@ -1,4 +1,7 @@
 security:
+    providers:
+        in_memory:
+        memory: ~
     firewalls:
         login_firewall:
             pattern: ^/admin/login$
