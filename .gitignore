@@ -7,13 +7,12 @@
 /app/phpunit.xml
 /bin/
 /composer.phar
-/vendor/*
+/vendor
 /web/bundles/
 
 .idea
-xenoblade-symfony.iml
-xenoblade-org.iml
-node_modules/*
+*.iml
+node_modules
 web/css/*
 web/js/*
 web/libraries/*
