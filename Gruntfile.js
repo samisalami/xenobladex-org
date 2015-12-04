@@ -19,10 +19,22 @@ module.exports = function (grunt) {
         files: [{
           expand: true,
           flatten: true,
+          cwd: 'src/AppBundle/Resources/images',
           src: [
-            'src/AppBundle/Resources/images/**'
+            '**'
           ],
-          dest:'web/images/'
+          dest:'web/images'
+        }]
+      },
+      libraries: {
+        files: [{
+          flatten: false,
+          expand: true,
+          cwd: 'src/AppBundle/Resources/libraries',
+          src: [
+            '**'
+          ],
+          dest:'web/libraries'
         }]
       }
     },
