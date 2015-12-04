@@ -75,6 +75,7 @@ module.exports = function (grunt) {
   grunt.registerTask('sass-fe', ['sass:css']);
   grunt.registerTask('copy-html', ['copy:html']);
   grunt.registerTask('all-fe', ['sass:css', 'uglify:js', 'copy:html']);
+  grunt.registerTask('build', ['sass:css', 'uglify:js', 'copy:html', 'copy:images', 'copy:libraries']);
 
   //watch can usually not start two tasks parallel - it works with a function and defining the config explicit for watch
   grunt.registerTask('watch-fe', function(){
