@@ -1,2 +1,2 @@
-0.0.1
-Comming Soon Page + Admin Firewall
+0.0.2
+rest config
