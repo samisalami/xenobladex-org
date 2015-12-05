@@ -20,7 +20,8 @@ class UserController extends FOSRestController
      */
     public function loginAction()
     {
-        $view = $this->view(array('success' => false,'message' => "Sorry, no entrance for you!"));
-        return $this->handleView($view);
+        $response = new Response(json_encode(array('success' => false,'message' => "Sorry, no entrance for you!")));
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
     }
 }
