@@ -9,7 +9,7 @@ angular.module('app')
 
        service.Login = function (username, password, callback) {
 
-         $http.post('/login', { username: username, password: password })
+         $http.post('/user/login', { username: username, password: password })
              .success(function (response) {
                  callback(response);
              });

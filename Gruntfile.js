@@ -15,6 +15,14 @@ module.exports = function (grunt) {
           dest:'web/templates/'
         }]
       },
+      mainTemplate: {
+        files: [{
+          src: [
+            'src/AppBundle/Resources/app.html'
+          ],
+          dest:'web/index.html'
+        }]
+      },
       images: {
         files: [{
           expand: true,
@@ -75,7 +83,7 @@ module.exports = function (grunt) {
   grunt.registerTask('sass-fe', ['sass:css']);
   grunt.registerTask('copy-html', ['copy:html']);
   grunt.registerTask('all-fe', ['sass:css', 'uglify:js', 'copy:html']);
-  grunt.registerTask('build', ['sass:css', 'uglify:js', 'copy:html', 'copy:images', 'copy:libraries']);
+  grunt.registerTask('build', ['sass:css', 'uglify:js', 'copy:html', 'copy:mainTemplate', 'copy:images', 'copy:libraries']);
 
   //watch can usually not start two tasks parallel - it works with a function and defining the config explicit for watch
   grunt.registerTask('watch-fe', function(){
@@ -86,6 +94,14 @@ module.exports = function (grunt) {
       html: {
         files: ['src/AppBundle/Resources/js/**/*.html'],
         tasks: ['copy:html']
+      },
+      libraries: {
+        files: ['src/AppBundle/Resources/libraries/**'],
+        tasks: ['copy:libraries']
+      },
+      mainTemplate: {
+        files: ['src/AppBundle/Resources/app.html'],
+        tasks: ['copy:mainTemplate']
       },
       images: {
         files: ['src/AppBundle/Resources/images/**'],
