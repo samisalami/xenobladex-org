@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Samjessa
- * Date: 04.12.2015
- * Time: 22:06
- */
 
 namespace AppBundle\Controller\RestController;
 

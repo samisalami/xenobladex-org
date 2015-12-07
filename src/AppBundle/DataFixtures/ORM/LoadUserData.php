@@ -1,10 +1,4 @@
 <?php
-/**
- * Created by PhpStorm.
- * User: Samjessa
- * Date: 04.12.2015
- * Time: 21:54
- */
 
 namespace AppBundle\DataFixtures\ORM;
 
@@ -35,6 +29,6 @@ class LoadUserData implements FixtureInterface, ContainerAwareInterface
         $userAdmin->setPlainPassword('test');
         $userAdmin->setEmail('test@samisalami.de');
         $userAdmin->setEnabled(true);
-        $um->updateUser($userAdmin,true);
+        $um->updateUser($userAdmin, true);
     }
 }
