@@ -28,6 +28,26 @@ class UserController extends FOSRestController
     }
 
     /**
+     * @param $message
+     * @return Response
+     */
+    protected function returnFailureMessage($message) {
+        $response = new Response(json_encode(array('success' => false,'message' => $message)));
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
+    }
+
+    /**
+     * @return Response
+     */
+    protected function returnSuccess() {
+        $response = new Response(json_encode(array('success' => true)));
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
+    }
+
+
+    /**
      * @param User $user
      */
     protected function loginUser(User $user){
@@ -53,24 +73,6 @@ class UserController extends FOSRestController
     }
 
     /**
-     * @return Response
-     */
-    protected function returnFailure() {
-        $response = new Response(json_encode(array('success' => false,'message' => "Wrong Data!")));
-        $response->headers->set('Content-Type', 'application/json');
-        return $response;
-    }
-
-    /**
-     * @return Response
-     */
-    protected function returnSuccess() {
-        $response = new Response(json_encode(array('success' => true)));
-        $response->headers->set('Content-Type', 'application/json');
-        return $response;
-    }
-
-    /**
      * @Route("/user/login", methods={"POST"})
      */
     public function loginAction() {
@@ -89,13 +91,13 @@ class UserController extends FOSRestController
 
             if(!is_null($user)){
                 if(!$this->checkUserPassword($user, $password)){
-                    return $this->returnFailure();
+                    return $this->returnFailureMessage("Falsche Anmeldedaten.");
                 } else {
                     $this->loginUser($user);
                     return $this->returnSuccess();
                 }
             } else {
-                return $this->returnFailure();
+                return $this->returnFailureMessage("Falsche Anmeldedaten");
             }
         }
     }
@@ -109,5 +111,63 @@ class UserController extends FOSRestController
         $security->setToken($token);
         $this->get('session')->invalidate();
         return $this->returnSuccess();
+    }
+
+    /**
+     * @Route("/user/register", methods={"POST"})
+     */
+    public function registerAction() {
+        $content = $this->get('request')->getContent();
+        if(!empty($content)) {
+            $data = json_decode($content);
+            $username = $data->username;
+            $email = $data->email;
+            $password = $data->password;
+            $password_repeat = $data->password_repeat;
+            $form_message = $data->form_message;
+
+            if(!empty($username)&&!empty($email)&&!empty($password)&&!empty($password_repeat)&&!empty($form_message)) {
+                if($password === $password_repeat) {
+                    $um = $this->getUserManager();
+                    $existing_user_by_name = $um->findUserByUsername($username);
+                    if(is_null($existing_user_by_name)) {
+                        $existing_user_by_email = $um->findUserByEmail($email);
+                        if(is_null($existing_user_by_email)) {
+                            $user = $um->createUser();
+                            $user->setUsername($username);
+                            $user->setPlainPassword($password);
+                            $user->setEmail($email);
+                            $user->setEnabled(false);
+                            $um->updateUser($user);
+
+                            //send mail for activation
+                            $message = \Swift_Message::newInstance()
+                                ->setSubject("XenobladeX.org - Registrierung bestätigen")
+                                ->setFrom("noreply@xenobladex.org")
+                                ->setTo("kontakt@samisalami.de")
+                                ->setBody(
+                                    "Name: ".$username."
+                            E-Mail: ".$email."
+                            Nachricht:
+                            ".$form_message."
+                            ",
+                                    "text/plain")
+                            ;
+                            $this->get("mailer")->send($message);
+
+                            return $this->returnSuccess();
+                        } else {
+                            return $this->returnFailureMessage("Email bereits angemeldet.");
+                        }
+                    } else {
+                        return $this->returnFailureMessage("Name bereits vergeben.");
+                    }
+                } else {
+                    return $this->returnFailureMessage("Passwörter nicht identisch.");
+                }
+            } else {
+                return $this->returnFailureMessage("Nicht alle Felder sind befüllt.");
+            }
+        }
     }
 }

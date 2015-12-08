@@ -16,6 +16,14 @@ angular.module('app')
 
        };
 
+       service.Register = function(username, password, password_repeat, email, form_message, callback) {
+         $http.post('/user/register', { username: username, password: password, password_repeat: password_repeat, email: email, form_message: form_message })
+             .success(function (response) {
+               callback(response);
+             });
+
+       };
+
        service.SetCredentials = function (username, password) {
          var authdata = Base64.encode(username + ':' + password);
 

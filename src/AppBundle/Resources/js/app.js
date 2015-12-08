@@ -20,6 +20,10 @@ function config($routeProvider) {
         controller: 'LoginController',
         templateUrl: 'templates/loginView.html'
       })
+      .when('/anmelden', {
+        controller: 'RegistrationController',
+        templateUrl: 'templates/registrationView.html'
+      })
 }
 
 run.$inject = ['$rootScope', '$location', '$cookieStore', '$http'];
