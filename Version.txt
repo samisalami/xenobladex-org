@@ -1,2 +1,2 @@
-0.0.2
-rest config
+0.0.3
+login + registration
