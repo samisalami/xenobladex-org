@@ -90,7 +90,7 @@ class UserController extends FOSRestController
             }
 
             if(!is_null($user)){
-                if($um->isEnabled()) {
+                if($user->isEnabled()) {
                     if(!$this->checkUserPassword($user, $password)){
                         return $this->returnFailureMessage("Falsche Anmeldedaten.");
                     } else {
