@@ -145,8 +145,8 @@ class UserController extends FOSRestController
                                 ->setSubject("XenobladeX.org - Registrierung bestätigen")
                                 ->setFrom("noreply@xenobladex.org")
                                 ->setTo("kontakt@samisalami.de")
-                                ->setBody(
-                                    "Name: ".$username."
+                                ->setBody("
+                            Name: ".$username."
                             E-Mail: ".$email."
                             Nachricht:
                             ".$form_message."
