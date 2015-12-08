@@ -19,7 +19,7 @@ class BaseController extends Controller
      * @Route("/admin")
      */
     public function adminAction() {
-        return $this->render('/#/admin');
+        return $this->redirect('/#/admin');
     }
 
     /**
