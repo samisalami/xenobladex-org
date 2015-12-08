@@ -90,11 +90,15 @@ class UserController extends FOSRestController
             }
 
             if(!is_null($user)){
-                if(!$this->checkUserPassword($user, $password)){
-                    return $this->returnFailureMessage("Falsche Anmeldedaten.");
+                if($um->isEnabled()) {
+                    if(!$this->checkUserPassword($user, $password)){
+                        return $this->returnFailureMessage("Falsche Anmeldedaten.");
+                    } else {
+                        $this->loginUser($user);
+                        return $this->returnSuccess();
+                    }
                 } else {
-                    $this->loginUser($user);
-                    return $this->returnSuccess();
+                    return $this->returnFailureMessage("Bitte warte auf deine Aktivierung.");
                 }
             } else {
                 return $this->returnFailureMessage("Falsche Anmeldedaten");
