@@ -26,9 +26,6 @@ function config($routeProvider, $locationProvider) {
       .when('/admin', {
         controller: 'AdminController',
         templateUrl: 'templates/adminView.html'
-      })
-      .otherwise({
-        redirectTo: '/start'
       });
   $locationProvider.html5Mode(true);
 }

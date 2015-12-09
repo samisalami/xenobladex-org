@@ -1,4 +1,5 @@
 api:
+    prefix: /api
     type:     rest
     resource: "@AppBundle/Controller/RestController/UserController.php"
 

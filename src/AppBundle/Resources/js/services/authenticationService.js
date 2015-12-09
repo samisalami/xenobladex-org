@@ -9,7 +9,7 @@ angular.module('app')
 
        service.Login = function (username, password, callback) {
 
-         $http.post('/user/login', { username: username, password: password })
+         $http.post('/api/user/login', { username: username, password: password })
              .success(function (response) {
                  callback(response);
              });
@@ -17,7 +17,7 @@ angular.module('app')
        };
 
        service.Register = function(username, password, password_repeat, email, form_message, callback) {
-         $http.post('/user/register', { username: username, password: password, password_repeat: password_repeat, email: email, form_message: form_message })
+         $http.post('/api/user/register', { username: username, password: password, password_repeat: password_repeat, email: email, form_message: form_message })
              .success(function (response) {
                callback(response);
              });
