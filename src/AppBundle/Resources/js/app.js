@@ -12,16 +12,15 @@ angular
 config.$inject = ['$routeProvider', '$locationProvider'];
 function config($routeProvider, $locationProvider) {
   $routeProvider
-      .when('/', {
-        templateUrl: 'templates/homeView.html',
-        controller: 'HomeController'
+      .when('/start', {
+        templateUrl: 'templates/start.html'
       })
       .when('/login', {
-        controller: 'LoginController',
+        controller: 'UserController',
         templateUrl: 'templates/loginView.html'
       })
       .when('/register', {
-        controller: 'RegistrationController',
+        controller: 'UserController',
         templateUrl: 'templates/registrationView.html'
       })
       .when('/admin', {
@@ -29,7 +28,7 @@ function config($routeProvider, $locationProvider) {
         templateUrl: 'templates/adminView.html'
       })
       .otherwise({
-        redirectTo: '/home'
+        redirectTo: '/start'
       });
   $locationProvider.html5Mode(true);
 }

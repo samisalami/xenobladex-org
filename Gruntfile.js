@@ -11,7 +11,7 @@ module.exports = function (grunt) {
           flatten: true,
           src: [
             'src/AppBundle/Resources/js/**/*.html',
-            'src/AppBundle/Resources/viewPartials/**/*.html'
+            'src/AppBundle/Resources/views/**/*.html'
           ],
           dest:'web/templates/'
         }]
@@ -93,7 +93,7 @@ module.exports = function (grunt) {
         interrupt: true
       },
       html: {
-        files: ['src/AppBundle/Resources/js/**/*.html', 'src/AppBundle/Resources/viewPartials/**/*.html'],
+        files: ['src/AppBundle/Resources/js/**/*.html', 'src/AppBundle/Resources/views/**/*.html'],
         tasks: ['copy:html']
       },
       libraries: {

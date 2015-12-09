@@ -103,6 +103,8 @@ class UserController extends FOSRestController
             } else {
                 return $this->returnFailureMessage("Falsche Anmeldedaten");
             }
+        } else {
+            return $this->returnFailureMessage("Bitte versuche es erneut.");
         }
     }
 
