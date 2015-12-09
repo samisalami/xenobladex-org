@@ -9,21 +9,29 @@ angular
     .config(config)
     .run(run);
 
-config.$inject = ['$routeProvider'];
-function config($routeProvider) {
+config.$inject = ['$routeProvider', '$locationProvider'];
+function config($routeProvider, $locationProvider) {
   $routeProvider
       .when('/', {
         templateUrl: 'templates/homeView.html',
         controller: 'HomeController'
       })
-      .when('/login-form', {
+      .when('/login', {
         controller: 'LoginController',
         templateUrl: 'templates/loginView.html'
       })
-      .when('/anmelden', {
+      .when('/register', {
         controller: 'RegistrationController',
         templateUrl: 'templates/registrationView.html'
       })
+      .when('/admin', {
+        controller: 'AdminController',
+        templateUrl: 'templates/adminView.html'
+      })
+      .otherwise({
+        redirectTo: '/home'
+      });
+  $locationProvider.html5Mode(true);
 }
 
 run.$inject = ['$rootScope', '$location', '$cookieStore', '$http'];
@@ -36,10 +44,10 @@ function run($rootScope, $location, $cookieStore, $http) {
 
   $rootScope.$on('$locationChangeStart', function (event, next, current) {
     // redirect to login page if not logged in and trying to access a restricted page
-    var restrictedPage = $.inArray($location.path(), ['/login-form', '/admin', '/login']) !== -1;
+    var restrictedPage = $.inArray($location.path(), ['/admin', '/login']) !== -1;
     var loggedIn = $rootScope.globals.currentUser;
     if (restrictedPage && !loggedIn) {
-      $location.path('/login-form');
+      $location.path('/login');
     }
   });
 }

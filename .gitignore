@@ -18,4 +18,6 @@ web/js/*
 web/libraries/*
 web/templates/*
 web/images/*
+web/index.html
 .sass-cache/*
+composer.lock
