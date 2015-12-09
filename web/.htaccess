@@ -13,6 +13,7 @@ DirectoryIndex index.html
 
 <IfModule mod_rewrite.c>
     RewriteEngine On
+    RewriteBase /
 
     # Determine the RewriteBase automatically and set it as environment variable.
     # If you are using Apache aliases to do mass virtual hosting or installed the
@@ -30,14 +31,10 @@ DirectoryIndex index.html
 
     #let the php framework do its thing
     RewriteRule ^(api/.*)$ app.php?url=$1 [QSA,L,NC]
-#    RewriteRule ^(api/.*)$ app.php?url=$1 [QSA,L,NC]
     #let angular do its thing
-#    RewriteCond %{REQUEST_FILENAME} !-f
-#    RewriteCond %{REQUEST_FILENAME} !-d
-#    RewriteRule ^(.*) index.html [NC,L]
-
-    # Rewrite all other queries to the front controller.
-    RewriteRule .? %{ENV:BASE}/app.php [L]
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteCond %{REQUEST_FILENAME} !-d
+    RewriteRule ^(.*) index.html [NC,L]
 </IfModule>
 
 <IfModule !mod_rewrite.c>

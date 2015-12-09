@@ -12,7 +12,7 @@ angular
 config.$inject = ['$routeProvider', '$locationProvider'];
 function config($routeProvider, $locationProvider) {
   $routeProvider
-      .when('/start', {
+      .when('/', {
         templateUrl: 'templates/start.html'
       })
       .when('/login', {
@@ -26,6 +26,9 @@ function config($routeProvider, $locationProvider) {
       .when('/admin', {
         controller: 'AdminController',
         templateUrl: 'templates/adminView.html'
+      })
+      .otherwise({
+          templateUrl: 'templates/404.html'
       });
   $locationProvider.html5Mode(true);
 }
