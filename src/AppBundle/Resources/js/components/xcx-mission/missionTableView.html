@@ -1,0 +1,34 @@
+<div class="table-responsive">
+    <table class="table table-striped">
+        <thead>
+        <th>
+            Name:
+        </th>
+        <th>
+            Beschreibung:
+        </th>
+        <th>
+            Aufgaben:
+        </th>
+        <th>
+            Lösung:
+        </th>
+        </thead>
+        <tbody>
+            <tr ng-repeat="mission in missions">
+                <td>
+                    {{mission.name}}
+                </td>
+                <td>
+                    {{mission.description}}
+                </td>
+                <td>
+                    {{mission.tasks}}
+                </td>
+                <td>
+                    {{mission.solution}}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>

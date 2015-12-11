@@ -1,7 +1,12 @@
-api:
+user:
     prefix: /api
     type:     rest
     resource: "@AppBundle/Controller/RestController/UserController.php"
+
+mission:
+    prefix: /api
+    type:     rest
+    resource: "@AppBundle/Controller/RestController/MissionController.php"
 
 remove_trailing_slash:
     path: /{url}

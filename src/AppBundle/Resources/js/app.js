@@ -24,8 +24,10 @@ function config($routeProvider, $locationProvider) {
         templateUrl: 'templates/registrationView.html'
       })
       .when('/admin', {
-        controller: 'AdminController',
-        templateUrl: 'templates/adminView.html'
+        templateUrl: 'templates/admin.html'
+      })
+      .when('/admin/missionen', {
+        templateUrl: 'templates/admin_missions.html'
       })
       .otherwise({
           templateUrl: 'templates/404.html'
@@ -43,7 +45,8 @@ function run($rootScope, $location, $cookieStore, $http) {
 
   $rootScope.$on('$locationChangeStart', function (event, next, current) {
     // redirect to login page if not logged in and trying to access a restricted page
-    var restrictedPage = $.inArray($location.path(), ['/admin', '/login']) !== -1;
+    var restrictedPage = $location.path().indexOf("/admin") !== -1;
+
     var loggedIn = $rootScope.globals.currentUser;
     if (restrictedPage && !loggedIn) {
       $location.path('/login');
