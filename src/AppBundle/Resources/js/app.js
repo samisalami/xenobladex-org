@@ -4,7 +4,8 @@ angular
     .module('app', [
         'ngRoute',
         'ngCookies',
-        'ui.bootstrap'
+        'ui.bootstrap',
+        'xeditable'
     ])
     .config(config)
     .run(run);
@@ -35,21 +36,23 @@ function config($routeProvider, $locationProvider) {
   $locationProvider.html5Mode(true);
 }
 
-run.$inject = ['$rootScope', '$location', '$cookieStore', '$http'];
-function run($rootScope, $location, $cookieStore, $http) {
-  // keep user logged in after page refresh
-  $rootScope.globals = $cookieStore.get('globals') || {};
-  if ($rootScope.globals.currentUser) {
-    $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata;
-  }
+run.$inject = ['$rootScope', '$location', '$cookieStore', '$http', 'editableOptions'];
+function run($rootScope, $location, $cookieStore, $http, editableOptions) {
+    editableOptions.theme = 'bs3';
 
-  $rootScope.$on('$locationChangeStart', function (event, next, current) {
-    // redirect to login page if not logged in and trying to access a restricted page
-    var restrictedPage = $location.path().indexOf("/admin") !== -1;
-
-    var loggedIn = $rootScope.globals.currentUser;
-    if (restrictedPage && !loggedIn) {
-      $location.path('/login');
+    // keep user logged in after page refresh
+    $rootScope.globals = $cookieStore.get('globals') || {};
+    if ($rootScope.globals.currentUser) {
+        $http.defaults.headers.common['Authorization'] = 'Basic ' + $rootScope.globals.currentUser.authdata;
     }
+
+    $rootScope.$on('$locationChangeStart', function (event, next, current) {
+        // redirect to login page if not logged in and trying to access a restricted page
+        var restrictedPage = $location.path().indexOf("/admin") !== -1;
+
+        var loggedIn = $rootScope.globals.currentUser;
+        if (restrictedPage && !loggedIn) {
+            $location.path('/login');
+        }
   });
 }
