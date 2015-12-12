@@ -1,2 +1,2 @@
-0.0.5
-404 + fixes
+0.0.6
+mission admin view, http authentication
