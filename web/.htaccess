@@ -30,7 +30,7 @@ DirectoryIndex index.html
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 
     #let the php framework do its thing
-    RewriteRule ^(api/.*)$ app.php?url=$1 [QSA,L,NC]
+    RewriteRule ^(xenobladex/.*)$ app.php?url=$1 [QSA,L,NC]
     #let angular do its thing
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d

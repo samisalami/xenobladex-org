@@ -1,10 +1,10 @@
 user:
-    prefix: /api
+    prefix: /xenobladex
     type:     rest
     resource: "@AppBundle/Controller/RestController/UserController.php"
 
 mission:
-    prefix: /api
+    prefix: /xenobladex/api
     type:     rest
     resource: "@AppBundle/Controller/RestController/MissionController.php"
 

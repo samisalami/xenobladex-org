@@ -5,13 +5,13 @@ angular.module('app')
     var service = {};
 
     service.getMissions = function(callback) {
-        $http.get('/api/missions').success(function(response){
+        $http.get('/xenobladex/api/missions').then(function(response){
             callback(response);
         });
     };
 
     service.addMission = function(mission, callback) {
-        $http.post('/api/mission/add', mission).success(function(response){
+        $http.post('/xenobladex/api/mission/add', mission).success(function(response){
             callback(response);
         });
     };
