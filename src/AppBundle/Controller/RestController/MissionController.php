@@ -12,13 +12,42 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class MissionController extends FOSRestController {
+    protected function getJMSSerializer() {
+        return $this->get('jms_serializer');
+    }
+
+    protected function deleteMission(Mission $mission) {
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($mission);
+        $em->flush();
+    }
+
+    protected function addMission(Mission $mission) {
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($mission);
+        $em->flush();
+    }
+
+    protected function updateMission(Mission $mission, Mission $updated_mission) {
+        $em = $this->getDoctrine()->getManager();
+        $mission->setName($updated_mission->getName());
+        $mission->setDescription($updated_mission->getDescription());
+        $mission->setTasks($updated_mission->getTasks());
+        $mission->setSolution($updated_mission->getSolution());
+        $mission->setConditions($updated_mission->getConditions());
+        $mission->setLocationNote($updated_mission->getLocationNote());
+        $mission->setRewards($updated_mission->getRewards());
+        $mission->setMissionType($updated_mission->getMissionType());
+        $em->flush();
+    }
+
     /**
      * @return Response
      */
     public function getMissionsAction() {
         $em = $this->getDoctrine()->getEntityManager();
         $missions = $em->getRepository('AppBundle:Mission')->findAll();
-        $serializer = $this->get('jms_serializer');
+        $serializer = $this->getJMSSerializer();
         $response = new Response($serializer->serialize($missions, 'json'));
         $response->headers->set('Content-Type', 'application/json');
         return $response;
@@ -30,13 +59,48 @@ class MissionController extends FOSRestController {
     public function addMissionAction() {
         $content = $this->get('request')->getContent();
         if(!empty($content)) {
-            $serializer = $this->get('jms_serializer');
-            $mission = $serializer->deserialize($content, 'AppBundle/Entity/Mission', 'json');
+            $serializer = $this->getJMSSerializer();
+            $mission = $serializer->deserialize($content, 'AppBundle\Entity\Mission', 'json');
+            $this->addMission($mission);
 
-            $em = $this->getDoctrine()->getManager();
-
-            $em->persist($mission);
-            $em->flush();
+            $response = new Response($serializer->serialize($mission, 'json'));
+            $response->headers->set('Content-Type', 'application/json');
+            return $response;
         }
+    }
+
+    /**
+     * @Route("/mission/update", methods={"POST"})
+     */
+    public function updateMissionAction() {
+        $content = $this->get('request')->getContent();
+        if(!empty($content)) {
+            $serializer = $this->getJMSSerializer();
+            $updated_mission = $serializer->deserialize($content, 'AppBundle\Entity\Mission', 'json');
+            $mission = $this->getDoctrine()
+                ->getRepository('AppBundle:Mission')
+                ->find($updated_mission->getId());
+
+            if(!$mission) {
+                $this->addMission($mission);
+            } else {
+                $this->updateMission($mission, $updated_mission);
+            }
+
+            $response = new Response($serializer->serialize($updated_mission, 'json'));
+            $response->headers->set('Content-Type', 'application/json');
+            return $response;
+        }
+    }
+
+    public function deleteMissionAction($id) {
+        $mission = $this->getDoctrine()
+            ->getRepository('AppBundle:Mission')
+            ->find($id);
+        $this->deleteMission($mission);
+        $serializer = $this->getJMSSerializer();
+        $response = new Response($serializer->serialize($mission, 'json'));
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
     }
 }

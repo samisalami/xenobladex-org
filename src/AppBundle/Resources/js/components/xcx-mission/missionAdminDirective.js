@@ -10,9 +10,16 @@ angular.module('app')
                 $scope.newMission = {
                     name: '',
                     description: '',
+                    location_note: '',
+                    conditions: '',
                     tasks: '',
-                    solution: ''
+                    solution: '',
+                    rewards: ''
                 };
+
+                missionService.getMissionTypes(function(response){
+                   $scope.missionTypes = response;
+                });
 
                 missionService.getMissions(function(response){
                     $scope.missions = response;
@@ -23,13 +30,21 @@ angular.module('app')
                 };
 
                 $scope.addMission = function(mission) {
-                    missionService.addMission(mission, function(){
-                        //clean add row
+                    missionService.addMission(mission, function(mission){
+                        $scope.missions = $scope.missions.concat(mission);
                     });
                 };
 
-                $scope.deleteMission = function(id) {
-                  missionService.deleteMission(id);
+                $scope.deleteMission = function(id, index) {
+                  missionService.deleteMission(id, function(mission){
+                    $scope.missions.splice(index, 1);
+                    $scope.deletedMission = mission;
+                  });
+                };
+
+                $scope.addDeletedMission = function() {
+                    $scope.addMission($scope.deletedMission);
+                    $scope.deletedMission = null;
                 };
             }
         }

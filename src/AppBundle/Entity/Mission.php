@@ -38,6 +38,20 @@ class Mission
     /**
      * @var string
      *
+     * @ORM\Column(name="locationNote", type="text")
+     */
+    private $location_note;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="conditions", type="text")
+     */
+    private $conditions;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="tasks", type="text")
      */
     private $tasks;
@@ -48,6 +62,19 @@ class Mission
      * @ORM\Column(name="solution", type="text")
      */
     private $solution;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="rewards", type="text")
+     */
+    private $rewards;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="MissionType", cascade={"persist"})
+     * @ORM\JoinColumn(name="mission_type_id", referencedColumnName="id")
+     */
+    private $mission_type;
 
 
     /**
@@ -150,5 +177,97 @@ class Mission
     public function getSolution()
     {
         return $this->solution;
+    }
+
+    /**
+     * Set locationNote
+     *
+     * @param string $location_note
+     * @return Mission
+     */
+    public function setLocationNote($location_note)
+    {
+        $this->location_note = $location_note;
+
+        return $this;
+    }
+
+    /**
+     * Get locationNote
+     *
+     * @return string 
+     */
+    public function getLocationNote()
+    {
+        return $this->location_note;
+    }
+
+    /**
+     * Set conditions
+     *
+     * @param string $conditions
+     * @return Mission
+     */
+    public function setConditions($conditions)
+    {
+        $this->conditions = $conditions;
+
+        return $this;
+    }
+
+    /**
+     * Get conditions
+     *
+     * @return string 
+     */
+    public function getConditions()
+    {
+        return $this->conditions;
+    }
+
+    /**
+     * Set rewards
+     *
+     * @param string $rewards
+     * @return Mission
+     */
+    public function setRewards($rewards)
+    {
+        $this->rewards = $rewards;
+
+        return $this;
+    }
+
+    /**
+     * Get rewards
+     *
+     * @return string 
+     */
+    public function getRewards()
+    {
+        return $this->rewards;
+    }
+
+    /**
+     * Set mission_type
+     *
+     * @param \AppBundle\Entity\MissionType $mission_type
+     * @return Mission
+     */
+    public function setMissionType(\AppBundle\Entity\MissionType $mission_type = null)
+    {
+        $this->mission_type = $mission_type;
+
+        return $this;
+    }
+
+    /**
+     * Get mission_type
+     *
+     * @return \AppBundle\Entity\MissionType 
+     */
+    public function getMissionType()
+    {
+        return $this->mission_type;
     }
 }

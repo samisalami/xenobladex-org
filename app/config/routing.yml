@@ -8,6 +8,11 @@ mission:
     type:     rest
     resource: "@AppBundle/Controller/RestController/MissionController.php"
 
+missionType:
+    prefix: /xenobladex/api
+    type:     rest
+    resource: "@AppBundle/Controller/RestController/MissionTypeController.php"
+
 remove_trailing_slash:
     path: /{url}
     defaults: { _controller: AppBundle:Redirect:removeTrailingSlash }
