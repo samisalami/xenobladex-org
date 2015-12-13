@@ -71,7 +71,7 @@ class Mission
     private $rewards;
 
     /**
-     * @ORM\ManyToOne(targetEntity="MissionType", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="MissionType")
      * @ORM\JoinColumn(name="mission_type_id", referencedColumnName="id")
      */
     private $mission_type;

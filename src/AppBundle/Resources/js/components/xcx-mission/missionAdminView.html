@@ -59,7 +59,7 @@
                         <a href="#" editable-textarea="newMission.rewards">{{newMission.rewards || 'eintragen'}}</a>
                     </td>
                     <td>
-                        <a href="#" editable-select="newMission.mission_type" e-ng-options="m as m.name for m in missionTypes">{{ newMission.mission_type.name || 'eintragen' }}</a>
+                        <a href="#" editable-select="newMission.mission_type.id" e-ng-options="m.id as m.name for m in missionTypes">{{ showSelectedMissionType(newMission) || 'eintragen' }}</a>
                     </td>
                     <td>
                         <a href="#" class="text-success" ng-click="addMission(newMission)">
@@ -90,7 +90,7 @@
                         <a href="#" editable-textarea="mission.rewards" onaftersave="updateMission(mission)">{{mission.rewards || 'eintragen'}}</a>
                     </td>
                     <td>
-                        <a href="#" editable-select="mission.mission_type" e-ng-options="m as m.name for m in missionTypes" onaftersave="updateMission(mission)">{{mission.mission_type.name || 'eintragen' }}</a>
+                        <a href="#" editable-select="mission.mission_type.id" e-ng-options="m.id as m.name for m in missionTypes" onaftersave="updateMission(mission)">{{ showSelectedMissionType(mission) || 'eintragen' }}</a>
                     </td>
                     <td>
                         <a href="#" class="text-danger" ng-click="deleteMission(mission.id, $index)">

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app')
-    .directive('missionAdmin',['missionService', function(missionService) {
+    .directive('missionAdmin',['missionService', '$filter', function(missionService, $filter) {
         return {
             restrict: 'E',
             templateUrl:'templates/missionAdminView.html',
@@ -46,6 +46,15 @@ angular.module('app')
                 $scope.addDeletedMission = function() {
                     $scope.addMission($scope.deletedMission);
                     $scope.deletedMission = null;
+                };
+
+                $scope.showSelectedMissionType = function(mission) {
+                    if(mission && mission.mission_type) {
+                        var selected = $filter('filter')($scope.missionTypes, {id: mission.mission_type.id});
+                        return (mission.mission_type && selected.length) ? selected[0].name : false;
+                    } else {
+                        return false;
+                    }
                 };
             }
         }

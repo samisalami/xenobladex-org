@@ -22,14 +22,16 @@ class MissionController extends FOSRestController {
         $em->flush();
     }
 
-    protected function addMission(Mission $mission) {
+    protected function addMission(Mission $deserialized_mission) {
         $em = $this->getDoctrine()->getManager();
+        $mission = $em->merge($deserialized_mission);
         $em->persist($mission);
         $em->flush();
     }
 
-    protected function updateMission(Mission $mission, Mission $updated_mission) {
+    protected function updateMission(Mission $mission, Mission $deserialized_mission) {
         $em = $this->getDoctrine()->getManager();
+        $updated_mission = $em->merge($deserialized_mission);
         $mission->setName($updated_mission->getName());
         $mission->setDescription($updated_mission->getDescription());
         $mission->setTasks($updated_mission->getTasks());
@@ -60,10 +62,10 @@ class MissionController extends FOSRestController {
         $content = $this->get('request')->getContent();
         if(!empty($content)) {
             $serializer = $this->getJMSSerializer();
-            $mission = $serializer->deserialize($content, 'AppBundle\Entity\Mission', 'json');
-            $this->addMission($mission);
+            $deserialized_mission = $serializer->deserialize($content, 'AppBundle\Entity\Mission', 'json');
+            $this->addMission($deserialized_mission);
 
-            $response = new Response($serializer->serialize($mission, 'json'));
+            $response = new Response($serializer->serialize($deserialized_mission, 'json'));
             $response->headers->set('Content-Type', 'application/json');
             return $response;
         }
@@ -76,18 +78,18 @@ class MissionController extends FOSRestController {
         $content = $this->get('request')->getContent();
         if(!empty($content)) {
             $serializer = $this->getJMSSerializer();
-            $updated_mission = $serializer->deserialize($content, 'AppBundle\Entity\Mission', 'json');
+            $deserialized_mission = $serializer->deserialize($content, 'AppBundle\Entity\Mission', 'json');
             $mission = $this->getDoctrine()
                 ->getRepository('AppBundle:Mission')
-                ->find($updated_mission->getId());
+                ->find($deserialized_mission->getId());
 
             if(!$mission) {
                 $this->addMission($mission);
             } else {
-                $this->updateMission($mission, $updated_mission);
+                $this->updateMission($mission, $deserialized_mission);
             }
 
-            $response = new Response($serializer->serialize($updated_mission, 'json'));
+            $response = new Response($serializer->serialize($deserialized_mission, 'json'));
             $response->headers->set('Content-Type', 'application/json');
             return $response;
         }
