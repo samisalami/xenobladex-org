@@ -41,25 +41,25 @@
                         <a href="#" editable-text="newMission.name">{{newMission.name || 'eintragen'}}</a>
                     </td>
                     <td>
-                        <a href="#" editable-text="newMission.location_note">{{newMission.location_note || 'eintragen'}}</a>
+                        <a href="#" editable-textarea="newMission.location_note">{{newMission.location_note || 'eintragen'}}</a>
                     </td>
                     <td>
-                        <a href="#" editable-text="newMission.description">{{newMission.description || 'eintragen'}}</a>
+                        <a href="#" editable-textarea="newMission.description">{{newMission.description || 'eintragen'}}</a>
                     </td>
                     <td>
-                        <a href="#" editable-text="newMission.conditions">{{newMission.conditions || 'eintragen'}}</a>
+                        <a href="#" editable-textarea="newMission.conditions">{{newMission.conditions || 'eintragen'}}</a>
                     </td>
                     <td>
-                        <a href="#" editable-text="newMission.tasks">{{newMission.tasks || 'eintragen'}}</a>
+                        <a href="#" editable-textarea="newMission.tasks">{{newMission.tasks || 'eintragen'}}</a>
                     </td>
                     <td>
-                        <a href="#" editable-text="newMission.solution">{{newMission.solution || 'eintragen'}}</a>
+                        <a href="#" editable-textarea="newMission.solution">{{newMission.solution || 'eintragen'}}</a>
                     </td>
                     <td>
-                        <a href="#" editable-text="newMission.rewards">{{newMission.rewards || 'eintragen'}}</a>
+                        <a href="#" editable-textarea="newMission.rewards">{{newMission.rewards || 'eintragen'}}</a>
                     </td>
                     <td>
-                        <a href="#" editable-select="newMission.mission_type" e-ng-options="m as m.name for m in missionTypes">{{ newMission.mission_type.name || 'Not set' }}</a>
+                        <a href="#" editable-select="newMission.mission_type" e-ng-options="m as m.name for m in missionTypes">{{ newMission.mission_type.name || 'eintragen' }}</a>
                     </td>
                     <td>
                         <a href="#" class="text-success" ng-click="addMission(newMission)">
@@ -72,25 +72,25 @@
                         <a href="#" editable-text="mission.name" onaftersave="updateMission(mission)">{{mission.name || 'eintragen'}}</a>
                     </td>
                     <td>
-                        <a href="#" editable-text="mission.location_note" onaftersave="updateMission(mission)">{{mission.location_note || 'eintragen'}}</a>
+                        <a href="#" editable-textarea="mission.location_note" onaftersave="updateMission(mission)">{{mission.location_note || 'eintragen'}}</a>
                     </td>
                     <td>
-                        <a href="#" editable-text="mission.description" onaftersave="updateMission(mission)">{{mission.description || 'eintragen'}}</a>
+                        <a href="#" editable-textarea="mission.description" onaftersave="updateMission(mission)">{{mission.description || 'eintragen'}}</a>
                     </td>
                     <td>
-                        <a href="#" editable-text="mission.conditions" onaftersave="updateMission(mission)">{{mission.conditions || 'eintragen'}}</a>
+                        <a href="#" editable-textarea="mission.conditions" onaftersave="updateMission(mission)">{{mission.conditions || 'eintragen'}}</a>
                     </td>
                     <td>
-                        <a href="#" editable-text="mission.tasks" onaftersave="updateMission(mission)">{{mission.tasks || 'eintragen'}}</a>
+                        <a href="#" editable-textarea="mission.tasks" onaftersave="updateMission(mission)">{{mission.tasks || 'eintragen'}}</a>
                     </td>
                     <td>
-                        <a href="#" editable-text="mission.solution" onaftersave="updateMission(mission)">{{mission.solution || 'eintragen'}}</a>
+                        <a href="#" editable-textarea="mission.solution" onaftersave="updateMission(mission)">{{mission.solution || 'eintragen'}}</a>
                     </td>
                     <td>
-                        <a href="#" editable-text="mission.rewards" onaftersave="updateMission(mission)">{{mission.rewards || 'eintragen'}}</a>
+                        <a href="#" editable-textarea="mission.rewards" onaftersave="updateMission(mission)">{{mission.rewards || 'eintragen'}}</a>
                     </td>
                     <td>
-                        <a href="#" editable-select="mission.mission_type" e-ng-options="m as m.name for m in missionTypes" onaftersave="updateMission(mission)">{{mission.mission_type.name || 'Not set' }}</a>
+                        <a href="#" editable-select="mission.mission_type" e-ng-options="m as m.name for m in missionTypes" onaftersave="updateMission(mission)">{{mission.mission_type.name || 'eintragen' }}</a>
                     </td>
                     <td>
                         <a href="#" class="text-danger" ng-click="deleteMission(mission.id, $index)">

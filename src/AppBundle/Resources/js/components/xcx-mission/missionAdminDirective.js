@@ -32,6 +32,7 @@ angular.module('app')
                 $scope.addMission = function(mission) {
                     missionService.addMission(mission, function(mission){
                         $scope.missions = $scope.missions.concat(mission);
+                        $scope.newMission = null;
                     });
                 };
 
