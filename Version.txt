@@ -1,2 +1,2 @@
-0.0.6
-mission admin view, http authentication
+0.0.61
+fix: use textareas
