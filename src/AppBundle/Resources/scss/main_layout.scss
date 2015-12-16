@@ -34,29 +34,5 @@ body {
       }
     }
   }
-
-  [role="main"] {
-    //comming soon page only
-    .comming-soon-bg {
-      position: fixed;
-      top: 0;
-      left: 0;
-      z-index: -1;
-      min-width: 100%;
-      max-width: none;
-      min-height: 100%;
-    }
-
-    .container {
-      @extend .vertical-align;
-      position: absolute;
-      width: 100%;
-      text-align: center;
-    }
-
-    .panel {
-      display: inline-block;
-    }
-  }
 }
 

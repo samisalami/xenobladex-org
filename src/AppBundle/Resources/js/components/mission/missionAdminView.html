@@ -93,7 +93,7 @@
                         <a href="#" editable-select="mission.mission_type.id" e-ng-options="m.id as m.name for m in missionTypes" onaftersave="updateMission(mission)">{{ showSelectedMissionType(mission) || 'eintragen' }}</a>
                     </td>
                     <td>
-                        <a href="#" class="text-danger" ng-click="deleteMission(mission.id, $index)">
+                        <a href="#" class="text-danger" ng-click="deleteMission(mission)">
                             Löschen
                         </a>
                     </td>

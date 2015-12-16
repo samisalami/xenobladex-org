@@ -1,0 +1,50 @@
+<div class="map-admin-view">
+    <div class="alert alert-warning" ng-show="deletedMap">
+        <a ng-click="addDeletedMap()" href="#">Gelöschte Zeile wiederherstellen</a>
+    </div>
+    <div class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>
+                    Name:
+                </th>
+                <th>
+                    Bild:
+                </th>
+                <th>
+
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr>
+                <td>
+                    <a href="#" editable-text="newMap.name">{{newMap.name || 'eintragen'}}</a>
+                </td>
+                <td>
+                    <attachment-input>newMap.attachment_id</attachment-input>
+                </td>
+                <td>
+                    <a href="#" class="text-success" ng-click="addMap(newMap)">
+                        Hinzufügen
+                    </a>
+                </td>
+            </tr>
+            <tr ng-repeat="Map in Maps">
+                <td>
+                    <a href="#" editable-text="Map.name" onaftersave="updateMap(Map)">{{Map.name || 'eintragen'}}</a>
+                </td>
+                <td>
+
+                </td>
+                <td>
+                    <a href="#" class="text-danger" ng-click="deleteMap(Map.id, $index)">
+                        Löschen
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

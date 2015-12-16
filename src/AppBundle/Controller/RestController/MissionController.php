@@ -47,7 +47,7 @@ class MissionController extends FOSRestController {
      * @return Response
      */
     public function getMissionsAction() {
-        $em = $this->getDoctrine()->getEntityManager();
+        $em = $this->getDoctrine()->getManager();
         $missions = $em->getRepository('AppBundle:Mission')->findAll();
         $serializer = $this->getJMSSerializer();
         $response = new Response($serializer->serialize($missions, 'json'));
@@ -58,8 +58,8 @@ class MissionController extends FOSRestController {
     /**
      * @Route("/mission/add", methods={"POST"})
      */
-    public function addMissionAction() {
-        $content = $this->get('request')->getContent();
+    public function addMissionAction(Request $request) {
+        $content = $request->getContent();
         if(!empty($content)) {
             $serializer = $this->getJMSSerializer();
             $deserialized_mission = $serializer->deserialize($content, 'AppBundle\Entity\Mission', 'json');
@@ -74,8 +74,8 @@ class MissionController extends FOSRestController {
     /**
      * @Route("/mission/update", methods={"POST"})
      */
-    public function updateMissionAction() {
-        $content = $this->get('request')->getContent();
+    public function updateMissionAction(Request $request) {
+        $content = $request->getContent();
         if(!empty($content)) {
             $serializer = $this->getJMSSerializer();
             $deserialized_mission = $serializer->deserialize($content, 'AppBundle\Entity\Mission', 'json');

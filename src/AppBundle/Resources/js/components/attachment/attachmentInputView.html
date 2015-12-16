@@ -1,0 +1,7 @@
+<fieldset class="form-group">
+    <select class="form-control" id="attachmentId" ng-model="$data">
+        <option ng-repeat="attachment in attachments" value="attachment.id">
+            {{attachment.name}}
+        </option>
+    </select>
+</fieldset>

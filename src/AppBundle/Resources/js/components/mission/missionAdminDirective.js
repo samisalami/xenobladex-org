@@ -7,15 +7,19 @@ angular.module('app')
             templateUrl:'templates/missionAdminView.html',
             replace: true,
             link: function($scope, $element,$attrs){
-                $scope.newMission = {
-                    name: '',
-                    description: '',
-                    location_note: '',
-                    conditions: '',
-                    tasks: '',
-                    solution: '',
-                    rewards: ''
+                var resetNewMission = function() {
+                    $scope.newMission = {
+                        name: '',
+                        description: '',
+                        location_note: '',
+                        conditions: '',
+                        tasks: '',
+                        solution: '',
+                        rewards: ''
+                    };
                 };
+
+                resetNewMission();
 
                 missionService.getMissionTypes(function(response){
                    $scope.missionTypes = response;
@@ -31,15 +35,18 @@ angular.module('app')
 
                 $scope.addMission = function(mission) {
                     missionService.addMission(mission, function(mission){
-                        $scope.missions = $scope.missions.concat(mission);
-                        $scope.newMission = null;
+                        $scope.missions.push(mission);
+                        resetNewMission();
                     });
                 };
 
-                $scope.deleteMission = function(id, index) {
-                  missionService.deleteMission(id, function(mission){
-                    $scope.missions.splice(index, 1);
-                    $scope.deletedMission = mission;
+                $scope.deleteMission = function(mission) {
+                  missionService.deleteMission(mission.id, function(deletedMission){
+                    $scope.deletedMission = deletedMission;
+                    var index = $scope.missions.indexOf(mission);
+                    if(index !== -1) {
+                        $scope.missions.splice(index,1);
+                    }
                   });
                 };
 

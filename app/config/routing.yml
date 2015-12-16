@@ -13,6 +13,21 @@ missionType:
     type:     rest
     resource: "@AppBundle/Controller/RestController/MissionTypeController.php"
 
+map:
+    prefix: /xenobladex/api
+    type:     rest
+    resource: "@AppBundle/Controller/RestController/MapController.php"
+
+attachment:
+    prefix: /xenobladex/api
+    type:     rest
+    resource: "@AppBundle/Controller/RestController/AttachmentController.php"
+
+show_attachment:
+    path: /xenobladex/attachment/{id}
+    defaults: { _controller: AppBundle:RestController/Attachment:showAttachment }
+
+
 remove_trailing_slash:
     path: /{url}
     defaults: { _controller: AppBundle:Redirect:removeTrailingSlash }

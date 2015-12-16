@@ -1,0 +1,9 @@
+.glyphicon.glyphicon-ok {
+  @extend .#{$fa-css-prefix};
+  @extend .#{$fa-css-prefix}-check;
+}
+
+.glyphicon.glyphicon-remove {
+  @extend .#{$fa-css-prefix};
+  @extend .#{$fa-css-prefix}-remove;
+}

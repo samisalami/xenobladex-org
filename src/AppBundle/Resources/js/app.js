@@ -30,6 +30,12 @@ function config($routeProvider, $locationProvider) {
       .when('/admin/missionen', {
         templateUrl: 'templates/admin_missions.html'
       })
+      .when('/admin/karten', {
+        templateUrl: 'templates/admin_maps.html'
+      })
+      .when('/admin/dateien', {
+        templateUrl: 'templates/admin_attachments.html'
+      })
       .otherwise({
           templateUrl: 'templates/404.html'
       });

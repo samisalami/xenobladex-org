@@ -75,8 +75,8 @@ class UserController extends FOSRestController
     /**
      * @Route("/user/login", methods={"POST"})
      */
-    public function loginAction() {
-        $content = $this->get('request')->getContent();
+    public function loginAction(Request $request) {
+        $content = $request->getContent();
         if(!empty($content)) {
             $data = json_decode($content);
             $username = $data->username;
@@ -122,8 +122,8 @@ class UserController extends FOSRestController
     /**
      * @Route("/user/register", methods={"POST"})
      */
-    public function registerAction() {
-        $content = $this->get('request')->getContent();
+    public function registerAction(Request $request) {
+        $content = $request->getContent();
         if(!empty($content)) {
             $data = json_decode($content);
             $username = $data->username;
