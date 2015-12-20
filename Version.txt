@@ -1,2 +1,2 @@
-0.0.7
-attachments, file upload, bs4
+0.0.8
+maps, attachment input, aucomplete select
