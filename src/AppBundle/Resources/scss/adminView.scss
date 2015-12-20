@@ -8,7 +8,8 @@
   }
 
   .editable-buttons {
-    display: none;
+    display: block;
+    margin-top: $default-padding;
   }
 
   textarea {
