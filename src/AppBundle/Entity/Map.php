@@ -29,6 +29,13 @@ class Map
     private $name;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text")
+     */
+    private $description;
+
+    /**
      * @ORM\ManyToOne(targetEntity="Attachment")
      * @ORM\JoinColumn(name="attachment_id", referencedColumnName="id")
      */
@@ -89,5 +96,28 @@ class Map
     public function getAttachment()
     {
         return $this->attachment;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return Map
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string 
+     */
+    public function getDescription()
+    {
+        return $this->description;
     }
 }

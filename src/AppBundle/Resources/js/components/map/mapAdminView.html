@@ -10,7 +10,13 @@
                     Name:
                 </th>
                 <th>
+                    Beschreibung:
+                </th>
+                <th>
                     Bild:
+                </th>
+                <th>
+
                 </th>
                 <th>
 
@@ -23,7 +29,13 @@
                     <a href="#" editable-text="newMap.name">{{newMap.name || 'eintragen'}}</a>
                 </td>
                 <td>
-                    <attachment-input>newMap.attachment_id</attachment-input>
+                    <a href="#" editable-textarea="newMap.description">{{newMap.description || 'eintragen'}}</a>
+                </td>
+                <td>
+                    <attachment-input ng-if="attachmentsLoaded" attachment-list="attachments" attachment-type="'image'" attachment-bind="newMap.attachment"></attachment-input>
+                </td>
+                <td>
+
                 </td>
                 <td>
                     <a href="#" class="text-success" ng-click="addMap(newMap)">
@@ -31,15 +43,21 @@
                     </a>
                 </td>
             </tr>
-            <tr ng-repeat="Map in Maps">
+            <tr ng-repeat="map in maps">
                 <td>
-                    <a href="#" editable-text="Map.name" onaftersave="updateMap(Map)">{{Map.name || 'eintragen'}}</a>
+                    <a href="#" editable-text="map.name" onaftersave="updateMap(map)">{{map.name || 'eintragen'}}</a>
                 </td>
                 <td>
-
+                    <a href="#" editable-textarea="map.description" onaftersave="updateMap(map)">{{map.description || 'eintragen'}}</a>
                 </td>
                 <td>
-                    <a href="#" class="text-danger" ng-click="deleteMap(Map.id, $index)">
+                    <attachment-input attachment-list="attachments" ng-if="attachmentsLoaded" attachment-type="'image'" attachment-bind="map.attachment"></attachment-input>
+                </td>
+                <td>
+                    <a href="#" class="btn btn-primary" ng-click="updateMap(map)"><span class="fa fa-check"></span></a>
+                </td>
+                <td>
+                    <a href="#" class="text-danger" ng-click="deleteMap(map.id, $index)">
                         Löschen
                     </a>
                 </td>

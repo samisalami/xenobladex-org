@@ -2,8 +2,9 @@
 @import "compass";
 @import "variables";
 @import "helper";
-@import "overwrites_glyphicons";
+@import "glyphicons";
 @import "adminView";
 @import "attachmentAdminView";
-@import 'main_layout';
-@import "page_start";
+@import "attachmentInput";
+@import 'layout';
+@import "start";

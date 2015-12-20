@@ -1,9 +1,19 @@
 .attachment-admin-view {
   .image-wrapper {
     position: relative;
+    height: 18rem;
+    overflow: hidden;
     img {
-      height: 18rem;
+      height: 100%;
       min-width: 100%;
+    }
+
+    .mime-type {
+      @extend .vertical-align;
+      position: absolute;
+      width: 10rem;
+      left: 50%;
+      margin-left: -5rem;
     }
   }
 }

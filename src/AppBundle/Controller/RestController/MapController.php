@@ -33,6 +33,7 @@ class MapController extends FOSRestController {
         $em = $this->getDoctrine()->getManager();
         $updated_map = $em->merge($deserialized_map);
         $map->setName($updated_map->getName());
+        $map->setDescription($updated_map->getDescription());
         $map->setAttachment($updated_map->getAttachment());
         $em->flush();
     }

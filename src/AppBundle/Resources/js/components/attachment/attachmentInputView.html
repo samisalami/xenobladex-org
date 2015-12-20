@@ -1,7 +1,39 @@
-<fieldset class="form-group">
-    <select class="form-control" id="attachmentId" ng-model="$data">
-        <option ng-repeat="attachment in attachments" value="attachment.id">
-            {{attachment.name}}
-        </option>
-    </select>
-</fieldset>
+<div class="attachment-input-view">
+    <div class="input-group">
+        <input type="text" class="form-control" readonly ng-model="attachmentBind.name" />
+        <span class="input-group-btn">
+            <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#{{selectModalId}}"><span class="fa fa-folder-open"></span></a>
+        </span>
+    </div>
+    <div class="modal fade" id="{{selectModalId}}" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h4 class="modal-title" id="myModalLabel">Alle Bilder</h4>
+                </div>
+                <div class="modal-body">
+                    <input type="text" class="form-control text" ng-model="modalFilterValue" placeholder="Filtern...">
+                    <div class="row m-t-2">
+                        <div class="col-lg-3" ng-if="attachments" ng-repeat="attachment in attachments | orderBy:'name' | listFilter:modalFilterValue:'name'" ng-class="{'clear-both': $index%4==0}">
+                            <div ng-click="selectOption(attachment)" class="attachment-thumbnail text-xs-center">
+                                <img ng-if="attachment.mime_type.indexOf('image') !== -1" class="card-img-top img-responsive img-thumbnail" ng-src="/xenobladex/attachment/{{attachment.id}}" />
+                                <div class="mime-type" ng-if="attachment.mime_type.indexOf('image') === -1">
+                                    <span class="fa fa-file fa-5x m-t-2"></span>
+                                    <p>{{attachment.mime_type}}</p>
+                                </div>
+                                <div class="content">
+                                    <p class="text-muted">
+                                        {{attachment.name}}
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,6 +1,14 @@
 .admin-view {
+  table {
+    table-layout: fixed;
+  }
+
   a.editable {
     white-space: pre-wrap;
+  }
+
+  .editable-buttons {
+    display: none;
   }
 
   textarea {

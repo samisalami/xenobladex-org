@@ -18,6 +18,7 @@ web/js/*
 web/libraries/*
 web/templates/*
 web/images/*
+web/uploads/*
 web/index.html
 .sass-cache/*
 composer.lock

@@ -11,16 +11,16 @@ angular.module('app')
         };
 
         service.addMap = function(map, callback) {
-            $http.post('/xenobladex/api/map/add', mission).success(function(response){
+            $http.post('/xenobladex/api/map/add', map).success(function(response){
                 callback(response);
             });
         };
 
         service.updateMap = function(map) {
-            $http.post('/xenobladex/api/map/update', mission);
+            $http.post('/xenobladex/api/map/update', map);
         };
 
-        service.deleteMap = function(id, map) {
+        service.deleteMap = function(id, callback) {
             $http.delete('/xenobladex/api/maps/'+id).success(function(response){
                 callback(response);
             });

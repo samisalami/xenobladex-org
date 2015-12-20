@@ -1,16 +1,16 @@
 'use strict';
 
 angular.module('app')
-    .directive('mapAdmin',['mapService', '$filter', function(mapService, $filter) {
+    .directive('mapAdmin',['mapService', 'attachmentService', '$filter', function(mapService, attachmentService, $filter) {
         return {
-            restrict: 'E',
             templateUrl:'templates/mapAdminView.html',
             replace: true,
             link: function($scope, $element,$attrs){
                 var resetNewMap = function() {
                     $scope.newMap = {
                         name: '',
-                        image_path:''
+                        description: '',
+                        attachment: null
                     };
                 };
 
@@ -18,6 +18,12 @@ angular.module('app')
 
                 mapService.getMaps(function(response){
                     $scope.maps = response;
+                });
+
+                $scope.attachmentsLoaded = false;
+                attachmentService.getAttachments(function(attachments){
+                    $scope.attachments = attachments;
+                    $scope.attachmentsLoaded = true;
                 });
 
                 $scope.updateMap = function(map) {
@@ -41,14 +47,6 @@ angular.module('app')
                 $scope.addDeletedMap = function() {
                     $scope.addMap($scope.deletedMap);
                     $scope.deletedMap = null;
-                };
-
-                $scope.showMapImage = function($map) {
-                    if($map.image_path) {
-
-                    } else {
-
-                    }
                 };
             }
         }
