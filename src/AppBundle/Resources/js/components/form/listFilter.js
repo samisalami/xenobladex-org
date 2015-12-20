@@ -12,7 +12,7 @@ angular.module('app')
                         listValue = list[i][fieldname];
                     }
 
-                    if (listValue.indexOf(filterValue)!== -1) {
+                    if (listValue.toLowerCase().indexOf(filterValue.toLowerCase())!== -1) {
                         result.push(list[i]);
                     }
                 }
