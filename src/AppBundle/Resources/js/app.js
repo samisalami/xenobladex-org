@@ -36,6 +36,9 @@ function config($routeProvider, $locationProvider) {
       .when('/admin/dateien', {
         templateUrl: 'templates/admin_attachments.html'
       })
+      .when('/admin/personen', {
+        templateUrl: 'templates/admin_persons.html'
+      })
       .otherwise({
           templateUrl: 'templates/404.html'
       });

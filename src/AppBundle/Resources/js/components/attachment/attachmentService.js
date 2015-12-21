@@ -5,7 +5,7 @@ angular.module('app')
         var service = {};
 
         service.getAttachments = function(callback) {
-            $http.get('/xenobladex/api/attachments').success(function(response){
+            $http.get(Routing.generate('get_attachments')).success(function(response){
                 callback(response);
             });
         };
@@ -13,7 +13,7 @@ angular.module('app')
         service.addAttachmentFile = function(file, callback) {
             var fd = new FormData();
             fd.append('file', file);
-            $http.post('/xenobladex/api/attachment/add', fd, {
+            $http.post(Routing.generate('add_attachment'), fd, {
                 transformRequest: angular.identity,
                 headers: {'Content-Type': undefined}
             })
@@ -26,11 +26,11 @@ angular.module('app')
         };
 
         service.updateAttachment = function(attachment) {
-            $http.post('/xenobladex/api/attachment/update', attachment);
+            $http.post(Routing.generate('update_attachment'), attachment);
         };
 
         service.deleteAttachment = function(id, callback) {
-            $http.delete('/xenobladex/api/attachments/'+id).success(function(){
+            $http.delete(Routing.generate('delete_attachment')+'/'+id).success(function(){
                 callback();
             });
         };

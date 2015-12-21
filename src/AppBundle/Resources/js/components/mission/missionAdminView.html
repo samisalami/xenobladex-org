@@ -17,34 +17,13 @@
                 </div>
                 <div class="modal-body">
                     <form>
-                        <fieldset class="form-group">
-                            <label for="newMissionName">Name:</label>
-                            <input type="text" id="newMissionName" class="form-control" ng-model="newMission.name">
-                        </fieldset>
-                        <fieldset class="form-group">
-                            <label for="newMissionLocationNote">Erhalt wo:</label>
-                            <textarea id="newMissionLocationNote" class="form-control" ng-model="newMission.location_note"></textarea>
-                        </fieldset>
-                        <fieldset class="form-group">
-                            <label for="newMissionConditions">Bedingungen:</label>
-                            <textarea id="newMissionConditions" class="form-control" ng-model="newMission.conditions"></textarea>
-                        </fieldset>
-                        <fieldset class="form-group">
-                            <label for="newMissionDescription">Beschreibung:</label>
-                            <textarea id="newMissionDescription" class="form-control" ng-model="newMission.description"></textarea>
-                        </fieldset>
-                        <fieldset class="form-group">
-                            <label for="newMissionTasks">Aufgaben:</label>
-                            <textarea id="newMissionTasks" class="form-control" ng-model="newMission.tasks"></textarea>
-                        </fieldset>
-                        <fieldset class="form-group">
-                            <label for="newMissionSolution">Lösung:</label>
-                            <textarea id="newMissionSolution" class="form-control" ng-model="newMission.solution"></textarea>
-                        </fieldset>
-                        <fieldset class="form-group">
-                            <label for="newMissionRewards">Belohnung:</label>
-                            <textarea id="newMissionRewards" class="form-control" ng-model="newMission.rewards"></textarea>
-                        </fieldset>
+                        <form-field form-field-bind="newMission.name" form-field-label="Name" form-field-template="fieldsetInputText"></form-field>
+                        <form-field form-field-bind="newMission.location_note" form-field-label="Erhalt wo" form-field-template="fieldsetTextarea"></form-field>
+                        <form-field form-field-bind="newMission.conditions" form-field-label="Bedingungen" form-field-template="fieldsetTextarea"></form-field>
+                        <form-field form-field-bind="newMission.description" form-field-label="Beschreibung" form-field-template="fieldsetTextarea"></form-field>
+                        <form-field form-field-bind="newMission.tasks" form-field-label="Aufgaben" form-field-template="fieldsetTextarea"></form-field>
+                        <form-field form-field-bind="newMission.solution" form-field-label="Lösung" form-field-template="fieldsetTextarea"></form-field>
+                        <form-field form-field-bind="newMission.rewards" form-field-label="Belohnung" form-field-template="fieldsetTextarea"></form-field>
                         <fieldset class="form-group">
                             <label for="newMissionType">Typ:</label>
                             <select id="newMissionType" class="form-control" ng-model="newMission.mission_type.id" ng-options="m.id as m.name for m in missionTypes">
@@ -59,42 +38,42 @@
         </div>
     </div>
     <div class="list-group">
-        <div ng-repeat="mission in missions | listFilter:modalFilterValue:'name'">
+        <div class="collapsed-table-view" ng-repeat="mission in missions | listFilter:modalFilterValue:'name'">
             <button class="list-group-item" data-toggle="collapse" data-target="#mission-view-{{$index}}" aria-expanded="false" aria-controls="mission-view-{{$index}}">{{mission.name}}</button>
             <div class="collapse" id="mission-view-{{$index}}">
                 <div class="card card-block">
                     <div class="row">
-                        <h4 class="col-lg-3 card-title p-y-1"><a href="#" editable-text="mission.name" onaftersave="updateMission(mission)">{{mission.name || 'eintragen'}}</a></h4>
-                        <div class="col-lg-3">
+                        <h4 class="col-md-3 col-xs-6 card-title p-y-1"><a href="#" editable-text="mission.name" onaftersave="updateMission(mission)">{{mission.name || 'eintragen'}}</a></h4>
+                        <div class="col-lg-3 hidden-sm-down">
                         </div>
-                        <div class="col-lg-3">
+                        <div class="col-lg-3 hidden-sm-down">
                         </div>
-                        <div class="col-lg-3">
+                        <div class="col-md-3 col-xs-6">
                             <button href="#" class="btn btn-danger pull-right" ng-click="deleteMission(mission)">
                                 Löschen
                             </button>
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-3 card card-block col-xs-12 col-md-6">
+                        <div class="col-lg-3 card card-block col-xs-12">
                             <strong>Person:</strong>
                             <p>
                                 <i>comming soon</i>
                             </p>
                         </div>
-                        <div class="col-lg-3 card card-block col-xs-12 col-md-6">
+                        <div class="col-lg-3 card card-block col-xs-12 ">
                             <strong>Erhalt wo:</strong>
                             <p>
                                 <a href="#" editable-textarea="mission.location_note" onaftersave="updateMission(mission)">{{mission.location_note || 'eintragen'}}</a>
                             </p>
                         </div>
-                        <div class="col-lg-3 card card-block col-xs-12 col-md-6">
+                        <div class="col-lg-3 card card-block col-xs-12 ">
                             <strong>Bedingungen:</strong>
                             <p>
                                 <a href="#" editable-textarea="mission.conditions" onaftersave="updateMission(mission)">{{mission.conditions || 'eintragen'}}</a>
                             </p>
                         </div>
-                        <div class="col-lg-3 card card-block col-xs-12 col-md-6">
+                        <div class="col-lg-3 card card-block col-xs-12 ">
                             <strong>Beschreibung:</strong>
                             <p>
                                 <a href="#" editable-textarea="mission.description" onaftersave="updateMission(mission)">{{mission.description || 'eintragen'}}</a>
@@ -102,25 +81,25 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div class="col-lg-3 card card-block col-xs-12 col-md-6">
+                        <div class="col-lg-3 card card-block col-xs-12 ">
                             <strong>Lösung:</strong>
                             <p>
                                 <a href="#" editable-textarea="mission.solution" onaftersave="updateMission(mission)">{{mission.solution || 'eintragen'}}</a>
                             </p>
                         </div>
-                        <div class="col-lg-3 card card-block col-xs-12 col-md-6">
+                        <div class="col-lg-3 card card-block col-xs-12 ">
                             <strong>Aufgaben:</strong>
                             <p>
                                 <a href="#" editable-textarea="mission.tasks" onaftersave="updateMission(mission)">{{mission.tasks || 'eintragen'}}</a>
                             </p>
                         </div>
-                        <div class="col-lg-3 card card-block col-xs-12 col-md-6">
+                        <div class="col-lg-3 card card-block col-xs-12 ">
                             <strong>Belohnung:</strong>
                             <p>
                                 <a href="#" editable-textarea="mission.rewards" onaftersave="updateMission(mission)">{{mission.rewards || 'eintragen'}}</a>
                             </p>
                         </div>
-                        <div class="col-lg-3 card card-block col-xs-12 col-md-6">
+                        <div class="col-lg-3 card card-block col-xs-12 ">
                             <strong>Typ:</strong>
                             <p>
                                 <a href="#" editable-select="mission.mission_type.id" e-ng-options="m.id as m.name for m in missionTypes" onaftersave="updateMission(mission)">{{ showSelectedMissionType(mission) || 'eintragen' }}</a>

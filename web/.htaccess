@@ -31,6 +31,8 @@ DirectoryIndex index.html
 
     #let the php framework do its thing
     RewriteRule ^(xenobladex/.*)$ app.php?url=$1 [QSA,L,NC]
+    #fos jsrouting bundle
+    RewriteRule ^(js/routing.*)$ app.php?url=$1 [QSA,L,NC]
     #let angular do its thing
     RewriteCond %{REQUEST_FILENAME} !-f
     RewriteCond %{REQUEST_FILENAME} !-d

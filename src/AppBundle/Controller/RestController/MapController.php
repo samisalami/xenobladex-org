@@ -53,7 +53,7 @@ class MapController extends FOSRestController {
     /**
      * @Route("/map/add", methods={"POST"})
      */
-    public function addMapsAction(Request $request) {
+    public function addMapAction(Request $request) {
         $content = $request->getContent();
         if(!empty($content)) {
             $serializer = $this->getJMSSerializer();

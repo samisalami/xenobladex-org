@@ -8,7 +8,7 @@ use Doctrine\ORM\Mapping as ORM;
  * Mission
  *
  * @ORM\Table(name="xenobladex_mission")
- * @ORM\Entity(repositoryClass="AppBundle\Entity\MissionRepository")
+ * @ORM\Entity()
  */
 class Mission
 {

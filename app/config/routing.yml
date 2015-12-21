@@ -1,27 +1,47 @@
+fos_js_routing:
+    resource: "@FOSJsRoutingBundle/Resources/config/routing/routing.xml"
+
 user:
     prefix: /xenobladex
     type:     rest
     resource: "@AppBundle/Controller/RestController/UserController.php"
+    options:
+        expose: true
 
 mission:
     prefix: /xenobladex/api
     type:     rest
     resource: "@AppBundle/Controller/RestController/MissionController.php"
+    options:
+        expose: true
 
 missionType:
     prefix: /xenobladex/api
     type:     rest
     resource: "@AppBundle/Controller/RestController/MissionTypeController.php"
+    options:
+        expose: true
 
 map:
     prefix: /xenobladex/api
     type:     rest
     resource: "@AppBundle/Controller/RestController/MapController.php"
+    options:
+        expose: true
 
 attachment:
     prefix: /xenobladex/api
     type:     rest
     resource: "@AppBundle/Controller/RestController/AttachmentController.php"
+    options:
+        expose: true
+
+person:
+    prefix: /xenobladex/api
+    type:     rest
+    resource: "@AppBundle/Controller/RestController/PersonController.php"
+    options:
+        expose: true
 
 show_attachment:
     path: /xenobladex/attachment/{id}

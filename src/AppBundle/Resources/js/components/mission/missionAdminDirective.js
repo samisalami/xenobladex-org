@@ -37,6 +37,7 @@ angular.module('app')
                     missionService.addMission(mission, function(mission){
                         $scope.missions.push(mission);
                         resetNewMission();
+                        $('.modal').modal('hide');
                     });
                 };
 
@@ -56,7 +57,7 @@ angular.module('app')
                 };
 
                 $scope.showSelectedMissionType = function(mission) {
-                    if(mission && mission.mission_type) {
+                    if(typeof (mission) !== 'undefined' && typeof (mission.mission_type) !== 'undefined') {
                         var selected = $filter('filter')($scope.missionTypes, {id: mission.mission_type.id});
                         return (mission.mission_type && selected.length) ? selected[0].name : false;
                     } else {

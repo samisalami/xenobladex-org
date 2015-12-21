@@ -89,3 +89,6 @@ fos_user:
     user_class: AppBundle\Entity\User
 
 nelmio_api_doc: ~
+
+fos_js_routing:
+    routes_to_expose: [ xenobladex/api/* ]

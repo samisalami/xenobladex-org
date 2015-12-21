@@ -56,7 +56,7 @@ class AttachmentController extends FOSRestController {
     /**
      * @Route("/attachment/add", methods={"POST"})
      */
-    public function addAttachmentsAction(Request $request) {
+    public function addAttachmentAction(Request $request) {
         $file = $request->files->get('file');
 
         if(!empty($file)) {

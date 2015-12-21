@@ -5,23 +5,23 @@ angular.module('app')
         var service = {};
 
         service.getMaps = function(callback) {
-            $http.get('/xenobladex/api/maps').success(function(response){
+            $http.get(Routing.generate('get_maps')).success(function(response){
                 callback(response);
             });
         };
 
         service.addMap = function(map, callback) {
-            $http.post('/xenobladex/api/map/add', map).success(function(response){
+            $http.post(Routing.generate('add_map'), map).success(function(response){
                 callback(response);
             });
         };
 
         service.updateMap = function(map) {
-            $http.post('/xenobladex/api/map/update', map);
+            $http.post(Routing.generate('update_map'), map);
         };
 
         service.deleteMap = function(id, callback) {
-            $http.delete('/xenobladex/api/maps/'+id).success(function(response){
+            $http.delete(Routing.generate('delete_map')+'/'+id).success(function(response){
                 callback(response);
             });
         };

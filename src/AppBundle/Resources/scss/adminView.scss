@@ -40,4 +40,37 @@
   .table>tbody>tr>td, .table>tbody>tr>th, .table>thead>tr>td, .table>thead>tr>th {
     vertical-align: middle;
   }
+
+  .collapsed-table-view {
+    @media (min-width: #{$screen-md-min}) {
+      .collapse {
+        width: 100%;
+        table-layout: fixed;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+        border-collapse: collapse;
+
+        .row {
+          display: table-row;
+          height: 100%;
+
+          [class^="col-"] {
+            float: none;
+            display: table-cell;
+          }
+
+          .card {
+            width: 25%;
+          }
+        }
+      }
+    }
+  }
+
+  .modal-body {
+    textarea {
+      min-height: 100px;
+      max-width: 100%;
+    }
+  }
 }

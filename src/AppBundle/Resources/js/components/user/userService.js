@@ -2,27 +2,31 @@
 
 angular.module('app')
 
-    .factory('AuthenticationService',
+    .factory('UserService',
     ['Base64', '$http', '$cookieStore', '$rootScope', '$timeout',
      function (Base64, $http, $cookieStore, $rootScope, $timeout) {
        var service = {};
 
-       service.Login = function (username, password, callback) {
-         $http.post('/xenobladex/user/login', { username: username, password: password })
-             .success(function (response) {
-                 callback(response);
-             });
-       };
-
-       service.Register = function(username, password, password_repeat, email, form_message, callback) {
-         $http.post('/xenobladex/user/register', { username: username, password: password, password_repeat: password_repeat, email: email, form_message: form_message })
-             .success(function (response) {
+       service.login = function (username, password, callback) {
+         $http.post(Routing.generate('login'), { username: username, password: password })
+           .success(function (response) {
                callback(response);
-             });
-
+           });
        };
 
-       service.SetCredentials = function (username, password) {
+       service.register = function(username, password, password_repeat, email, form_message, callback) {
+         $http.post(Routing.generate('register'), { username: username, password: password, password_repeat: password_repeat, email: email, form_message: form_message })
+           .success(function (response) {
+              callback(response);
+            });
+       };
+
+       service.logout = function() {
+         $http.get(Routing.generate('logout'));
+         this.ClearCredentials();
+       };
+
+       service.setCredentials = function (username, password) {
          var authdata = Base64.encode(username + ':' + password);
 
          $rootScope.globals = {
@@ -36,7 +40,7 @@ angular.module('app')
          $cookieStore.put('globals', $rootScope.globals);
        };
 
-       service.ClearCredentials = function () {
+       service.clearCredentials = function () {
          $rootScope.globals = {};
          $cookieStore.remove('globals');
          $http.defaults.headers.common.Authorization = 'Basic ';

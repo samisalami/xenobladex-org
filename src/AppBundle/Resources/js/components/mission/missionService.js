@@ -5,29 +5,29 @@ angular.module('app')
     var service = {};
 
     service.getMissionTypes = function(callback) {
-        $http.get('/xenobladex/api/missions/types').success(function(response){
+        $http.get(Routing.generate('get_missions_types')).success(function(response){
             callback(response);
         });
     };
 
     service.getMissions = function(callback) {
-        $http.get('/xenobladex/api/missions').success(function(response){
+        $http.get(Routing.generate('get_missions')).success(function(response){
             callback(response);
         });
     };
 
     service.addMission = function(mission, callback) {
-        $http.post('/xenobladex/api/mission/add', mission).success(function(response){
+        $http.post(Routing.generate('add_mission'), mission).success(function(response){
             callback(response);
         });
     };
 
     service.updateMission = function(mission) {
-        $http.post('/xenobladex/api/mission/update', mission);
+        $http.post(Routing.generate('update_mission'), mission);
     };
 
     service.deleteMission = function(id, callback) {
-        $http.delete('/xenobladex/api/missions/'+id).success(function(response){
+        $http.delete(Routing.generate('delete_mission')+'/'+id).success(function(response){
             callback(response);
         });
     };

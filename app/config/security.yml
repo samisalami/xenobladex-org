@@ -16,4 +16,4 @@ security:
             http_basic: ~
 
     access_control:
-        - { path: ^/api/admin/, role: ROLE_ADMIN }
+        - { path: /api/.*, role: ROLE_USER }
