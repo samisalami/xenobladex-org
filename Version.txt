@@ -1,2 +1,2 @@
-0.0.82
-fix list filter, design changes
+0.0.9
+fos js routing bundle, persons, form field directive
