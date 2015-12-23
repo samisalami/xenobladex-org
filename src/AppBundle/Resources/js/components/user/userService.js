@@ -2,7 +2,7 @@
 
 angular.module('app')
 
-    .factory('UserService',
+    .factory('userService',
     ['Base64', '$http', '$cookieStore', '$rootScope', '$timeout',
      function (Base64, $http, $cookieStore, $rootScope, $timeout) {
        var service = {};

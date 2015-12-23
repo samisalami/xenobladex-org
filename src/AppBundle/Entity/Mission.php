@@ -26,55 +26,75 @@ class Mission
      *
      * @ORM\Column(name="name", type="string", length=255)
      */
-    private $name;
+    private $name = '';
 
     /**
      * @var string
      *
      * @ORM\Column(name="description", type="text")
      */
-    private $description;
+    private $description = '';
 
     /**
      * @var string
      *
      * @ORM\Column(name="locationNote", type="text")
      */
-    private $location_note;
+    private $location_note = '';
 
     /**
      * @var string
      *
      * @ORM\Column(name="conditions", type="text")
      */
-    private $conditions;
+    private $conditions = '';
 
     /**
      * @var string
      *
      * @ORM\Column(name="tasks", type="text")
      */
-    private $tasks;
+    private $tasks = '';
 
     /**
      * @var string
      *
      * @ORM\Column(name="solution", type="text")
      */
-    private $solution;
+    private $solution = '';
 
     /**
      * @var string
      *
      * @ORM\Column(name="rewards", type="text")
      */
-    private $rewards;
+    private $rewards = '';
 
     /**
      * @ORM\ManyToOne(targetEntity="MissionType")
      * @ORM\JoinColumn(name="mission_type_id", referencedColumnName="id")
      */
     private $mission_type;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Person", cascade={"persist"})
+     * @ORM\JoinColumn(name="person_id", referencedColumnName="id")
+     */
+    private $person;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="person_unrelated", type="string", length=255)
+     */
+    private $person_unrelated = '';
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="has_person", type="boolean")
+     */
+    private $has_person = false;
 
 
     /**
@@ -269,5 +289,74 @@ class Mission
     public function getMissionType()
     {
         return $this->mission_type;
+    }
+
+    /**
+     * Set person_unrelated
+     *
+     * @param string $personUnrelated
+     * @return Mission
+     */
+    public function setPersonUnrelated($personUnrelated)
+    {
+        $this->person_unrelated = $personUnrelated;
+
+        return $this;
+    }
+
+    /**
+     * Get person_unrelated
+     *
+     * @return string 
+     */
+    public function getPersonUnrelated()
+    {
+        return $this->person_unrelated;
+    }
+
+    /**
+     * Set person
+     *
+     * @param \AppBundle\Entity\Person $person
+     * @return Mission
+     */
+    public function setPerson(\AppBundle\Entity\Person $person = null)
+    {
+        $this->person = $person;
+
+        return $this;
+    }
+
+    /**
+     * Get person
+     *
+     * @return \AppBundle\Entity\Person 
+     */
+    public function getPerson()
+    {
+        return $this->person;
+    }
+
+    /**
+     * Set has_person
+     *
+     * @param boolean $hasPerson
+     * @return Mission
+     */
+    public function setHasPerson($hasPerson)
+    {
+        $this->has_person = $hasPerson;
+
+        return $this;
+    }
+
+    /**
+     * Get has_person
+     *
+     * @return boolean 
+     */
+    public function getHasPerson()
+    {
+        return $this->has_person;
     }
 }

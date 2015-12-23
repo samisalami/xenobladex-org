@@ -2,14 +2,15 @@
 
 angular
     .module('app')
-    .factory('FlashService', FlashService);
+    .factory('flashService', flashService);
 
-FlashService.$inject = ['$rootScope'];
-function FlashService($rootScope) {
+flashService.$inject = ['$rootScope'];
+function flashService($rootScope) {
   var service = {};
 
-  service.Success = Success;
-  service.Error = Error;
+  service.success = success;
+  service.error = error;
+  service.clear = clearFlashMessage;
 
   initService();
 
@@ -19,32 +20,32 @@ function FlashService($rootScope) {
     $rootScope.$on('$locationChangeStart', function () {
       clearFlashMessage();
     });
+  }
 
-    function clearFlashMessage() {
-      var flash = $rootScope.flash;
-      if (flash) {
-        if (!flash.keepAfterLocationChange) {
-          delete $rootScope.flash;
-        } else {
-          // only keep for a single location change
-          flash.keepAfterLocationChange = false;
-        }
+  function clearFlashMessage() {
+    var flash = $rootScope.flash;
+    if (flash) {
+      if (!flash.keepAfterLocationChange) {
+        delete $rootScope.flash;
+      } else {
+        // only keep for a single location change
+        flash.keepAfterLocationChange = false;
       }
     }
   }
 
-  function Success(message, keepAfterLocationChange) {
+  function success(message, keepAfterLocationChange) {
     $rootScope.flash = {
       message: message,
-      type: 'success',
+      success: true,
       keepAfterLocationChange: keepAfterLocationChange
     };
   }
 
-  function Error(message, keepAfterLocationChange) {
+  function error(message, keepAfterLocationChange) {
     $rootScope.flash = {
       message: message,
-      type: 'error',
+      success: false,
       keepAfterLocationChange: keepAfterLocationChange
     };
   }

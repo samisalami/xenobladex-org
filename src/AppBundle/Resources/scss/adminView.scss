@@ -42,6 +42,14 @@
   }
 
   .collapsed-table-view {
+    .info-icon {
+      @extend .fa;
+      @extend .fa-info-circle;
+      position: absolute;
+      top: $default-margin;
+      right: $default-margin;
+    }
+
     @media (min-width: #{$screen-md-min}) {
       .collapse {
         width: 100%;
@@ -71,6 +79,17 @@
     textarea {
       min-height: 100px;
       max-width: 100%;
+    }
+  }
+}
+
+.admin-header {
+  #loading-modal {
+    .modal-dialog {
+      position: absolute;
+      @extend .vertical-align;
+      left: 50%;
+      margin-left: -300px;
     }
   }
 }

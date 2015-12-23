@@ -11,8 +11,8 @@ angular.module('app')
         };
 
         service.addPerson = function(person, callback) {
-            $http.post(Routing.generate('add_person'), person).success(function(response){
-                callback(response);
+            $http.post(Routing.generate('add_person'), person).success(function(){
+                callback();
             });
         };
 

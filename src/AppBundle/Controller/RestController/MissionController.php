@@ -40,6 +40,9 @@ class MissionController extends FOSRestController {
         $mission->setLocationNote($updated_mission->getLocationNote());
         $mission->setRewards($updated_mission->getRewards());
         $mission->setMissionType($updated_mission->getMissionType());
+        $mission->setPerson($updated_mission->getPerson());
+        $mission->setPersonUnrelated($updated_mission->getPersonUnrelated());
+        $mission->setHasPerson($updated_mission->getHasPerson());
         $em->flush();
     }
 
@@ -64,11 +67,8 @@ class MissionController extends FOSRestController {
             $serializer = $this->getJMSSerializer();
             $deserialized_mission = $serializer->deserialize($content, 'AppBundle\Entity\Mission', 'json');
             $this->addMission($deserialized_mission);
-
-            $response = new Response($serializer->serialize($deserialized_mission, 'json'));
-            $response->headers->set('Content-Type', 'application/json');
-            return $response;
         }
+        return new Response(Response::HTTP_OK);
     }
 
     /**

@@ -17,8 +17,8 @@ angular.module('app')
     };
 
     service.addMission = function(mission, callback) {
-        $http.post(Routing.generate('add_mission'), mission).success(function(response){
-            callback(response);
+        $http.post(Routing.generate('add_mission'), mission).success(function(){
+            callback();
         });
     };
 

@@ -2,21 +2,21 @@
 angular.module('app')
     .controller('UserController', UserController);
 
-UserController.$inject = ['$scope','$location', 'UserService', 'FlashService'];
-function UserController($scope, $location, UserService, FlashService) {
+UserController.$inject = ['$scope','$location', 'userService', 'flashService'];
+function UserController($scope, $location, userService, flashService) {
   (function initController() {
     // reset login status
-    UserService.clearCredentials();
+    userService.clearCredentials();
   })();
 
   $scope.login = function() {
     $scope.dataLoading = true;
-    UserService.login($scope.username, $scope.password, function (response) {
+    userService.login($scope.username, $scope.password, function (response) {
       if (response.success) {
-        UserService.setCredentials($scope.username, $scope.password);
+        userService.setCredentials($scope.username, $scope.password);
         $location.path('/admin');
       } else {
-        FlashService.Error(response.message);
+        flashService.error(response.message);
         $scope.dataLoading = false;
       }
     });
@@ -24,13 +24,13 @@ function UserController($scope, $location, UserService, FlashService) {
 
   $scope.register = function() {
     $scope.dataLoading = true;
-    UserService.register($scope.username, $scope.password, $scope.password_repeat, $scope.email, $scope.form_message, function (response) {
+    userService.register($scope.username, $scope.password, $scope.password_repeat, $scope.email, $scope.form_message, function (response) {
       if (response.success) {
-        FlashService.Success("Du wurdest registriert und Sami benachrichtigt - sie wird sich bei dir melden wenn dein Account aktiviert wurde oder noch Fragen offen bleiben.");
+        flashService.success("Du wurdest registriert und Sami benachrichtigt - sie wird sich bei dir melden wenn dein Account aktiviert wurde oder noch Fragen offen bleiben.");
         $scope.success = true;
         $scope.dataLoading = false;
       } else {
-        FlashService.Error(response.message);
+        flashService.error(response.message);
         $scope.success = false;
         $scope.dataLoading = false;
       }

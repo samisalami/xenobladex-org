@@ -26,14 +26,14 @@ class Map
      *
      * @ORM\Column(name="name", type="string", length=255)
      */
-    private $name;
+    private $name = '';
 
     /**
      * @var string
      *
      * @ORM\Column(name="description", type="text")
      */
-    private $description;
+    private $description = '';
 
     /**
      * @ORM\ManyToOne(targetEntity="Attachment")

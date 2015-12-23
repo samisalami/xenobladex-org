@@ -30,6 +30,9 @@ function config($routeProvider, $locationProvider) {
       .when('/admin/missionen', {
         templateUrl: 'templates/admin_missions.html'
       })
+      .when('/admin/missionen/was-fehlt', {
+        templateUrl: 'templates/admin_missions_missing.html'
+      })
       .when('/admin/karten', {
         templateUrl: 'templates/admin_maps.html'
       })
@@ -38,6 +41,9 @@ function config($routeProvider, $locationProvider) {
       })
       .when('/admin/personen', {
         templateUrl: 'templates/admin_persons.html'
+      })
+      .when('/admin/personen/was-fehlt', {
+        templateUrl: 'templates/admin_persons_missing.html'
       })
       .otherwise({
           templateUrl: 'templates/404.html'

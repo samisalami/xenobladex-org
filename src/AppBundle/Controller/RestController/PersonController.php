@@ -8,6 +8,7 @@ namespace AppBundle\Controller\RestController;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations\Route;
 use AppBundle\Entity\Person;
+use Symfony\Component\HttpFoundation\AcceptHeader;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -39,7 +40,8 @@ class PersonController extends FOSRestController {
         $person->setAge($updated_person->getAge());
         $person->setLocationNote($updated_person->getLocationNote());
         $person->setSpecies($updated_person->getSpecies());
-        $person->setDivision($updated_person->getDivision());
+        $person->setJob($updated_person->getJob());
+        $person->setRegion($updated_person->getRegion());
         $em->flush();
     }
 
@@ -64,11 +66,8 @@ class PersonController extends FOSRestController {
             $serializer = $this->getJMSSerializer();
             $deserialized_person = $serializer->deserialize($content, 'AppBundle\Entity\Person', 'json');
             $this->addPerson($deserialized_person);
-
-            $response = new Response($serializer->serialize($deserialized_person, 'json'));
-            $response->headers->set('Content-Type', 'application/json');
-            return $response;
         }
+        return new Response(Response::HTTP_OK);
     }
 
     /**

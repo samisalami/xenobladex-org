@@ -1,20 +1,12 @@
 'use strict';
 
 angular.module('app')
-    .directive('mapAdmin',['mapService', 'attachmentService', '$filter', function(mapService, attachmentService, $filter) {
+    .directive('mapAdmin',['mapService', 'attachmentService', 'flashService', '$filter', function(mapService, attachmentService, flashService, $filter) {
         return {
             templateUrl:'templates/mapAdminView.html',
             replace: true,
             link: function($scope, $element,$attrs){
-                var resetNewMap = function() {
-                    $scope.newMap = {
-                        name: '',
-                        description: '',
-                        attachment: null
-                    };
-                };
-
-                resetNewMap();
+                $scope.newMap = {};
 
                 mapService.getMaps(function(response){
                     $scope.maps = response;
@@ -31,10 +23,17 @@ angular.module('app')
                 };
 
                 $scope.addMap = function(map) {
-                    mapService.addMap(map, function(map){
-                        $scope.maps = $scope.maps.concat(map);
-                        resetNewMap();
-                    });
+                    if(map) {
+                        mapService.addMap(map, function(){
+                            mapService.getMaps(function(response){
+                                $scope.maps = response;
+                            });
+                            $scope.newMap = {};
+                            flashService.clear();
+                        });
+                    } else {
+                        flashService.error('Komplett leere Daten werden nicht angelegt.');
+                    }
                 };
 
                 $scope.deleteMap = function(id, index) {

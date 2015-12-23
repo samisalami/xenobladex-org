@@ -26,56 +26,63 @@ class Person
      *
      * @ORM\Column(name="name", type="string", length=255)
      */
-    private $name;
+    private $name = '';
 
     /**
      * @var integer
      *
      * @ORM\Column(name="age", type="string", length=255)
      */
-    private $age;
+    private $age = '';
 
     /**
      * @var string
      *
      * @ORM\Column(name="description", type="text")
      */
-    private $description;
+    private $description = '';
 
     /**
      * @var string
      *
      * @ORM\Column(name="location_note", type="text")
      */
-    private $locationNote;
+    private $locationNote = '';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="region", type="string", length=255)
+     */
+    private $region = '';
 
     /**
      * @var string
      *
      * @ORM\Column(name="species", type="string", length=255)
      */
-    private $species;
+    private $species = '';
 
     /**
      * @var string
      *
-     * @ORM\Column(name="division", type="string", length=255)
+     * @ORM\Column(name="job", type="string", length=255)
      */
-    private $division;
+    private $job = '';
 
     /**
      * @var string
      *
      * @ORM\Column(name="conditions", type="text")
      */
-    private $conditions;
+    private $conditions = '';
 
     /**
      * @var string
      *
      * @ORM\Column(name="activity_time", type="string", length=255)
      */
-    private $activityTime;
+    private $activityTime = '';
 
 
     /**
@@ -250,25 +257,48 @@ class Person
     }
 
     /**
-     * Set division
+     * Set job
      *
-     * @param string $division
+     * @param string $job
      * @return Person
      */
-    public function setDivision($division)
+    public function setJob($job)
     {
-        $this->division = $division;
+        $this->job = $job;
 
         return $this;
     }
 
     /**
-     * Get division
+     * Get job
      *
      * @return string 
      */
-    public function getDivision()
+    public function getJob()
     {
-        return $this->division;
+        return $this->job;
+    }
+
+    /**
+     * Set region
+     *
+     * @param string $region
+     * @return Person
+     */
+    public function setRegion($region)
+    {
+        $this->region = $region;
+
+        return $this;
+    }
+
+    /**
+     * Get region
+     *
+     * @return string 
+     */
+    public function getRegion()
+    {
+        return $this->region;
     }
 }

@@ -1,46 +1,57 @@
 'use strict';
 
 angular.module('app')
-    .directive('personAdmin',['personService', '$filter', function(personService, $filter) {
+    .directive('personAdmin',['personService', 'flashService', '$filter', function(personService, flashService, $filter) {
         return {
             templateUrl:'templates/personAdminView.html',
             replace: true,
             link: function($scope, $element,$attrs){
-                var resetNewPerson = function() {
-                    $scope.newPerson = {
-                        name: '',
-                        description: '',
-                        division: '',
-                        age: '',
-                        location_note: '',
-                        conditions: '',
-                        activity_time: '',
-                        species: ''
-                    };
-                };
-
-                resetNewPerson();
+                $scope.newPerson = {};
 
                 personService.getPersons(function(response){
                     $scope.persons = response;
                 });
+
+                $scope.regions = [
+                    {name:'NLA'},
+                    {name:'Primordia'},
+                    {name:'Noctilum'},
+                    {name:'Oblivia'},
+                    {name:'Sylvalum'},
+                    {name:'Cauldros'}
+                ];
+
+                $scope.speciesList = [
+                    {name:'Mensch'},
+                    {name:'Nopon'},
+                    {name:'Ma-non'}
+                ];
 
                 $scope.updatePerson = function(person) {
                     personService.updatePerson(person);
                 };
 
                 $scope.addPerson = function(person) {
-                    personService.addPerson(person, function(person){
-                        $scope.persons = $scope.persons.concat(person);
-                        resetNewPerson();
-                        $('.modal').modal('hide');
-                    });
+                    if(person) {
+                        personService.addPerson(person, function(){
+                            personService.getPersons(function(response){
+                                $scope.persons = response;
+                            });
+                            $scope.newPerson = {};
+                            flashService.clear();
+                        });
+                    } else {
+                        flashService.error('Komplett leere Daten werden nicht angelegt.');
+                    }
                 };
 
-                $scope.deletePerson = function(id, index) {
-                    personService.deletePerson(id, function(person){
-                        $scope.persons.splice(index, 1);
-                        $scope.deletedPerson = person;
+                $scope.deletePerson = function(person, index) {
+                    personService.deletePerson(person.id, function(deletedPerson){
+                        $scope.deletedPerson = deletedPerson;
+                        var index = $scope.persons.indexOf(person);
+                        if(index !== -1) {
+                            $scope.persons.splice(index,1);
+                        }
                     });
                 };
 

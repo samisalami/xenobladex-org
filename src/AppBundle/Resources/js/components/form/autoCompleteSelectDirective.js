@@ -8,15 +8,14 @@ angular.module('app')
             scope: {
                 autocompleteList: '=',
                 autocompleteBind: '=',
-                autocompleteOptionName: '=',
-                autocompleteOptionValue: '='
+                autocompleteTextInputBind: '='
             },
             link: function($scope, element, attrs) {
                 var contentId = $('.autocomplete-select-input').length;
                 $scope.selectModalId = 'autocomplete-select-modal-'+contentId;
-
                 $scope.modalFilterValue = '';
-
+                $scope.autocompleteOptionName = attrs.autocompleteOptionName;
+                $scope.autocompleteOptionValue = attrs.autocompleteOptionValue;
 
                 var uiAutocompleteList = [];
                 $scope.autocompleteList.forEach(function(listItem){
@@ -44,8 +43,23 @@ angular.module('app')
                 $scope.selectOption = function(listItem) {
                     $selectInputElm.val(listItem[$scope.autocompleteOptionName]);
                     $scope.autocompleteBind = listItem[$scope.autocompleteOptionValue];
+                    $scope.autocompleteTextInputBind = listItem[$scope.autocompleteOptionName];
                     element.find('#'+$scope.selectModalId).modal('hide');
-                }
+                };
+
+                $scope.setBindings = function() {
+                    var value = $selectInputElm.val();
+                    var exists = $scope.autocompleteList.some(function(listItem){
+                        if(listItem[$scope.autocompleteOptionName] == value) {
+                            $scope.selectOption(listItem);
+                        }
+                        return listItem[$scope.autocompleteOptionName] == value;
+                    });
+
+                    if(!exists) {
+                        $scope.autocompleteBind = null;
+                    }
+                };
             }
         }
     }]);

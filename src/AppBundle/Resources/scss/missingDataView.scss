@@ -1,0 +1,16 @@
+.missing-data-view {
+  th, td {
+    text-align: center;
+  }
+  .icon-missing-data {
+    @extend .fa;
+
+    &.complete {
+      @extend .fa-check;
+    }
+
+    &.incomplete {
+      @extend .fa-remove;
+    }
+  }
+}

@@ -59,11 +59,8 @@ class MapController extends FOSRestController {
             $serializer = $this->getJMSSerializer();
             $deserialized_map = $serializer->deserialize($content, 'AppBundle\Entity\Map', 'json');
             $this->addMap($deserialized_map);
-
-            $response = new Response($serializer->serialize($deserialized_map, 'json'));
-            $response->headers->set('Content-Type', 'application/json');
-            return $response;
         }
+        return new Response(Response::HTTP_OK);
     }
 
     /**

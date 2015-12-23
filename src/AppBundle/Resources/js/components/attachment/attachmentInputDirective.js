@@ -9,11 +9,10 @@ angular.module('app')
             replace: true,
             scope: {
                 attachmentBind: '=',
-                attachmentType: '=',
-                attachmentList: '=',
+                attachmentList: '='
             },
             link: function($scope, element, attrs) {
-                var attachmentType = $scope.attachmentType;
+                var attachmentType = attrs.attachmentType;
                 var contentId = $('.attachment-input-view').length;
                 $scope.selectModalId = 'attachment-select-modal-'+contentId;
 

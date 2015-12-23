@@ -11,8 +11,8 @@ angular.module('app')
         };
 
         service.addMap = function(map, callback) {
-            $http.post(Routing.generate('add_map'), map).success(function(response){
-                callback(response);
+            $http.post(Routing.generate('add_map'), map).success(function(){
+                callback();
             });
         };
 

@@ -1,1 +1,7 @@
-<a href="/admin" class="btn btn-primary m-y-2 m-x-1"><span class="fa fa-backward m-r-1"></span>Zurück zur Admin-Übersicht</a>
+<div class="admin-header">
+    <loading-directive></loading-directive>
+    <div class="col-xs-12 m-t-1">
+        <a href="/admin" class="btn btn-primary"><span class="fa fa-backward m-r-1"></span>Zurück zur Admin-Übersicht</a>
+        <div ng-show="flash.message" class="m-t-1" ng-class="{'alert alert-danger':!flash.success, 'alert alert-success':flash.success}">{{flash.message}}</div>
+    </div>
+</div>

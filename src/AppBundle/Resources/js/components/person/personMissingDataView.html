@@ -1,0 +1,69 @@
+<div class="missing-data-view">
+<a href="/admin/personen" class="btn-primary btn">Personen</a>
+    <div class="table-responsive m-t-2">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Alter
+                    </th>
+                    <th>
+                        Spezies
+                    </th>
+                    <th>
+                        Beruf
+                    </th>
+                    <th>
+                        Beschreibung
+                    </th>
+                    <th>
+                        Region
+                    </th>
+                    <th>
+                        Zeit
+                    </th>
+                    <th>
+                        Ortsbeschreibung
+                    </th>
+                    <th>
+                        Bedingungen
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="person in persons">
+                    <td>
+                        {{person.name}}
+                    </td>
+                    <td>
+                        <span class="icon-missing-data" ng-class="{'complete text-success':person.age, 'incomplete text-danger':!person.age}"></span>
+                    </td>
+                    <td>
+                        <span class="icon-missing-data" ng-class="{'complete text-success':person.species, 'incomplete text-danger':!person.species}"></span>
+                    </td>
+                    <td>
+                        <span class="icon-missing-data" ng-class="{'complete text-success':person.job, 'incomplete text-danger':!person.job}"></span>
+                    </td>
+                    <td>
+                        <span class="icon-missing-data" ng-class="{'complete text-success':person.description, 'incomplete text-danger':!person.description}"></span>
+                    </td>
+                    <td>
+                        <span class="icon-missing-data" ng-class="{'complete text-success':person.region, 'incomplete text-danger':!person.region}"></span>
+                    </td>
+                    <td>
+                        <span class="icon-missing-data" ng-class="{'complete text-success':person.activity_time, 'incomplete text-danger':!person.activity_time}"></span>
+                    </td>
+                    <td>
+                        <span class="icon-missing-data" ng-class="{'complete text-success':person.location_note, 'incomplete text-danger':!person.location_note}"></span>
+                    </td>
+                    <td>
+                        <span class="icon-missing-data" ng-class="{'complete text-success':person.conditions, 'incomplete text-danger':!person.conditions}"></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
