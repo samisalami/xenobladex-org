@@ -1,2 +1,2 @@
-0.0.9
-fos js routing bundle, persons, form field directive
+0.0.92
+persons connected to missions, refactorings, progressbar
