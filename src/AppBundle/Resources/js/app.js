@@ -45,6 +45,9 @@ function config($routeProvider, $locationProvider) {
       .when('/admin/personen/was-fehlt', {
         templateUrl: 'templates/admin_persons_missing.html'
       })
+      .when('/admin/test', {
+        templateUrl: 'templates/admin_test.html'
+      })
       .otherwise({
           templateUrl: 'templates/404.html'
       });

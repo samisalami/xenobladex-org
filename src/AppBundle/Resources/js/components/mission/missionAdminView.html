@@ -28,7 +28,7 @@
                             <span bs-tooltip class="info-icon text-primary" data-toggle="tooltip" data-placement="top" title='Wenn "richtige Person" ausgewählt ist, aber eine nicht vorhandene eingeben wird, wird diese neu angelegt'></span>
                             <strong>Auftraggeber:</strong>
                             <p>
-                                <form-field form-field-bind="newMission.has_person" form-field-label="Richtige Person?" form-field-template="inputCheckbox"></form-field>
+                                <form-field form-field-bind="newMission.has_person" form-field-label="Richtige Person?" form-template="inputCheckbox"></form-field>
                                 <autocomplete-select ng-if="newMission.has_person && personDataLoaded" autocomplete-list="persons" autocomplete-option-name="name" autocomplete-option-value="id" autocomplete-text-input-bind="newMission.person.name" autocomplete-bind="newMission.person.id"></autocomplete-select>
                                 <a ng-if="!newMission.has_person" href="#" editable-text="newMission.person_unrelated">{{newMission.person_unrelated || 'eintragen'}}</a>
                             </p>
