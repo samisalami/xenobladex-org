@@ -1,4 +1,4 @@
 <fieldset class="form-group">
     <label for="{{contentId}}">{{formFieldLabel}}</label>
-    <textarea id="{{contentId}}" class="form-control" ng-model="formFieldBind"></textarea>
+    <textarea id="{{contentId}}" class="form-control" ng-model="$parent.formFieldBind" ng-change="log()"></textarea>
 </fieldset>

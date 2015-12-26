@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app')
-    .directive('collapsedTable',function() {
+    .directive('collapsedTable',['$filter',function($filter) {
         return {
             restrict: 'E',
             templateUrl: 'templates/collapsedTableView.html',
@@ -14,17 +14,37 @@ angular.module('app')
             },
             link: function($scope, element, attrs) {
                 var columnCount = 4;
+                $scope.newItem = {};
 
-                function chunk(arr, size) {
+                function dataToRows(arr, size) {
                     var newArr = [];
-                    for (var i=0; i<arr.length; i+=size) {
-                        newArr.push(arr.slice(i, i+size));
+                    var rowArr = [];
+                    var count = arr.length;
+                    var rowColumns = 0;
+
+                    for (var i=0;i<count;i++) {
+                        if(rowColumns===columnCount) {
+                            newArr.push(rowArr);
+                            rowArr = [];
+                            rowColumns = 0;
+                        }
+
+                        if(!arr[i]['noColumn']) {
+                            rowColumns++;
+                        }
+
+                        rowArr.push(arr[i]);
+
+                        if(i===count-1) {
+                            newArr.push(rowArr);
+                        }
+
                     }
                     return newArr;
                 }
 
-                $scope.rows = chunk($scope.formModel, columnCount);
+                $scope.rows = dataToRows($scope.formModel, columnCount);
 
             }
         }
-    });
+    }]);

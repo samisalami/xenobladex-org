@@ -27,9 +27,23 @@ angular.module('app')
                 var initFormModel = function() {
                     $scope.formModel = [
                         {
-                            label: 'Beschreibung',
-                            name: 'description',
-                            type: 'fieldsetTextarea'
+                            label: 'Richtige Person?',
+                            name: 'has_person',
+                            type: 'inputCheckbox'
+                        },
+                        {
+                            show: 'has_person',
+                            label: 'Auftraggeber',
+                            name: 'person',
+                            type: 'customMissionPersonSelect',
+                            data: persons
+                        },
+                        {
+                            hide: 'has_person',
+                            label: 'Auftraggeber',
+                            name: 'person_unrelated',
+                            type: 'editableText',
+                            noColumn: true
                         },
                         {
                             label: 'Bedingungen',
@@ -37,25 +51,18 @@ angular.module('app')
                             type: 'editableTextarea'
                         },
                         {
-                            label: 'Ortsbeschreibung',
+                            label: 'Erhalt wo?',
                             name: 'location_note',
                             type: 'editableTextarea'
                         },
                         {
-                            label: 'Typ',
-                            name: 'mission_type',
-                            type: 'editableObjectSelect',
-                            data: missionTypes
+                            label: 'Beschreibung',
+                            name: 'description',
+                            type: 'editableTextarea'
                         },
                         {
-                            label: 'Auftraggeber',
-                            name: 'person',
-                            type: 'customMissionPersonSelect',
-                            data: persons
-                        },
-                        {
-                            label: 'Belohnung',
-                            name: 'rewards',
+                            label: 'Aufgaben',
+                            name: 'tasks',
                             type: 'editableTextarea'
                         },
                         {
@@ -64,15 +71,21 @@ angular.module('app')
                             type: 'editableTextarea'
                         },
                         {
-                            label: 'Aufgaben',
-                            name: 'tasks',
+                            label: 'Belohnung',
+                            name: 'rewards',
                             type: 'editableTextarea'
+                        },
+                        {
+                            label: 'Typ',
+                            name: 'mission_type',
+                            type: 'editableObjectSelect',
+                            data: missionTypes
                         }
                     ];
                 };
 
                 $scope.updateMission = function(mission) {
-                    console.log('update mission');
+                    console.log(mission);
                 };
 
                 $scope.deleteMission = function(mission) {

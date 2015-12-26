@@ -15,7 +15,7 @@
                 </div>
             </div>
             <div class="row" ng-repeat="row in rows">
-                <div class="col-lg-3 card card-block col-xs-12" ng-repeat="column in row">
+                <div class="col-lg-3 card card-block col-xs-12" ng-repeat="column in row" ng-show="(newItem[column.show] || !column.show) && !newItem[column.hide]">
                     <!--<field-info-tooltip ng-if="column.fieldInfoTooltip">{{column.fieldInfoTooltip}}</field-info-tooltip>-->
                     <strong>{{column.label}}</strong>
                     <p>
@@ -42,11 +42,11 @@
                     </div>
                 </div>
                 <div class="row" ng-repeat="row in rows">
-                    <div class="col-lg-3 card card-block col-xs-12" ng-repeat="column in row">
+                    <div class="col-lg-3 card card-block col-xs-12" ng-repeat="column in row" ng-show="(item[column.show] || !column.show) && !item[column.hide]">
                         <!--<field-info-tooltip ng-if="column.fieldInfoTooltip">{{column.fieldInfoTooltip}}</field-info-tooltip>-->
                         <strong>{{column.label}}</strong>
                         <p>
-                            <form-field ng-if="column.type" form-field-bind="item[column.name]" form-field-action="updateItem({item : item})" form-select-options="column.data" form-template="{{column.type}}"></form-field>
+                            <form-field ng-if="column.type" form-field-bind="item[column.name]" form-field-action="updateItem({item:item})" form-field-action-param="item" form-select-options="column.data" form-template="{{column.type}}"></form-field>
                         </p>
                     </div>
                 </div>

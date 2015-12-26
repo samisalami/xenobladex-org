@@ -6,13 +6,16 @@ angular.module('app')
             restrict: 'E',
             scope: {
                 formFieldBind: '=',
+                formFieldActionParam: '=',
                 formFieldAction: '&',
                 formTemplate: '@',
                 formSelectOptions: '='
             },
+            transclude: true,
             link: function($scope, element, attrs) {
                 $scope.contentId = 'form-field-'+Date.now();
                 $scope.formFieldLabel = attrs.formFieldLabel;
+
                 $scope.getTemplate = function() {
                     return formTemplateFactory[$scope.formTemplate];
                 };
@@ -21,6 +24,10 @@ angular.module('app')
                     var selected = $filter('filter')($scope.formSelectOptions, {id: id});
                     return ($scope.formSelectOptions && selected.length) ? selected[0].name : false;
                 };
+
+                $scope.log = function() {
+                    console.log($scope.formFieldBind);
+                }
             },
             template: '<div ng-include="getTemplate()"></div>'
         }
