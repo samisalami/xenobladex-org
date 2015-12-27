@@ -1,2 +1,2 @@
-0.0.92
-persons connected to missions, refactorings, progressbar
+0.1.0
+added generic admin view and refactored persons, maps and missions to use it
