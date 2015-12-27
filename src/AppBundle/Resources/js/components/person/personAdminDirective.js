@@ -24,7 +24,10 @@ angular.module('app')
                 var speciesList = [
                     {name:'Mensch'},
                     {name:'Nopon'},
-                    {name:'Ma-non'}
+                    {name:'Ma-non'},
+                    {name:'Zarubogganer'},
+                    {name:'Orphen'},
+                    {name:'Definianer'}
                 ];
 
                 $scope.formModel = [
