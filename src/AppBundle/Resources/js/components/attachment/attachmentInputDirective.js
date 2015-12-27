@@ -17,9 +17,7 @@ angular.module('app')
                 $scope.selectModalId = 'attachment-select-modal-'+contentId;
 
                 if(typeof (attachmentType) !== 'undefined') {
-                    $scope.attachments = $filter('filter')($scope.attachmentList, {mime_type:attachmentType});
-                } else {
-                    $scope.attachments = $scope.attachmentList;
+                    $scope.attachmentList = $filter('filter')($scope.attachmentList, {mime_type:attachmentType});
                 }
 
                 $scope.selectOption = function(attachment) {

@@ -12,7 +12,7 @@ angular.module('app')
                     $scope.persons = response;
                 });
 
-                $scope.regions = [
+                var regions = [
                     {name:'NLA'},
                     {name:'Primordia'},
                     {name:'Noctilum'},
@@ -21,10 +21,55 @@ angular.module('app')
                     {name:'Cauldros'}
                 ];
 
-                $scope.speciesList = [
+                var speciesList = [
                     {name:'Mensch'},
                     {name:'Nopon'},
                     {name:'Ma-non'}
+                ];
+
+                $scope.formModel = [
+                    {
+                        label: 'Alter',
+                        name: 'age',
+                        type: 'editableText'
+                    },
+                    {
+                        label: 'Spezies',
+                        name: 'species',
+                        type: 'editableStringSelect',
+                        data: speciesList
+                    },
+                    {
+                        label: 'Beruf',
+                        name: 'job',
+                        type: 'editableText'
+                    },
+                    {
+                        label: 'Beschreibung',
+                        name: 'description',
+                        type: 'editableTextarea'
+                    },
+                    {
+                        label: 'Region',
+                        name: 'region',
+                        type: 'editableStringSelect',
+                        data: regions
+                    },
+                    {
+                        label: 'Zeit',
+                        name: 'activity_time',
+                        type: 'editableText'
+                    },
+                    {
+                        label: 'Ortsbeschreibung',
+                        name: 'location_note',
+                        type: 'editableTextarea'
+                    },
+                    {
+                        label: 'Bedingungen',
+                        name: 'conditions',
+                        type: 'editableTextarea'
+                    }
                 ];
 
                 $scope.updatePerson = function(person) {

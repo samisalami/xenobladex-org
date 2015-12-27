@@ -19,7 +19,7 @@
                     <!--<field-info-tooltip ng-if="column.fieldInfoTooltip">{{column.fieldInfoTooltip}}</field-info-tooltip>-->
                     <strong>{{column.label}}</strong>
                     <p>
-                        <form-field ng-if="column.type" form-field-bind="newItem[column.name]" form-select-options="column.data" form-template="{{column.type}}"></form-field>
+                        <form-field attachment-type="{{column.attachmentType}}" ng-if="column.type" form-field-bind="newItem[column.name]" form-select-options="column.data" form-template="{{column.type}}"></form-field>
                     </p>
                 </div>
             </div>
@@ -46,7 +46,7 @@
                         <!--<field-info-tooltip ng-if="column.fieldInfoTooltip">{{column.fieldInfoTooltip}}</field-info-tooltip>-->
                         <strong>{{column.label}}</strong>
                         <p>
-                            <form-field ng-if="column.type" form-field-bind="item[column.name]" form-field-action="updateItem({item:item})" form-field-action-param="item" form-select-options="column.data" form-template="{{column.type}}"></form-field>
+                            <form-field ng-if="column.type" attachment-type="{{column.attachmentType}}" form-field-bind="item[column.name]" form-field-action="updateItem({item:item})" form-field-action-param="item" form-select-options="column.data" form-template="{{column.type}}"></form-field>
                         </p>
                     </div>
                 </div>

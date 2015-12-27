@@ -7,6 +7,7 @@ angular.module('app')
             templateUrl: 'templates/collapsedTableView.html',
             scope: {
                 data: "=viewData",
+                newItem: '=addObject',
                 formModel: '=',
                 deleteItem: '&',
                 updateItem: '&',
@@ -14,7 +15,6 @@ angular.module('app')
             },
             link: function($scope, element, attrs) {
                 var columnCount = 4;
-                $scope.newItem = {};
 
                 function dataToRows(arr, size) {
                     var newArr = [];

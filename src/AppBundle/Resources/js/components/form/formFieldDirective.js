@@ -13,6 +13,8 @@ angular.module('app')
             },
             transclude: true,
             link: function($scope, element, attrs) {
+                $scope.attachmentType = attrs.attachmentType;
+                console.log($scope.attachmentType);
                 $scope.contentId = 'form-field-'+Date.now();
                 $scope.formFieldLabel = attrs.formFieldLabel;
 

@@ -8,14 +8,30 @@ angular.module('app')
             link: function($scope, $element,$attrs){
                 $scope.newMap = {};
 
+                var initFormModel = function() {
+                    $scope.formModel = [
+                        {
+                            label: 'Beschreibung',
+                            name: 'description',
+                            type: 'editableTextarea'
+                        },
+                        {
+                            label: 'Bild',
+                            name: 'attachment',
+                            type: 'attachmentInput',
+                            attachmentType: 'image',
+                            data: $scope.attachments
+                        }
+                    ];
+                };
+
                 mapService.getMaps(function(response){
                     $scope.maps = response;
                 });
 
-                $scope.attachmentsLoaded = false;
                 attachmentService.getAttachments(function(attachments){
                     $scope.attachments = attachments;
-                    $scope.attachmentsLoaded = true;
+                    initFormModel();
                 });
 
                 $scope.updateMap = function(map) {

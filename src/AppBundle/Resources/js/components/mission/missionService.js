@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app')
-    .factory('missionService', ['$http', function($http) {
+    .factory('missionService', ['$http', '$timeout', function($http, $timeout) {
     var service = {};
 
     service.getMissionTypes = function(callback) {
@@ -23,7 +23,10 @@ angular.module('app')
     };
 
     service.updateMission = function(mission) {
-        $http.post(Routing.generate('update_mission'), mission);
+        var promise = $timeout(function() {
+            $http.post(Routing.generate('update_mission'), mission);
+            $timeout.cancel(promise);
+        }, 100);
     };
 
     service.deleteMission = function(id, callback) {

@@ -8,19 +8,91 @@ angular.module('app')
             replace: true,
             link: function($scope, $element,$attrs){
                 $scope.newMission = {};
+                var personDataLoaded = false;
+                var missionTypesDataLoaded = false;
+
+                $scope.dataLoaded = function(){
+                    return personDataLoaded && missionTypesDataLoaded;
+                };
+
+                $scope.$watch($scope.dataLoaded, function(dataLoaded){
+                   if(dataLoaded && !$scope.formModel) {
+                       initFormModel();
+                   }
+                });
+
+                var initFormModel = function() {
+                    $scope.formModel = [
+                        {
+                            label: 'Richtige Person?',
+                            name: 'has_person',
+                            type: 'inputCheckbox'
+                        },
+                        {
+                            show: 'has_person',
+                            label: 'Auftraggeber',
+                            name: 'person',
+                            type: 'customMissionPersonSelect',
+                            data: $scope.persons
+                        },
+                        {
+                            hide: 'has_person',
+                            label: 'Auftraggeber',
+                            name: 'person_unrelated',
+                            type: 'editableText',
+                            noColumn: true
+                        },
+                        {
+                            label: 'Bedingungen',
+                            name: 'conditions',
+                            type: 'editableTextarea'
+                        },
+                        {
+                            label: 'Erhalt wo?',
+                            name: 'location_note',
+                            type: 'editableTextarea'
+                        },
+                        {
+                            label: 'Beschreibung',
+                            name: 'description',
+                            type: 'editableTextarea'
+                        },
+                        {
+                            label: 'Aufgaben',
+                            name: 'tasks',
+                            type: 'editableTextarea'
+                        },
+                        {
+                            label: 'Lösung',
+                            name: 'solution',
+                            type: 'editableTextarea'
+                        },
+                        {
+                            label: 'Belohnung',
+                            name: 'rewards',
+                            type: 'editableTextarea'
+                        },
+                        {
+                            label: 'Typ',
+                            name: 'mission_type',
+                            type: 'editableObjectSelect',
+                            data: $scope.missionTypes
+                        }
+                    ];
+                };
 
                 missionService.getMissionTypes(function(response){
-                   $scope.missionTypes = response;
+                    $scope.missionTypes = response;
+                    missionTypesDataLoaded = true;
                 });
 
                 missionService.getMissions(function(response){
                     $scope.missions = response;
                 });
 
-                $scope.personDataLoaded = false;
                 personService.getPersons(function(response){
                     $scope.persons = response;
-                    $scope.personDataLoaded = true;
+                    personDataLoaded = true;
                 });
 
                 $scope.updateMission = function(mission) {
@@ -59,15 +131,6 @@ angular.module('app')
                 $scope.addDeletedMission = function() {
                     $scope.addMission($scope.deletedMission);
                     $scope.deletedMission = null;
-                };
-
-                $scope.showSelectedMissionType = function(mission) {
-                    if(mission && typeof (mission) !== 'undefined' && typeof (mission.mission_type) !== 'undefined') {
-                        var selected = $filter('filter')($scope.missionTypes, {id: mission.mission_type.id});
-                        return (mission.mission_type && selected.length) ? selected[0].name : false;
-                    } else {
-                        return false;
-                    }
                 };
             }
         }

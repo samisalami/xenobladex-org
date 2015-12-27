@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app')
-    .factory('mapService', ['$http', function($http) {
+    .factory('mapService', ['$http', '$timeout', function($http, $timeout) {
         var service = {};
 
         service.getMaps = function(callback) {
@@ -17,7 +17,10 @@ angular.module('app')
         };
 
         service.updateMap = function(map) {
-            $http.post(Routing.generate('update_map'), map);
+            var promise = $timeout(function() {
+                $http.post(Routing.generate('update_map'), map);
+                $timeout.cancel(promise);
+            }, 100);
         };
 
         service.deleteMap = function(id, callback) {

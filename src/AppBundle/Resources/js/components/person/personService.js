@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app')
-    .factory('personService', ['$http', function($http) {
+    .factory('personService', ['$http', '$timeout', function($http, $timeout) {
         var service = {};
 
         service.getPersons = function(callback) {
@@ -17,7 +17,10 @@ angular.module('app')
         };
 
         service.updatePerson = function(person) {
-            $http.post(Routing.generate('update_person'), person);
+            var promise = $timeout(function() {
+                $http.post(Routing.generate('update_person'), person);
+                $timeout.cancel(promise);
+            }, 100);
         };
 
         service.deletePerson = function(id, callback) {

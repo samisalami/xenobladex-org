@@ -12,6 +12,7 @@ angular.module('app')
         editableText: 'templates/editableTextView.html',
         editableStringSelect: 'templates/editableStringSelectView.html',
         editableObjectSelect: 'templates/editableObjectSelectView.html',
-        customMissionPersonSelect: 'templates/customMissionPersonSelect.html'
+        customMissionPersonSelect: 'templates/customMissionPersonSelect.html',
+        attachmentInput: 'templates/attachmentInput.html'
     };
 });
