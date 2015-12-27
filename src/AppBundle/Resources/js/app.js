@@ -48,6 +48,9 @@ function config($routeProvider, $locationProvider) {
       .when('/admin/test', {
         templateUrl: 'templates/admin_test.html'
       })
+      .when('/admin/faq', {
+        templateUrl: 'templates/admin_faqs.html'
+      })
       .otherwise({
           templateUrl: 'templates/404.html'
       });

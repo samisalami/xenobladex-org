@@ -81,6 +81,7 @@ class MapController extends FOSRestController {
             $response->headers->set('Content-Type', 'application/json');
             return $response;
         }
+        return new Response(Response::HTTP_OK);
     }
 
     public function deleteMapAction($id) {

@@ -43,6 +43,13 @@ person:
     options:
         expose: true
 
+faq:
+    prefix: /xenobladex/api
+    type:     rest
+    resource: "@AppBundle/Controller/RestController/FaqController.php"
+    options:
+        expose: true
+
 show_attachment:
     path: /xenobladex/attachment/{id}
     defaults: { _controller: AppBundle:RestController/Attachment:showAttachment }

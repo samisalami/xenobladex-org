@@ -71,6 +71,7 @@ class AttachmentController extends FOSRestController {
             return $response;
         } else {
             // TODO: error handling
+            return new Response(Response::HTTP_OK);
         }
     }
 
@@ -92,6 +93,7 @@ class AttachmentController extends FOSRestController {
             $response->headers->set('Content-Type', 'application/json');
             return $response;
         }
+        return new Response(Response::HTTP_OK);
     }
 
     /*
@@ -128,8 +130,7 @@ class AttachmentController extends FOSRestController {
             );
         } else {
             //TODO: error handling
-            $response = new Response();
-            $response->setStatusCode(Response::HTTP_OK);
+            return new Response(Response::HTTP_OK);
         }
 
         return $response;

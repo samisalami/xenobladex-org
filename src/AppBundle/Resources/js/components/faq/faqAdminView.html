@@ -1,0 +1,6 @@
+<div class="faq-admin-view">
+    <div class="alert alert-warning" ng-show="deletedFAQ">
+        <a ng-click="addDeletedFAQ()" href="#">Gelöschte Zeile wiederherstellen</a>
+    </div>
+    <collapsed-table ng-if="formModel && faqs" view-data="faqs" form-model="formModel" add-object="newFAQ" add-item="addFAQ(item)"  update-item="updateFAQ(item)" delete-item="deleteFAQ(item)"></collapsed-table>
+</div>
