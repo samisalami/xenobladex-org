@@ -61,10 +61,13 @@ angular.module('app')
                     }
                 };
 
-                $scope.deleteFAQ = function(id, index) {
-                    faqService.deleteFAQ(id, function(faq){
-                        $scope.faqs.splice(index, 1);
-                        $scope.deletedFAQ = faq;
+                $scope.deleteFAQ = function(faq) {
+                    faqService.deleteFAQ(faq.id, function(deletedFaq){
+                        $scope.deletedFAQ = deletedFaq;
+                        var index = $scope.faqs.indexOf(faq);
+                        if(index !== -1) {
+                            $scope.faqs.splice(index,1);
+                        }
                     });
                 };
 
