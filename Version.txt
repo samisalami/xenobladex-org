@@ -1,2 +1,2 @@
-0.1.0
-added generic admin view and refactored persons, maps and missions to use it
+0.1.1
+faq
