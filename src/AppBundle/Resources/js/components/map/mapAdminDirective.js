@@ -52,10 +52,13 @@ angular.module('app')
                     }
                 };
 
-                $scope.deleteMap = function(id, index) {
-                    mapService.deleteMap(id, function(map){
-                        $scope.maps.splice(index, 1);
-                        $scope.deletedMap = map;
+                $scope.deleteMap = function(map) {
+                    mapService.deleteMap(map.id, function(deletedMap){
+                        $scope.deletedMap = deletedMap;
+                        var index = $scope.maps.indexOf(map);
+                        if(index !== -1) {
+                            $scope.maps.splice(index,1);
+                        }
                     });
                 };
 
