@@ -8,17 +8,28 @@ angular.module('app')
             link: function($scope, $element,$attrs){
                 $scope.newFAQ = {};
 
+                var categoryList = [
+                    {name:'Generelles'},
+                    {name:'Charakterentwicklung'},
+                    {name:'Kampfsystem'},
+                    {name:'Sonden'},
+                    {name:'BLADE & Divisionen'},
+                    {name:'Online'},
+                    {name:'Sonstiges'}
+                ];
+
                 var initFormModel = function() {
                     $scope.formModel = [
-                        {
-                            label: 'Frage',
-                            name: 'question',
-                            type: 'editableTextarea'
-                        },
                         {
                             label: 'Antwort',
                             name: 'answer',
                             type: 'editableTextarea'
+                        },
+                        {
+                            label: 'Kategorie',
+                            name: 'category',
+                            type: 'editableStringSelect',
+                            data: categoryList
                         }
                     ];
                 };
