@@ -31,16 +31,16 @@ class Faq
     /**
      * @var string
      *
-     * @ORM\Column(name="question", type="text")
+     * @ORM\Column(name="answer", type="text")
      */
-    private $question='';
+    private $answer='';
 
     /**
      * @var string
      *
-     * @ORM\Column(name="answer", type="text")
+     * @ORM\Column(name="category", type="text", length=255)
      */
-    private $answer='';
+    private $category='';
 
 
     /**
@@ -51,29 +51,6 @@ class Faq
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set question
-     *
-     * @param string $question
-     * @return FAQ
-     */
-    public function setQuestion($question)
-    {
-        $this->question = $question;
-
-        return $this;
-    }
-
-    /**
-     * Get question
-     *
-     * @return string 
-     */
-    public function getQuestion()
-    {
-        return $this->question;
     }
 
     /**
@@ -120,5 +97,28 @@ class Faq
     public function getName()
     {
         return $this->name;
+    }
+
+    /**
+     * Set category
+     *
+     * @param string $category
+     * @return Faq
+     */
+    public function setCategory($category)
+    {
+        $this->category = $category;
+
+        return $this;
+    }
+
+    /**
+     * Get category
+     *
+     * @return string 
+     */
+    public function getCategory()
+    {
+        return $this->category;
     }
 }

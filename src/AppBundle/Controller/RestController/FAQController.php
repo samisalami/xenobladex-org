@@ -33,8 +33,9 @@ class FaqController extends FOSRestController {
     protected function updateFaq(Faq $faq, Faq $deserialized_faq) {
         $em = $this->getDoctrine()->getManager();
         $updated_faq = $em->merge($deserialized_faq);
+        $faq->setName($updated_faq->getName());
         $faq->setAnswer($updated_faq->getAnswer());
-        $faq->setQuestion($updated_faq->getQuestion());
+        $faq->setCategory($updated_faq->getCategory());
         $em->flush();
     }
 
