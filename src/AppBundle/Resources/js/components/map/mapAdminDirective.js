@@ -18,7 +18,7 @@ angular.module('app')
                         {
                             label: 'Bild',
                             name: 'attachment',
-                            type: 'attachmentInput',
+                            type: 'customAttachmentInput',
                             attachmentType: 'image',
                             data: $scope.attachments
                         }

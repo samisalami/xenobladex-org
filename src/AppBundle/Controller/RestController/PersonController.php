@@ -42,6 +42,7 @@ class PersonController extends FOSRestController {
         $person->setSpecies($updated_person->getSpecies());
         $person->setJob($updated_person->getJob());
         $person->setRegion($updated_person->getRegion());
+        $person->addMapMarker($updated_person->getMapMarkers());
         $em->flush();
     }
 
