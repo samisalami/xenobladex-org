@@ -50,6 +50,13 @@ faq:
     options:
         expose: true
 
+mapMarker:
+    prefix: /xenobladex/api
+    type:     rest
+    resource: "@AppBundle/Controller/RestController/MapmarkerController.php"
+    options:
+        expose: true
+
 show_attachment:
     path: /xenobladex/attachment/{id}
     defaults: { _controller: AppBundle:RestController/Attachment:showAttachment }

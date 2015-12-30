@@ -1,0 +1,35 @@
+<div class="map-marker-admin-view">
+    <div class="form-group">
+        <label>Karte wählen:</label>
+        <select ng-if="maps" ng-model="currentMap.id" ng-change="selectMap(currentMap.id)" class="form-control" ng-options="map.id as map.name for map in maps"></select>
+    </div>
+    <ul class="nav nav-tabs">
+        <li class="nav-item">
+            <a class="nav-link active" href="#">Personen</a>
+        </li>
+    </ul>
+    <div class="row m-t-1 map-container">
+        <div class="col-md-2 col-xs-12 detail-select-overlay m-t-1 m-l-1">
+            <button class="btn btn-primary" data-toggle="collapse" data-target="#detail-select-box" aria-expanded="false">Person auswählen <span class="fa fa-arrow-circle-down p-l-1"></span></button>
+            <div id="detail-select-box" class="collapse">
+                <div class="card">
+                    <div class="card-block">
+                        <h4 class="card-title">
+                            Personen
+                        </h4>
+                        <input class="form-control" type="text" placeholder="Filtern..." ng-model="detailSelectFilterValue" />
+                        <div class="list-group">
+                            <a href="#" class="list-group-item" ng-click="selectPerson(person)" ng-repeat="person in persons | orderBy:'name' | listFilter:detailSelectFilterValue:'name'">{{person.name}}</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12">
+            <img ng-if="currentMap" ng-click="addMapmarker($event)" ng-src="/xenobladex/attachment/{{currentMap.attachment.id}}" />
+            <div ng-repeat="mapmarker in mapmarkers" style="position: absolute; top: {{mapmarker.y_coord}}px; left: {{mapmarker.x_coord}}px;">
+                <span class="fa fa-map-pin"></span> {{mapmarker.name}}
+            </div>
+        </div>
+    </div>
+</div>

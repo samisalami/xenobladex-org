@@ -1,0 +1,12 @@
+.map-marker-admin-view {
+  .map-container {
+    position: relative;
+
+    .detail-select-overlay {
+      position: absolute;
+      left: 0;
+      top: 0;
+      z-index: 2;
+    }
+  }
+}

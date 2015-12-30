@@ -86,16 +86,16 @@ class Person
     private $activityTime = '';
 
     /**
-     * @ORM\OneToMany(targetEntity="MapMarker", mappedBy="person", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="Mapmarker", mappedBy="person", cascade={"persist"})
      */
-    private $mapMarkers;
+    private $mapmarkers;
 
     /**
      * Person constructor.
      */
     public function __construct()
     {
-        $this->mapMarkers = new ArrayCollection();
+        $this->mapmarkers = new ArrayCollection();
     }
 
 
@@ -317,35 +317,35 @@ class Person
     }
 
     /**
-     * Add mapMarkers
+     * Add mapmarkers
      *
-     * @param \AppBundle\Entity\MapMarker $mapMarkers
+     * @param \AppBundle\Entity\Mapmarker $mapmarkers
      * @return Person
      */
-    public function addMapMarker(\AppBundle\Entity\MapMarker $mapMarkers)
+    public function addMapmarker(\AppBundle\Entity\Mapmarker $mapmarkers)
     {
-        $this->mapMarkers[] = $mapMarkers;
+        $this->mapmarkers[] = $mapmarkers;
 
         return $this;
     }
 
     /**
-     * Remove mapMarkers
+     * Remove mapmarkers
      *
-     * @param \AppBundle\Entity\MapMarker $mapMarkers
+     * @param \AppBundle\Entity\Mapmarker $mapmarkers
      */
-    public function removeMapMarker(\AppBundle\Entity\MapMarker $mapMarkers)
+    public function removeMapmarker(\AppBundle\Entity\Mapmarker $mapmarkers)
     {
-        $this->mapMarkers->removeElement($mapMarkers);
+        $this->mapmarkers->removeElement($mapmarkers);
     }
 
     /**
-     * Get mapMarkers
+     * Get mapmarkers
      *
-     * @return \Doctrine\Common\Collections\Collection 
+     * @return ArrayCollection
      */
-    public function getMapMarkers()
+    public function getMapmarkers()
     {
-        return $this->mapMarkers;
+        return $this->mapmarkers;
     }
 }

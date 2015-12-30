@@ -70,7 +70,7 @@ angular.module('app')
                     },
                     {
                         label: 'Ort',
-                        name: 'mapMarkers',
+                        name: 'id',
                         type: 'customMapMarkerInput'
                     },
                     {

@@ -10,7 +10,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="xenobladex_mapmarker")
  * @ORM\Entity
  */
-class MapMarker
+class Mapmarker
 {
     /**
      * @var integer
@@ -26,28 +26,28 @@ class MapMarker
      *
      * @ORM\Column(name="name", type="string", length=255)
      */
-    private $name;
+    private $name='';
 
     /**
      * @var string
      *
      * @ORM\Column(name="x_coord", type="string", length=255)
      */
-    private $xCoord;
+    private $xCoord='';
 
     /**
      * @var string
      *
      * @ORM\Column(name="y_coord", type="string", length=255)
      */
-    private $yCoord;
+    private $yCoord='';
 
     /**
      * @var string
      *
      * @ORM\Column(name="description", type="text")
      */
-    private $description;
+    private $description='';
 
     /**
      * @ORM\ManyToOne(targetEntity="Map", inversedBy="person")
