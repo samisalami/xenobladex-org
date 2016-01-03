@@ -71,6 +71,18 @@ class MapmarkerController extends FOSRestController {
     }
 
     /**
+     * @Route("/mapmarkers/map/{id}", methods={"GET"})
+     */
+    public function getMapmarkersByMapAction($id) {
+        $em = $this->getDoctrine()->getManager();
+        $mapmarkers = $em->getRepository('AppBundle:Mapmarker')->findBy(array('map'=>$id));
+        $serializer = $this->getJMSSerializer();
+        $response = new Response($serializer->serialize($mapmarkers, 'json'));
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
+    }
+
+    /**
      * @Route("/mapmarker/add", methods={"POST"})
      */
     public function addMapmarkerAction(Request $request) {

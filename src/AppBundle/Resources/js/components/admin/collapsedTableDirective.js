@@ -11,7 +11,8 @@ angular.module('app')
                 formModel: '=',
                 deleteItem: '&',
                 updateItem: '&',
-                addItem: '&'
+                addItem: '&',
+                modalFilterValue: '='
             },
             link: function($scope, element, attrs) {
                 var columnCount = 4;

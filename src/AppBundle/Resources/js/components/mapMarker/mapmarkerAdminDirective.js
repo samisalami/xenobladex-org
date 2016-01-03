@@ -9,10 +9,10 @@ angular.module('app')
                 $scope.currentMap = {};
                 $scope.currentMap.id = null;
                 $scope.newMapmarker = {};
-                $scope.selectedMapId = null;
 
                 $scope.selectMap = function(id){
                     $scope.currentMap = $filter('filter')($scope.maps, {id: id})[0];
+                    getRelatedMapmarkers();
                 };
 
                 mapService.getMaps(function(response){
@@ -23,14 +23,17 @@ angular.module('app')
                     $scope.persons = response;
                 });
 
-                var getMapmarkersByPerson = function(id) {
-                    mapmarkerService.getMapmarkersByPerson(id,function(response){
-                        $scope.mapmarkers = response;
-                    });
-                };
-
-                var showMapmarkers = function(mapmarkers) {
-
+                var getRelatedMapmarkers = function() {
+                    if($scope.currentMap.id) {
+                        mapmarkerService.getMapmarkersByMap($scope.currentMap.id,function(response){
+                            if($scope.newMapmarker.person) {
+                                $scope.mapmarkers = $filter('filter')(response, {person:{id: $scope.newMapmarker.person.id}});
+                            } else {
+                                //TODO: show only mapmarkers belonging to persons
+                                $scope.mapmarkers = response;
+                            }
+                        });
+                    }
                 };
 
                 $scope.updateMapmarker = function(mapmarker) {
@@ -38,30 +41,23 @@ angular.module('app')
                 };
 
                 $scope.addMapmarker = function($event) {
-                    var offsetLeft = $($event.currentTarget).offset().left,
-                        offsetTop = $($event.currentTarget).offset().top;
+                    if($scope.newMapmarker.person && $scope.currentMap) {
+                        flashService.clear();
+                        var offsetLeft = $($event.currentTarget).offset().left,
+                            offsetTop = $($event.currentTarget).offset().top;
 
-                    $scope.newMapmarker.y_coord = $event.pageY - offsetTop;
-                    $scope.newMapmarker.x_coord = $event.pageX - offsetLeft;
-                    $scope.newMapmarker.map = $scope.currentMap;
+                        $scope.newMapmarker.y_coord = $event.pageY - offsetTop;
+                        $scope.newMapmarker.x_coord = $event.pageX - offsetLeft;
+                        $scope.newMapmarker.map = $scope.currentMap;
 
-                    mapmarkerService.addMapmarker($scope.newMapmarker, function(){
-                        mapmarkerService.getMapmarkersByPerson($scope.newMapmarker.person.id, function(response){
-                            $scope.mapmarkers = response;
+                        mapmarkerService.addMapmarker($scope.newMapmarker, function(){
+                            mapmarkerService.getMapmarkersByPerson($scope.newMapmarker.person.id, function(response){
+                                $scope.mapmarkers = response;
+                            });
                         });
-                    });
-
-                    //if(mapmarker) {
-                    //    mapmarkerService.addMapmarker(mapmarker, function(){
-                    //        mapmarkerService.getMapmarkers(function(response){
-                    //            $scope.mapmarkers = response;
-                    //        });
-                    //        $scope.newMapmarker = {};
-                    //        flashService.clear();
-                    //    });
-                    //} else {
-                    //    flashService.error('Komplett leere Daten werden nicht angelegt.');
-                    //}
+                    } else {
+                        flashService.error('Bitte wähle Person und Karte aus.');
+                    }
                 };
 
                 $scope.deleteMapmarker = function(mapmarker) {
@@ -82,11 +78,17 @@ angular.module('app')
                 $scope.selectPerson = function(person) {
                     $scope.currentMapmarkers = $filter('filter')($scope.mapmarkers, {person: person});
                     $scope.newMapmarker.person = person;
-                    getMapmarkersByPerson(person.id);
+                    getRelatedMapmarkers();
+                    $('.collapse','.detail-select-overlay').removeClass('in');
                 };
 
                 $scope.log = function(value) {
                     console.log(value);
+                };
+
+                $scope.setZIndex = function($event) {
+                    $('.mapmarker-wrapper').css('z-index', 10);
+                    $($event.currentTarget).css('z-index', 11);
                 };
             }
         }

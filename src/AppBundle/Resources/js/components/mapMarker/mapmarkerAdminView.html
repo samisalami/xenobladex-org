@@ -3,6 +3,14 @@
         <label>Karte wählen:</label>
         <select ng-if="maps" ng-model="currentMap.id" ng-change="selectMap(currentMap.id)" class="form-control" ng-options="map.id as map.name for map in maps"></select>
     </div>
+    <div class="form-group">
+        <label>Name:</label>
+        <input ng-model="newMapmarker.name" type="text" class="form-control">
+    </div>
+    <div class="form-group">
+        <label>Beschreibung:</label>
+        <input ng-model="newMapmarker.description" type="text" class="form-control">
+    </div>
     <ul class="nav nav-tabs">
         <li class="nav-item">
             <a class="nav-link active" href="#">Personen</a>
@@ -10,7 +18,7 @@
     </ul>
     <div class="row m-t-1 map-container">
         <div class="col-md-2 col-xs-12 detail-select-overlay m-t-1 m-l-1">
-            <button class="btn btn-primary" data-toggle="collapse" data-target="#detail-select-box" aria-expanded="false">Person auswählen <span class="fa fa-arrow-circle-down p-l-1"></span></button>
+            <button class="btn btn-primary" data-toggle="collapse" data-target="#detail-select-box" aria-expanded="false">{{newMapmarker.person.name || 'Person auswählen'}} <span class="fa fa-arrow-circle-down p-l-1"></span></button>
             <div id="detail-select-box" class="collapse">
                 <div class="card">
                     <div class="card-block">
@@ -27,8 +35,26 @@
         </div>
         <div class="col-xs-12">
             <img ng-if="currentMap" ng-click="addMapmarker($event)" ng-src="/xenobladex/attachment/{{currentMap.attachment.id}}" />
-            <div ng-repeat="mapmarker in mapmarkers" style="position: absolute; top: {{mapmarker.y_coord}}px; left: {{mapmarker.x_coord}}px;">
-                <span class="fa fa-map-pin"></span> {{mapmarker.name}}
+            <div class="mapmarker-wrapper" ng-repeat="mapmarker in mapmarkers" ng-click="setZIndex($event)" style="position: absolute; top: {{mapmarker.y_coord}}px; left: {{mapmarker.x_coord}}px;">
+                <button class="btn btn-primary" data-toggle="collapse" data-target="#mapmarker-edit-{{$index}}" aria-expanded="false">
+                    <span class="fa fa-map-marker"></span> {{mapmarker.name}}
+                </button>
+                <div id="mapmarker-edit-{{$index}}" class="collapse">
+                    <div class="card">
+                        <div class="card-block">
+                            <div class="form-group">
+                                <label>Name:</label>
+                                <input ng-model="mapmarker.name" value="mapmarker.name" class="form-control" type="text">
+                            </div>
+                            <div class="form-group">
+                                <label>Beschreibung:</label>
+                                <input ng-model="mapmarker.description" value="mapmarker.description" class="form-control" type="text">
+                            </div>
+                            <button class="btn btn-success" ng-click="updateMapmarker(mapamrker)">Ändern</button>
+                            <button class="btn btn-danger" ng-click="deleteMapmarker(mapmarker)">Löschen</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
