@@ -17,7 +17,7 @@
                 <div class="modal-body">
                     <input type="text" class="form-control text" ng-model="modalFilterValue" placeholder="Filtern...">
                     <div class="row m-t-2">
-                        <div class="col-lg-3" ng-if="attachmentList" ng-repeat="attachment in attachmentList | orderBy:'name' | listFilter:modalFilterValue:'name'" ng-class="{'clear-both': $index%4==0}">
+                        <div class="col-lg-3 m-b-1" ng-if="attachmentList" ng-repeat="attachment in attachmentList | listFilter:modalFilterValue:'name'" ng-class="{'clear-both': $index%4==0}">
                             <div ng-click="selectOption(attachment)" class="attachment-thumbnail text-xs-center">
                                 <img ng-if="attachment.mime_type.indexOf('image') !== -1" class="card-img-top img-responsive img-thumbnail" ng-src="/xenobladex/attachment/{{attachment.id}}" />
                                 <div class="mime-type" ng-if="attachment.mime_type.indexOf('image') === -1">
