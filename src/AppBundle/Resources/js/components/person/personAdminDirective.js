@@ -27,7 +27,10 @@ angular.module('app')
                     {name:'Ma-non'},
                     {name:'Zarubogganer'},
                     {name:'Orphen'},
-                    {name:'Definianer'}
+                    {name:'Definianer'},
+                    {name:'Baumklan-Prone'},
+                    {name:'Höhlenklan-Prone'},
+                    {name:'Unbekannt'}
                 ];
 
                 $scope.formModel = [
