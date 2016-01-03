@@ -51,18 +51,18 @@
     }
 
     @media (min-width: #{$screen-md-min}) {
-      .collapse {
+      > .collapse {
         width: 100%;
         table-layout: fixed;
         -moz-box-sizing: border-box;
         box-sizing: border-box;
         border-collapse: collapse;
 
-        .row {
+        > .card > .row {
           display: table-row;
           height: 100%;
 
-          [class^="col-"] {
+          > [class^="col-"] {
             float: none;
             display: table-cell;
           }

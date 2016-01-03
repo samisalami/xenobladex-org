@@ -1,7 +1,7 @@
 <div class="map-marker-admin-view">
     <div class="form-group">
         <label>Karte wählen:</label>
-        <select ng-if="maps" ng-model="currentMap.id" ng-change="selectMap(currentMap.id)" class="form-control" ng-options="map.id as map.name for map in maps"></select>
+        <select ng-if="maps" ng-model="selectedMapId" ng-change="selectMap(selectedMapId)" class="form-control" ng-options="map.id as map.name for map in maps"></select>
     </div>
     <div class="form-group">
         <label>Name:</label>

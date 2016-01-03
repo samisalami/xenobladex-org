@@ -7,7 +7,7 @@ angular.module('app')
             replace: true,
             link: function($scope, $element,$attrs){
                 $scope.currentMap = {};
-                $scope.currentMap.id = null;
+                $scope.selectedMapId = null;
                 $scope.newMapmarker = {};
 
                 $scope.selectMap = function(id){
