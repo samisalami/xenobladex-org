@@ -31,10 +31,13 @@
                     <th>
                         Bedingungen
                     </th>
+                    <th>
+                        Kartenpunkt
+                    </th>
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="person in persons">
+                <tr ng-repeat="person in combinedPersons">
                     <td>
                         {{person.name}}
                     </td>
@@ -61,6 +64,9 @@
                     </td>
                     <td>
                         <span class="icon-missing-data" ng-class="{'complete text-success':person.conditions, 'incomplete text-danger':!person.conditions}"></span>
+                    </td>
+                    <td>
+                        <span class="icon-missing-data" ng-class="{'complete text-success':person.hasMapmarker, 'incomplete text-danger':!person.hasMapmarker}"></span>
                     </td>
                 </tr>
             </tbody>
