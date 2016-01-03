@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app')
-    .directive('mapMarkerInput',['mapMarkerService','mapService', '$filter',function(mapMarkerService, mapService, $filter) {
+    .directive('mapMarkerInput',['mapmarkerService','mapService', '$filter',function(mapMarkerService, mapService, $filter) {
         return {
             restrict: 'E',
             templateUrl:'templates/mapmarkerInputView.html',

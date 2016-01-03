@@ -16,6 +16,7 @@
             <a class="nav-link active" href="#">Personen</a>
         </li>
     </ul>
+    <a href="/admin/personen" class="btn btn-primary m-t-1">Personen-Pflege</a>
     <div class="row m-t-1 map-container">
         <div class="col-md-2 col-xs-12 detail-select-overlay m-t-1 m-l-1">
             <button class="btn btn-primary" data-toggle="collapse" data-target="#detail-select-box" aria-expanded="false">{{newMapmarker.person.name || 'Person auswählen'}} <span class="fa fa-arrow-circle-down p-l-1"></span></button>
@@ -42,6 +43,7 @@
                 <div id="mapmarker-edit-{{$index}}" class="collapse">
                     <div class="card">
                         <div class="card-block">
+                            <h6>Person: {{mapmarker.person.name}}</h6>
                             <div class="form-group">
                                 <label>Name:</label>
                                 <input ng-model="mapmarker.name" value="mapmarker.name" class="form-control" type="text">
@@ -50,7 +52,7 @@
                                 <label>Beschreibung:</label>
                                 <input ng-model="mapmarker.description" value="mapmarker.description" class="form-control" type="text">
                             </div>
-                            <button class="btn btn-success" ng-click="updateMapmarker(mapamrker)">Ändern</button>
+                            <button class="btn btn-success" ng-click="updateMapmarker(mapmarker)">Ändern</button>
                             <button class="btn btn-danger" ng-click="deleteMapmarker(mapmarker)">Löschen</button>
                         </div>
                     </div>
