@@ -30,6 +30,10 @@ class PersonController extends FOSRestController {
         $em->flush();
     }
 
+    /**
+     * @param Person $person
+     * @param Person $deserialized_person
+     */
     protected function updatePerson(Person $person, Person $deserialized_person) {
         $em = $this->getDoctrine()->getManager();
         $updated_person = $em->merge($deserialized_person);
@@ -42,6 +46,7 @@ class PersonController extends FOSRestController {
         $person->setSpecies($updated_person->getSpecies());
         $person->setJob($updated_person->getJob());
         $person->setRegion($updated_person->getRegion());
+
         $em->flush();
     }
 

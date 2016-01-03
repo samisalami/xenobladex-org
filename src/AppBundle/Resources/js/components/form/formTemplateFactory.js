@@ -13,6 +13,7 @@ angular.module('app')
         editableStringSelect: 'templates/editableStringSelectView.html',
         editableObjectSelect: 'templates/editableObjectSelectView.html',
         customMissionPersonSelect: 'templates/customMissionPersonSelect.html',
-        attachmentInput: 'templates/attachmentInput.html'
+        customAttachmentInput: 'templates/customAttachmentInput.html',
+        customMapMarkerInput: 'templates/customMapMarkerInput.html'
     };
 });

@@ -13,8 +13,7 @@ angular.module('app')
             },
             link: function($scope, element, attrs) {
                 var attachmentType = attrs.attachmentType;
-                var contentId = $('.attachment-input-view').length;
-                $scope.selectModalId = 'attachment-select-modal-'+contentId;
+                $scope.selectModalId = 'attachment-select-modal-'+Date.now();
 
                 if(typeof (attachmentType) !== 'undefined') {
                     $scope.attachmentList = $filter('filter')($scope.attachmentList, {mime_type:attachmentType});

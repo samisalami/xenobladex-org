@@ -51,6 +51,9 @@ function config($routeProvider, $locationProvider) {
       .when('/admin/faq', {
         templateUrl: 'templates/admin_faqs.html'
       })
+      .when('/admin/kartenpunkte', {
+        templateUrl: 'templates/admin_mapmarkers.html'
+      })
       .otherwise({
           templateUrl: 'templates/404.html'
       });

@@ -69,6 +69,11 @@ angular.module('app')
                         type: 'editableTextarea'
                     },
                     {
+                        label: 'Ort',
+                        name: 'id',
+                        type: 'customMapMarkerInput'
+                    },
+                    {
                         label: 'Bedingungen',
                         name: 'conditions',
                         type: 'editableTextarea'

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -83,6 +84,19 @@ class Person
      * @ORM\Column(name="activity_time", type="string", length=255)
      */
     private $activityTime = '';
+
+    /**
+     * @ORM\OneToMany(targetEntity="Mapmarker", mappedBy="person", cascade={"persist"})
+     */
+    private $mapmarkers;
+
+    /**
+     * Person constructor.
+     */
+    public function __construct()
+    {
+        $this->mapmarkers = new ArrayCollection();
+    }
 
 
     /**
@@ -300,5 +314,38 @@ class Person
     public function getRegion()
     {
         return $this->region;
+    }
+
+    /**
+     * Add mapmarkers
+     *
+     * @param \AppBundle\Entity\Mapmarker $mapmarkers
+     * @return Person
+     */
+    public function addMapmarker(\AppBundle\Entity\Mapmarker $mapmarkers)
+    {
+        $this->mapmarkers[] = $mapmarkers;
+
+        return $this;
+    }
+
+    /**
+     * Remove mapmarkers
+     *
+     * @param \AppBundle\Entity\Mapmarker $mapmarkers
+     */
+    public function removeMapmarker(\AppBundle\Entity\Mapmarker $mapmarkers)
+    {
+        $this->mapmarkers->removeElement($mapmarkers);
+    }
+
+    /**
+     * Get mapmarkers
+     *
+     * @return ArrayCollection
+     */
+    public function getMapmarkers()
+    {
+        return $this->mapmarkers;
     }
 }
