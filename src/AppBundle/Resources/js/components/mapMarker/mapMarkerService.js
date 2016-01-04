@@ -22,8 +22,8 @@ angular.module('app')
             });
         };
 
-        service.addMapmarker = function(mapmarker, callback) {
-            $http.post(Routing.generate('add_mapmarker'), mapmarker).success(function(){
+        service.addMapmarker = function(mapmarker, type, callback) {
+            $http.post(Routing.generate('add_mapmarker', {type: type}), mapmarker).success(function(){
                 callback();
             });
         };

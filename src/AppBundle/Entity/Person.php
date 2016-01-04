@@ -4,6 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\Type;
 
 /**
  * Person
@@ -86,7 +87,9 @@ class Person
     private $activityTime = '';
 
     /**
-     * @ORM\OneToMany(targetEntity="Mapmarker", mappedBy="person", cascade={"persist"})
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="PersonMapmarker", mappedBy="person", cascade={"persist"})
+     * @Type("ArrayCollection<AppBundle\Entity\PersonMapmarker>")
      */
     private $mapmarkers;
 
@@ -319,24 +322,28 @@ class Person
     /**
      * Add mapmarkers
      *
-     * @param \AppBundle\Entity\Mapmarker $mapmarkers
+     * @param \AppBundle\Entity\PersonMapmarker $mapmarkers
      * @return Person
      */
-    public function addMapmarker(\AppBundle\Entity\Mapmarker $mapmarkers)
+    public function addMapmarker(\AppBundle\Entity\PersonMapmarker $mapmarker)
     {
-        $this->mapmarkers[] = $mapmarkers;
+        if (!$this->mapmarkers->contains($mapmarker)) {
+            $this->mapmarkers->add($mapmarker);
+            $mapmarker->setPerson($this);
 
-        return $this;
+            return $this;
+        }
     }
 
     /**
      * Remove mapmarkers
      *
-     * @param \AppBundle\Entity\Mapmarker $mapmarkers
+     * @param \AppBundle\Entity\PersonMapmarker $mapmarkers
      */
-    public function removeMapmarker(\AppBundle\Entity\Mapmarker $mapmarkers)
+    public function removeMapmarker(\AppBundle\Entity\PersonMapmarker $mapmarker)
     {
-        $this->mapmarkers->removeElement($mapmarkers);
+        $this->mapmarkers->removeElement($mapmarker);
+        $mapmarker->setPerson(NULL);
     }
 
     /**

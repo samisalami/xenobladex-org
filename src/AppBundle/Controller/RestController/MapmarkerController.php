@@ -8,6 +8,7 @@ namespace AppBundle\Controller\RestController;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations\Route;
 use AppBundle\Entity\Mapmarker;
+use AppBundle\Entity\PersonMapmarker;
 use Symfony\Component\HttpFoundation\AcceptHeader;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -34,14 +35,13 @@ class MapmarkerController extends FOSRestController {
      * @param Mapmarker $mapmarker
      * @param Mapmarker $deserialized_mapmarker
      */
-    protected function updateMapmarker(Mapmarker $mapmarker, Mapmarker $deserialized_mapmarker) {
+    protected function updateMapmarker($mapmarker, $deserialized_mapmarker) {
         $em = $this->getDoctrine()->getManager();
         $updated_mapmarker = $em->merge($deserialized_mapmarker);
         $mapmarker->setName($updated_mapmarker->getName());
         $mapmarker->setDescription($updated_mapmarker->getDescription());
         $mapmarker->setXCoord($updated_mapmarker->getXCoord());
         $mapmarker->setYCoord($updated_mapmarker->getYCoord());
-        $mapmarker->setPerson($updated_mapmarker->getPerson());
         $mapmarker->setMap($updated_mapmarker->getMap());
         $em->flush();
     }
@@ -63,7 +63,7 @@ class MapmarkerController extends FOSRestController {
      */
     public function getMapmarkersByPersonAction($id) {
         $em = $this->getDoctrine()->getManager();
-        $mapmarkers = $em->getRepository('AppBundle:Mapmarker')->findBy(array('person'=>$id));
+        $mapmarkers = $em->getRepository('AppBundle:PersonMapmarker')->findBy(array('person'=>$id));
         $serializer = $this->getJMSSerializer();
         $response = new Response($serializer->serialize($mapmarkers, 'json'));
         $response->headers->set('Content-Type', 'application/json');
@@ -83,13 +83,13 @@ class MapmarkerController extends FOSRestController {
     }
 
     /**
-     * @Route("/mapmarker/add", methods={"POST"})
+     * @Route("/mapmarker/{type}/add", methods={"POST"})
      */
-    public function addMapmarkerAction(Request $request) {
+    public function addMapmarkerAction(Request $request, $type) {
         $content = $request->getContent();
         if(!empty($content)) {
             $serializer = $this->getJMSSerializer();
-            $deserialized_mapmarker = $serializer->deserialize($content, 'AppBundle\Entity\Mapmarker', 'json');
+            $deserialized_mapmarker = $serializer->deserialize($content, 'AppBundle\Entity\\'.$type, 'json');
             $this->addMapmarker($deserialized_mapmarker);
         }
         return new Response(Response::HTTP_OK);

@@ -8,6 +8,8 @@ use Doctrine\ORM\Mapping as ORM;
  * MapMarker
  *
  * @ORM\Table(name="xenobladex_mapmarker")
+ * @ORM\InheritanceType("JOINED")
+ * @ORM\DiscriminatorColumn(name="mapmarker_type", type="string")
  * @ORM\Entity
  */
 class Mapmarker
@@ -19,48 +21,41 @@ class Mapmarker
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
      */
-    private $name='';
+    protected $name='';
 
     /**
      * @var string
      *
      * @ORM\Column(name="x_coord", type="string", length=255)
      */
-    private $xCoord='';
+    protected $xCoord='';
 
     /**
      * @var string
      *
      * @ORM\Column(name="y_coord", type="string", length=255)
      */
-    private $yCoord='';
+    protected $yCoord='';
 
     /**
      * @var string
      *
      * @ORM\Column(name="description", type="text")
      */
-    private $description='';
+    protected $description='';
 
     /**
      * @ORM\ManyToOne(targetEntity="Map", inversedBy="person")
      * @ORM\JoinColumn(name="map_id", referencedColumnName="id")
      */
-    private $map;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Person")
-     * @ORM\JoinColumn(name="person_id", referencedColumnName="id",nullable=true)
-     */
-    private $person;
-
+    protected $map;
 
     /**
      * Get id
@@ -185,28 +180,5 @@ class Mapmarker
     public function getMap()
     {
         return $this->map;
-    }
-
-    /**
-     * Set person
-     *
-     * @param \AppBundle\Entity\Person $person
-     * @return MapMarker
-     */
-    public function setPerson(\AppBundle\Entity\Person $person = null)
-    {
-        $this->person = $person;
-
-        return $this;
-    }
-
-    /**
-     * Get person
-     *
-     * @return \AppBundle\Entity\Person
-     */
-    public function getPerson()
-    {
-        return $this->person;
     }
 }

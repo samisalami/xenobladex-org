@@ -30,6 +30,7 @@ DirectoryIndex index.html
     RewriteRule .* - [E=HTTP_AUTHORIZATION:%{HTTP:Authorization}]
 
     #let the php framework do its thing
+    RewriteRule ^xenobladex/debug/(.*) app_dev.php/_profiler?url=xenobladex/$1 [QSA,L,NC,R=301]
     RewriteRule ^(xenobladex/.*)$ app.php?url=$1 [QSA,L,NC]
     #fos jsrouting bundle
     RewriteRule ^(js/routing.*)$ app.php?url=$1 [QSA,L,NC]
