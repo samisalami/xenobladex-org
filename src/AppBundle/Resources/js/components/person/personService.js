@@ -17,6 +17,7 @@ angular.module('app')
         };
 
         service.updatePerson = function(person) {
+            console.log(person);
             var promise = $timeout(function() {
                 $http.post(Routing.generate('update_person'), person);
                 $timeout.cancel(promise);

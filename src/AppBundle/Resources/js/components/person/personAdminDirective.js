@@ -1,12 +1,17 @@
 'use strict';
 
 angular.module('app')
-    .directive('personAdmin',['personService', 'flashService', '$filter', function(personService, flashService, $filter) {
+    .directive('personAdmin',['personService', 'mapService', 'flashService', '$filter', function(personService, mapService, flashService, $filter) {
         return {
             templateUrl:'templates/personAdminView.html',
             replace: true,
             link: function($scope, $element,$attrs){
                 $scope.newPerson = {};
+
+                mapService.getMaps(function(response){
+                    $scope.maps = response;
+                    initFormModel();
+                });
 
                 personService.getPersons(function(response){
                     $scope.persons = response;
@@ -33,50 +38,58 @@ angular.module('app')
                     {name:'Unbekannt'}
                 ];
 
-                $scope.formModel = [
-                    {
-                        label: 'Alter',
-                        name: 'age',
-                        type: 'editableText'
-                    },
-                    {
-                        label: 'Spezies',
-                        name: 'species',
-                        type: 'editableStringSelect',
-                        data: speciesList
-                    },
-                    {
-                        label: 'Beruf',
-                        name: 'job',
-                        type: 'editableText'
-                    },
-                    {
-                        label: 'Beschreibung',
-                        name: 'description',
-                        type: 'editableTextarea'
-                    },
-                    {
-                        label: 'Region',
-                        name: 'region',
-                        type: 'editableStringSelect',
-                        data: regions
-                    },
-                    {
-                        label: 'Zeit',
-                        name: 'activity_time',
-                        type: 'editableText'
-                    },
-                    {
-                        label: 'Ortsbeschreibung',
-                        name: 'location_note',
-                        type: 'editableTextarea'
-                    },
-                    {
-                        label: 'Bedingungen',
-                        name: 'conditions',
-                        type: 'editableTextarea'
-                    }
-                ];
+                var initFormModel = function() {
+                    $scope.formModel = [
+                        {
+                            label: 'Alter',
+                            name: 'age',
+                            type: 'editableText'
+                        },
+                        {
+                            label: 'Spezies',
+                            name: 'species',
+                            type: 'editableStringSelect',
+                            data: speciesList
+                        },
+                        {
+                            label: 'Beruf',
+                            name: 'job',
+                            type: 'editableText'
+                        },
+                        {
+                            label: 'Beschreibung',
+                            name: 'description',
+                            type: 'editableTextarea'
+                        },
+                        {
+                            label: 'Region',
+                            name: 'region',
+                            type: 'editableStringSelect',
+                            data: regions
+                        },
+                        {
+                            label: 'Zeit',
+                            name: 'activity_time',
+                            type: 'editableText'
+                        },
+                        {
+                            label: 'Ortsbeschreibung',
+                            name: 'location_note',
+                            type: 'editableTextarea'
+                        },
+                        {
+                            label: 'Karte',
+                            name: 'mapmarkers',
+                            type: 'customMapmarkerInput',
+                            data: $scope.maps
+                        },
+                        {
+                            label: 'Bedingungen',
+                            name: 'conditions',
+                            type: 'editableTextarea'
+                        }
+                    ];
+                };
 
                 $scope.updatePerson = function(person) {
                     personService.updatePerson(person);

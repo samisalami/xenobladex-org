@@ -14,6 +14,6 @@ angular.module('app')
         editableObjectSelect: 'templates/editableObjectSelectView.html',
         customMissionPersonSelect: 'templates/customMissionPersonSelect.html',
         customAttachmentInput: 'templates/customAttachmentInput.html',
-        customMapMarkerInput: 'templates/customMapMarkerInput.html'
+        customMapmarkerInput: 'templates/customMapmarkerInput.html'
     };
 });

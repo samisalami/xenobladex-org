@@ -51,7 +51,7 @@
     }
 
     @media (min-width: #{$screen-md-min}) {
-      > .collapse {
+      .collapse {
         width: 100%;
         table-layout: fixed;
         -moz-box-sizing: border-box;
@@ -67,7 +67,7 @@
             display: table-cell;
           }
 
-          .card {
+          > .card {
             width: 25%;
           }
         }
@@ -79,6 +79,13 @@
     textarea {
       min-height: 100px;
       max-width: 100%;
+    }
+  }
+
+  .modal-fullsize {
+    overflow: auto;
+    .modal-dialog {
+      width: auto;
     }
   }
 }

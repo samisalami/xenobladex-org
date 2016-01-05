@@ -181,4 +181,14 @@ class Mapmarker
     {
         return $this->map;
     }
+
+    public function getCustomRelation()
+    {
+        return null;
+    }
+
+    public function setCustomRelation()
+    {
+        return $this;
+    }
 }

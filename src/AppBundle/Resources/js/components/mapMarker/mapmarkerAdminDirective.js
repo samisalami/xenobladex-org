@@ -82,10 +82,6 @@ angular.module('app')
                     $('.collapse','.detail-select-overlay').removeClass('in');
                 };
 
-                $scope.log = function(value) {
-                    console.log(value);
-                };
-
                 $scope.setZIndex = function($event) {
                     $('.mapmarker-wrapper').css('z-index', 10);
                     $($event.currentTarget).css('z-index', 11);

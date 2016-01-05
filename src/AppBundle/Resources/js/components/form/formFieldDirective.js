@@ -25,10 +25,6 @@ angular.module('app')
                     var selected = $filter('filter')($scope.formSelectOptions, {id: id});
                     return ($scope.formSelectOptions && selected.length) ? selected[0].name : false;
                 };
-
-                $scope.log = function() {
-                    console.log($scope.formFieldBind);
-                }
             },
             template: '<div ng-include="getTemplate()"></div>'
         }

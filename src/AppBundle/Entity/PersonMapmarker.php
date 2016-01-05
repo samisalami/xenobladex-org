@@ -41,4 +41,14 @@ class PersonMapmarker extends Mapmarker
     {
         return $this->person;
     }
+
+    public function getCustomRelation()
+    {
+        return $this->getPerson();
+    }
+
+    public function setCustomRelation(\AppBundle\Entity\Person $person = null)
+    {
+        return $this->setPerson($person);
+    }
 }
