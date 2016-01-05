@@ -11,7 +11,6 @@ angular.module('app')
                 formTemplate: '@',
                 formSelectOptions: '='
             },
-            transclude: true,
             link: function($scope, element, attrs) {
                 $scope.attachmentType = attrs.attachmentType;
                 $scope.contentId = 'form-field-'+Date.now();

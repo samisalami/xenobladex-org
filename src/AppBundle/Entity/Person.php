@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Entity\PersonMapmarker;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation\Type;
@@ -320,12 +321,12 @@ class Person
     }
 
     /**
-     * Add mapmarkers
+     * Add mapmarker
      *
-     * @param \AppBundle\Entity\PersonMapmarker $mapmarkers
+     * @param PersonMapmarker $mapmarker
      * @return Person
      */
-    public function addMapmarker(\AppBundle\Entity\PersonMapmarker $mapmarker)
+    public function addMapmarker(PersonMapmarker $mapmarker)
     {
         if (!$this->mapmarkers->contains($mapmarker)) {
             $this->mapmarkers->add($mapmarker);
@@ -336,11 +337,11 @@ class Person
     }
 
     /**
-     * Remove mapmarkers
+     * Remove mapmarker
      *
-     * @param \AppBundle\Entity\PersonMapmarker $mapmarkers
+     * @param PersonMapmarker $mapmarker
      */
-    public function removeMapmarker(\AppBundle\Entity\PersonMapmarker $mapmarker)
+    public function removeMapmarker(PersonMapmarker $mapmarker)
     {
         $this->mapmarkers->removeElement($mapmarker);
         $mapmarker->setPerson(NULL);

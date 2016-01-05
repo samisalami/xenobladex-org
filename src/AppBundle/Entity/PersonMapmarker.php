@@ -14,7 +14,7 @@ class PersonMapmarker extends Mapmarker
 {
 
     /**
-     * @ORM\ManyToOne(targetEntity="Person")
+     * @ORM\ManyToOne(targetEntity="Person", cascade={"persist"})
      * @ORM\JoinColumn(name="person_id", referencedColumnName="id",nullable=true)
      */
     private $person;

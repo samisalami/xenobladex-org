@@ -31,21 +31,25 @@ class PersonController extends FOSRestController {
     }
 
     /**
-     * @param Person $person
      * @param Person $deserialized_person
      */
-    protected function updatePerson(Person $person, Person $deserialized_person) {
+    protected function updatePerson(Person $deserialized_person) {
         $em = $this->getDoctrine()->getManager();
+
+        $newMapmarkers = $deserialized_person->getMapmarkers();
         $updated_person = $em->merge($deserialized_person);
-        $person->setName($updated_person->getName());
-        $person->setDescription($updated_person->getDescription());
-        $person->setConditions($updated_person->getConditions());
-        $person->setActivityTime($updated_person->getActivityTime());
-        $person->setAge($updated_person->getAge());
-        $person->setLocationNote($updated_person->getLocationNote());
-        $person->setSpecies($updated_person->getSpecies());
-        $person->setJob($updated_person->getJob());
-        $person->setRegion($updated_person->getRegion());
+        $currentMapmarkers = $updated_person->getMapmarkers();
+
+        foreach($currentMapmarkers as $currentMapmarker) {
+            $updated_person->removeMapmarker($currentMapmarker);
+            $em->remove($currentMapmarker);
+        }
+
+        foreach($newMapmarkers as $newMapmarker) {
+            $mapmarker = $em->merge($newMapmarker);
+            $em->persist($mapmarker);
+            $updated_person->addMapmarker($mapmarker);
+        }
 
         $em->flush();
     }
@@ -83,11 +87,8 @@ class PersonController extends FOSRestController {
         if(!empty($content)) {
             $serializer = $this->getJMSSerializer();
             $deserialized_person = $serializer->deserialize($content, 'AppBundle\Entity\Person', 'json');
-            $person = $this->getDoctrine()
-                ->getRepository('AppBundle:Person')
-                ->find($deserialized_person->getId());
 
-            $this->updatePerson($person, $deserialized_person);
+            $this->updatePerson($deserialized_person);
             $response = new Response($serializer->serialize($deserialized_person, 'json'));
 
             $response->headers->set('Content-Type', 'application/json');
