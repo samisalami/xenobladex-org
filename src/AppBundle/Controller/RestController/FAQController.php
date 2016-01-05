@@ -30,12 +30,9 @@ class FaqController extends FOSRestController {
         $em->flush();
     }
 
-    protected function updateFaq(Faq $faq, Faq $deserialized_faq) {
+    protected function updateFaq(Faq $deserialized_faq) {
         $em = $this->getDoctrine()->getManager();
         $updated_faq = $em->merge($deserialized_faq);
-        $faq->setName($updated_faq->getName());
-        $faq->setAnswer($updated_faq->getAnswer());
-        $faq->setCategory($updated_faq->getCategory());
         $em->flush();
     }
 
@@ -72,11 +69,7 @@ class FaqController extends FOSRestController {
         if(!empty($content)) {
             $serializer = $this->getJMSSerializer();
             $deserialized_faq = $serializer->deserialize($content, 'AppBundle\Entity\Faq', 'json');
-            $faq = $this->getDoctrine()
-                ->getRepository('AppBundle:Faq')
-                ->find($deserialized_faq->getId());
-
-            $this->updateFaq($faq, $deserialized_faq);
+            $this->updateFaq($deserialized_faq);
             $response = new Response($serializer->serialize($deserialized_faq, 'json'));
 
             $response->headers->set('Content-Type', 'application/json');

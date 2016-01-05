@@ -29,12 +29,9 @@ class MapController extends FOSRestController {
         $em->flush();
     }
 
-    protected function updateMap(Map $map, Map $deserialized_map) {
+    protected function updateMap(Map $deserialized_map) {
         $em = $this->getDoctrine()->getManager();
         $updated_map = $em->merge($deserialized_map);
-        $map->setName($updated_map->getName());
-        $map->setDescription($updated_map->getDescription());
-        $map->setAttachment($updated_map->getAttachment());
         $em->flush();
     }
 
@@ -71,11 +68,7 @@ class MapController extends FOSRestController {
         if(!empty($content)) {
             $serializer = $this->getJMSSerializer();
             $deserialized_map = $serializer->deserialize($content, 'AppBundle\Entity\Map', 'json');
-            $map = $this->getDoctrine()
-                ->getRepository('AppBundle:Map')
-                ->find($deserialized_map->getId());
-
-            $this->updateMap($map, $deserialized_map);
+            $this->updateMap($deserialized_map);
             $response = new Response($serializer->serialize($deserialized_map, 'json'));
 
             $response->headers->set('Content-Type', 'application/json');

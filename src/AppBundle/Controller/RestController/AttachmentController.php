@@ -33,11 +33,9 @@ class AttachmentController extends FOSRestController {
         $em->flush();
     }
 
-    protected function updateAttachment(Attachment $attachment, Attachment $deserialized_attachment) {
+    protected function updateAttachment(Attachment $deserialized_attachment) {
         $em = $this->getDoctrine()->getManager();
         $updated_attachment = $em->merge($deserialized_attachment);
-        $attachment->setName($updated_attachment->getName());
-        $attachment->setDescription($updated_attachment->getDescription());
         $em->flush();
     }
 
@@ -83,11 +81,7 @@ class AttachmentController extends FOSRestController {
         if(!empty($content)) {
             $serializer = $this->getJMSSerializer();
             $deserialized_attachment = $serializer->deserialize($content, 'AppBundle\Entity\Attachment', 'json');
-            $attachment = $this->getDoctrine()
-                ->getRepository('AppBundle:Attachment')
-                ->find($deserialized_attachment->getId());
-
-            $this->updateAttachment($attachment, $deserialized_attachment);
+            $this->updateAttachment($deserialized_attachment);
             $response = new Response($serializer->serialize($deserialized_attachment, 'json'));
 
             $response->headers->set('Content-Type', 'application/json');

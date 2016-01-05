@@ -44,15 +44,9 @@ class MapmarkerController extends FOSRestController {
      * @param Mapmarker $mapmarker
      * @param Mapmarker $deserialized_mapmarker
      */
-    protected function updateMapmarker($mapmarker, $deserialized_mapmarker) {
+    protected function updateMapmarker($deserialized_mapmarker) {
         $em = $this->getDoctrine()->getManager();
         $updated_mapmarker = $em->merge($deserialized_mapmarker);
-        $mapmarker->setName($updated_mapmarker->getName());
-        $mapmarker->setDescription($updated_mapmarker->getDescription());
-        $mapmarker->setXCoord($updated_mapmarker->getXCoord());
-        $mapmarker->setYCoord($updated_mapmarker->getYCoord());
-        $mapmarker->setMap($updated_mapmarker->getMap());
-        $mapmarker->setCustomRelation($updated_mapmarker->getCustomRelation());
         $em->flush();
     }
 
@@ -124,11 +118,8 @@ class MapmarkerController extends FOSRestController {
         if(!empty($content)) {
             $serializer = $this->getJMSSerializer();
             $deserialized_mapmarker = $serializer->deserialize($content, 'AppBundle\Entity\Mapmarker', 'json');
-            $mapmarker = $this->getDoctrine()
-                ->getRepository('AppBundle:Mapmarker')
-                ->find($deserialized_mapmarker->getId());
 
-            $this->updateMapmarker($mapmarker, $deserialized_mapmarker);
+            $this->updateMapmarker($deserialized_mapmarker);
             $response = new Response($serializer->serialize($deserialized_mapmarker, 'json'));
 
             $response->headers->set('Content-Type', 'application/json');

@@ -37,17 +37,37 @@ class PersonController extends FOSRestController {
         $em = $this->getDoctrine()->getManager();
 
         $newMapmarkers = $deserialized_person->getMapmarkers();
-        $updated_person = $em->merge($deserialized_person);
-        $currentMapmarkers = $updated_person->getMapmarkers();
-
-        foreach($currentMapmarkers as $currentMapmarker) {
-            $updated_person->removeMapmarker($currentMapmarker);
-            $em->remove($currentMapmarker);
-        }
+        $tempMapmarkers = [];
 
         foreach($newMapmarkers as $newMapmarker) {
-            $mapmarker = $em->merge($newMapmarker);
-            $em->persist($mapmarker);
+            if(!$newMapmarker->getId()) {
+                $tempMapmarkers[] = $newMapmarker;
+                $deserialized_person->removeMapmarker($newMapmarker);
+            }
+        }
+
+        $updated_person = $em->merge($deserialized_person);
+
+        $currentMapmarkers = $updated_person->getMapmarkers();
+
+        $count = $newMapmarkers->count();
+        foreach($currentMapmarkers as $currentMapmarker) {
+            $deleted = true;
+            for($i=0;$i<$count; $i++) {
+                $newMapmarker = $newMapmarkers->get($i);
+                if($newMapmarker->getId() === $currentMapmarker->getId()) {
+                    $deleted = false;
+                }
+
+                if($i === ($count-1) && $deleted) {
+                    $mapmarker = $em->merge($currentMapmarker);
+                    $updated_person->removeMapmarker($mapmarker);
+                }
+            }
+        }
+
+        foreach($tempMapmarkers as $tempMapmarker) {
+            $mapmarker = $em->merge($tempMapmarker);
             $updated_person->addMapmarker($mapmarker);
         }
 

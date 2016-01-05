@@ -51,9 +51,7 @@ angular.module('app')
                         $scope.newMapmarker.map = $scope.currentMap;
 
                         mapmarkerService.addMapmarker($scope.newMapmarker, 'PersonMapmarker', function(){
-                            mapmarkerService.getMapmarkersByPerson($scope.newMapmarker.person.id, function(response){
-                                $scope.mapmarkers = response;
-                            });
+                            getRelatedMapmarkers();
                         });
                     } else {
                         flashService.error('Bitte wähle Person und Karte aus.');

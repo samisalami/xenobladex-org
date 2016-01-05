@@ -89,7 +89,7 @@ class Person
 
     /**
      * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="PersonMapmarker", mappedBy="person", cascade={"persist"})
+     * @ORM\OneToMany(targetEntity="PersonMapmarker", mappedBy="person", cascade={"all"}, orphanRemoval=true)
      * @Type("ArrayCollection<AppBundle\Entity\PersonMapmarker>")
      */
     private $mapmarkers;
@@ -344,7 +344,7 @@ class Person
     public function removeMapmarker(PersonMapmarker $mapmarker)
     {
         $this->mapmarkers->removeElement($mapmarker);
-        $mapmarker->setPerson(NULL);
+        $mapmarker->setPerson(null);
     }
 
     /**
