@@ -77,12 +77,12 @@ angular.module('app')
                             name: 'location_note',
                             type: 'editableTextarea'
                         },
-                        {
-                            label: 'Karte',
-                            name: 'mapmarkers',
-                            type: 'customMapmarkerInput',
-                            data: $scope.maps
-                        },
+                        //{
+                        //    label: 'Karte',
+                        //    name: 'mapmarkers',
+                        //    type: 'customMapmarkerInput',
+                        //    data: $scope.maps
+                        //},
                         {
                             label: 'Bedingungen',
                             name: 'conditions',

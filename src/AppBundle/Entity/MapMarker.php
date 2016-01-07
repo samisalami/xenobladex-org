@@ -52,7 +52,7 @@ class Mapmarker
     protected $description='';
 
     /**
-     * @ORM\ManyToOne(targetEntity="Map", inversedBy="person")
+     * @ORM\ManyToOne(targetEntity="Map")
      * @ORM\JoinColumn(name="map_id", referencedColumnName="id")
      */
     protected $map;
