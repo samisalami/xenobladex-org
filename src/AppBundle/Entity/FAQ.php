@@ -38,6 +38,13 @@ class Faq
     /**
      * @var string
      *
+     * @ORM\Column(name="answer_read_more", type="text")
+     */
+    private $answer_read_more='';
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="category", type="text", length=255)
      */
     private $category='';
@@ -120,5 +127,28 @@ class Faq
     public function getCategory()
     {
         return $this->category;
+    }
+
+    /**
+     * Set answer_read_more
+     *
+     * @param string $answerReadMore
+     * @return Faq
+     */
+    public function setAnswerReadMore($answerReadMore)
+    {
+        $this->answer_read_more = $answerReadMore;
+
+        return $this;
+    }
+
+    /**
+     * Get answer_read_more
+     *
+     * @return string 
+     */
+    public function getAnswerReadMore()
+    {
+        return $this->answer_read_more;
     }
 }
