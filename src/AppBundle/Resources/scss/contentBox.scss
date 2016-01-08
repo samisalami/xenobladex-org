@@ -1,9 +1,8 @@
 .content-box {
-  margin-bottom: $default-margin;
-  padding: $default-margin;
-  background-color: #fff;
+  background-color: rgba(255,255,255,0.7);
 
   header {
+    padding: $default-margin;
     h1 {
       display: inline-block;
       font-size: $font-size-h2;
@@ -11,11 +10,12 @@
 
     span {
       float: right;
-      color: $color-bright-lightened;
     }
   }
 
   p {
+    display: block;
+    padding: $default-margin;
     margin-bottom: 0;
     white-space: pre-wrap;
     color: $font-color-dark;

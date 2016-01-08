@@ -1,0 +1,39 @@
+.collapse-item {
+  & + .collapse-item {
+    padding-top: $default-padding;
+  }
+
+  [data-toggle="collapse"] {
+    text-decoration: none;
+    color: $font-color-dark;
+    display: block;
+    padding: $default-margin;
+    margin-bottom: $default-padding;
+
+    span {
+      font-size: $font-size-copy;
+      line-height: $font-line-height-copy;
+      float: right;
+    }
+
+    &.collapsed {
+      span {
+        @extend .fa-arrow-down;
+      }
+    }
+
+    &:not(.collapsed) {
+      span {
+        @extend .fa-arrow-up;
+      }
+    }
+
+    &:hover {
+      background-color: rgba($color-xenobladex, 0.5);
+    }
+  }
+
+  .collapse.in ~ [data-toggle="collapse"] {
+    padding-top: $default-padding;
+  }
+}

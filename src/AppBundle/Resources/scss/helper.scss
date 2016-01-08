@@ -12,3 +12,15 @@
 .clear-both {
   clear: both;
 }
+
+.default-amrgin-t {
+  margin-top: $default-margin;
+}
+
+.default-amrgin-b {
+  margin-bottom: $default-margin;
+}
+
+.default-amrgin-y {
+  margin: $default-margin 0;
+}

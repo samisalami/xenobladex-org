@@ -1,0 +1,16 @@
+<header>
+  <h1>FAQ - Häufig gestellte Fragen</h1>
+</header>
+<section class="content-box default-amrgin-b">
+  <div>
+    <p>Hier findet ihr Antworten auf häufig gestellte Fragen, die euch den Einstieg und das Vorankommen erleichtern sollen.</p>
+  </div>
+</section>
+<faq-view>
+  <div class="collapse-item" ng-repeat="faq in faqs">
+      <a href="#faq-anser-{{$index}}" class="collapsed content-box" onclick="return false;" data-toggle="collapse" aria-expanded="false">{{faq.name}}<span class="fa"></span></a>
+      <div id="faq-anser-{{$index}}" class="content-box collapse">
+        <p>{{faq.answer}}</p>
+      </div>
+  </div>
+</faq-view>

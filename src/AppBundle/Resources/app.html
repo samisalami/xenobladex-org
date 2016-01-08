@@ -22,10 +22,8 @@
 <div ng-include src="'templates/_header.html'"></div>
 <div ng-include onload="asideLoaded = true" src="'templates/_aside.html'"></div>
 <main role="main">
-    <div class="layout-wrapper">
-        <div class="main-view" ng-view></div>
-        <img class="body-bg" src="/images/bg_xenobladex.jpg" />
-    </div>
+    <div class="main-view" ng-view></div>
+    <img class="body-bg" src="/images/bg_xenobladex.jpg" />
 </main>
 <script type="text/javascript" src="/bundles/fosjsrouting/js/router.js"></script>
 <script type="text/javascript" src="/js/routing?callback=fos.Router.setData"></script>

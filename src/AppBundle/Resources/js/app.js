@@ -16,6 +16,9 @@ function config($routeProvider, $locationProvider) {
       .when('/', {
         templateUrl: 'templates/start.html'
       })
+      .when('/faq', {
+        templateUrl: 'templates/faq.html'
+      })
       .when('/login', {
         controller: 'UserController',
         templateUrl: 'templates/loginView.html'

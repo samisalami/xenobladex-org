@@ -9,7 +9,7 @@ body {
     display: none;
     position: fixed;
     z-index: -1;
-    bottom:0%;
+    bottom: 0;
     right: 0;
 
     @media (min-width: #{$screen-md-min}) {
@@ -59,7 +59,7 @@ body {
           a {
             color: $font-color-bright;
 
-            &:hover, &:active, &:focus {
+            &:hover, &:focus {
               color: $color-xenobladex;
             }
           }
@@ -71,33 +71,32 @@ body {
   .main-aside {
     display: none;
     background-color: $color-dark;
-    .main-nav {
-      ul {
-        list-style-type: none;
-        margin: 0;
-        padding: 0;
 
-        li {
-          border-bottom: 1px $color-dark-darkened solid;
+    ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
 
-          & + li {
-            border-top: 1px $color-dark-lightened solid;
-          }
+      li {
+        border-bottom: 1px $color-dark-darkened solid;
+
+        & + li {
+          border-top: 1px $color-dark-lightened solid;
+        }
+      }
+
+      a {
+        display: block;
+        padding: $default-padding $default-margin;
+        color: $font-color-bright;
+        text-decoration: none;
+
+        &.active{
+          font-weight: bold;
         }
 
-        a {
-          display: block;
-          padding: $default-padding $default-margin;
-          color: $font-color-bright;
-          text-decoration: none;
-
-          &.active {
-            font-weight: bold;
-          }
-
-          &:hover, &:active, &:focus, &.active {
-            background-color: $color-dark-lightened;
-          }
+        &:hover, &:focus, &.active {
+          color: $color-xenobladex;
         }
       }
     }
@@ -126,22 +125,22 @@ body {
       box-shadow: 0 0 5px 0 #000;
 
       @include transform-translate3d(-100%);
-    }
-  }
 
-  .layout-wrapper {
-    position: relative;
+      @media (min-width: #{$screen-md-min}) {
+        width: 25%;
+      }
+    }
   }
 
   [role=main] {
     overflow: auto;
-    margin: 0 $default-element-margin;
 
     @media (min-width: #{$screen-xl-min}) {
       margin-right: $default-element-margin*6;
     }
 
     .main-view {
+      padding: 0 $default-element-margin;
       > header {
         margin-bottom: $default-element-margin;
         h1 {
@@ -157,19 +156,23 @@ body {
       @include transitionStandard();
     }
 
-    .body-bg {
-      //is buggy
-      display: none;
-    }
-
     [role=main] {
-      margin-left: $default-element-margin;
+      overflow: visible;
     }
 
-    [role=main],
+    .body-bg,
+    .main-view,
     .main-header {
       @include transform-translate3d(70%);
       @include transitionStandard();
+    }
+
+    @media (min-width: #{$screen-md-min}) {
+      .body-bg,
+      .main-view,
+      .main-header {
+        @include transform-translate3d(25%);
+      }
     }
   }
 }
