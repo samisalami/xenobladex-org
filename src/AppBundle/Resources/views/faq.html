@@ -11,6 +11,10 @@
       <a href="#faq-anser-{{$index}}" class="collapsed content-box" onclick="return false;" data-toggle="collapse" aria-expanded="false">{{faq.name}}<span class="fa"></span></a>
       <div id="faq-anser-{{$index}}" class="content-box collapse">
         <p>{{faq.answer}}</p>
+        <a ng-if="faq.answer_read_more" href="#faq-read-more-{{$index}}" class="collapsed" data-toggle="collapse" aria-expanded="false" onclick="return false;"><span class="fa"></span> Mehr Infos</a>
+        <div id="faq-read-more-{{$index}}" class="collapse">
+            <p>{{faq.answer_read_more}}</p>
+        </div>
       </div>
   </div>
 </faq-view>

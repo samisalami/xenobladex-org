@@ -3,12 +3,15 @@
     padding-top: $default-padding;
   }
 
+  > [data-toggle="collapse"] {
+    margin-bottom: $default-padding;
+  }
+
   [data-toggle="collapse"] {
     text-decoration: none;
     color: $font-color-dark;
     display: block;
     padding: $default-margin;
-    margin-bottom: $default-padding;
 
     span {
       font-size: $font-size-copy;
