@@ -2,5 +2,6 @@
     <div class="alert alert-warning" ng-show="deletedFAQ">
         <a ng-click="addDeletedFAQ()" href="#">Gelöschte Zeile wiederherstellen</a>
     </div>
-    <collapsed-table ng-if="formModel && faqs" view-data="faqs" form-model="formModel" add-object="newFAQ" add-item="addFAQ(item)"  update-item="updateFAQ(item)" delete-item="deleteFAQ(item)"></collapsed-table>
+    <input type="text" class="form-control text m-b-2" ng-model="modalFilterValue" placeholder="Filtern..." />
+    <collapsed-table ng-if="formModel && faqs" view-data="faqs" form-model="formModel" modal-filter-value="modalFilterValue" add-object="newFAQ" add-item="addFAQ(item)"  update-item="updateFAQ(item)" delete-item="deleteFAQ(item)"></collapsed-table>
 </div>
