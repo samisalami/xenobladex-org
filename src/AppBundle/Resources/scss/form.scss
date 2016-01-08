@@ -1,0 +1,26 @@
+button, input {
+  outline: none;
+}
+
+.main-content {
+  input {
+    width: 320px;
+    max-width: 100%;
+    border-style: none;
+    padding: $default-padding $default-margin;
+    -webkit-border-radius: 15px;
+    -moz-border-radius: 15px;
+    border-radius: 15px;
+  }
+}
+
+.search-input {
+  position: relative;
+  display: inline-block;
+  span {
+    @extend .vertical-align;
+    position: absolute;
+    right: $default-margin;
+    top: 50%;
+  }
+}
