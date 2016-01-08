@@ -9,7 +9,9 @@
     }
 
     span {
-      float: right;
+      @media (min-width: #{$screen-md-min}) {
+        float: right;
+      }
     }
   }
 

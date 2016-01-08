@@ -142,9 +142,16 @@ body {
     .main-view {
       padding: 0 $default-element-margin;
       > header {
-        margin-bottom: $default-element-margin;
+        margin-bottom: $default-margin;
         h1 {
-          font-size: $font-size-h1;
+          font-size:$font-size-h1*0.8;
+        }
+
+        @media (min-width: #{$screen-md-min}) {
+          margin-bottom: $default-element-margin;
+          h1 {
+            font-size: $font-size-h1;
+          }
         }
       }
     }

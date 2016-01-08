@@ -1,14 +1,14 @@
 'use strict';
 
 angular.module('app')
-    .directive('slideMenu', function() {
+    .directive('slideMenu',['$rootScope', function($rootScope) {
         return {
             restrict: 'A',
             link: function ($scope, $elm, $attrs)
             {
                 var active = false;
                 var navActiveClass = 'slide-menu-open';
-                var contentSelector = '[role="main"]';
+                var contentSelector = '.main-view';
                 var newNav = $('<aside class="main-aside main-aside-mobile"></aside>'),
                     navButton = $($elm),
                     nav = $('#'+$attrs.menuId);
@@ -42,6 +42,11 @@ angular.module('app')
                         }
                     });
                 }
+
+                $rootScope.$on('$locationChangeStart', function (event, next, current) {
+                    close();
+                    newNav.html(nav.html());
+                });
             }
         };
-    });
+    }]);
