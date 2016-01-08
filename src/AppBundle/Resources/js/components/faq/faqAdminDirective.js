@@ -26,6 +26,11 @@ angular.module('app')
                             type: 'editableTextarea'
                         },
                         {
+                            label: 'Antwort - Erweitert',
+                            name: 'answer_read_more',
+                            type: 'editableTextarea'
+                        },
+                        {
                             label: 'Kategorie',
                             name: 'category',
                             type: 'editableStringSelect',
