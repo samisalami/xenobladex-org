@@ -44,7 +44,7 @@ person:
         expose: true
 
 faq:
-    prefix: /xenobladex/api
+    prefix: /xenobladex
     type:     rest
     resource: "@AppBundle/Controller/RestController/FaqController.php"
     options:

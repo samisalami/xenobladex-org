@@ -49,7 +49,7 @@ class FaqController extends FOSRestController {
     }
 
     /**
-     * @Route("/faq/add", methods={"POST"})
+     * @Route("/api/faq/add", methods={"POST"})
      */
     public function addFaqAction(Request $request) {
         $content = $request->getContent();
@@ -62,7 +62,7 @@ class FaqController extends FOSRestController {
     }
 
     /**
-     * @Route("/faq/update", methods={"POST"})
+     * @Route("/api/faq/update", methods={"POST"})
      */
     public function updateFaqAction(Request $request) {
         $content = $request->getContent();
@@ -78,6 +78,9 @@ class FaqController extends FOSRestController {
         return new Response(Response::HTTP_OK);
     }
 
+    /**
+     * @Route("/api/faq/delete/{id}", methods={"DELETE"})
+     */
     public function deleteFaqAction($id) {
         $faq = $this->getDoctrine()
             ->getRepository('AppBundle:Faq')

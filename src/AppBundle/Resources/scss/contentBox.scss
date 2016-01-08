@@ -1,0 +1,25 @@
+.content-box {
+  margin-bottom: $default-margin;
+  padding: $default-margin;
+  background-color: #fff;
+
+  header {
+    h1 {
+      display: inline-block;
+      font-size: $font-size-h2;
+    }
+
+    span {
+      float: right;
+      color: $color-bright-lightened;
+    }
+  }
+
+  p {
+    margin-bottom: 0;
+    white-space: pre-wrap;
+    color: $font-color-dark;
+    font-size: $font-size-copy;
+    line-height: $font-line-height-copy;
+  }
+}

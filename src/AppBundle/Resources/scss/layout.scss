@@ -1,37 +1,175 @@
 .nav, .pagination, .carousel, .panel-title a { cursor: pointer; } //bootstrap overwrite
 
 body {
-  .main-header {
-    .top {
-      position: relative;
-      overflow: hidden;
-      height: 120px;
-      img {
-        position: absolute;
-        right: 0;
+  font-size: 16px;
+  font-family: $font-family-default;
+  background-color: $color-bright;
 
-        &.logo {
-          @extend .vertical-align;
-          margin-right: $default-element-margin;
+  .body-bg {
+    display: none;
+    position: fixed;
+    z-index: -1;
+    bottom:0%;
+    right: 0;
+
+    @media (min-width: #{$screen-md-min}) {
+      display: block;
+    }
+  }
+
+  .main-header {
+    position: relative;
+    margin-bottom: $default-element-margin*2;
+
+    > nav {
+      padding-top:0;
+      padding-bottom:0;
+
+      .mobile-nav-button {
+        display: inline-block;
+        color: $color-bright;
+        font-size: $font-size-h2;
+        margin-top: $default-padding*0.8;
+        margin-right: $default-margin;
+
+        @media (min-width: #{$screen-xl-min}) {
+          display: none;
+        }
+      }
+
+      >img {
+        vertical-align: top;
+      }
+
+      .meta-nav {
+        @extend .vertical-align;
+        position: absolute;
+        top: 50%;
+        right: $default-margin;
+        margin: 0;
+        list-style-type: none;
+
+        li {
+          display: inline-block;
+
+          & + li:before {
+            content: ' | '
+          }
+
+          a {
+            color: $font-color-bright;
+
+            &:hover, &:active, &:focus {
+              color: $color-xenobladex;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .main-aside {
+    display: none;
+    background-color: $color-dark;
+    .main-nav {
+      ul {
+        list-style-type: none;
+        margin: 0;
+        padding: 0;
+
+        li {
+          border-bottom: 1px $color-dark-darkened solid;
+
+          & + li {
+            border-top: 1px $color-dark-lightened solid;
+          }
+        }
+
+        a {
+          display: block;
+          padding: $default-padding $default-margin;
+          color: $font-color-bright;
+          text-decoration: none;
+
+          &.active {
+            font-weight: bold;
+          }
+
+          &:hover, &:active, &:focus, &.active {
+            background-color: $color-dark-lightened;
+          }
         }
       }
     }
 
-    nav {
-      ul {
-        list-style-type: none;
-        margin: 0;
+    @media (min-width: #{$screen-xl-min}) {
+      &:not(.main-aside-mobile) {
+        display: block;
+        float: left;
+        width: 250px;
+        margin-right: $default-element-margin;
+      }
+    }
 
-        li {
-          display: inline-block;
-          padding: $default-padding;
+    &.main-aside-mobile {
+      display: block;
+      position: fixed;
+      width: 70%;
+      height: 100%;
+      margin: 0;
+      top: 0;
+      left: 0;
+      z-index: 999;
+      overflow-y: scroll;
+      -webkit-box-shadow: 0 0 5px 0 #000;
+      -moz-box-shadow: 0 0 5px 0 #000;
+      box-shadow: 0 0 5px 0 #000;
 
-          a {
-            color: $font-color-bright;
-            text-decoration: none;
-          }
+      @include transform-translate3d(-100%);
+    }
+  }
+
+  .layout-wrapper {
+    position: relative;
+  }
+
+  [role=main] {
+    overflow: auto;
+    margin: 0 $default-element-margin;
+
+    @media (min-width: #{$screen-xl-min}) {
+      margin-right: $default-element-margin*6;
+    }
+
+    .main-view {
+      > header {
+        margin-bottom: $default-element-margin;
+        h1 {
+          font-size: $font-size-h1;
         }
       }
+    }
+  }
+
+  &.slide-menu-open {
+    .main-aside-mobile {
+      @include transform-translate3d(0);
+      @include transitionStandard();
+    }
+
+    .body-bg {
+      //is buggy
+      display: none;
+    }
+
+    [role=main] {
+      margin-left: $default-element-margin;
+    }
+
+    [role=main],
+    .main-header {
+      @include transform-translate3d(70%);
+      @include transitionStandard();
     }
   }
 }

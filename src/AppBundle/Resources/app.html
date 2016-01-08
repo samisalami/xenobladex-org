@@ -4,6 +4,8 @@
     <meta charset="UTF-8" />
     <title>XenobladeX.org - Coming Soon</title>
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link href='https://fonts.googleapis.com/css?family=Bangers' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
     <link type="text/css" rel="stylesheet" href="/libraries/font-awesome/css/font-awesome.min.css">
     <link type="text/css" rel="stylesheet" href="/libraries/bootstrap/css/bootstrap.min.css">
     <link type="text/css" rel="stylesheet" href="/libraries/bootstrap/css/bootstrap-theme.min.css">
@@ -17,7 +19,14 @@
     <base href="/">
 </head>
 <body ng-app="app">
-<div ng-view></div>
+<div ng-include src="'templates/_header.html'"></div>
+<div ng-include onload="asideLoaded = true" src="'templates/_aside.html'"></div>
+<main role="main">
+    <div class="layout-wrapper">
+        <div class="main-view" ng-view></div>
+        <img class="body-bg" src="/images/bg_xenobladex.jpg" />
+    </div>
+</main>
 <script type="text/javascript" src="/bundles/fosjsrouting/js/router.js"></script>
 <script type="text/javascript" src="/js/routing?callback=fos.Router.setData"></script>
 <script type="text/javascript" src="/libraries/jquery-1.11.2.min.js"></script>
@@ -29,6 +38,7 @@
 <script type="text/javascript" src="/libraries/ui-bootstrap-0.13.3.min.js"></script>
 <script type="text/javascript" src="/libraries/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/libraries/xeditable/xeditable.min.js"></script>
+<script type="text/javascript" src="/libraries/angular-dynamic-navigation.min.js"></script>
 <script type="text/javascript" src="/js/main.min.js"></script>
 </body>
 </html>
