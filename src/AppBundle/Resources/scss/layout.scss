@@ -132,14 +132,14 @@ body {
     }
   }
 
-  [role=main] {
+  .main-content {
     overflow: auto;
 
     @media (min-width: #{$screen-xl-min}) {
       margin-right: $default-element-margin*6;
     }
 
-    .main-view {
+    .main-content .main-view {
       padding: 0 $default-element-margin;
       > header {
         margin-bottom: $default-margin;
@@ -163,7 +163,7 @@ body {
       @include transitionStandard();
     }
 
-    [role=main] {
+    .main-content {
       overflow: visible;
     }
 

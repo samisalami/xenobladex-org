@@ -81,5 +81,9 @@ function run($rootScope, $location, $cookieStore, $http, editableOptions) {
         if (restrictedPage && !loggedIn) {
             $location.path('/login');
         }
+
+        if(!restrictedPage) {
+            $rootScope.frontend = true;
+        }
   });
 }
