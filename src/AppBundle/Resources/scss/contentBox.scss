@@ -3,25 +3,30 @@
 
   header {
     padding: $default-margin;
+    padding-bottom: 0;
     h1 {
       display: inline-block;
       font-size: $font-size-h2;
     }
 
     span {
+      display: block;
       @media (min-width: #{$screen-md-min}) {
         float: right;
       }
     }
   }
 
-  p {
+  .content-body {
     display: block;
     padding: $default-margin;
     margin-bottom: 0;
-    white-space: pre-wrap;
     color: $font-color-dark;
     font-size: $font-size-copy;
     line-height: $font-line-height-copy;
+  }
+
+  p {
+    white-space: pre-wrap;
   }
 }

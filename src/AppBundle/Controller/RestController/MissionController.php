@@ -48,7 +48,7 @@ class MissionController extends FOSRestController {
     }
 
     /**
-     * @Route("/mission/add", methods={"POST"})
+     * @Route("/api/mission/add", methods={"POST"})
      */
     public function addMissionAction(Request $request) {
         $content = $request->getContent();
@@ -61,7 +61,7 @@ class MissionController extends FOSRestController {
     }
 
     /**
-     * @Route("/mission/update", methods={"POST"})
+     * @Route("/api/mission/update", methods={"POST"})
      */
     public function updateMissionAction(Request $request) {
         $content = $request->getContent();
@@ -78,6 +78,9 @@ class MissionController extends FOSRestController {
         return new Response(Response::HTTP_OK);
     }
 
+    /**
+     * @Route("/api/mission/delete/{id}", methods={"DELETE"})
+     */
     public function deleteMissionAction($id) {
         $mission = $this->getDoctrine()
             ->getRepository('AppBundle:Mission')

@@ -9,14 +9,14 @@ user:
         expose: true
 
 mission:
-    prefix: /xenobladex/api
+    prefix: /xenobladex
     type:     rest
     resource: "@AppBundle/Controller/RestController/MissionController.php"
     options:
         expose: true
 
 missionType:
-    prefix: /xenobladex/api
+    prefix: /xenobladex
     type:     rest
     resource: "@AppBundle/Controller/RestController/MissionTypeController.php"
     options:

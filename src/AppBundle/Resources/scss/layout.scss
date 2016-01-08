@@ -19,7 +19,11 @@ body {
 
   .main-header {
     position: relative;
-    margin-bottom: $default-element-margin*2;
+    margin-bottom: $default-element-margin;
+
+    @media (min-width: #{$screen-md-min}) {
+      margin-bottom: $default-element-margin*2;
+    }
 
     > nav {
       padding-top:0;
@@ -139,7 +143,7 @@ body {
       margin-right: $default-element-margin*6;
     }
 
-    .main-content .main-view {
+    .main-view {
       padding: 0 $default-element-margin;
       > header {
         margin-bottom: $default-margin;

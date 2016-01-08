@@ -5,7 +5,6 @@ angular.module('app')
         return {
             restrict: 'E',
             link: function($scope, $element,$attrs){
-                $scope.contentId = 'faq-'+Date.now();
                 faqService.getFAQs(function(response){
                     $scope.faqs = response;
                 });

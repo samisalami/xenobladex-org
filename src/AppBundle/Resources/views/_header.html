@@ -1,6 +1,6 @@
 <header class="main-header">
   <nav class="navbar navbar-dark bg-inverse">
-    <a ng-if="asideLoaded" slide-menu menu-id="js_main-nav" class="mobile-nav-button" href="#"><span class="fa fa-align-justify"></span></a>
+    <a slide-menu menu-id="js_main-nav" class="mobile-nav-button" href="#"><span class="fa fa-align-justify"></span></a>
     <img src="images/logo_xenobladex.jpg">
     <ul class="meta-nav">
       <li>
@@ -12,3 +12,18 @@
     </ul>
   </nav>
 </header>
+<aside class="main-aside">
+  <nav id="js_main-nav"class="main-nav">
+    <ul>
+      <li>
+        <a href="/" highlighted-nav-item nav-item-route-equals="true" nav-item-class="active" nav-item-route="/">Aktuelles</a>
+      </li>
+      <li>
+        <a href="/missionen" highlighted-nav-item nav-item-class="active" nav-item-route="/missionen">Missionen</a>
+      </li>
+      <li>
+        <a href="/faq" highlighted-nav-item nav-item-class="active" nav-item-route="/faq">FAQ</a>
+      </li>
+    </ul>
+  </nav>
+</aside>

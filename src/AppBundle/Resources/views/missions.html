@@ -1,0 +1,78 @@
+<header>
+    <h1>Missionen</h1>
+</header>
+<mission-view>
+    <div class="search-input m-b-1">
+        <input ng-model="filterValue" type="text" placeholder="Missionen filtern..." />
+        <span class="fa fa-search"></span>
+    </div>
+    <section class="collapse-grouped" ng-repeat="missionGroup in groupedMissions">
+        <h1>{{missionGroup.name || 'Nicht zugeordnet'}}</h1>
+        <div class="collapse-item" ng-repeat="mission in missionGroup.missions | orderBy: 'name' | listFilter:filterValue:'name'">
+            <a href="#mission-{{missionGroup.name || '0'}}-{{$index}}" class="collapsed content-box" onclick="return false;" data-toggle="collapse" aria-expanded="false"><h2>{{mission.name}}</h2><span class="collapse-arrow fa"></span><span class="collapse-note">{{missionGroup.name}}</span></a>
+            <div id="mission-{{missionGroup.name || '0'}}-{{$index}}" class="content-box collapse">
+                <div class="content-body">
+                    <div class="row">
+                        <div ng-if="mission.person.name || mission.person_unrelated" class="col-xs-12 col-md-6">
+                            <h3>Person:</h3>
+                        </div>
+
+                        <div ng-if="mission.location_note" class="col-xs-12 col-md-6">
+                            <h3>Erhalt:</h3>
+                        </div>
+                    </div>
+                    <hr/>
+                    <div class="row">
+                        <div ng-if="mission.person.name || mission.person_unrelated" class="col-xs-12 col-md-6">
+                            {{mission.person.name || mission.person_unrelated}}
+                        </div>
+
+                        <div ng-if="mission.location_note" class="col-xs-12 col-md-6">
+                            <p>{{mission.location_note}}</p>
+                        </div>
+                    </div>
+                    <hr/>
+                    <div class="row">
+                        <div ng-if="mission.conditions" class="col-xs-12 col-md-6">
+                            <h3>Voraussetzungen:</h3>
+                        </div>
+                        <div ng-if="mission.rewards" class="col-xs-12 col-md-6">
+                            <h3>Belohnung:</h3>
+                        </div>
+                    </div>
+                    <hr/>
+                    <div class="row">
+                        <div ng-if="mission.conditions" class="col-xs-12 col-md-6">
+                            <p>{{mission.conditions}}</p>
+                        </div>
+                        <div ng-if="mission.rewards" class="col-xs-12 col-md-6">
+                            <p>{{mission.rewards}}</p>
+                        </div>
+                    </div>
+                    <hr/>
+                    <div class="row">
+                        <div ng-if="mission.description" class="col-xs-12 col-md-6">
+                            <h3>Beschreibung:</h3>
+                        </div>
+                        <div ng-if="mission.tasks" class="col-xs-12 col-md-6">
+                            <h3>Aufgaben:</h3>
+                        </div>
+                    </div>
+                    <hr/>
+                    <div class="row">
+                        <div ng-if="mission.description" class="col-xs-12 col-md-6">
+                            <p>{{mission.description}}</p>
+                        </div>
+                        <div ng-if="mission.tasks" class="col-xs-12 col-md-6">
+                            <p>{{mission.tasks}}</p>
+                        </div>
+                    </div>
+                </div>
+                <a ng-if="mission.solution" href="#mission-solution-{{missionGroup.name || '0'}}-{{$index}}" class="collapsed" data-toggle="collapse" aria-expanded="false" onclick="return false;"><span class="fa collapse-arrow"></span><h3>Lösungshinweise</h3></a>
+                <div id="mission-solution-{{missionGroup.name || '0'}}-{{$index}}" class="collapse">
+                    <p class="content-body">{{mission.solution}}</p>
+                </div>
+            </div>
+        </div>
+    </section>
+</mission-view>

@@ -14,6 +14,7 @@ angular.module('app')
                     nav = $('#'+$attrs.menuId);
 
                 var open = function() {
+                    console.log('open');
                     $('body').addClass(navActiveClass);
                     active = true;
                 };
@@ -22,10 +23,8 @@ angular.module('app')
                     $('body').removeClass(navActiveClass);
                     active = false;
                 };
-
                 if(nav.length > 0) {
                     $('body').append(newNav.append(nav.html()));
-                    $('.js_logo-wrapper').before(navButton);
 
                     $(contentSelector).on('click', function(e){
                         if(active===true) {

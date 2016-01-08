@@ -1,3 +1,13 @@
+.collapse-grouped {
+  margin-bottom: $default-element-margin;
+  h1 {
+    color: $font-color-dark;
+    margin: $default-margin 0;
+    font-family: $font-family-default;
+    font-size: $font-size-h3;
+  }
+}
+
 .collapse-item {
   & + .collapse-item {
     padding-top: $default-padding;
@@ -13,20 +23,26 @@
     display: block;
     padding: $default-margin;
 
-    span {
+    .collapse-note {
+      color: $color-bright-darkened;
+      float: right;
+      margin-right: $default-margin;
+    }
+
+    .collapse-arrow {
       font-size: $font-size-copy;
       line-height: $font-line-height-copy;
       float: right;
     }
 
     &.collapsed {
-      span {
+      .collapse-arrow {
         @extend .fa-arrow-down;
       }
     }
 
     &:not(.collapsed) {
-      span {
+      .collapse-arrow {
         @extend .fa-arrow-up;
       }
     }
@@ -38,5 +54,10 @@
 
   .collapse.in ~ [data-toggle="collapse"] {
     padding-top: $default-padding;
+  }
+
+  h2,h3 {
+    display: inline-block;
+    font-size: $font-size-copy;
   }
 }
