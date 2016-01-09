@@ -1,2 +1,2 @@
-0.1.22
-mapmarker input (not ready yet) + controllers refactord
+0.1.3
+start, faq, missions frontend
