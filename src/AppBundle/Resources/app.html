@@ -2,7 +2,7 @@
 <html>
 <head>
     <meta charset="UTF-8" />
-    <title>XenobladeX.org - Coming Soon</title>
+    <title>XenobladeX.org - Infos & Guides</title>
     <link rel="icon" type="image/x-icon" href="/favicon.ico" />
     <link href='https://fonts.googleapis.com/css?family=Bangers' rel='stylesheet' type='text/css'>
     <link href='https://fonts.googleapis.com/css?family=Open+Sans&subset=latin,latin-ext' rel='stylesheet' type='text/css'>
@@ -16,6 +16,9 @@
     <link type="text/css" rel="stylesheet" href="/libraries/xeditable/xeditable.css">
     <link type="text/css" rel="stylesheet" href="/libraries/jquery-ui/jquery-ui.min.css">
     <link type="text/css" rel="stylesheet" href="/css/main.css">
+    <meta property="og:url" content="https://www.xenobladex.org">
+    <meta property="og:image" content="https://www.xenobladex.org/images/og_image.jpg">
+    <meta property="og:title" content="XenobladeX.org - Infos & Guides">
     <base href="/">
 </head>
 <body ng-app="app">
@@ -24,6 +27,16 @@
     <div class="main-view" ng-view></div>
     <img class="body-bg" src="/images/bg_xenobladex.jpg" />
 </main>
+<script>
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+                (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+            m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+    ga('create', 'UA-72222212-1', 'auto');
+    ga('send', 'pageview');
+
+</script>
 <script type="text/javascript" src="/bundles/fosjsrouting/js/router.js"></script>
 <script type="text/javascript" src="/js/routing?callback=fos.Router.setData"></script>
 <script type="text/javascript" src="/libraries/jquery-1.11.2.min.js"></script>
@@ -35,7 +48,6 @@
 <script type="text/javascript" src="/libraries/ui-bootstrap-0.13.3.min.js"></script>
 <script type="text/javascript" src="/libraries/bootstrap/js/bootstrap.min.js"></script>
 <script type="text/javascript" src="/libraries/xeditable/xeditable.min.js"></script>
-<script type="text/javascript" src="/libraries/angular-dynamic-navigation.min.js"></script>
 <script type="text/javascript" src="/js/main.min.js"></script>
 </body>
 </html>
