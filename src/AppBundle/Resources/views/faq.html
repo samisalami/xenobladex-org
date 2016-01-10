@@ -12,8 +12,8 @@
     <section class="collapse-grouped" ng-repeat="faqGroup in groupedFaqs">
         <h1>{{faqGroup.name}}</h1>
         <div class="collapse-item" ng-repeat="faq in faqGroup.rows | orderBy:'name' | listFilter:filterValue:'name'">
-            <a href="#faq-anser-{{$index}}" class="collapsed content-box" onclick="return false;" data-toggle="collapse" aria-expanded="false"><strong>{{faq.name}}</strong><span class="fa collapse-arrow"></span></a>
-            <div id="faq-anser-{{$index}}" class="content-box collapse">
+            <a href="#faq-{{faqGroup.name || '0'}}-{{$index}}" class="collapsed content-box" onclick="return false;" data-toggle="collapse" aria-expanded="false"><strong>{{faq.name}}</strong><span class="fa collapse-arrow"></span></a>
+            <div id="faq-{{faqGroup.name || '0'}}-{{$index}}" class="content-box collapse">
                 <p class="content-body">{{faq.answer}}</p>
                 <a ng-if="faq.answer_read_more" href="#faq-read-more-{{$index}}" class="collapsed" data-toggle="collapse" aria-expanded="false" onclick="return false;"><span class="fa collapse-arrow"></span> Mehr Infos</a>
                 <div id="faq-read-more-{{$index}}" class="collapse">
