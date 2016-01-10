@@ -59,15 +59,22 @@
                         </div>
                     </div>
                 </div>
-                <hr ng-if="mission.solution" />
-                <a ng-if="mission.solution" href="#mission-solution-{{$parent.$parent.$index}}-{{$index}}" class="collapsed" data-toggle="collapse" aria-expanded="false" onclick="return false;"><span class="fa collapse-arrow"></span><strong>Aufgaben & Lösung</strong></a>
-                <div id="mission-solution-{{$parent.$index}}-{{$index}}" class="collapse">
+                <a ng-if="mission.solution || mission.tasks" href="#mission-solution-{{$parent.$parent.$index}}-{{$index}}" class="collapsed" data-toggle="collapse" aria-expanded="false" onclick="return false;"><span class="fa collapse-arrow"></span><strong>Aufgaben & Lösung</strong></a>
+                <div ng-if="mission.solution || mission.tasks" id="mission-solution-{{$parent.$parent.$index}}-{{$index}}" class="collapse">
                     <div class="content-body">
                         <div class="row">
-                            <div class="col-xs-12 col-md-6">
+                            <div ng-if="mission.tasks" class="col-xs-12 col-md-6">
+                                <h3>Aufgaben:</h3>
+                            </div>
+                            <div ng-if="mission.solution" class="col-xs-12 col-md-6">
+                                <h3>Lösungshinweise:</h3>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div ng-if="mission.tasks" class="col-xs-12 col-md-6">
                                 <p>{{mission.tasks}}</p>
                             </div>
-                            <div class="col-xs-12 col-md-6">
+                            <div ng-if="mission.solution" class="col-xs-12 col-md-6">
                                 <p>{{mission.solution}}</p>
                             </div>
                         </div>
