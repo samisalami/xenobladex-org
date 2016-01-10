@@ -48,10 +48,16 @@ body {
       .meta-nav {
         @extend .vertical-align;
         position: absolute;
-        top: 50%;
+        top: calc(100% + #{$default-margin});
         right: $default-margin;
         margin: 0;
+        color: $font-color-dark;
         list-style-type: none;
+
+        @media (min-width: #{$screen-md-min}) {
+          top: 50%;
+          color: $font-color-bright;
+        }
 
         li {
           display: inline-block;
@@ -61,7 +67,11 @@ body {
           }
 
           a {
-            color: $font-color-bright;
+            color: $font-color-dark;
+
+            @media (min-width: #{$screen-md-min}) {
+              color: $font-color-bright;
+            }
 
             &:hover, &:focus {
               color: $color-xenobladex;
