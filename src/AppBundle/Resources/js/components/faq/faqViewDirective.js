@@ -6,7 +6,7 @@ angular.module('app')
             restrict: 'E',
             link: function($scope, $element,$attrs){
                 faqService.getFAQs(function(response){
-                    $scope.faqs = response;
+                    $scope.groupedFaqs = $filter('groupByFilter')(response,'category');
                 });
             }
         }
