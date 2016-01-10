@@ -37,6 +37,11 @@ angular.module('app')
                     groupedData.push(newArr);
                 }
             }
+
+            groupedData = groupedData.sort(function(a,b){
+                return a['name']>b['name'];
+            });
+
             return groupedData;
         };
     });
