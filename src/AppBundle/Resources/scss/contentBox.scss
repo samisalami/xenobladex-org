@@ -20,13 +20,12 @@
   .content-body {
     display: block;
     padding: $default-margin;
-    margin-bottom: 0;
     color: $font-color-dark;
-    font-size: $font-size-copy;
     line-height: $font-line-height-copy;
   }
 
   p {
+    margin-bottom: 0;
     white-space: pre-wrap;
 
     a {
