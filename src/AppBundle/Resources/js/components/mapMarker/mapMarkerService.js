@@ -4,8 +4,8 @@ angular.module('app')
     .factory('mapmarkerService', ['$http', '$timeout', function($http, $timeout) {
         var service = {};
 
-        service.getMapmarkers = function(callback) {
-            $http.get(Routing.generate('get_mapmarkers')).success(function(response){
+        service.getMapmarkers = function(type,callback) {
+            $http.get(Routing.generate('get_mapmarkers', {type: type})).success(function(response){
                 callback(response);
             });
         };

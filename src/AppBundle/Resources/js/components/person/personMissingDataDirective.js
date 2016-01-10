@@ -12,7 +12,7 @@ angular.module('app')
                     return personDataLoaded && mapmarkerDataLoaded;
                 };
 
-                mapmarkerService.getMapmarkers(function (response) {
+                mapmarkerService.getMapmarkers('PersonMapmarker',function (response) {
                     $scope.mapmarkers = response;
                     mapmarkerDataLoaded = true;
                 });
