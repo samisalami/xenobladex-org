@@ -9,8 +9,8 @@
     <section class="collapse-grouped" ng-repeat="missionGroup in groupedMissions | orderBy:'name'">
         <h1>{{missionGroup.name || 'Nicht zugeordnet'}}</h1>
         <div class="collapse-item" ng-repeat="mission in missionGroup.rows | sortAlphaNumeric:'name' | listFilter:filterValue:'name'">
-            <a href="#mission-{{missionGroup.name || '0'}}-{{$index}}" class="collapsed content-box" onclick="return false;" data-toggle="collapse" aria-expanded="false"><strong>{{mission.name}}</strong><span class="collapse-arrow fa"></span><span class="collapse-note">{{missionGroup.name}}</span></a>
-            <div id="mission-{{missionGroup.name || '0'}}-{{$index}}" class="content-box collapse">
+            <a href="#mission-{{$parent.$index}}-{{$index}}" class="collapsed content-box" onclick="return false;" data-toggle="collapse" aria-expanded="false"><strong>{{mission.name}}</strong><span class="collapse-arrow fa"></span><span class="collapse-note">{{missionGroup.name}}</span></a>
+            <div id="mission-{{$parent.$index}}-{{$index}}" class="content-box collapse">
                 <div class="content-body">
                     <div class="row">
                         <div ng-if="mission.person.name || mission.person_unrelated" class="col-xs-12 col-md-6">
