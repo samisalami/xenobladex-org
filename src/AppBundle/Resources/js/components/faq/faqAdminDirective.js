@@ -14,8 +14,7 @@ angular.module('app')
                     {name:'Kampfsystem'},
                     {name:'Sonden'},
                     {name:'BLADE & Divisionen'},
-                    {name:'Online'},
-                    {name:'Sonstiges'}
+                    {name:'Online'}
                 ];
 
                 var initFormModel = function() {

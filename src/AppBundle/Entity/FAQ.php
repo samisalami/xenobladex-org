@@ -47,7 +47,7 @@ class Faq
      *
      * @ORM\Column(name="category", type="text", length=255)
      */
-    private $category='';
+    private $category='Sonstiges';
 
 
     /**
