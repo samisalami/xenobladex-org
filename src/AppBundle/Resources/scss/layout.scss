@@ -27,7 +27,7 @@ body {
     z-index: -2;
     width: 50%;
     right: $default-element-margin;
-    bottom: $default-element-margin;
+    bottom: $default-margin;
 
     @media (min-width:#{$screen-md-min}) {
       width: auto;
@@ -171,7 +171,7 @@ body {
     }
 
     .main-view {
-      margin-bottom: $default-element-margin;
+      margin-bottom: $default-element-margin*5;
       padding: 0 $default-element-margin;
       > header {
         margin-bottom: $default-margin;
