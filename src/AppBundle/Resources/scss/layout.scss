@@ -2,12 +2,13 @@
 
 body {
   font-size: $root-font-size-normal;
-  line-height: $font-line-height-copy;
+  line-height: $font-line-height-copy-normal;
   font-family: $font-family-default;
   background-color: $color-bright;
 
   @media (min-width:#{$screen-xxl-min}) {
     font-size: $root-font-size-large;
+    line-height: $font-line-height-copy-large;
   }
 
   .body-bg {
