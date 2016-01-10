@@ -38,9 +38,9 @@ angular.module('app')
                 }
             }
 
-            groupedData = groupedData.sort(function(a,b){
-                return a['name']>b['name'];
-            });
+            //groupedData = groupedData.sort(function(a,b){
+            //    return a['name']>b['name'];
+            //});
 
             return groupedData;
         };
