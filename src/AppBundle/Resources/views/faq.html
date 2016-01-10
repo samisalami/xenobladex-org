@@ -1,5 +1,5 @@
 <header>
-    <h1>FAQ - Häufig gestellte Fragen</h1>
+    <h1>FAQ</h1>
 </header>
 <section class="content-box default-amrgin-b">
     <p class="content-body">Hier findet ihr Antworten auf häufig gestellte Fragen, die euch den Einstieg und das Vorankommen erleichtern sollen.</p>
@@ -10,7 +10,7 @@
         <span class="fa fa-search"></span>
     </div>
     <div class="collapse-item" ng-repeat="faq in faqs | orderBy: 'name' | listFilter:filterValue:'name'">
-        <a href="#faq-anser-{{$index}}" class="collapsed content-box" onclick="return false;" data-toggle="collapse" aria-expanded="false"><h2>{{faq.name}}</h2><span class="fa collapse-arrow"></span></a>
+        <a href="#faq-anser-{{$index}}" class="collapsed content-box" onclick="return false;" data-toggle="collapse" aria-expanded="false"><strong>{{faq.name}}</strong><span class="fa collapse-arrow"></span></a>
         <div id="faq-anser-{{$index}}" class="content-box collapse">
             <p class="content-body">{{faq.answer}}</p>
             <a ng-if="faq.answer_read_more" href="#faq-read-more-{{$index}}" class="collapsed" data-toggle="collapse" aria-expanded="false" onclick="return false;"><span class="fa collapse-arrow"></span> Mehr Infos</a>
