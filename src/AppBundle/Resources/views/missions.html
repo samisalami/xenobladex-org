@@ -52,22 +52,26 @@
                         <div ng-if="mission.description" class="col-xs-12 col-md-6">
                             <h3>Beschreibung:</h3>
                         </div>
-                        <div ng-if="mission.tasks" class="col-xs-12 col-md-6">
-                            <h3>Aufgaben:</h3>
-                        </div>
                     </div>
                     <div class="row">
                         <div ng-if="mission.description" class="col-xs-12 col-md-6">
                             <p>{{mission.description}}</p>
                         </div>
-                        <div ng-if="mission.tasks" class="col-xs-12 col-md-6">
-                            <p>{{mission.tasks}}</p>
-                        </div>
                     </div>
                 </div>
-                <a ng-if="mission.solution" href="#mission-solution-{{missionGroup.name || '0'}}-{{$index}}" class="collapsed" data-toggle="collapse" aria-expanded="false" onclick="return false;"><span class="fa collapse-arrow"></span><h3>Lösungshinweise</h3></a>
-                <div id="mission-solution-{{missionGroup.name || '0'}}-{{$index}}" class="collapse">
-                    <p class="content-body">{{mission.solution}}</p>
+                <hr ng-if="mission.solution" />
+                <a ng-if="mission.solution" href="#mission-solution-{{$parent.$parent.$index}}-{{$index}}" class="collapsed" data-toggle="collapse" aria-expanded="false" onclick="return false;"><span class="fa collapse-arrow"></span><strong>Aufgaben & Lösung</strong></a>
+                <div id="mission-solution-{{$parent.$index}}-{{$index}}" class="collapse">
+                    <div class="content-body">
+                        <div class="row">
+                            <div class="col-xs-12 col-md-6">
+                                <p>{{mission.tasks}}</p>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <p>{{mission.solution}}</p>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

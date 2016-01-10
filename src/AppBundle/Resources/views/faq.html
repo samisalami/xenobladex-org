@@ -15,8 +15,8 @@
             <a href="#faq-{{$parent.$index}}-{{$index}}" class="collapsed content-box" onclick="return false;" data-toggle="collapse" aria-expanded="false"><strong>{{faq.name}}</strong><span class="fa collapse-arrow"></span></a>
             <div id="faq-{{$parent.$index}}-{{$index}}" class="content-box collapse">
                 <p class="content-body">{{faq.answer}}</p>
-                <a ng-if="faq.answer_read_more" href="#faq-read-more-{{$index}}" class="collapsed" data-toggle="collapse" aria-expanded="false" onclick="return false;"><span class="fa collapse-arrow"></span> Mehr Infos</a>
-                <div id="faq-read-more-{{$index}}" class="collapse">
+                <a ng-if="faq.answer_read_more" href="#faq-read-more-{{$parent.$parent.$index}}-{{$index}}" class="collapsed" data-toggle="collapse" aria-expanded="false" onclick="return false;"><span class="fa collapse-arrow"></span> Mehr Infos</a>
+                <div id="faq-read-more-{{$parent.$index}}-{{$index}}" class="collapse">
                     <p class="content-body">{{faq.answer_read_more}}</p>
                 </div>
             </div>
