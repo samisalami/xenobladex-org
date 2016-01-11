@@ -44,7 +44,7 @@ angular.module('app')
                     return newArr;
                 }
 
-                $scope.rows = dataToRows($scope.formModel, columnCount);
+                $scope.rows = dataToRows($scope.formModel.fields, columnCount);
 
             }
         }

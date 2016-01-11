@@ -18,24 +18,27 @@ angular.module('app')
                 ];
 
                 var initFormModel = function() {
-                    $scope.formModel = [
-                        {
-                            label: 'Antwort',
-                            name: 'answer',
-                            type: 'editableTextarea'
-                        },
-                        {
-                            label: 'Antwort - Erweitert',
-                            name: 'answer_read_more',
-                            type: 'editableTextarea'
-                        },
-                        {
-                            label: 'Kategorie',
-                            name: 'category',
-                            type: 'editableStringSelect',
-                            data: categoryList
-                        }
-                    ];
+                    $scope.formModel = {
+                        orderBy: ['category', 'name'],
+                        fields:[
+                            {
+                                label: 'Antwort',
+                                name: 'answer',
+                                type: 'editableTextarea'
+                            },
+                            {
+                                label: 'Antwort - Erweitert',
+                                name: 'answer_read_more',
+                                type: 'editableTextarea'
+                            },
+                            {
+                                label: 'Kategorie',
+                                name: 'category',
+                                type: 'editableStringSelect',
+                                data: categoryList
+                            }
+                        ]
+                    };
                 };
 
                 faqService.getFAQs(function(response){

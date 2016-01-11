@@ -9,20 +9,23 @@ angular.module('app')
                 $scope.newMap = {};
 
                 var initFormModel = function() {
-                    $scope.formModel = [
-                        {
-                            label: 'Beschreibung',
-                            name: 'description',
-                            type: 'editableTextarea'
-                        },
-                        {
-                            label: 'Bild',
-                            name: 'attachment',
-                            type: 'customAttachmentInput',
-                            attachmentType: 'image',
-                            data: $scope.attachments
-                        }
-                    ];
+                    $scope.formModel = {
+                        orderBy: 'name',
+                        fields: [
+                            {
+                                label: 'Beschreibung',
+                                name: 'description',
+                                type: 'editableTextarea'
+                            },
+                            {
+                                label: 'Bild',
+                                name: 'attachment',
+                                type: 'customAttachmentInput',
+                                attachmentType: 'image',
+                                data: $scope.attachments
+                            }
+                        ]
+                    };
                 };
 
                 mapService.getMaps(function(response){
