@@ -4,23 +4,30 @@ button, input {
 
 .main-content {
   input {
-    width: 320px;
-    max-width: 100%;
+    width: 100%;
     border-style: none;
     padding: $default-padding $default-margin;
     -webkit-border-radius: 15px;
     -moz-border-radius: 15px;
     border-radius: 15px;
+
+    @media (min-width: #{$screen-md-min}) {
+      max-width: 320px;
+    }
   }
 }
 
 .search-input {
+  width: 100%;
   position: relative;
-  display: inline-block;
   span {
     @extend .vertical-align;
     position: absolute;
     right: $default-margin;
     top: 50%;
+  }
+
+  @media (min-width: #{$screen-md-min}) {
+    max-width: 320px;
   }
 }
