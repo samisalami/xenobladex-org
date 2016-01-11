@@ -53,6 +53,7 @@ body {
         font-size: $font-size-h2;
         margin-top: $default-padding*0.8;
         margin-right: $default-margin;
+        line-height: 2rem; //somewhat dirty
 
         @media (min-width: #{$screen-xl-min}) {
           display: none;
@@ -60,7 +61,9 @@ body {
       }
 
       >.logo {
-        vertical-align: top;
+        img {
+          vertical-align: top;
+        }
       }
 
       .meta-nav {
