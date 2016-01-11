@@ -13,6 +13,7 @@ angular.module('app')
                     {name:'Charakterentwicklung'},
                     {name:'Kampfsystem'},
                     {name:'Sonden'},
+                    {name:'Skells'},
                     {name:'BLADE & Divisionen'},
                     {name:'Online'}
                 ];
