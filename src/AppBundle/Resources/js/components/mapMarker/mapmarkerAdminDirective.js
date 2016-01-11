@@ -12,7 +12,7 @@ angular.module('app')
 
                 $scope.selectMap = function(id){
                     $scope.currentMap = $filter('filter')($scope.maps, {id: id})[0];
-                    getRelatedMapmarkers();
+                    getMapmarkersByMap();
                 };
 
                 mapService.getMaps(function(response){
@@ -23,15 +23,10 @@ angular.module('app')
                     $scope.persons = response;
                 });
 
-                var getRelatedMapmarkers = function() {
+                var getMapmarkersByMap = function() {
                     if($scope.currentMap.id) {
                         mapmarkerService.getMapmarkersByMap($scope.currentMap.id,function(response){
-                            if($scope.newMapmarker.person) {
-                                $scope.mapmarkers = $filter('filter')(response, {person:{id: $scope.newMapmarker.person.id}});
-                            } else {
-                                //TODO: show only mapmarkers belonging to persons
-                                $scope.mapmarkers = response;
-                            }
+                            $scope.mapmarkers = response;
                         });
                     }
                 };
@@ -51,7 +46,7 @@ angular.module('app')
                         $scope.newMapmarker.map = $scope.currentMap;
 
                         mapmarkerService.addMapmarker($scope.newMapmarker, 'PersonMapmarker', function(){
-                            getRelatedMapmarkers();
+                            getMapmarkersByMap();
                         });
                     } else {
                         flashService.error('Bitte wähle Person und Karte aus.');
@@ -76,7 +71,6 @@ angular.module('app')
                 $scope.selectPerson = function(person) {
                     $scope.currentMapmarkers = $filter('filter')($scope.mapmarkers, {person: person});
                     $scope.newMapmarker.person = person;
-                    getRelatedMapmarkers();
                     $('.collapse','.detail-select-overlay').removeClass('in');
                 };
 

@@ -36,7 +36,7 @@
         </div>
         <div class="col-xs-12">
             <img ng-if="currentMap" ng-click="addMapmarker($event)" ng-src="/xenobladex/attachment/{{currentMap.attachment.id}}" />
-            <div class="mapmarker-wrapper" ng-repeat="mapmarker in mapmarkers" ng-click="setZIndex($event)" style="position: absolute; top: {{mapmarker.y_coord}}px; left: {{mapmarker.x_coord}}px;">
+            <div class="mapmarker-wrapper" ng-repeat="mapmarker in mapmarkers | listFilter:newMapmarker.person.id:'person':'id'" ng-click="setZIndex($event)" style="position: absolute; top: {{mapmarker.y_coord}}px; left: {{mapmarker.x_coord}}px;">
                 <button class="btn btn-primary" data-toggle="collapse" data-target="#mapmarker-edit-{{$index}}" aria-expanded="false">
                     <span class="fa fa-map-marker"></span> {{mapmarker.person.name}} - {{mapmarker.name}}
                 </button>
