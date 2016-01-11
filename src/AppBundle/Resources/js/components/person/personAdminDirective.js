@@ -40,7 +40,7 @@ angular.module('app')
 
                 var initFormModel = function() {
                     $scope.formModel = {
-                        orderBy: ['name', 'species'],
+                        orderBy: ['species','name'],
                         fields: [
                             {
                                 label: 'Alter',
