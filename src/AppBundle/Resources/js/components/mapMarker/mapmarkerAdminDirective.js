@@ -54,9 +54,10 @@ angular.module('app')
                         $scope.newMapmarker.x_coord = $event.pageX - offsetLeft;
                         $scope.newMapmarker.map = $scope.currentMap;
 
-                        mapmarkerService.addMapmarker($scope.newMapmarker, 'PersonMapmarker', function(){
-                            getMapmarkersByMap();
+                        mapmarkerService.addMapmarker($scope.newMapmarker, 'PersonMapmarker', function(newMapmarker){
+                            $scope.newMapmarker = newMapmarker;
                             getPersons();
+                            getMapmarkersByMap();
                         });
                     } else {
                         flashService.error('Bitte wähle Person und Karte aus.');
