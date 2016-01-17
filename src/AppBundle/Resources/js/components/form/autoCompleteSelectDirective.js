@@ -27,7 +27,7 @@ angular.module('app')
                 $selectInputElm.autocomplete({
                     source: uiAutocompleteList,
                     minLength: 2,
-                    delay: 750,
+                    delay: 200,
                     focus: function( event, ui ) {
                         $selectInputElm.val(ui.item.value);
                         return false;

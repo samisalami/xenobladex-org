@@ -25,7 +25,7 @@
             </div>
         </div>
     </div>
-    <div ng-repeat="item in data | listFilter:modalFilterValue:'name' | orderBy: formModel.orderBy">
+    <div ng-repeat="item in data | listFilter:modalFilterValue:'name' | orderBy: formModel.orderBy track by item.id">
         <button class="list-group-item" data-toggle="collapse" data-target="#item-view-{{$index}}" aria-expanded="false" aria-controls="item-view-{{$index}}">{{item.name}}</button>
         <div class="collapse" id="item-view-{{$index}}">
             <div class="card collapsed-table-card card-block">

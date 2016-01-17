@@ -18,9 +18,9 @@
                     <h4 class="modal-title">Alle Einträge</h4>
                 </div>
                 <div class="modal-body">
-                    <input type="text" class="form-control text" ng-model="modalFilterValue" placeholder="Filtern...">
+                    <input type="text" class="form-control text" ng-model="modalFilterValue" placeholder="Filtern..." ng-model-options='{ debounce: 200 }'>
                     <div class="list-group">
-                        <a class="list-group-item" ng-repeat="listItem in autocompleteList | listFilter:modalFilterValue:autocompleteOptionName" href="#" ng-click="selectOption(listItem)">{{ listItem[autocompleteOptionName] }}</a>
+                        <a class="list-group-item" ng-repeat="listItem in autocompleteList | listFilter:modalFilterValue:autocompleteOptionName track by listitem.id" href="#" ng-click="selectOption(listItem)">{{ listItem[autocompleteOptionName] }}</a>
                     </div>
                 </div>
             </div>
