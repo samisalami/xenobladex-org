@@ -17,19 +17,6 @@
         </li>
     </ul>
     <div class="row m-t-1 map-container">
-        <div class="col-md-2 col-xs-12 detail-select-overlay m-t-1 m-l-1">
-            <button class="btn btn-primary" data-toggle="collapse" data-target="#detail-select-box" aria-expanded="false">{{newMapmarker.person.name || 'Person auswählen'}} <span class="fa fa-arrow-circle-down p-l-1"></span></button>
-            <div id="detail-select-box" class="collapse">
-                <div class="card">
-                    <div class="card-block">
-                        <h4 class="card-title">
-                            Person:
-                        </h4>
-                        <autocomplete-select ng-if="persons" autocomplete-list="persons" autocomplete-option-name="name" autocomplete-option-value="id" autocomplete-text-input-bind="newMapmarker.person.name" autocomplete-bind="newMapmarker.person.id"></autocomplete-select>
-                    </div>
-                </div>
-            </div>
-        </div>
         <div class="col-xs-12">
             <img ng-if="currentMap" ng-click="addMapmarker($event)" ng-src="/xenobladex/attachment/{{currentMap.attachment.id}}" />
             <div class="mapmarker-wrapper" ng-repeat="mapmarker in mapmarkers | listFilter:newMapmarker.person.id:'person':'id':true" ng-click="setZIndex($event)" style="position: absolute; top: {{mapmarker.y_coord}}px; left: {{mapmarker.x_coord}}px;">
@@ -50,6 +37,19 @@
                             <button class="btn btn-success" ng-click="updateMapmarker(mapmarker)">Ändern</button>
                             <button class="btn btn-danger" ng-click="deleteMapmarker(mapmarker)">Löschen</button>
                         </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-2 col-xs-12 detail-select-overlay m-t-1 m-l-1">
+            <button class="btn btn-primary" data-toggle="collapse" data-target="#detail-select-box" aria-expanded="false">{{newMapmarker.person.name || 'Person auswählen'}} <span class="fa fa-arrow-circle-down p-l-1"></span></button>
+            <div id="detail-select-box" class="collapse">
+                <div class="card">
+                    <div class="card-block">
+                        <h4 class="card-title">
+                            Person:
+                        </h4>
+                        <autocomplete-select ng-if="persons" autocomplete-list="persons" autocomplete-option-name="name" autocomplete-option-value="id" autocomplete-text-input-bind="newMapmarker.person.name" autocomplete-bind="newMapmarker.person.id"></autocomplete-select>
                     </div>
                 </div>
             </div>
