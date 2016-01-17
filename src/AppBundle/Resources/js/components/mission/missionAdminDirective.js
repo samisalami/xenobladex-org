@@ -18,7 +18,12 @@ angular.module('app')
                 ];
 
                 var regions = [
-                    {name:'NLA'},
+                    {name:'BLADE-Quartier'},
+                    {name:'Industriegebiet'},
+                    {name:'Verwaltungsbezirk'},
+                    {name:'Wohnviertel'},
+                    {name:'Geschäftsviertel'},
+                    {name:'Ma-non-Schiff'},
                     {name:'Primordia'},
                     {name:'Noctilum'},
                     {name:'Oblivia'},
