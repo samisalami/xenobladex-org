@@ -8,7 +8,8 @@ angular.module('app')
             scope: {
                 autocompleteList: '=',
                 autocompleteBind: '=',
-                autocompleteTextInputBind: '='
+                autocompleteTextInputBind: '=',
+                autocompleteCallback: '&'
             },
             link: function($scope, element, attrs) {
                 var contentId = $('.autocomplete-select-input').length;
@@ -45,6 +46,7 @@ angular.module('app')
                     $scope.autocompleteBind = listItem[$scope.autocompleteOptionValue];
                     $scope.autocompleteTextInputBind = listItem[$scope.autocompleteOptionName];
                     element.find('#'+$scope.selectModalId).modal('hide');
+                    $scope.autocompleteCallback();
                 };
 
                 $scope.setBindings = function() {

@@ -1,6 +1,7 @@
 .map-marker-admin-view {
   .map-container {
     position: relative;
+    z-index: 1050;
 
     .detail-select-overlay {
       position: absolute;

@@ -8,20 +8,18 @@ angular.module('app')
             link: function($scope, $element,$attrs){
                 $scope.currentMap = {};
                 $scope.selectedMapId = null;
-                $scope.newMapmarker = {};
-
-                $scope.selectMap = function(id){
-                    $scope.currentMap = $filter('filter')($scope.maps, {id: id})[0];
-                    getMapmarkersByMap();
+                $scope.newMapmarker = {
+                    person: {
+                        name: '',
+                        id: null
+                    }
                 };
 
-                mapService.getMaps(function(response){
-                    $scope.maps = response;
-                });
-
-                personService.getPersons(function(response){
-                    $scope.persons = response;
-                });
+                var getPersons = function() {
+                    personService.getPersons(function(response){
+                        $scope.persons = response;
+                    });
+                };
 
                 var getMapmarkersByMap = function() {
                     if($scope.currentMap.id) {
@@ -29,6 +27,17 @@ angular.module('app')
                             $scope.mapmarkers = response;
                         });
                     }
+                };
+
+                getPersons();
+
+                mapService.getMaps(function(response){
+                    $scope.maps = response;
+                });
+
+                $scope.selectMap = function(id){
+                    $scope.currentMap = $filter('byId')($scope.maps, id);
+                    getMapmarkersByMap();
                 };
 
                 $scope.updateMapmarker = function(mapmarker) {
@@ -47,6 +56,7 @@ angular.module('app')
 
                         mapmarkerService.addMapmarker($scope.newMapmarker, 'PersonMapmarker', function(){
                             getMapmarkersByMap();
+                            getPersons();
                         });
                     } else {
                         flashService.error('Bitte wähle Person und Karte aus.');
@@ -66,12 +76,6 @@ angular.module('app')
                 $scope.addDeletedMapmarker = function() {
                     $scope.addMapmarker($scope.deletedMapmarker);
                     $scope.deletedMapmarker = null;
-                };
-
-                $scope.selectPerson = function(person) {
-                    $scope.currentMapmarkers = $filter('filter')($scope.mapmarkers, {person: person});
-                    $scope.newMapmarker.person = person;
-                    $('.collapse','.detail-select-overlay').removeClass('in');
                 };
 
                 $scope.setZIndex = function($event) {

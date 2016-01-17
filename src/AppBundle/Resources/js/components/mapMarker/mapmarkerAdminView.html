@@ -16,7 +16,6 @@
             <a class="nav-link active" href="#">Personen</a>
         </li>
     </ul>
-    <a href="/admin/personen" class="btn btn-primary m-t-1">Personen-Pflege</a>
     <div class="row m-t-1 map-container">
         <div class="col-md-2 col-xs-12 detail-select-overlay m-t-1 m-l-1">
             <button class="btn btn-primary" data-toggle="collapse" data-target="#detail-select-box" aria-expanded="false">{{newMapmarker.person.name || 'Person auswählen'}} <span class="fa fa-arrow-circle-down p-l-1"></span></button>
@@ -24,19 +23,16 @@
                 <div class="card">
                     <div class="card-block">
                         <h4 class="card-title">
-                            Personen
+                            Person:
                         </h4>
-                        <input class="form-control" type="text" placeholder="Filtern..." ng-model="detailSelectFilterValue" />
-                        <div class="list-group">
-                            <a href="#" class="list-group-item" ng-click="selectPerson(person)" ng-repeat="person in persons | orderBy:'name' | listFilter:detailSelectFilterValue:'name'">{{person.name}}</a>
-                        </div>
+                        <autocomplete-select ng-if="persons" autocomplete-list="persons" autocomplete-option-name="name" autocomplete-option-value="id" autocomplete-text-input-bind="newMapmarker.person.name" autocomplete-bind="newMapmarker.person.id"></autocomplete-select>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-xs-12">
             <img ng-if="currentMap" ng-click="addMapmarker($event)" ng-src="/xenobladex/attachment/{{currentMap.attachment.id}}" />
-            <div class="mapmarker-wrapper" ng-repeat="mapmarker in mapmarkers | listFilter:newMapmarker.person.id:'person':'id'" ng-click="setZIndex($event)" style="position: absolute; top: {{mapmarker.y_coord}}px; left: {{mapmarker.x_coord}}px;">
+            <div class="mapmarker-wrapper" ng-repeat="mapmarker in mapmarkers | listFilter:newMapmarker.person.id:'person':'id':true" ng-click="setZIndex($event)" style="position: absolute; top: {{mapmarker.y_coord}}px; left: {{mapmarker.x_coord}}px;">
                 <button class="btn btn-primary" data-toggle="collapse" data-target="#mapmarker-edit-{{$index}}" aria-expanded="false">
                     <span class="fa fa-map-marker"></span> {{mapmarker.person.name}} - {{mapmarker.name}}
                 </button>

@@ -2,9 +2,9 @@
 
 angular.module('app')
     .filter('listFilter', function(){
-        return function (list, filterValue,fieldname,childFieldname) {
-            if(list && filterValue) {
-                var result = [];
+        return function (list,filterValue,fieldname,childFieldname,returnEmpyList) {
+            var result = [];
+            if(list && (filterValue || !returnEmpyList)) {
                 var count = list.length;
                 for (var i=0; i<count; i++) {
                     var listValue = list[i];
@@ -22,12 +22,9 @@ angular.module('app')
                                 result.push(list[i]);
                             }
                         }
-
                     }
                 }
-                return result;
-            } else {
-                return list;
             }
+            return result;
         };
     });
