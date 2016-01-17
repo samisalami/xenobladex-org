@@ -1,7 +1,7 @@
 <div class="list-group collapsed-table-view">
     <button class="list-group-item list-group-item-success" data-toggle="collapse" data-target="#new-item-view-{{$index}}" aria-expanded="false" aria-controls="new-item-view-{{$index}}"><span class="fa fa-plus-circle"></span> Neu</button>
     <div class="collapse" id="new-item-view-{{$index}}">
-        <div class="card card-block">
+        <div class="card card-block collapsed-table-card">
             <div class="row">
                 <h4 class="col-md-3 col-xs-6 card-title p-y-1"><a href="#" editable-text="newItem.name">{{newItem.name || 'eintragen'}}</a></h4>
                 <div class="col-lg-3 hidden-sm-down">
@@ -14,9 +14,9 @@
                     </button>
                 </div>
             </div>
-            <div class="row" ng-repeat="row in rows">
-                <div class="col-lg-3 card card-block col-xs-12" ng-repeat="column in row" ng-show="(newItem[column.show] || !column.show) && !newItem[column.hide]">
-                    <!--<field-info-tooltip ng-if="column.fieldInfoTooltip">{{column.fieldInfoTooltip}}</field-info-tooltip>-->
+            <div class="row collapsed-table-row">
+                <div class="col-md-3 card card-block col-xs-12 collapsed-table-col" ng-repeat="column in columns" ng-if="(newItem[column.show] == column.showValue || !column.show) && !newItem[column.hide]">
+                    <span class="info-icon text-primary" bs-tooltip ng-if="column.fieldInfoTooltip" bs-tooltip-title="{{column.fieldInfoTooltip}}">
                     <strong>{{column.label}}</strong>
                     <p>
                         <form-field attachment-type="{{column.attachmentType}}" ng-if="column.type" form-field-bind="newItem[column.name]" form-select-options="column.data" form-template="{{column.type}}"></form-field>
@@ -28,7 +28,7 @@
     <div ng-repeat="item in data | listFilter:modalFilterValue:'name' | orderBy: formModel.orderBy">
         <button class="list-group-item" data-toggle="collapse" data-target="#item-view-{{$index}}" aria-expanded="false" aria-controls="item-view-{{$index}}">{{item.name}}</button>
         <div class="collapse" id="item-view-{{$index}}">
-            <div class="card card-block">
+            <div class="card collapsed-table-card card-block">
                 <div class="row">
                     <h4 class="col-md-3 col-xs-6 card-title p-y-1"><a href="#" editable-text="item.name" onaftersave="updateItem({item : item})">{{item.name || 'eintragen'}}</a></h4>
                     <div class="col-lg-3 hidden-sm-down">
@@ -41,9 +41,10 @@
                         </button>
                     </div>
                 </div>
-                <div class="row" ng-repeat="row in rows">
-                    <div class="col-lg-3 card card-block col-xs-12" ng-repeat="column in row" ng-show="(item[column.show] || !column.show) && !item[column.hide]">
-                        <!--<field-info-tooltip ng-if="column.fieldInfoTooltip">{{column.fieldInfoTooltip}}</field-info-tooltip>-->
+                <div class="row collapsed-table-row">
+                    <div class="collapsed-table-col col-lg-3 card card-block col-xs-12" ng-repeat="column in columns" ng-if="(item[column.show] == column.showValue || !column.show) && !item[column.hide]">
+                        <span class="info-icon text-primary" bs-tooltip ng-if="column.fieldInfoTooltip" bs-tooltip-title="{{column.fieldInfoTooltip}}">
+                        </span>
                         <strong>{{column.label}}</strong>
                         <p>
                             <form-field ng-if="column.type" attachment-type="{{column.attachmentType}}" form-field-bind="item[column.name]" form-field-action="updateItem({item:item})" form-field-action-param="item" form-select-options="column.data" form-template="{{column.type}}"></form-field>

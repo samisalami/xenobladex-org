@@ -11,6 +11,21 @@ angular.module('app')
                 var personDataLoaded = false;
                 var missionTypesDataLoaded = false;
 
+                var sidejobTypes = [
+                    {name:'Suche'},
+                    {name:'Jagd'},
+                    {name:'Gespräch'}
+                ];
+
+                var regions = [
+                    {name:'NLA'},
+                    {name:'Primordia'},
+                    {name:'Noctilum'},
+                    {name:'Oblivia'},
+                    {name:'Sylvalum'},
+                    {name:'Cauldros'}
+                ];
+
                 $scope.dataLoaded = function(){
                     return personDataLoaded && missionTypesDataLoaded;
                 };
@@ -32,6 +47,7 @@ angular.module('app')
                             },
                             {
                                 show: 'has_person',
+                                showValue: true,
                                 label: 'Auftraggeber',
                                 name: 'person',
                                 type: 'customMissionPersonSelect',
@@ -39,10 +55,22 @@ angular.module('app')
                             },
                             {
                                 hide: 'has_person',
+                                hideValue: false,
                                 label: 'Auftraggeber',
                                 name: 'person_unrelated',
+                                type: 'editableText'
+                            },
+                            {
+                                label: 'BLADE-Level',
+                                name: 'blade_level',
                                 type: 'editableText',
-                                noColumn: true
+                                fieldInfoTooltip: 'Nur Zahlen erlaubt.'
+                            },
+                            {
+                                label: 'Kapitel',
+                                name: 'chapter',
+                                type: 'editableText',
+                                fieldInfoTooltip: 'Nur Zahlen erlaubt.'
                             },
                             {
                                 label: 'Bedingungen',
@@ -53,6 +81,23 @@ angular.module('app')
                                 label: 'Erhalt wo?',
                                 name: 'location_note',
                                 type: 'editableTextarea'
+                            },
+                            {
+                                label: 'Nebenjob-Zielregion',
+                                name: 'target_area',
+                                type: 'editableStringSelect',
+                                data: regions
+                            },
+                            {
+                                label: 'Nebenjob-Typ',
+                                name: 'sidejob_type',
+                                type: 'editableStringSelect',
+                                data: sidejobTypes
+                            },
+                            {
+                                label: 'Nebenjob-Schwierigkeit',
+                                name: 'difficulty',
+                                type: 'editableText'
                             },
                             {
                                 label: 'Beschreibung',
