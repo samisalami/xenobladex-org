@@ -39,56 +39,59 @@ angular.module('app')
                 ];
 
                 var initFormModel = function() {
-                    $scope.formModel = [
-                        {
-                            label: 'Alter',
-                            name: 'age',
-                            type: 'editableText'
-                        },
-                        {
-                            label: 'Spezies',
-                            name: 'species',
-                            type: 'editableStringSelect',
-                            data: speciesList
-                        },
-                        {
-                            label: 'Beruf',
-                            name: 'job',
-                            type: 'editableText'
-                        },
-                        {
-                            label: 'Beschreibung',
-                            name: 'description',
-                            type: 'editableTextarea'
-                        },
-                        {
-                            label: 'Region',
-                            name: 'region',
-                            type: 'editableStringSelect',
-                            data: regions
-                        },
-                        {
-                            label: 'Zeit',
-                            name: 'activity_time',
-                            type: 'editableText'
-                        },
-                        {
-                            label: 'Ortsbeschreibung',
-                            name: 'location_note',
-                            type: 'editableTextarea'
-                        },
-                        //{
-                        //    label: 'Karte',
-                        //    name: 'mapmarkers',
-                        //    type: 'customMapmarkerInput',
-                        //    data: $scope.maps
-                        //},
-                        {
-                            label: 'Bedingungen',
-                            name: 'conditions',
-                            type: 'editableTextarea'
-                        }
-                    ];
+                    $scope.formModel = {
+                        orderBy: ['species','name'],
+                        fields: [
+                            {
+                                label: 'Alter',
+                                name: 'age',
+                                type: 'editableText'
+                            },
+                            {
+                                label: 'Spezies',
+                                name: 'species',
+                                type: 'editableStringSelect',
+                                data: speciesList
+                            },
+                            {
+                                label: 'Beruf',
+                                name: 'job',
+                                type: 'editableText'
+                            },
+                            {
+                                label: 'Beschreibung',
+                                name: 'description',
+                                type: 'editableTextarea'
+                            },
+                            {
+                                label: 'Region',
+                                name: 'region',
+                                type: 'editableStringSelect',
+                                data: regions
+                            },
+                            {
+                                label: 'Zeit',
+                                name: 'activity_time',
+                                type: 'editableText'
+                            },
+                            {
+                                label: 'Ortsbeschreibung',
+                                name: 'location_note',
+                                type: 'editableTextarea'
+                            },
+                            //{
+                            //    label: 'Karte',
+                            //    name: 'mapmarkers',
+                            //    type: 'customMapmarkerInput',
+                            //    data: $scope.maps
+                            //},
+                            {
+                                label: 'Bedingungen',
+                                name: 'conditions',
+                                type: 'editableTextarea'
+                            }
+                        ]
+                    };
                 };
 
                 $scope.updatePerson = function(person) {

@@ -22,63 +22,66 @@ angular.module('app')
                 });
 
                 var initFormModel = function() {
-                    $scope.formModel = [
-                        {
-                            label: 'Richtige Person?',
-                            name: 'has_person',
-                            type: 'inputCheckbox'
-                        },
-                        {
-                            show: 'has_person',
-                            label: 'Auftraggeber',
-                            name: 'person',
-                            type: 'customMissionPersonSelect',
-                            data: $scope.persons
-                        },
-                        {
-                            hide: 'has_person',
-                            label: 'Auftraggeber',
-                            name: 'person_unrelated',
-                            type: 'editableText',
-                            noColumn: true
-                        },
-                        {
-                            label: 'Bedingungen',
-                            name: 'conditions',
-                            type: 'editableTextarea'
-                        },
-                        {
-                            label: 'Erhalt wo?',
-                            name: 'location_note',
-                            type: 'editableTextarea'
-                        },
-                        {
-                            label: 'Beschreibung',
-                            name: 'description',
-                            type: 'editableTextarea'
-                        },
-                        {
-                            label: 'Aufgaben',
-                            name: 'tasks',
-                            type: 'editableTextarea'
-                        },
-                        {
-                            label: 'Lösung',
-                            name: 'solution',
-                            type: 'editableTextarea'
-                        },
-                        {
-                            label: 'Belohnung',
-                            name: 'rewards',
-                            type: 'editableTextarea'
-                        },
-                        {
-                            label: 'Typ',
-                            name: 'mission_type',
-                            type: 'editableObjectSelect',
-                            data: $scope.missionTypes
-                        }
-                    ];
+                    $scope.formModel = {
+                        orderBy: 'name',
+                        fields: [
+                            {
+                                label: 'Richtige Person?',
+                                name: 'has_person',
+                                type: 'inputCheckbox'
+                            },
+                            {
+                                show: 'has_person',
+                                label: 'Auftraggeber',
+                                name: 'person',
+                                type: 'customMissionPersonSelect',
+                                data: $scope.persons
+                            },
+                            {
+                                hide: 'has_person',
+                                label: 'Auftraggeber',
+                                name: 'person_unrelated',
+                                type: 'editableText',
+                                noColumn: true
+                            },
+                            {
+                                label: 'Bedingungen',
+                                name: 'conditions',
+                                type: 'editableTextarea'
+                            },
+                            {
+                                label: 'Erhalt wo?',
+                                name: 'location_note',
+                                type: 'editableTextarea'
+                            },
+                            {
+                                label: 'Beschreibung',
+                                name: 'description',
+                                type: 'editableTextarea'
+                            },
+                            {
+                                label: 'Aufgaben',
+                                name: 'tasks',
+                                type: 'editableTextarea'
+                            },
+                            {
+                                label: 'Lösung',
+                                name: 'solution',
+                                type: 'editableTextarea'
+                            },
+                            {
+                                label: 'Belohnung',
+                                name: 'rewards',
+                                type: 'editableTextarea'
+                            },
+                            {
+                                label: 'Typ',
+                                name: 'mission_type',
+                                type: 'editableObjectSelect',
+                                data: $scope.missionTypes
+                            }
+                        ]
+                    };
                 };
 
                 missionService.getMissionTypes(function(response){

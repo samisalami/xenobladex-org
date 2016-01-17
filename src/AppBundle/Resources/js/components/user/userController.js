@@ -14,7 +14,7 @@ function UserController($scope, $location, userService, flashService) {
     userService.login($scope.username, $scope.password, function (response) {
       if (response.success) {
         userService.setCredentials($scope.username, $scope.password);
-        $location.path('/admin');
+        window.location.replace('/admin');
       } else {
         flashService.error(response.message);
         $scope.dataLoading = false;
