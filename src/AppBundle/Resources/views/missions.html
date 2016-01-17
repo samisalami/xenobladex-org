@@ -4,15 +4,15 @@
 <mission-view>
     <div class="row">
         <div class="col-xs-12 col-lg-4 search-input m-b-1">
-            <input ng-model="namefilterValue" type="text" placeholder="Nach Namen filtern..." />
+            <input ng-model="namefilterValue" ng-model-options='{ debounce: 750 }' type="text" placeholder="Nach Namen filtern..." />
             <span class="fa fa-search"></span>
         </div>
         <div class="col-xs-12 col-lg-4 search-input m-b-1">
-            <input ng-model="bladeLevelfilterValue" type="text" placeholder="Nach Blade-Level filtern..." />
+            <input ng-model="bladeLevelfilterValue" ng-model-options='{ debounce: 750 }' type="text" placeholder="Nach Blade-Level filtern..." />
             <span class="fa fa-search"></span>
         </div>
         <div class="col-xs-12 col-lg-4 search-input m-b-1">
-            <input ng-model="chapterfilterValue" type="text" placeholder="Nach Kapitel filtern..." />
+            <input ng-model="chapterfilterValue" ng-model-options='{ debounce: 750 }' type="text" placeholder="Nach Kapitel filtern..." />
             <span class="fa fa-search"></span>
         </div>
     </div>

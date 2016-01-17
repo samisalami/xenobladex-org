@@ -23,11 +23,11 @@ angular.module('app')
                    uiAutocompleteList.push({value:listItem[$scope.autocompleteOptionName], id:listItem[$scope.autocompleteOptionValue]})
                 });
 
-                //TODO: is element really the element of this instance?
                 var $selectInputElm = element.find('.autocomplete-select-input');
                 $selectInputElm.autocomplete({
                     source: uiAutocompleteList,
-                    minLength: 0,
+                    minLength: 2,
+                    delay: 750,
                     focus: function( event, ui ) {
                         $selectInputElm.val(ui.item.value);
                         return false;
