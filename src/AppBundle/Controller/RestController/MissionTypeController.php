@@ -18,7 +18,7 @@ class MissionTypeController extends FOSRestController {
     /**
      * @return Response
      */
-    public function getMissionsTypesAction() {
+    public function getMissionTypesAction() {
         $em = $this->getDoctrine()->getManager();
         $missionTypes = $em->getRepository('AppBundle:MissionType')->findAll();
         $serializer = $this->getJMSSerializer();

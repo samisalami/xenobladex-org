@@ -22,6 +22,13 @@ missionType:
     options:
         expose: true
 
+monsterType:
+    prefix: /xenobladex
+    type:     rest
+    resource: "@AppBundle/Controller/RestController/MonsterTypeController.php"
+    options:
+        expose: true
+
 map:
     prefix: /xenobladex/api
     type:     rest
@@ -54,6 +61,13 @@ mapMarker:
     prefix: /xenobladex/api
     type:     rest
     resource: "@AppBundle/Controller/RestController/MapmarkerController.php"
+    options:
+        expose: true
+
+material:
+    prefix: /xenobladex
+    type:     rest
+    resource: "@AppBundle/Controller/RestController/MaterialController.php"
     options:
         expose: true
 

@@ -5,7 +5,7 @@ angular.module('app')
     var service = {};
 
     service.getMissionTypes = function(callback) {
-        $http.get(Routing.generate('get_missions_types')).success(function(response){
+        $http.get(Routing.generate('get_mission_types')).success(function(response){
             callback(response);
         });
     };

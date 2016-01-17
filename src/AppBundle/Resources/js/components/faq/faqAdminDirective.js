@@ -48,10 +48,7 @@ angular.module('app')
                     $scope.faqs = response;
                 });
 
-                attachmentService.getAttachments(function(attachments){
-                    $scope.attachments = attachments;
-                    initFormModel();
-                });
+                initFormModel();
 
                 $scope.updateFAQ = function(faq) {
                     faqService.updateFAQ(faq);
