@@ -19,6 +19,8 @@ button, input {
 
 .search-input {
   width: 100%;
+  padding: 0;
+  margin-right: $default-margin;
   position: relative;
   span {
     @extend .vertical-align;

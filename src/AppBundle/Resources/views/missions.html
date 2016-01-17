@@ -2,13 +2,23 @@
     <h1>Missionen</h1>
 </header>
 <mission-view>
-    <div class="search-input m-b-1">
-        <input ng-model="filterValue" type="text" placeholder="Missionen filtern..." />
-        <span class="fa fa-search"></span>
+    <div class="row">
+        <div class="col-xs-12 col-lg-4 search-input m-b-1">
+            <input ng-model="namefilterValue" type="text" placeholder="Nach Namen filtern..." />
+            <span class="fa fa-search"></span>
+        </div>
+        <div class="col-xs-12 col-lg-4 search-input m-b-1">
+            <input ng-model="bladeLevelfilterValue" type="text" placeholder="Nach Blade-Level filtern..." />
+            <span class="fa fa-search"></span>
+        </div>
+        <div class="col-xs-12 col-lg-4 search-input m-b-1">
+            <input ng-model="chapterfilterValue" type="text" placeholder="Nach Kapitel filtern..." />
+            <span class="fa fa-search"></span>
+        </div>
     </div>
     <section class="collapse-grouped" ng-repeat="missionGroup in groupedMissions | orderBy:'name'">
         <h1>{{missionGroup.name || 'Nicht zugeordnet'}}</h1>
-        <div class="collapse-item" ng-repeat="mission in missionGroup.rows | sortAlphaNumeric:'name' | listFilter:filterValue:'name'">
+        <div class="collapse-item" ng-repeat="mission in missionGroup.rows | sortAlphaNumeric:'name' | listFilter:namefilterValue:'name'| listFilter:bladeLevelfilterValue:'blade_level'| listFilter:chapterfilterValue:'chapter'">
             <a href="#mission-{{$parent.$index}}-{{$index}}" class="collapsed content-box" onclick="return false;" data-toggle="collapse" aria-expanded="false"><strong>{{mission.name}}</strong><span class="collapse-arrow fa"></span><span class="collapse-note">{{missionGroup.name}}</span></a>
             <div id="mission-{{$parent.$index}}-{{$index}}" class="content-box collapse">
                 <div class="content-body">
