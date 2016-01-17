@@ -35,6 +35,7 @@ angular.module('app')
                     {name:'Definianer'},
                     {name:'Baumklan-Prone'},
                     {name:'Höhlenklan-Prone'},
+                    {name:'Qlu'},
                     {name:'Unbekannt'}
                 ];
 

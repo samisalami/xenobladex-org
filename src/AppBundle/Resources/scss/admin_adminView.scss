@@ -41,40 +41,6 @@
     vertical-align: middle;
   }
 
-  .collapsed-table-view {
-    .info-icon {
-      @extend .fa;
-      @extend .fa-info-circle;
-      position: absolute;
-      top: $default-margin;
-      right: $default-margin;
-    }
-
-    @media (min-width: #{$screen-md-min}) {
-      .collapse {
-        width: 100%;
-        table-layout: fixed;
-        -moz-box-sizing: border-box;
-        box-sizing: border-box;
-        border-collapse: collapse;
-
-        > .card > .row {
-          display: table-row;
-          height: 100%;
-
-          > [class^="col-"] {
-            float: none;
-            display: table-cell;
-          }
-
-          > .card {
-            width: 25%;
-          }
-        }
-      }
-    }
-  }
-
   .modal-body {
     textarea {
       min-height: 100px;

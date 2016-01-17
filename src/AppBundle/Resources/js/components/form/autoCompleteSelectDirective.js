@@ -8,7 +8,8 @@ angular.module('app')
             scope: {
                 autocompleteList: '=',
                 autocompleteBind: '=',
-                autocompleteTextInputBind: '='
+                autocompleteTextInputBind: '=',
+                autocompleteCallback: '&'
             },
             link: function($scope, element, attrs) {
                 var contentId = $('.autocomplete-select-input').length;
@@ -22,11 +23,11 @@ angular.module('app')
                    uiAutocompleteList.push({value:listItem[$scope.autocompleteOptionName], id:listItem[$scope.autocompleteOptionValue]})
                 });
 
-                //TODO: is element really the element of this instance?
                 var $selectInputElm = element.find('.autocomplete-select-input');
                 $selectInputElm.autocomplete({
                     source: uiAutocompleteList,
-                    minLength: 0,
+                    minLength: 2,
+                    delay: 200,
                     focus: function( event, ui ) {
                         $selectInputElm.val(ui.item.value);
                         return false;
@@ -45,6 +46,7 @@ angular.module('app')
                     $scope.autocompleteBind = listItem[$scope.autocompleteOptionValue];
                     $scope.autocompleteTextInputBind = listItem[$scope.autocompleteOptionName];
                     element.find('#'+$scope.selectModalId).modal('hide');
+                    $scope.autocompleteCallback();
                 };
 
                 $scope.setBindings = function() {

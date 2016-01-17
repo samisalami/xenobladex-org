@@ -38,6 +38,7 @@ class MapmarkerController extends FOSRestController {
         $mapmarker = $em->merge($deserialized_mapmarker);
         $em->persist($mapmarker);
         $em->flush();
+        return $mapmarker;
     }
 
     /**
@@ -103,9 +104,13 @@ class MapmarkerController extends FOSRestController {
         if(!empty($content)) {
             $serializer = $this->getJMSSerializer();
             $deserialized_mapmarker = $serializer->deserialize($content, 'AppBundle\Entity\\'.$type, 'json');
-            $this->addMapmarker($deserialized_mapmarker);
+            $mapmarker = $this->addMapmarker($deserialized_mapmarker);
+            $response = new Response($serializer->serialize($mapmarker, 'json'));
+            $response->headers->set('Content-Type', 'application/json');
+            return $response;
+        } else {
+            return new Response(Response::HTTP_OK);
         }
-        return new Response(Response::HTTP_OK);
     }
 
     /**

@@ -8,20 +8,18 @@ angular.module('app')
             link: function($scope, $element,$attrs){
                 $scope.currentMap = {};
                 $scope.selectedMapId = null;
-                $scope.newMapmarker = {};
-
-                $scope.selectMap = function(id){
-                    $scope.currentMap = $filter('filter')($scope.maps, {id: id})[0];
-                    getMapmarkersByMap();
+                $scope.newMapmarker = {
+                    person: {
+                        name: '',
+                        id: null
+                    }
                 };
 
-                mapService.getMaps(function(response){
-                    $scope.maps = response;
-                });
-
-                personService.getPersons(function(response){
-                    $scope.persons = response;
-                });
+                var getPersons = function() {
+                    personService.getPersons(function(response){
+                        $scope.persons = response;
+                    });
+                };
 
                 var getMapmarkersByMap = function() {
                     if($scope.currentMap.id) {
@@ -31,12 +29,23 @@ angular.module('app')
                     }
                 };
 
+                getPersons();
+
+                mapService.getMaps(function(response){
+                    $scope.maps = response;
+                });
+
+                $scope.selectMap = function(id){
+                    $scope.currentMap = $filter('byId')($scope.maps, id);
+                    getMapmarkersByMap();
+                };
+
                 $scope.updateMapmarker = function(mapmarker) {
                     mapmarkerService.updateMapmarker(mapmarker);
                 };
 
                 $scope.addMapmarker = function($event) {
-                    if($scope.newMapmarker.person && $scope.currentMap) {
+                    if($scope.newMapmarker.person.name && $scope.currentMap) {
                         flashService.clear();
                         var offsetLeft = $($event.currentTarget).offset().left,
                             offsetTop = $($event.currentTarget).offset().top;
@@ -45,7 +54,9 @@ angular.module('app')
                         $scope.newMapmarker.x_coord = $event.pageX - offsetLeft;
                         $scope.newMapmarker.map = $scope.currentMap;
 
-                        mapmarkerService.addMapmarker($scope.newMapmarker, 'PersonMapmarker', function(){
+                        mapmarkerService.addMapmarker($scope.newMapmarker, 'PersonMapmarker', function(newMapmarker){
+                            $scope.newMapmarker = newMapmarker;
+                            getPersons();
                             getMapmarkersByMap();
                         });
                     } else {
@@ -66,12 +77,6 @@ angular.module('app')
                 $scope.addDeletedMapmarker = function() {
                     $scope.addMapmarker($scope.deletedMapmarker);
                     $scope.deletedMapmarker = null;
-                };
-
-                $scope.selectPerson = function(person) {
-                    $scope.currentMapmarkers = $filter('filter')($scope.mapmarkers, {person: person});
-                    $scope.newMapmarker.person = person;
-                    $('.collapse','.detail-select-overlay').removeClass('in');
                 };
 
                 $scope.setZIndex = function($event) {

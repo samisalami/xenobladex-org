@@ -3,8 +3,13 @@
 angular.module('app')
 .directive('bsTooltip', function() {
     return {
+        scope: {
+            bsTooltipTitle: '@'
+        },
         link: function($scope, elm) {
-            elm.tooltip();
+            elm.tooltip({
+                title: $scope.bsTooltipTitle
+            });
         }
     }
 });

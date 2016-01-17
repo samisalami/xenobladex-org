@@ -3,6 +3,6 @@
     <div class="alert alert-warning m-y-2" ng-show="deletedMission">
         <a ng-click="addDeletedMission()" href="#">Gelöschte Zeile wiederherstellen</a>
     </div>
-    <input type="text" class="form-control text m-b-2" ng-model="modalFilterValue" placeholder="Filtern..." />
+    <input type="text" class="form-control text m-b-2" ng-model="modalFilterValue" ng-model-options='{ debounce: 200 }' placeholder="Filtern..." />
     <collapsed-table ng-if="formModel && missions" view-data="missions" form-model="formModel" modal-filter-value="modalFilterValue" add-object="newMission" add-item="addMission(item)"  update-item="updateMission(item)" delete-item="deleteMission(item)"></collapsed-table>
 </div>

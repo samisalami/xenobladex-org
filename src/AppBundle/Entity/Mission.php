@@ -96,6 +96,41 @@ class Mission
      */
     private $has_person = false;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="target_area", type="string", length=255)
+     */
+    private $target_area = '';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="sidejob_type", type="string", length=255)
+     */
+    private $sidejob_type = '';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="difficulty", type="smallint")
+     */
+    private $difficulty = 0;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="blade_level", type="smallint")
+     */
+    private $blade_level = 1;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="chapter", type="smallint")
+     */
+    private $chapter = 1;
+
 
     /**
      * Get id
@@ -358,5 +393,120 @@ class Mission
     public function getHasPerson()
     {
         return $this->has_person;
+    }
+
+    /**
+     * Set target_area
+     *
+     * @param string $targetArea
+     * @return Mission
+     */
+    public function setTargetArea($targetArea)
+    {
+        $this->target_area = $targetArea;
+
+        return $this;
+    }
+
+    /**
+     * Get target_area
+     *
+     * @return string 
+     */
+    public function getTargetArea()
+    {
+        return $this->target_area;
+    }
+
+    /**
+     * Set sidejob_type
+     *
+     * @param string $sidejobType
+     * @return Mission
+     */
+    public function setSidejobType($sidejobType)
+    {
+        $this->sidejob_type = $sidejobType;
+
+        return $this;
+    }
+
+    /**
+     * Get sidejob_type
+     *
+     * @return string 
+     */
+    public function getSidejobType()
+    {
+        return $this->sidejob_type;
+    }
+
+    /**
+     * Set difficulty
+     *
+     * @param float $difficulty
+     * @return Mission
+     */
+    public function setDifficulty($difficulty)
+    {
+        $this->difficulty = $difficulty;
+
+        return $this;
+    }
+
+    /**
+     * Get difficulty
+     *
+     * @return float 
+     */
+    public function getDifficulty()
+    {
+        return $this->difficulty;
+    }
+
+    /**
+     * Set blade_level
+     *
+     * @param integer $bladeLevel
+     * @return Mission
+     */
+    public function setBladeLevel($bladeLevel)
+    {
+        $this->blade_level = $bladeLevel;
+
+        return $this;
+    }
+
+    /**
+     * Get blade_level
+     *
+     * @return integer 
+     */
+    public function getBladeLevel()
+    {
+        return $this->blade_level;
+    }
+
+    /**
+     * Set chapter
+     *
+     * @param integer $chapter
+     * @return Mission
+     */
+    public function setChapter($chapter)
+    {
+        $this->chapter = $chapter;
+
+        return $this;
+    }
+
+    /**
+     * Get chapter
+     *
+     * @return integer 
+     */
+    public function getChapter()
+    {
+        return $this->chapter;
     }
 }
