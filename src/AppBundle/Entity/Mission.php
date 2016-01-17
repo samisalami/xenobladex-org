@@ -111,11 +111,11 @@ class Mission
     private $sidejob_type = '';
 
     /**
-     * @var string
+     * @var integer
      *
-     * @ORM\Column(name="difficulty", type="string", length=255)
+     * @ORM\Column(name="difficulty", type="smallint")
      */
-    private $difficulty = '';
+    private $difficulty = 0;
 
     /**
      * @var integer

@@ -97,7 +97,8 @@ angular.module('app')
                             {
                                 label: 'Nebenjob-Schwierigkeit',
                                 name: 'difficulty',
-                                type: 'editableText'
+                                type: 'editableText',
+                                fieldInfoTooltip: 'Nur Zahlen erlaubt (kleine Sterne addieren).'
                             },
                             {
                                 label: 'Beschreibung',
