@@ -66,13 +66,13 @@ angular.module('app')
                                 type: 'editableText'
                             },
                             {
-                                label: 'BLADE-Level',
+                                label: 'Bedingung - BLADE-Level',
                                 name: 'blade_level',
                                 type: 'editableText',
                                 fieldInfoTooltip: 'Nur Zahlen erlaubt.'
                             },
                             {
-                                label: 'Kapitel',
+                                label: 'Bedingung - Kapitel',
                                 name: 'chapter',
                                 type: 'editableText',
                                 fieldInfoTooltip: 'Nur Zahlen erlaubt.'
