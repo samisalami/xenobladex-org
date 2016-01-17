@@ -38,7 +38,7 @@ class MonsterType
 
     /**
      * @ORM\ManyToMany(targetEntity="Material")
-     * @ORM\JoinTable(name="monster_type_material",
+     * @ORM\JoinTable(name="xenobladex_monster_type_material",
      *      joinColumns={@ORM\JoinColumn(name="monster_type_id", referencedColumnName="id")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="material_id", referencedColumnName="id")}
      *      )
