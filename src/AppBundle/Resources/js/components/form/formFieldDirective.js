@@ -21,8 +21,13 @@ angular.module('app')
                 };
 
                 $scope.showSelectedOption = function(id) {
-                    var selected = $filter('filter')($scope.formSelectOptions, {id: id});
-                    return ($scope.formSelectOptions && selected.length) ? selected[0].name : false;
+                    if(id) {
+                        var selected = $filter('filter')($scope.formSelectOptions, {id: id});
+                        return (selected.length>0) ? selected[0].name : false;
+                    } else {
+                        return false;
+                    }
+
                 };
             },
             template: '<div ng-include="getTemplate()"></div>'
