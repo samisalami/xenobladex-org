@@ -50,7 +50,7 @@
                         </div>
                     </div>
                     <div class="row">
-                        <div ng-if="mission.conditions" class="col-xs-12 col-md-6">
+                        <div ng-if="mission.conditions || mission.blade_level || mission.chapter" class="col-xs-12 col-md-6">
                             <span ng-if="mission.blade_level">BLADE-Level: {{mission.blade_level}}<br/></span>
                             <span ng-if="mission.chapter">Abschluss Kapitel: {{mission.chapter}}</span>
                             <p ng-if="mission.conditions"><br ng-if="mission.chapter || mission.blade_level" />{{mission.conditions}}</p>
