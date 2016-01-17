@@ -37,7 +37,8 @@ angular.module('app')
                                 label: 'Kategorie',
                                 name: 'category',
                                 type: 'editableStringSelect',
-                                data: categoryList
+                                data: categoryList,
+                                fieldInfoTooltip: 'Wenn keine Kategorie gewählt, wird "Sonstiges" gesetzt.'
                             }
                         ]
                     };
