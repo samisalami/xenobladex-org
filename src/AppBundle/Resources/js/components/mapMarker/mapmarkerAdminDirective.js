@@ -45,7 +45,7 @@ angular.module('app')
                 };
 
                 $scope.addMapmarker = function($event) {
-                    if($scope.newMapmarker.person && $scope.currentMap) {
+                    if($scope.newMapmarker.person.name && $scope.currentMap) {
                         flashService.clear();
                         var offsetLeft = $($event.currentTarget).offset().left,
                             offsetTop = $($event.currentTarget).offset().top;
