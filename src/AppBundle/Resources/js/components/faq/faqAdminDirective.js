@@ -15,7 +15,8 @@ angular.module('app')
                     {name:'Sonden'},
                     {name:'Skells'},
                     {name:'BLADE & Divisionen'},
-                    {name:'Online'}
+                    {name:'Online'},
+                    {name:'Sonstiges'}
                 ];
 
                 var initFormModel = function() {
