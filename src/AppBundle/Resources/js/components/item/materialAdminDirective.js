@@ -11,6 +11,7 @@ angular.module('app')
                 var rarities = [
                     {name:'Gewöhnlich'},
                     {name:'Wertvoll'},
+                    {name:'Sehr wertvoll'},
                     {name:'Extrem wertvoll'},
                     {name:'Unbezahlbar'}
                 ];
