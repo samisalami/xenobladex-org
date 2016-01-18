@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app')
-    .directive('slideMenu',['$rootScope', function($rootScope) {
+    .directive('slideMenu',['$rootScope', '$compile', function($rootScope, $compile) {
         return {
             restrict: 'A',
             link: function ($scope, $elm, $attrs)
@@ -14,7 +14,7 @@ angular.module('app')
                     nav = $('#'+$attrs.menuId);
 
                 var open = function() {
-                    console.log('open');
+                    newNav.html($compile(nav.html())($scope));
                     $('body').addClass(navActiveClass);
                     active = true;
                 };
@@ -23,8 +23,9 @@ angular.module('app')
                     $('body').removeClass(navActiveClass);
                     active = false;
                 };
+
                 if(nav.length > 0) {
-                    $('body').append(newNav.append(nav.html()));
+                    $('body').append(newNav.append($compile(nav.html())($scope)));
 
                     $(contentSelector).on('click', function(e){
                         if(active===true) {

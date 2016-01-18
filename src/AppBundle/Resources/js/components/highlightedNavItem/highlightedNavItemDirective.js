@@ -7,9 +7,11 @@ angular.module('app')
             link: function($scope, $element,$attrs){
                 var cssClass = $attrs.navItemClass;
                 var route = $attrs.navItemRoute;
+                var equals = $attrs.navItemRouteEquals;
+                var renderedFirst = false;
 
                 var highlightNavItems = function() {
-                    if($attrs.navItemRouteEquals) {
+                    if(equals) {
                         if($location.path()===route) {
                             $($element).addClass(cssClass);
                         } else {
