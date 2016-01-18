@@ -21,7 +21,7 @@ angular.module('app')
                                     result.push(list[i]);
                                 }
                             } else {
-                                if (listValue.toLowerCase().indexOf(filterValue.toLowerCase())!== -1) {
+                                if (String(listValue).toLowerCase().indexOf(String(filterValue).toLowerCase())!== -1) {
                                     result.push(list[i]);
                                 }
                             }

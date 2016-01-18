@@ -22,70 +22,77 @@
             <a href="#mission-{{$parent.$index}}-{{$index}}" class="collapsed content-box" onclick="return false;" data-toggle="collapse" aria-expanded="false"><strong>{{mission.name}}</strong><span class="collapse-arrow fa"></span><span class="collapse-note">{{missionGroup.name}}</span></a>
             <div id="mission-{{$parent.$index}}-{{$index}}" class="content-box collapse">
                 <div class="content-body">
-                    <div class="row">
-                        <div ng-if="mission.person.name || mission.person_unrelated" class="col-xs-12 col-md-6">
-                            <h3>Person:</h3>
-                        </div>
+                    <div class="complete-row" ng-if="mission.person.name || mission.person_unrelated || mission.location_note">
+                        <div class="row">
+                            <div ng-if="mission.person.name || mission.person_unrelated" class="col-xs-12 col-md-6">
+                                <h3>Person:</h3>
+                            </div>
 
-                        <div ng-if="mission.location_note" class="col-xs-12 col-md-6">
-                            <h3>Erhalt:</h3>
+                            <div ng-if="mission.location_note" class="col-xs-12 col-md-6">
+                                <h3>Erhalt:</h3>
+                            </div>
                         </div>
+                        <div class="row">
+                            <div ng-if="mission.person.name || mission.person_unrelated" class="col-xs-12 col-md-6">
+                                {{mission.person.name || mission.person_unrelated}}
+                            </div>
+                            <div ng-if="mission.location_note" class="col-xs-12 col-md-6">
+                                <p>{{mission.location_note}}</p>
+                            </div>
+                        </div>
+                        <hr/>
                     </div>
-                    <div class="row">
-                        <div ng-if="mission.person.name || mission.person_unrelated" class="col-xs-12 col-md-6">
-                            {{mission.person.name || mission.person_unrelated}}
+                    <div class="complete-row" ng-if="mission.conditions || mission.blade_level || mission.chapter || mission.rewards">
+                        <div class="row">
+                            <div ng-if="mission.conditions || mission.blade_level || mission.chapter" class="col-xs-12 col-md-6">
+                                <h3>Voraussetzungen:</h3>
+                            </div>
+                            <div ng-if="mission.rewards" class="col-xs-12 col-md-6">
+                                <h3>Belohnung:</h3>
+                            </div>
                         </div>
-
-                        <div ng-if="mission.location_note" class="col-xs-12 col-md-6">
-                            <p>{{mission.location_note}}</p>
+                        <div class="row">
+                            <div ng-if="mission.conditions || mission.blade_level || mission.chapter" class="col-xs-12 col-md-6">
+                                <span ng-if="mission.blade_level">BLADE-Level: {{mission.blade_level}}<br/></span>
+                                <span ng-if="mission.chapter">Abschluss Kapitel: {{mission.chapter}}</span>
+                                <p ng-if="mission.conditions"><br ng-if="mission.chapter || mission.blade_level" />{{mission.conditions}}</p>
+                            </div>
+                            <div ng-if="mission.rewards" class="col-xs-12 col-md-6">
+                                <p>{{mission.rewards}}</p>
+                            </div>
                         </div>
+                        <hr/>
                     </div>
-                    <hr/>
-                    <div class="row">
-                        <div ng-if="mission.conditions || mission.blade_level || mission.chapter" class="col-xs-12 col-md-6">
-                            <h3>Voraussetzungen:</h3>
+                    <div class="complete-row" ng-if="mission.mission_type.name=='Nebenjob' && (mission.target_area || mission.sidejob_type || mission.difficulty)">
+                        <div class="row">
+                            <div class="col-xs-12 col-md-6">
+                                <h3>Zielregion:</h3>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <h3>Typ & Schwierigkeit:</h3>
+                            </div>
                         </div>
-                        <div ng-if="mission.rewards" class="col-xs-12 col-md-6">
-                            <h3>Belohnung:</h3>
+                        <div class="row">
+                            <div class="col-xs-12 col-md-6">
+                                <p>{{mission.target_area}}</p>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <span>Typ: {{mission.sidejob_type}}<br/></span>
+                                <span>Schwierigkeit: {{mission.difficulty}}</span>
+                            </div>
                         </div>
+                        <hr />
                     </div>
-                    <div class="row">
-                        <div ng-if="mission.conditions || mission.blade_level || mission.chapter" class="col-xs-12 col-md-6">
-                            <span ng-if="mission.blade_level">BLADE-Level: {{mission.blade_level}}<br/></span>
-                            <span ng-if="mission.chapter">Abschluss Kapitel: {{mission.chapter}}</span>
-                            <p ng-if="mission.conditions"><br ng-if="mission.chapter || mission.blade_level" />{{mission.conditions}}</p>
+                    <div class="complete-row" ng-if="mission.description">
+                        <div class="row">
+                            <div ng-if="mission.description" class="col-xs-12 col-md-6">
+                                <h3>Beschreibung:</h3>
+                            </div>
                         </div>
-                        <div ng-if="mission.rewards" class="col-xs-12 col-md-6">
-                            <p>{{mission.rewards}}</p>
-                        </div>
-                    </div>
-                    <hr/>
-                    <div ng-if="mission.mission_type.name=='Nebenjob'" class="row">
-                        <div class="col-xs-12 col-md-6">
-                            <h3>Zielregion:</h3>
-                        </div>
-                        <div class="col-xs-12 col-md-6">
-                            <h3>Typ & Schwierigkeit:</h3>
-                        </div>
-                    </div>
-                    <div ng-if="mission.mission_type.name=='Nebenjob'" class="row">
-                        <div class="col-xs-12 col-md-6">
-                            <p>{{mission.target_area}}</p>
-                        </div>
-                        <div class="col-xs-12 col-md-6">
-                            <span>Typ: {{mission.sidejob_type}}<br/></span>
-                            <span>Schwierigkeit: {{mission.difficulty}}</span>
-                        </div>
-                    </div>
-                    <hr ng-if="mission.mission_type.name=='Nebenjob'" />
-                    <div class="row">
-                        <div ng-if="mission.description" class="col-xs-12 col-md-6">
-                            <h3>Beschreibung:</h3>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div ng-if="mission.description" class="col-xs-12 col-md-6">
-                            <p>{{mission.description}}</p>
+                        <div class="row">
+                            <div ng-if="mission.description" class="col-xs-12 col-md-6">
+                                <p>{{mission.description}}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
