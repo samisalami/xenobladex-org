@@ -122,7 +122,7 @@ class Mission
      *
      * @ORM\Column(name="blade_level", type="smallint")
      */
-    private $blade_level = 1;
+    private $blade_level = 0;
 
     /**
      * @var integer
