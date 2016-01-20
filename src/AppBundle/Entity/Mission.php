@@ -129,7 +129,7 @@ class Mission
      *
      * @ORM\Column(name="chapter", type="smallint")
      */
-    private $chapter = 1;
+    private $chapter = 0;
 
 
     /**
