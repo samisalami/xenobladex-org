@@ -2,6 +2,8 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Entity\MonsterType;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -18,30 +20,32 @@ class Material extends Item
     private $monster_types;
 
     public function __construct() {
-        $this->monster_types = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->monster_types = new ArrayCollection();
     }
 
     /**
      * Add monster_types
      *
-     * @param \AppBundle\Entity\MonsterType $monsterTypes
+     * @param MonsterType $monsterType
      * @return Material
      */
-    public function addMonsterType(\AppBundle\Entity\MonsterType $monsterTypes)
+    public function addMonsterType(MonsterType $monsterType)
     {
-        $this->monster_types[] = $monsterTypes;
-
+        if (!$this->monster_types->contains($monsterType)) {
+            $this->monster_types->add($monsterType);
+            $monsterType->addMaterial($this);
+        }
         return $this;
     }
 
     /**
      * Remove monster_types
      *
-     * @param \AppBundle\Entity\MonsterType $monsterTypes
+     * @param MonsterType $monsterType
      */
-    public function removeMonsterType(\AppBundle\Entity\MonsterType $monsterTypes)
+    public function removeMonsterType(MonsterType $monsterType)
     {
-        $this->monster_types->removeElement($monsterTypes);
+        $this->monster_types->removeElement($monsterType);
     }
 
     /**

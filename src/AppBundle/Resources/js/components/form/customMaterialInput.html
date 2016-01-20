@@ -1,6 +1,9 @@
-<autocomplete-select autocomplete-list="formSelectOptions" autocomplete-option-name="name" autocomplete-option-value="id" autocomplete-text-input-bind="newMaterial.name" autocomplete-bind="newMaterial.id"></autocomplete-select>
-<div ng-repeat="material in $parent.formfieldbind">
-    <autocomplete-select autocomplete-list="formSelectOptions" autocomplete-option-name="name" autocomplete-option-value="id" autocomplete-text-input-bind="material.name" autocomplete-bind="material.id"></autocomplete-select>
-</div>
-<button ng-click="" class="btn btn-success">Hinzufügen <span class="fa fa-plus-circle"></span></button>
-<a href="#" ng-if="formFieldActionParam" class="btn btn-primary pull-right m-t-1 m-r-1" ng-click="formFieldAction({item : formFieldActionParam})"><span class="fa fa-check"></span></a>
+<multi-field>
+    <autocomplete-select autocomplete-list="formSelectOptions" autocomplete-option-name="name" autocomplete-option-value="id" autocomplete-text-input-bind="newItem.name" autocomplete-bind="newItem.id"></autocomplete-select>
+    <button ng-click="multiFieldAdd()" class="btn btn-success m-y-1">Hinzufügen <span class="fa fa-plus-circle"></span></button>
+    <div class="clear-both" ng-repeat="material in formFieldBind">
+        <autocomplete-select autocomplete-list="formSelectOptions" autocomplete-option-name="name" autocomplete-option-value="id" autocomplete-text-input-bind="material.name" autocomplete-bind="material.id"></autocomplete-select>
+        <button ng-click="multiFieldDelete(material.id)" class="btn btn-danger pull-right m-b-1">Löschen <span class="fa fa-minus-circle"></span></button>
+    </div>
+    <a href="#" ng-if="formFieldActionParam" class="clear-both btn btn-primary pull-right m-t-1" ng-click="formFieldAction({item : formFieldActionParam})"><span class="fa fa-check"></span></a>
+</multi-field>

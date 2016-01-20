@@ -10,6 +10,7 @@ use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class MonsterTypeController extends FOSRestController {
     protected function getJMSSerializer() {
@@ -24,14 +25,31 @@ class MonsterTypeController extends FOSRestController {
 
     protected function addMonsterType(MonsterType $deserialized_monsterType) {
         $em = $this->getDoctrine()->getManager();
-        $monsterType = $em->merge($deserialized_monsterType);
-        $em->persist($monsterType);
+        $monster_type = $em->merge($deserialized_monsterType);
+        $em->persist($monster_type);
+        foreach($deserialized_monsterType->getMaterials() as $material) {
+            $material =  $em->merge($material);
+            $material->addMonsterType($monster_type);
+        }
         $em->flush();
     }
 
     protected function updateMonsterType(MonsterType $deserialized_monsterType) {
         $em = $this->getDoctrine()->getManager();
-        $updated_monsterType = $em->merge($deserialized_monsterType);
+        $monster_type = $em->merge($deserialized_monsterType);
+        $newMaterial = [];
+
+        foreach($deserialized_monsterType->getMaterials() as $material) {
+            $material =  $em->merge($material);
+            $material->addMonsterType($monster_type);
+            $newMaterial[] = $material;
+        }
+
+        foreach ($monster_type->getMaterials() as $material) {
+            if(!in_array($material,$newMaterial,true)) {
+                $monster_type->removeMaterial($material);
+            }
+        }
         $em->flush();
     }
 
@@ -80,11 +98,11 @@ class MonsterTypeController extends FOSRestController {
 
     /**
      * @Route("/api/monster_type/delete/{id}", methods={"DELETE"})
+     * @ParamConverter("monsterType", class="AppBundle:MonsterType")
+     * @param MonsterType $monsterType
+     * @return Response
      */
-    public function deleteMonsterTypeAction($id) {
-        $monsterType = $this->getDoctrine()
-            ->getRepository('AppBundle:MonsterType')
-            ->find($id);
+    public function deleteMonsterTypeAction(MonsterType $monsterType) {
         $this->deleteMonsterType($monsterType);
         $serializer = $this->getJMSSerializer();
         $response = new Response($serializer->serialize($monsterType, 'json'));

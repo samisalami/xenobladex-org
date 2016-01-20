@@ -8,10 +8,6 @@ angular.module('app')
             link: function($scope, $element,$attrs){
                 $scope.newMonsterType = {
                     materials: [
-                        {
-                            name: '',
-                            id: null
-                        }
                     ]
                 };
 
@@ -25,12 +21,13 @@ angular.module('app')
                                 type: 'editableTextarea',
                                 fieldInfoTooltip: 'Gibt es nur, falls wir in Zukunft noch Extra Infos zur Gattung erfassen wollen.'
                             },
-                            //{
-                            //    label: 'Material',
-                            //    name: 'materials',
-                            //    type: 'customMaterialInput',
-                            //    data: $scope.materials
-                            //}
+                            {
+                                label: 'Material',
+                                name: 'materials',
+                                type: 'customMaterialInput',
+                                data: $scope.materials,
+                                fieldInfoTooltip: 'In erster Zeile neues Material (muss nicht existieren) verknüpfen dann "Hinzufügen" wählen -> Änderungen werden via Häkchen oder bei neuer Gattung via "Hinzufügen" permanent gespeichert'
+                            }
                         ]
                     };
                 };
@@ -45,6 +42,7 @@ angular.module('app')
                 });
 
                 $scope.updateMonsterType = function(monsterType) {
+                    //console.log(monsterType);
                     monsterService.updateMonsterType(monsterType);
                 };
 
@@ -54,7 +52,10 @@ angular.module('app')
                             monsterService.getMonsterTypes(function(response){
                                 $scope.monsterTypes = response;
                             });
-                            $scope.newMonsterType = {};
+                            $scope.newMonsterType = {
+                                materials: [
+                                ]
+                            };
                             flashService.clear();
                         });
                     } else {

@@ -331,9 +331,8 @@ class Person
         if (!$this->mapmarkers->contains($mapmarker)) {
             $this->mapmarkers->add($mapmarker);
             $mapmarker->setPerson($this);
-
-            return $this;
         }
+        return $this;
     }
 
     /**

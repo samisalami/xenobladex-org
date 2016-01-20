@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation\Type;
 
@@ -37,17 +38,17 @@ class MonsterType
     private $description="";
 
     /**
-     * @ORM\ManyToMany(targetEntity="Material")
+     * @ORM\ManyToMany(targetEntity="Material", cascade={"persist"})
      * @ORM\JoinTable(name="xenobladex_monster_type_material",
-     *      joinColumns={@ORM\JoinColumn(name="monster_type_id", referencedColumnName="id")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="material_id", referencedColumnName="id")}
+     *      joinColumns={@ORM\JoinColumn(name="monster_type_id", referencedColumnName="id", onDelete="CASCADE")},
+     *      inverseJoinColumns={@ORM\JoinColumn(name="material_id", referencedColumnName="id", onDelete="CASCADE")}
      *      )
      * @Type("ArrayCollection<AppBundle\Entity\Material>")
      */
     private $materials;
 
     public function __construct() {
-        $this->materials = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->materials = new ArrayCollection();
     }
 
     /**
@@ -109,24 +110,26 @@ class MonsterType
     /**
      * Add materials
      *
-     * @param \AppBundle\Entity\Material $materials
+     * @param \AppBundle\Entity\Material $material
      * @return MonsterType
      */
-    public function addMaterial(\AppBundle\Entity\Material $materials)
+    public function addMaterial(\AppBundle\Entity\Material $material)
     {
-        $this->materials[] = $materials;
-
-        return $this;
+        if (!$this->materials->contains($material)) {
+            $this->materials->add($material);
+            $material->addMonsterType($this);
+            return $this;
+        }
     }
 
     /**
      * Remove materials
      *
-     * @param \AppBundle\Entity\Material $materials
+     * @param \AppBundle\Entity\Material $material
      */
-    public function removeMaterial(\AppBundle\Entity\Material $materials)
+    public function removeMaterial(\AppBundle\Entity\Material $material)
     {
-        $this->materials->removeElement($materials);
+        $this->materials->removeElement($material);
     }
 
     /**

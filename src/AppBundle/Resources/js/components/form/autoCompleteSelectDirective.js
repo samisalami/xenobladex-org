@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app')
-    .directive('autocompleteSelect',[function() {
+    .directive('autocompleteSelect',['$timeout',function($timeout) {
         return {
             templateUrl:'templates/autocompleteSelectView.html',
             replace: true,
@@ -27,7 +27,7 @@ angular.module('app')
                 $selectInputElm.autocomplete({
                     source: uiAutocompleteList,
                     minLength: 2,
-                    delay: 200,
+                    delay: 0,
                     focus: function( event, ui ) {
                         $selectInputElm.val(ui.item.value);
                         return false;
@@ -36,8 +36,15 @@ angular.module('app')
                         $selectInputElm.val(ui.item.value);
                         $scope.$apply(function () {
                             $scope.autocompleteBind = ui.item.id;
+                            $scope.autocompleteTextInputBind = ui.item.value;
                         });
                         return false;
+                    },
+                    change: function(event, ui) {
+                        var promise = $timeout(function() {
+                            $scope.autocompleteCallback();
+                            $timeout.cancel(promise);
+                        }, 100);
                     }
                 });
 
@@ -45,8 +52,13 @@ angular.module('app')
                     $selectInputElm.val(listItem[$scope.autocompleteOptionName]);
                     $scope.autocompleteBind = listItem[$scope.autocompleteOptionValue];
                     $scope.autocompleteTextInputBind = listItem[$scope.autocompleteOptionName];
-                    element.find('#'+$scope.selectModalId).modal('hide');
-                    $scope.autocompleteCallback();
+                    if(element.find('#'+$scope.selectModalId).is(':visible')) {
+                        element.find('#'+$scope.selectModalId).modal('hide');
+                        var promise = $timeout(function() {
+                            $scope.autocompleteCallback();
+                            $timeout.cancel(promise);
+                        }, 100);
+                    }
                 };
 
                 $scope.setBindings = function() {
