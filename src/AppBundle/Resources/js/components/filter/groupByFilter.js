@@ -3,7 +3,7 @@
 angular.module('app')
     .filter('groupByFilter', function(){
         return function (arr, groupBy, childEntity) {
-            var groupedData = new Array();
+            var groupedData = [];
             var count = arr.length;
             var isEntity = false;
             if(typeof childEntity !== 'undefined') {
@@ -32,15 +32,11 @@ angular.module('app')
                 if(!exists) {
                     var newArr = {};
                     newArr['name'] = groupByValue;
-                    newArr['rows'] = new Array();
+                    newArr['rows'] = [];
                     newArr['rows'].push(arr[i]);
                     groupedData.push(newArr);
                 }
             }
-
-            //groupedData = groupedData.sort(function(a,b){
-            //    return a['name']>b['name'];
-            //});
 
             return groupedData;
         };
