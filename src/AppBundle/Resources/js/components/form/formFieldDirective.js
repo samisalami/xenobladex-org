@@ -13,7 +13,6 @@ angular.module('app')
             },
             link: function($scope, element, attrs) {
                 $scope.attachmentType = attrs.attachmentType;
-                $scope.contentId = 'form-field-'+Date.now();
                 $scope.formFieldLabel = attrs.formFieldLabel;
 
                 $scope.getTemplate = function() {

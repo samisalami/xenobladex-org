@@ -4,7 +4,7 @@ angular.module('app')
     .directive('loadingDirective',['$http', function($http) {
         return {
             restrict: 'E',
-            templateUrl: 'templates/loadingView.html',
+            templateUrl: 'js/components/loading/loadingView.html',
             link: function ($scope, elm, attrs)
             {
                 $scope.isLoading = function () {

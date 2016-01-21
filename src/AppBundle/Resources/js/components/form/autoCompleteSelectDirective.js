@@ -3,7 +3,7 @@
 angular.module('app')
     .directive('autocompleteSelect',['$timeout',function($timeout) {
         return {
-            templateUrl:'templates/autocompleteSelectView.html',
+            templateUrl:'js/components/form/autocompleteSelectView.html',
             replace: true,
             scope: {
                 autocompleteList: '=',

@@ -4,7 +4,7 @@ angular.module('app')
     .directive('collapsedTable',['$filter',function($filter) {
         return {
             restrict: 'E',
-            templateUrl: 'templates/collapsedTableView.html',
+            templateUrl: 'js/components/admin/collapsedTableView.html',
             scope: {
                 data: "=viewData",
                 newItem: '=addObject',

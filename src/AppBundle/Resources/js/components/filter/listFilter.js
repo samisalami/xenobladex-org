@@ -5,7 +5,7 @@ angular.module('app')
         return function (list,filterValue,fieldname,childFieldname,returnEmpyList) {
             var result = [];
             if(!returnEmpyList && !filterValue) {
-                return list;
+                result = list;
             } else {
                 if(list && filterValue) {
                     var count = list.length;
@@ -28,7 +28,7 @@ angular.module('app')
                         }
                     }
                 }
-                return result;
             }
+            return result;
         };
     });

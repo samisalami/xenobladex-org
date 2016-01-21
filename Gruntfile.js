@@ -5,17 +5,6 @@ module.exports = function (grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     copy: {
-      html: {
-        files: [{
-          expand: true,
-          flatten: true,
-          src: [
-            'src/AppBundle/Resources/js/**/*.html',
-            'src/AppBundle/Resources/views/**/*.html'
-          ],
-          dest:'web/templates/'
-        }]
-      },
       mainTemplate: {
         files: [{
           src: [
@@ -69,6 +58,15 @@ module.exports = function (grunt) {
           'web/js/main.min.js' : ['src/AppBundle/Resources/js/**/*.js']
         }
       }
+    },
+    ngtemplates: {
+      app: {
+        cwd: 'src/AppBundle/Resources/',
+        src: [
+          '**/*.html'
+        ],
+        dest: 'web/js/templates.js'
+      }
     }
   });
 
@@ -78,13 +76,14 @@ module.exports = function (grunt) {
   grunt.loadNpmTasks('grunt-contrib-sass');
   grunt.loadNpmTasks('grunt-contrib-uglify');
   grunt.loadNpmTasks('grunt-contrib-copy');
+  grunt.loadNpmTasks('grunt-angular-templates');
 
   // Default task(s).
   grunt.registerTask('uglify-fe', ['uglify:js']);
+  grunt.registerTask('uglify-fe', ['uglify:js']);
   grunt.registerTask('sass-fe', ['sass:css']);
-  grunt.registerTask('copy-html', ['copy:html']);
-  grunt.registerTask('all-fe', ['sass:css', 'uglify:js', 'copy:html']);
-  grunt.registerTask('build', ['sass:css', 'uglify:js', 'copy:html', 'copy:mainTemplate', 'copy:images', 'copy:libraries']);
+  grunt.registerTask('all-fe', ['sass:css', 'uglify:js', 'ngtemplates:app']);
+  grunt.registerTask('build', ['sass:css', 'uglify:js','copy:mainTemplate','ngtemplates:app','copy:images', 'copy:libraries']);
 
   //watch can usually not start two tasks parallel - it works with a function and defining the config explicit for watch
   grunt.registerTask('watch-fe', function(){
@@ -94,15 +93,15 @@ module.exports = function (grunt) {
       },
       html: {
         files: ['src/AppBundle/Resources/js/**/*.html', 'src/AppBundle/Resources/views/**/*.html'],
-        tasks: ['copy:html']
-      },
-      libraries: {
-        files: ['src/AppBundle/Resources/libraries/**'],
-        tasks: ['copy:libraries']
+        tasks: ['ngtemplates:app']
       },
       mainTemplate: {
         files: ['src/AppBundle/Resources/app.html'],
         tasks: ['copy:mainTemplate']
+      },
+      libraries: {
+        files: ['src/AppBundle/Resources/libraries/**'],
+        tasks: ['copy:libraries']
       },
       images: {
         files: ['src/AppBundle/Resources/images/**'],

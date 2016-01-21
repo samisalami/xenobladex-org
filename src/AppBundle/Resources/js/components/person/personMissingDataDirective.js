@@ -2,7 +2,7 @@ angular.module('app')
     .directive('personMissingData',['personService', 'mapmarkerService', function(personService, mapmarkerService) {
         return {
             restrict: 'E',
-            templateUrl: 'templates/personMissingDataView.html',
+            templateUrl: 'js/components/person/personMissingDataView.html',
             replace: true,
             link: function($scope, $element,$attrs) {
                 var personDataLoaded = false;

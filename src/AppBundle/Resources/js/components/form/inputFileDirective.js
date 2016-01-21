@@ -4,7 +4,7 @@ angular.module('app')
     .directive('inputFile',['$parse',function($parse) {
         return {
             restrict: 'E',
-            templateUrl:'templates/inputFileView.html',
+            templateUrl:'js/components/form/inputFileView.html',
             replace: true,
             scope: {
                 fileread: '='

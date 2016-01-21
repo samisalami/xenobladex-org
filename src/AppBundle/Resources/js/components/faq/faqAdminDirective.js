@@ -3,7 +3,7 @@
 angular.module('app')
     .directive('faqAdmin',['faqService', 'attachmentService', 'flashService', '$filter', function(faqService, attachmentService, flashService, $filter) {
         return {
-            templateUrl:'templates/faqAdminView.html',
+            templateUrl:'js/components/faq/faqAdminView.html',
             replace: true,
             link: function($scope, $element,$attrs){
                 $scope.newFAQ = {};

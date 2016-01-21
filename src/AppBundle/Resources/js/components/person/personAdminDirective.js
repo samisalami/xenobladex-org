@@ -3,7 +3,7 @@
 angular.module('app')
     .directive('personAdmin',['personService', 'mapService', 'flashService', '$filter', function(personService, mapService, flashService, $filter) {
         return {
-            templateUrl:'templates/personAdminView.html',
+            templateUrl:'js/components/person/personAdminView.html',
             replace: true,
             link: function($scope, $element,$attrs){
                 $scope.newPerson = {};

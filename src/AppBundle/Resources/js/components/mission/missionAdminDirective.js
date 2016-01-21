@@ -4,7 +4,7 @@ angular.module('app')
     .directive('missionAdmin',['missionService', 'personService', 'flashService', '$filter', function(missionService, personService, flashService, $filter) {
         return {
             restrict: 'E',
-            templateUrl:'templates/missionAdminView.html',
+            templateUrl:'js/components/mission/missionAdminView.html',
             replace: true,
             link: function($scope, $element,$attrs){
                 $scope.newMission = {};

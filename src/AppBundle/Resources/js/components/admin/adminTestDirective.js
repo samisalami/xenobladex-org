@@ -4,7 +4,7 @@ angular.module('app')
     .directive('adminTest',['missionService', 'personService',function(missionService, personService) {
         return {
             restrict: 'E',
-            templateUrl: 'templates/adminTestView.html',
+            templateUrl: 'js/components/admin/adminTestView.html',
             replace: true,
             scope: {
             },

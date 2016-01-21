@@ -3,18 +3,18 @@
 angular.module('app')
 .factory('formTemplateFactory', function() {
     return {
-        fieldsetTextarea:   'templates/fieldsetTextareaView.html',
-        fieldsetInputText:  'templates/fieldsetInputTextView.html',
-        fieldsetInputCheckbox:  'templates/fieldsetInputCheckboxView.html',
-        inputText:  'templates/inputTextView.html',
-        inputCheckbox:  'templates/inputCheckboxView.html',
-        editableTextarea: 'templates/editableTextareaView.html',
-        editableText: 'templates/editableTextView.html',
-        editableStringSelect: 'templates/editableStringSelectView.html',
-        editableObjectSelect: 'templates/editableObjectSelectView.html',
-        customMissionPersonSelect: 'templates/customMissionPersonSelect.html',
-        customAttachmentInput: 'templates/customAttachmentInput.html',
-        customMapmarkerInput: 'templates/customMapmarkerInput.html',
-        customMaterialInput: 'templates/customMaterialInput.html'
+        fieldsetTextarea:   'js/components/form/fieldsetTextareaView.html',
+        fieldsetInputText:  'js/components/form/fieldsetInputTextView.html',
+        fieldsetInputCheckbox:  'js/components/form/fieldsetInputCheckboxView.html',
+        inputText:  'js/components/form/inputTextView.html',
+        inputCheckbox:  'js/components/form/inputCheckboxView.html',
+        editableTextarea: 'js/components/form/editableTextareaView.html',
+        editableText: 'js/components/form/editableTextView.html',
+        editableStringSelect: 'js/components/form/editableStringSelectView.html',
+        editableObjectSelect: 'js/components/form/editableObjectSelectView.html',
+        customMissionPersonSelect: 'js/components/form/customMissionPersonSelect.html',
+        customAttachmentInput: 'js/components/form/customAttachmentInput.html',
+        customMapmarkerInput: 'js/components/form/customMapmarkerInput.html',
+        customMaterialInput: 'js/components/form/customMaterialInput.html'
     };
 });

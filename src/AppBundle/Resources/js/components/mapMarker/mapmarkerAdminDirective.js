@@ -3,7 +3,7 @@
 angular.module('app')
     .directive('mapmarkerAdmin',['mapmarkerService', 'mapService', 'personService', 'flashService', '$filter', function(mapmarkerService, mapService, personService, flashService, $filter) {
         return {
-            templateUrl:'templates/mapmarkerAdminView.html',
+            templateUrl:'js/components/mapMarker/mapmarkerAdminView.html',
             replace: true,
             link: function($scope, $element,$attrs){
                 $scope.currentMap = {};

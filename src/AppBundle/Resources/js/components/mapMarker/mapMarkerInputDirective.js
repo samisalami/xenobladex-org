@@ -4,7 +4,7 @@ angular.module('app')
     .directive('mapMarkerInput',['mapmarkerService', '$filter', '$timeout',function(mapMarkerService, $filter, $timeout) {
         return {
             restrict: 'EA',
-            templateUrl:'templates/mapmarkerInputView.html',
+            templateUrl:'js/components/mapMarker/mapmarkerInputView.html',
             replace: true,
             scope: {
                 mapmarkers: '=',

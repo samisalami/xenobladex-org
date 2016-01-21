@@ -4,7 +4,7 @@ angular.module('app')
     .directive('attachmentInput',['attachmentService', '$filter',function(attachmentService, $filter) {
         return {
             restrict: 'EA',
-            templateUrl:'templates/attachmentInputView.html',
+            templateUrl:'js/components/attachment/attachmentInputView.html',
             transclude: true,
             replace: true,
             scope: {

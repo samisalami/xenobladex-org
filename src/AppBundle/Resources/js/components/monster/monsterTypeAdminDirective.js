@@ -3,7 +3,7 @@
 angular.module('app')
     .directive('monsterTypeAdmin',['monsterService', 'itemService', 'flashService', '$filter', function(monsterService, itemService, flashService, $filter) {
         return {
-            templateUrl:'templates/monsterTypeAdminView.html',
+            templateUrl:'js/components/monster/monsterTypeAdminView.html',
             replace: true,
             link: function($scope, $element,$attrs){
                 $scope.newMonsterType = {
@@ -42,7 +42,6 @@ angular.module('app')
                 });
 
                 $scope.updateMonsterType = function(monsterType) {
-                    //console.log(monsterType);
                     monsterService.updateMonsterType(monsterType);
                 };
 

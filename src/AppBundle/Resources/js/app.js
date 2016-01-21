@@ -14,60 +14,60 @@ config.$inject = ['$routeProvider', '$locationProvider'];
 function config($routeProvider, $locationProvider) {
   $routeProvider
       .when('/', {
-        templateUrl: 'templates/start.html'
+        templateUrl: 'views/start.html'
       })
       .when('/faq', {
-        templateUrl: 'templates/faq.html'
+        templateUrl: 'views/faq.html'
       })
       .when('/missionen', {
-        templateUrl: 'templates/missions.html'
+        templateUrl: 'views/missions.html'
       })
       .when('/login', {
         controller: 'UserController',
-        templateUrl: 'templates/loginView.html'
+        templateUrl: 'views/loginView.html'
       })
       .when('/register', {
         controller: 'UserController',
-        templateUrl: 'templates/registrationView.html'
+        templateUrl: 'views/registrationView.html'
       })
       .when('/admin', {
-        templateUrl: 'templates/admin.html'
+        templateUrl: 'views/admin.html'
       })
       .when('/admin/missionen', {
-        templateUrl: 'templates/admin_missions.html'
+        templateUrl: 'views/admin_missions.html'
       })
       .when('/admin/missionen/was-fehlt', {
-        templateUrl: 'templates/admin_missions_missing.html'
+        templateUrl: 'views/admin_missions_missing.html'
       })
       .when('/admin/karten', {
-        templateUrl: 'templates/admin_maps.html'
+        templateUrl: 'views/admin_maps.html'
       })
       .when('/admin/dateien', {
-        templateUrl: 'templates/admin_attachments.html'
+        templateUrl: 'views/admin_attachments.html'
       })
       .when('/admin/personen', {
-        templateUrl: 'templates/admin_persons.html'
+        templateUrl: 'views/admin_persons.html'
       })
       .when('/admin/personen/was-fehlt', {
-        templateUrl: 'templates/admin_persons_missing.html'
+        templateUrl: 'views/admin_persons_missing.html'
       })
       .when('/admin/test', {
-        templateUrl: 'templates/admin_test.html'
+        templateUrl: 'views/admin_test.html'
       })
       .when('/admin/faq', {
-        templateUrl: 'templates/admin_faqs.html'
+        templateUrl: 'views/admin_faqs.html'
       })
       .when('/admin/kartenpunkte', {
-        templateUrl: 'templates/admin_mapmarkers.html'
+        templateUrl: 'views/admin_mapmarkers.html'
       })
       .when('/admin/monster_gattungen', {
-        templateUrl: 'templates/admin_monsterTypes.html'
+        templateUrl: 'views/admin_monsterTypes.html'
       })
       .when('/admin/material', {
-        templateUrl: 'templates/admin_material.html'
+        templateUrl: 'views/admin_material.html'
       })
       .otherwise({
-          templateUrl: 'templates/404.html'
+          templateUrl: 'views/404.html'
       });
   $locationProvider.html5Mode(true);
 }
