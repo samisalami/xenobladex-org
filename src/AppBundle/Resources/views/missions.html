@@ -30,7 +30,7 @@ Im Allgemeinen ist das BLADE-Level nur eine Voraussetzung für Nebenjobs und kei
                     <li ng-if="mission.blade_level">
                         <span>BLADE-Level {{mission.blade_level}}</span>
                     </li>
-                    <li ng-if="mission.chapter">
+                    <li ng-if="mission.chapter && mission.mission_type.name!='Handlungsmission'">
                         <span>Kapitel {{mission.chapter}}</span>
                     </li>
                     <li>
