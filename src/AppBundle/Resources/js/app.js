@@ -5,7 +5,8 @@ angular
         'ngRoute',
         'ngCookies',
         'ui.bootstrap',
-        'xeditable'
+        'xeditable',
+        'naturalSort'
     ])
     .config(config)
     .run(run);

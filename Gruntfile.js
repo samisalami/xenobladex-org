@@ -5,6 +5,17 @@ module.exports = function (grunt) {
   grunt.initConfig({
     pkg: grunt.file.readJSON('package.json'),
     copy: {
+      html: {
+        files: [{
+          expand: true,
+          flatten: true,
+          src: [
+            'src/AppBundle/Resources/js/**/*.html',
+            'src/AppBundle/Resources/views/**/*.html'
+          ],
+          dest:'web/templates/'
+        }]
+      },
       mainTemplate: {
         files: [{
           src: [
@@ -83,7 +94,7 @@ module.exports = function (grunt) {
   grunt.registerTask('uglify-fe', ['uglify:js']);
   grunt.registerTask('sass-fe', ['sass:css']);
   grunt.registerTask('all-fe', ['sass:css', 'uglify:js', 'ngtemplates:app']);
-  grunt.registerTask('build', ['sass:css', 'uglify:js','copy:mainTemplate','ngtemplates:app','copy:images', 'copy:libraries']);
+  grunt.registerTask('build', ['sass:css', 'uglify:js','copy:mainTemplate','ngtemplates:app','copy:images', 'copy:libraries', 'copy:html']);
 
   //watch can usually not start two tasks parallel - it works with a function and defining the config explicit for watch
   grunt.registerTask('watch-fe', function(){
