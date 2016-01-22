@@ -2,6 +2,11 @@ button, input {
   outline: none;
 }
 
+button::-moz-focus-inner,
+input::-moz-focus-inner {
+  border: 0;
+}
+
 .main-content {
   input {
     width: 100%;
