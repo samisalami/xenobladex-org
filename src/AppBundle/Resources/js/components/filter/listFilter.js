@@ -5,30 +5,30 @@ angular.module('app')
         return function (list,filterValue,fieldname,childFieldname,returnEmpyList) {
             var result = [];
             if(!returnEmpyList && !filterValue) {
-                result = list;
+                return list.slice();
             } else {
                 if(list && filterValue) {
-                    var count = list.length;
-                    for (var i=0; i<count; i++) {
-                        var listValue = list[i];
+                    var item;
+                    var filterList = list.slice();
+                    while (item = filterList.shift()) {
+                        var listValue = item;
                         if(typeof fieldname !== 'undefined') {
-                            listValue = list[i][fieldname];
+                            listValue = item[fieldname];
                         }
-
                         if(listValue) {
                             if(childFieldname) {
                                 if(listValue[childFieldname] == filterValue) {
-                                    result.push(list[i]);
+                                    result.push(item);
                                 }
                             } else {
                                 if (String(listValue).toLowerCase().indexOf(String(filterValue).toLowerCase())!== -1) {
-                                    result.push(list[i]);
+                                    result.push(item);
                                 }
                             }
                         }
                     }
+                    return result;
                 }
             }
-            return result;
         };
     });
