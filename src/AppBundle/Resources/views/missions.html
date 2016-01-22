@@ -25,7 +25,20 @@ Im Allgemeinen ist das BLADE-Level nur eine Voraussetzung für Nebenjobs und kei
     <section class="collapse-grouped" ng-repeat="missionGroup in groupedMissions | orderBy:'name'">
         <h1>{{missionGroup.name || 'Nicht zugeordnet'}}</h1>
         <div class="collapse-item" ng-repeat="mission in missionGroup.rows | listFilter:namefilterValue:'name'| listFilter:bladeLevelfilterValue:'blade_level'| listFilter:chapterfilterValue:'chapter' | orderBy:[natural('name'), 'blade_level', 'chapter']  track by mission.id">
-            <a href="#mission-{{$parent.$index}}-{{$index}}" class="collapsed content-box" onclick="return false;" data-toggle="collapse" aria-expanded="false"><strong>{{mission.name}}</strong><span class="collapse-arrow fa"></span><span class="collapse-note">{{missionGroup.name}}</span></a>
+            <a href="#mission-{{$parent.$index}}-{{$index}}" class="collapsed content-box" onclick="return false;" data-toggle="collapse" aria-expanded="false">
+                <strong>{{mission.name}}</strong><span class="collapse-arrow fa"></span>
+                <ul class="collapse-notes">
+                    <li ng-if="mission.blade_level">
+                        <span>BLADE-Level {{mission.blade_level}}</span>
+                    </li>
+                    <li ng-if="mission.chapter">
+                        <span>Kapitel {{mission.chapter}}</span>
+                    </li>
+                    <li>
+                        {{missionGroup.name}}
+                    </li>
+                </ul>
+            </a>
             <div id="mission-{{$parent.$index}}-{{$index}}" class="content-box collapse">
                 <div class="content-body">
                     <div class="complete-row" ng-if="mission.person.name || mission.person_unrelated || mission.location_note">

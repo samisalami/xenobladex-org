@@ -32,10 +32,34 @@
       margin-bottom: 0;
     }
 
-    .collapse-note {
-      color: $color-bright-darkened;
-      float: right;
-      margin-right: $default-margin;
+    .collapse-notes {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+
+
+      li {
+        line-height: $font-size-copy;
+        color: $color-bright-darkened;
+        display: inline-block;
+
+        &:before {
+          content: ' | ';
+        }
+
+        &:first-child:before {
+          content: ' ';
+        }
+      }
+
+      @media (min-width: #{$screen-md-min}) {
+        float: right;
+        margin-right: $default-margin;
+
+        li {
+          line-height: 0;
+        }
+      }
     }
 
     .collapse-arrow {
