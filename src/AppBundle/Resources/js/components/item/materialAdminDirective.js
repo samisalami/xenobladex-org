@@ -3,7 +3,7 @@
 angular.module('app')
     .directive('materialAdmin',['itemService', 'flashService', '$filter', function(itemService, flashService, $filter) {
         return {
-            templateUrl:'js/components/material/materialAdminView.html',
+            templateUrl:'js/components/item/materialAdminView.html',
             replace: true,
             link: function($scope, $element,$attrs){
                 $scope.newItem = {};

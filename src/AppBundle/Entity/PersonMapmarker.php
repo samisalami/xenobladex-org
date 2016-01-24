@@ -14,8 +14,8 @@ class PersonMapmarker extends Mapmarker
 {
 
     /**
-     * @ORM\ManyToOne(targetEntity="Person", cascade={"persist"})
-     * @ORM\JoinColumn(name="person_id", referencedColumnName="id",nullable=true)
+     * @ORM\ManyToOne(targetEntity="Person", inversedBy="person", cascade={"all"})
+     * @ORM\JoinColumn(name="person_id", referencedColumnName="id",onDelete="CASCADE")
      */
     private $person;
 
@@ -40,15 +40,5 @@ class PersonMapmarker extends Mapmarker
     public function getPerson()
     {
         return $this->person;
-    }
-
-    public function getCustomRelation()
-    {
-        return $this->getPerson();
-    }
-
-    public function setCustomRelation(\AppBundle\Entity\Person $person = null)
-    {
-        return $this->setPerson($person);
     }
 }

@@ -28,7 +28,7 @@ class MonsterTypeController extends FOSRestController {
         $monster_type = $em->merge($deserialized_monsterType);
         $em->persist($monster_type);
         foreach($deserialized_monsterType->getMaterials() as $material) {
-            $material =  $em->merge($material);
+            $material = $em->merge($material);
             $material->addMonsterType($monster_type);
         }
         $em->flush();

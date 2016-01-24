@@ -15,7 +15,7 @@
                 </div>
             </div>
             <div class="row collapsed-table-row">
-                <div class="col-md-3 card card-block col-xs-12 collapsed-table-col" ng-repeat="column in columns" ng-if="(newItem[column.show] == column.showValue || !column.show) && !newItem[column.hide]">
+                <div class="col-md-3 card card-block col-xs-12 collapsed-table-col" ng-repeat="column in columns track by column.name" ng-if="(newItem[column.show] == column.showValue || !column.show) && !newItem[column.hide]">
                     <span class="info-icon text-primary" bs-tooltip ng-if="column.fieldInfoTooltip" bs-tooltip-title="{{column.fieldInfoTooltip}}"></span>
                     <strong>{{column.label}}</strong>
                     <p>

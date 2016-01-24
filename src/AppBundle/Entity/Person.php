@@ -89,7 +89,7 @@ class Person
 
     /**
      * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="PersonMapmarker", mappedBy="person", cascade={"all"}, orphanRemoval=true)
+     * @ORM\OneToMany(targetEntity="PersonMapmarker", mappedBy="person", cascade={"all"})
      * @Type("ArrayCollection<AppBundle\Entity\PersonMapmarker>")
      */
     private $mapmarkers;
@@ -101,7 +101,6 @@ class Person
     {
         $this->mapmarkers = new ArrayCollection();
     }
-
 
     /**
      * Get id

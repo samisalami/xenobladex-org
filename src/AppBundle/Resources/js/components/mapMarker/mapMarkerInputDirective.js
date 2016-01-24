@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app')
-    .directive('mapMarkerInput',['mapmarkerService', '$filter', '$timeout',function(mapMarkerService, $filter, $timeout) {
+    .directive('mapmarkerInput',['mapmarkerService', '$filter', '$timeout',function(mapMarkerService, $filter, $timeout) {
         return {
             restrict: 'EA',
             templateUrl:'js/components/mapMarker/mapmarkerInputView.html',

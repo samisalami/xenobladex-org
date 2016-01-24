@@ -35,40 +35,23 @@ class PersonController extends FOSRestController {
      */
     protected function updatePerson(Person $deserialized_person) {
         $em = $this->getDoctrine()->getManager();
+        $newMapmarker = [];
 
-        $newMapmarkers = $deserialized_person->getMapmarkers();
-        $tempMapmarkers = [];
+        $dbPerson = $em->getRepository('AppBundle:Person')->find($deserialized_person->getId());
 
-        foreach($newMapmarkers as $newMapmarker) {
-            if(!$newMapmarker->getId()) {
-                $tempMapmarkers[] = $newMapmarker;
-                $deserialized_person->removeMapmarker($newMapmarker);
-            }
+        foreach($deserialized_person->getMapmarkers() as $mapmarker) {
+            $mapmarker =  $em->merge($mapmarker);
+            $mapmarker->setPerson($dbPerson);
+            $newMapmarker[] = $mapmarker;
         }
 
-        $updated_person = $em->merge($deserialized_person);
+        $personMapmarkers = $dbPerson->getMapmarkers();
 
-        $currentMapmarkers = $updated_person->getMapmarkers();
-
-        $count = $newMapmarkers->count();
-        foreach($currentMapmarkers as $currentMapmarker) {
-            $deleted = true;
-            for($i=0;$i<$count; $i++) {
-                $newMapmarker = $newMapmarkers->get($i);
-                if($newMapmarker->getId() === $currentMapmarker->getId()) {
-                    $deleted = false;
-                }
-
-                if($i === ($count-1) && $deleted) {
-                    $mapmarker = $em->merge($currentMapmarker);
-                    $updated_person->removeMapmarker($mapmarker);
-                }
+        foreach ($personMapmarkers as $mapmarker) {
+            if(!in_array($mapmarker,$newMapmarker,true)) {
+                $dbPerson->removeMapmarker($mapmarker);
+                $em->remove($mapmarker);
             }
-        }
-
-        foreach($tempMapmarkers as $tempMapmarker) {
-            $mapmarker = $em->merge($tempMapmarker);
-            $updated_person->addMapmarker($mapmarker);
         }
 
         $em->flush();
@@ -117,10 +100,13 @@ class PersonController extends FOSRestController {
         return new Response(Response::HTTP_OK);
     }
 
-    public function deletePersonAction($id) {
-        $person = $this->getDoctrine()
-            ->getRepository('AppBundle:Person')
-            ->find($id);
+    /*
+     * @Route("/api/person/delete/{id}", methods={"DELETE"})
+     * @ParamConverter("person", class="AppBundle:Person")
+     * @param Person $person
+     * @return Response
+     */
+    public function deletePersonAction(Person $person) {
         $this->deletePerson($person);
         $serializer = $this->getJMSSerializer();
         $response = new Response($serializer->serialize($person, 'json'));
