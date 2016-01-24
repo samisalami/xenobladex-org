@@ -12,9 +12,10 @@ angular.module('app')
         editableText: 'js/components/form/editableTextView.html',
         editableStringSelect: 'js/components/form/editableStringSelectView.html',
         editableObjectSelect: 'js/components/form/editableObjectSelectView.html',
-        customMissionPersonSelect: 'js/components/form/customMissionPersonSelect.html',
+        customAutoCompleteSelect: 'js/components/form/customAutoCompleteSelect.html',
         customAttachmentInput: 'js/components/form/customAttachmentInput.html',
         customMapmarkerInput: 'js/components/form/customMapmarkerInput.html',
-        customMaterialInput: 'js/components/form/customMaterialInput.html'
+        customMaterialInput: 'js/components/form/customMaterialInput.html',
+        customMonsterMaterialInput: 'js/components/form/customMonsterMaterialInput.html'
     };
 });

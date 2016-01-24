@@ -20,6 +20,7 @@ class MaterialController extends FOSRestController {
         $em = $this->getDoctrine()->getManager();
         $em->remove($material);
         $em->flush();
+        $em->clear();
     }
 
     protected function addMaterial(Material $deserialized_material) {
@@ -27,12 +28,14 @@ class MaterialController extends FOSRestController {
         $material = $em->merge($deserialized_material);
         $em->persist($material);
         $em->flush();
+        $em->clear();
     }
 
     protected function updateMaterial(Material $deserialized_material) {
         $em = $this->getDoctrine()->getManager();
         $updated_material = $em->merge($deserialized_material);
         $em->flush();
+        $em->clear();
     }
 
     /**
@@ -44,6 +47,7 @@ class MaterialController extends FOSRestController {
         $serializer = $this->getJMSSerializer();
         $response = new Response($serializer->serialize($materials, 'json'));
         $response->headers->set('Content-Type', 'application/json');
+        $em->clear();
         return $response;
     }
 

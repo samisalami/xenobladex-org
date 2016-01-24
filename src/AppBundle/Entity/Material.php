@@ -5,12 +5,17 @@ namespace AppBundle\Entity;
 use AppBundle\Entity\MonsterType;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\Expose;
+use JMS\Serializer\Annotation\ExclusionPolicy;
 
 /**
  * Material
  *
+ * http://stackoverflow.com/questions/33399403/symfony2-entity-findall-return-large-response-on-api
+ *
  * @ORM\Table(name="xenobladex_item_material")
  * @ORM\Entity
+ * @ExclusionPolicy("all")
  */
 class Material extends Item
 {
@@ -19,8 +24,14 @@ class Material extends Item
      */
     private $monster_types;
 
+    /**
+     * @ORM\ManyToMany(targetEntity="Monster", mappedBy="materials", cascade={"persist"})
+     */
+    private $monsters;
+
     public function __construct() {
         $this->monster_types = new ArrayCollection();
+        $this->monsters = new ArrayCollection();
     }
 
     /**
@@ -56,5 +67,41 @@ class Material extends Item
     public function getMonsterTypes()
     {
         return $this->monster_types;
+    }
+
+    /**
+     * Add monsters
+     *
+     * @param \AppBundle\Entity\Monster $monster
+     * @return Material
+     */
+    public function addMonster(\AppBundle\Entity\Monster $monster)
+    {
+        if (!$this->monsters->contains($monster)) {
+            $this->monsters[] = $monster;
+            $monster->addMaterial($this);
+        }
+
+        return $this;
+    }
+
+    /**
+     * Remove monsters
+     *
+     * @param \AppBundle\Entity\Monster $monsters
+     */
+    public function removeMonster(\AppBundle\Entity\Monster $monster)
+    {
+        $this->monsters->removeElement($monster);
+    }
+
+    /**
+     * Get monsters
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getMonsters()
+    {
+        return $this->monsters;
     }
 }

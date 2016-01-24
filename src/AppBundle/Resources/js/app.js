@@ -61,6 +61,9 @@ function config($routeProvider, $locationProvider) {
       .when('/admin/kartenpunkte', {
         templateUrl: 'views/admin_mapmarkers.html'
       })
+      .when('/admin/monster', {
+        templateUrl: 'views/admin_monsters.html'
+      })
       .when('/admin/monster_gattungen', {
         templateUrl: 'views/admin_monsterTypes.html'
       })

@@ -37,16 +37,16 @@ class MonsterTypeController extends FOSRestController {
     protected function updateMonsterType(MonsterType $deserialized_monsterType) {
         $em = $this->getDoctrine()->getManager();
         $monster_type = $em->merge($deserialized_monsterType);
-        $newMaterial = [];
+        $newMaterials = [];
 
         foreach($deserialized_monsterType->getMaterials() as $material) {
             $material =  $em->merge($material);
             $material->addMonsterType($monster_type);
-            $newMaterial[] = $material;
+            $newMaterials[] = $material;
         }
 
         foreach ($monster_type->getMaterials() as $material) {
-            if(!in_array($material,$newMaterial,true)) {
+            if(!in_array($material,$newMaterials,true)) {
                 $monster_type->removeMaterial($material);
             }
         }

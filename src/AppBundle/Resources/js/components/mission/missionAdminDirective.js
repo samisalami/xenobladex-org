@@ -55,7 +55,7 @@ angular.module('app')
                                 showValue: true,
                                 label: 'Auftraggeber',
                                 name: 'person',
-                                type: 'customMissionPersonSelect',
+                                type: 'customAutoCompleteSelect',
                                 data: $scope.persons
                             },
                             {

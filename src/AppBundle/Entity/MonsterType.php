@@ -118,8 +118,8 @@ class MonsterType
         if (!$this->materials->contains($material)) {
             $this->materials->add($material);
             $material->addMonsterType($this);
-            return $this;
         }
+        return $this;
     }
 
     /**

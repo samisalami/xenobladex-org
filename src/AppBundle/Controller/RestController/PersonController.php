@@ -37,19 +37,19 @@ class PersonController extends FOSRestController {
         $em = $this->getDoctrine()->getManager();
         $newMapmarker = [];
 
-        $dbPerson = $em->getRepository('AppBundle:Person')->find($deserialized_person->getId());
+        $person = $em->getRepository('AppBundle:Person')->find($deserialized_person->getId());
 
         foreach($deserialized_person->getMapmarkers() as $mapmarker) {
             $mapmarker =  $em->merge($mapmarker);
-            $mapmarker->setPerson($dbPerson);
+            $mapmarker->setPerson($person);
             $newMapmarker[] = $mapmarker;
         }
 
-        $personMapmarkers = $dbPerson->getMapmarkers();
+        $personMapmarkers = $person->getMapmarkers();
 
         foreach ($personMapmarkers as $mapmarker) {
             if(!in_array($mapmarker,$newMapmarker,true)) {
-                $dbPerson->removeMapmarker($mapmarker);
+                $person->removeMapmarker($mapmarker);
                 $em->remove($mapmarker);
             }
         }

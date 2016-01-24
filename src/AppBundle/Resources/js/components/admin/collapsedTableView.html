@@ -15,11 +15,11 @@
                 </div>
             </div>
             <div class="row collapsed-table-row">
-                <div class="col-md-3 card card-block col-xs-12 collapsed-table-col" ng-repeat="column in columns track by column.name" ng-if="(newItem[column.show] == column.showValue || !column.show) && !newItem[column.hide]">
+                <div class="col-md-3 card card-block col-xs-12 collapsed-table-col" ng-repeat="column in columns" ng-if="(newItem[column.show] == column.showValue || !column.show) && !newItem[column.hide]">
                     <span class="info-icon text-primary" bs-tooltip ng-if="column.fieldInfoTooltip" bs-tooltip-title="{{column.fieldInfoTooltip}}"></span>
                     <strong>{{column.label}}</strong>
                     <p>
-                        <form-field attachment-type="{{column.attachmentType}}" ng-if="column.type" form-field-bind="newItem[column.name]" form-select-options="column.data" form-template="{{column.type}}"></form-field>
+                        <form-field attachment-type="{{column.attachmentType}}" ng-if="column.type" form-field-bind="column.name ? newItem[column.name] : newItem" form-select-options="column.data" form-template="{{column.type}}"></form-field>
                     </p>
                 </div>
             </div>
@@ -42,11 +42,11 @@
                     </div>
                 </div>
                 <div class="row collapsed-table-row">
-                    <div class="collapsed-table-col col-lg-3 card card-block col-xs-12" ng-repeat="column in columns track by column.name" ng-if="(item[column.show] == column.showValue || !column.show) && !item[column.hide]">
+                    <div class="collapsed-table-col col-lg-3 card card-block col-xs-12" ng-repeat="column in columns" ng-if="(item[column.show] == column.showValue || !column.show) && !item[column.hide]">
                         <span class="info-icon text-primary" bs-tooltip ng-if="column.fieldInfoTooltip" bs-tooltip-title="{{column.fieldInfoTooltip}}"></span>
                         <strong>{{column.label}}</strong>
                         <p>
-                            <form-field ng-if="column.type" attachment-type="{{column.attachmentType}}" form-field-bind="item[column.name]" form-field-action="updateItem({item:item})" form-field-action-param="item" form-select-options="column.data" form-template="{{column.type}}"></form-field>
+                            <form-field ng-if="column.type" attachment-type="{{column.attachmentType}}" form-field-bind="column.name ? item[column.name] : item" form-field-action="updateItem({item:item})" form-field-action-param="item" form-select-options="column.data" form-template="{{column.type}}"></form-field>
                         </p>
                     </div>
                 </div>

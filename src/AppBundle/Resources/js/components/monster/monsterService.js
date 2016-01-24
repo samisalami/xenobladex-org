@@ -4,6 +4,31 @@ angular.module('app')
     .factory('monsterService', ['$http', '$timeout', function($http, $timeout) {
         var service = {};
 
+        service.getMonsters = function(callback) {
+            $http.get(Routing.generate('get_monsters')).success(function(response){
+                callback(response);
+            });
+        };
+
+        service.addMonster = function(monsterType, callback) {
+            $http.post(Routing.generate('add_monster'), monsterType).success(function(){
+                callback();
+            });
+        };
+
+        service.updateMonster = function(monsterType) {
+            var promise = $timeout(function() {
+                $http.post(Routing.generate('update_monster'), monsterType);
+                $timeout.cancel(promise);
+            }, 100);
+        };
+
+        service.deleteMonster = function(id, callback) {
+            $http.delete(Routing.generate('delete_monster')+'/'+id).success(function(response){
+                callback(response);
+            });
+        };
+
         service.getMonsterTypes = function(callback) {
             $http.get(Routing.generate('get_monster_types')).success(function(response){
                 callback(response);

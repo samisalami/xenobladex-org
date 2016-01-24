@@ -5,7 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * PersonMapMarker
+ * PersonMapmarker
  *
  * @ORM\Table(name="xenobladex_mapmarker_person")
  * @ORM\Entity
