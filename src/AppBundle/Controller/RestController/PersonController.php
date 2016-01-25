@@ -35,25 +35,21 @@ class PersonController extends FOSRestController {
      */
     protected function updatePerson(Person $deserialized_person) {
         $em = $this->getDoctrine()->getManager();
-        $newMapmarker = [];
 
+        //mapmarkers
         $person = $em->getRepository('AppBundle:Person')->find($deserialized_person->getId());
+        $newMapmarkers = $deserialized_person->getMapmarkers();
+        $currentMapmarkers = $person->getMapmarkers();
 
-        foreach($deserialized_person->getMapmarkers() as $mapmarker) {
-            $mapmarker =  $em->merge($mapmarker);
-            $mapmarker->setPerson($person);
-            $newMapmarker[] = $mapmarker;
-        }
-
-        $personMapmarkers = $person->getMapmarkers();
-
-        foreach ($personMapmarkers as $mapmarker) {
-            if(!in_array($mapmarker,$newMapmarker,true)) {
-                $person->removeMapmarker($mapmarker);
+        foreach($currentMapmarkers as $mapmarker) {
+            $mapmarker = $em->merge($mapmarker);
+            if(!in_array($mapmarker,$newMapmarkers,true)) {
+                $deserialized_person->removeMapmarker($mapmarker);
                 $em->remove($mapmarker);
             }
         }
 
+        $em->merge($deserialized_person);
         $em->flush();
     }
 
