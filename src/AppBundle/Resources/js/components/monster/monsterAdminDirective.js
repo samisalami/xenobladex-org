@@ -158,7 +158,7 @@ angular.module('app')
                             },
                             {
                                 label: 'Gattung',
-                                name: null,
+                                name: 'materials',
                                 type: 'customMonsterMaterialInput',
                                 data: $scope.monsterTypes,
                                 fieldInfoTooltip: 'In erster Zeile neues Material (muss nicht existieren) verknüpfen dann "Hinzufügen" wählen -> Änderungen werden via Häkchen oder bei neuer Gattung via "Hinzufügen" permanent gespeichert'
