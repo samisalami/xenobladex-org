@@ -18,6 +18,7 @@ angular.module('app')
                 $scope.visibleElements = [];
                 $scope.columns = $scope.formModel.fields;
 
+
                 $scope.visible = function(item, $event) {
                     var id = angular.element($event.target).data('target');
                     if(angular.element(id).hasClass('in')) {
