@@ -42,8 +42,7 @@ class PersonController extends FOSRestController {
         $currentMapmarkers = $person->getMapmarkers();
 
         foreach($currentMapmarkers as $mapmarker) {
-            $mapmarker = $em->merge($mapmarker);
-            if(!in_array($mapmarker,$newMapmarkers,true)) {
+            if(!$newMapmarkers->contains($mapmarker)) {
                 $deserialized_person->removeMapmarker($mapmarker);
                 $em->remove($mapmarker);
             }

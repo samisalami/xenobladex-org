@@ -16,6 +16,6 @@ angular.module('app')
         customAttachmentInput: 'js/components/form/customAttachmentInput.html',
         customMapmarkerInput: 'js/components/form/customMapmarkerInput.html',
         customMaterialInput: 'js/components/form/customMaterialInput.html',
-        customMonsterMaterialInput: 'js/components/form/customMonsterMaterialInput.html'
+        customMonsterMonsterTypeInput: 'js/components/form/customMonsterMonsterTypeInput.html'
     };
 });

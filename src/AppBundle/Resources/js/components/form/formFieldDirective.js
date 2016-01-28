@@ -8,6 +8,7 @@ angular.module('app')
                 formFieldBind: '=',
                 formFieldActionParam: '=',
                 formFieldAction: '&',
+                formFieldCallback: '&',
                 formTemplate: '@',
                 formSelectOptions: '='
             },

@@ -42,7 +42,7 @@ class Monster
      *
      * @ORM\Column(name="level_max", type="smallint")
      */
-    private $levelMax;
+    private $levelMax=0;
 
     /**
      * @var string

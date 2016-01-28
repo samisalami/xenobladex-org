@@ -32,12 +32,11 @@ class MonsterController extends FOSRestController {
 
     protected function updateMonster(Monster $deserialized_monster) {
         $em = $this->getDoctrine()->getManager();
-        $newMaterials = [];
-        $newMapmarkers = [];
-
-        $monster = $em->getRepository('AppBundle:Person')->find($deserialized_monster->getId());
 
         //material
+        $newMaterials = [];
+        $monster = $em->getRepository('AppBundle:Monster')->find($deserialized_monster->getId());
+
         foreach($deserialized_monster->getMaterials() as $material) {
             $material =  $em->merge($material);
             $material->addMonster($monster);
@@ -52,21 +51,20 @@ class MonsterController extends FOSRestController {
             }
         }
 
+
         //mapmarkers
-        foreach($deserialized_monster->getMapmarkers() as $mapmarker) {
-            $mapmarker =  $em->merge($mapmarker);
-            $mapmarker->setMonster($monster);
-            $newMapmarkers[] = $mapmarker;
-        }
+        $newMapmarkers = $deserialized_monster->getMapmarkers();
+        $currentMapmarkers = $monster->getMapmarkers();
 
-        $monsterMapmarkers = $monster->getMapmarkers();
-
-        foreach ($monsterMapmarkers as $mapmarker) {
-            if(!in_array($mapmarker,$newMapmarkers,true)) {
-                $monster->removeMapmarker($mapmarker);
+        foreach($currentMapmarkers as $mapmarker) {
+            if(!$newMapmarkers->contains($mapmarker)) {
+                $mapmarker = $em->merge($mapmarker);
+                $deserialized_monster->removeMapmarker($mapmarker);
                 $em->remove($mapmarker);
             }
         }
+
+        $em->merge($deserialized_monster);
         $em->flush();
     }
 

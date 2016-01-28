@@ -9,11 +9,9 @@ angular.module('app')
                 var monsterTypeDataLoaded = false;
                 var materialDataLoaded = false;
                 var mapDataLoaded = false;
+
                 $scope.newMonster = {
-                    materials: [],
-                    monster_type: {
-                        materials: []
-                    }
+                    materials: []
                 };
 
                 var regions = [
@@ -158,10 +156,16 @@ angular.module('app')
                             },
                             {
                                 label: 'Gattung',
-                                name: 'materials',
-                                type: 'customMonsterMaterialInput',
+                                type: 'customMonsterMonsterTypeInput',
                                 data: $scope.monsterTypes,
-                                fieldInfoTooltip: 'In erster Zeile neues Material (muss nicht existieren) verknüpfen dann "Hinzufügen" wählen -> Änderungen werden via Häkchen oder bei neuer Gattung via "Hinzufügen" permanent gespeichert'
+                                fieldInfoTooltip: 'Das Auswählen einer Gattung überschreibt die bestehenden Materialien.'
+                            },
+                            {
+                                label: 'Material',
+                                name: 'materials',
+                                type: 'customMaterialInput',
+                                data: $scope.materials,
+                                fieldInfoTooltip: 'Wähle eine Gattung aus, um die Materialien der Gattung hier zu erhalten, die dann angepasst werden können.'
                             }
                         ]
                     };
