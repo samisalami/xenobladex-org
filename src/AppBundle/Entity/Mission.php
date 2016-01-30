@@ -2,7 +2,10 @@
 
 namespace AppBundle\Entity;
 
+use AppBundle\Entity\MissionMapmarker;
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\Type;
 
 /**
  * Mission
@@ -130,6 +133,13 @@ class Mission
      * @ORM\Column(name="chapter", type="smallint")
      */
     private $chapter = 0;
+
+    /**
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="MissionMapmarker", mappedBy="mission", cascade={"all"})
+     * @Type("ArrayCollection<AppBundle\Entity\MissionMapmarker>")
+     */
+    private $mapmarkers;
 
 
     /**
@@ -508,5 +518,46 @@ class Mission
     public function getChapter()
     {
         return $this->chapter;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->mapmarkers = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add mapmarkers
+     *
+     * @param MissionMapmarker $mapmarkers
+     * @return Mission
+     */
+    public function addMapmarker(MissionMapmarker $mapmarkers)
+    {
+        $this->mapmarkers[] = $mapmarkers;
+
+        return $this;
+    }
+
+    /**
+     * Remove mapmarkers
+     *
+     * @param MissionMapmarker $mapmarker
+     */
+    public function removeMapmarker(MissionMapmarker $mapmarker)
+    {
+        $this->mapmarkers->removeElement($mapmarker);
+        $mapmarker->setMission(null);
+    }
+
+    /**
+     * Get mapmarkers
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getMapmarkers()
+    {
+        return $this->mapmarkers;
     }
 }

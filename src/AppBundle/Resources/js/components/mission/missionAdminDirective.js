@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app')
-    .directive('missionAdmin',['missionService', 'personService', 'flashService', '$filter', function(missionService, personService, flashService, $filter) {
+    .directive('missionAdmin',['missionService', 'personService', 'mapService', 'flashService', '$filter', function(missionService, personService, mapService, flashService, $filter) {
         return {
             restrict: 'E',
             templateUrl:'js/components/mission/missionAdminView.html',
@@ -10,6 +10,7 @@ angular.module('app')
                 $scope.newMission = {};
                 var personDataLoaded = false;
                 var missionTypesDataLoaded = false;
+                var mapDataLoaded = false;
 
                 var sidejobTypes = [
                     {name:'Suche'},
@@ -32,7 +33,7 @@ angular.module('app')
                 ];
 
                 $scope.dataLoaded = function(){
-                    return personDataLoaded && missionTypesDataLoaded;
+                    return personDataLoaded && missionTypesDataLoaded && mapDataLoaded;
                 };
 
                 $scope.$watch($scope.dataLoaded, function(dataLoaded){
@@ -130,23 +131,34 @@ angular.module('app')
                                 name: 'mission_type',
                                 type: 'editableObjectSelect',
                                 data: $scope.missionTypes
+                            },
+                            {
+                                label: 'Karte',
+                                name: 'mapmarkers',
+                                type: 'customMapmarkerInput',
+                                data: $scope.maps
                             }
                         ]
                     };
                 };
+
+                missionService.getMissions(function(response){
+                    $scope.missions = response;
+                });
 
                 missionService.getMissionTypes(function(response){
                     $scope.missionTypes = response;
                     missionTypesDataLoaded = true;
                 });
 
-                missionService.getMissions(function(response){
-                    $scope.missions = response;
-                });
-
                 personService.getPersons(function(response){
                     $scope.persons = response;
                     personDataLoaded = true;
+                });
+
+                mapService.getMaps(function(response){
+                    $scope.maps = response;
+                    mapDataLoaded = true;
                 });
 
                 $scope.updateMission = function(mission) {

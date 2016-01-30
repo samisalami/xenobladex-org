@@ -31,7 +31,33 @@ class MissionController extends FOSRestController {
 
     protected function updateMission(Mission $deserialized_mission) {
         $em = $this->getDoctrine()->getManager();
-        $updated_mission = $em->merge($deserialized_mission);
+
+        //mapmarkers
+        $mission = $em->getRepository('AppBundle:Mission')->find($deserialized_mission->getId());
+        $newMapmarkers = $deserialized_mission->getMapmarkers();
+        $countNewMapmarkers = count($newMapmarkers);
+        $currentMapmarkers = $mission->getMapmarkers();
+
+        foreach($currentMapmarkers as $currentMapmarker) {
+            $counter = 0;
+            $exists = false;
+            foreach($newMapmarkers as $newMapmarker) {
+                if($newMapmarker->getId()) {
+                    if($newMapmarker->getId() == $currentMapmarker->getId()) {
+                        $exists = true;
+                    }
+                }
+
+                $counter++;
+
+                if($counter==$countNewMapmarkers && !$exists) {
+                    $deserialized_mission->removeMapmarker($currentMapmarker);
+                    $em->remove($currentMapmarker);
+                }
+            }
+        }
+
+        $em->merge($deserialized_mission);
         $em->flush();
     }
 
