@@ -107,9 +107,58 @@ angular.module('app')
                                 type: 'inputCheckbox'
                             },
                             {
+                                label: 'Boss?',
+                                name: 'is_story',
+                                type: 'inputCheckbox',
+                                fieldInfoTooltip: 'Handlungs- & Missionsgegner'
+                            },
+                            {
+                                label: 'HP',
+                                name: 'hp',
+                                type: 'editableText',
+                                fieldInfoTooltip: 'Text - Zahlenraum mit Minus angeben'
+                            },
+                            {
                                 label: 'EP',
                                 name: 'ep',
-                                type: 'editableText'
+                                type: 'editableText',
+                                fieldInfoTooltip: 'Text - Zahlenraum mit Minus angeben'
+                            },
+                            {
+                                label: 'Resistenz - Physisch',
+                                name: 'res_physic',
+                                type: 'editableText',
+                                fieldInfoTooltip: 'Nur Zahlen erlaubt'
+                            },
+                            {
+                                label: 'Resistenz - Laser',
+                                name: 'res_laser',
+                                type: 'editableText',
+                                fieldInfoTooltip: 'Nur Zahlen erlaubt'
+                            },
+                            {
+                                label: 'Resistenz - Äther',
+                                name: 'res_ether',
+                                type: 'editableText',
+                                fieldInfoTooltip: 'Nur Zahlen erlaubt'
+                            },
+                            {
+                                label: 'Resistenz - Thermo',
+                                name: 'res_thermo',
+                                type: 'editableText',
+                                fieldInfoTooltip: 'Nur Zahlen erlaubt'
+                            },
+                            {
+                                label: 'Resistenz - Elektro',
+                                name: 'res_electric',
+                                type: 'editableText',
+                                fieldInfoTooltip: 'Nur Zahlen erlaubt'
+                            },
+                            {
+                                label: 'Resistenz - Gravit',
+                                name: 'res_gravit',
+                                type: 'editableText',
+                                fieldInfoTooltip: 'Nur Zahlen erlaubt'
                             },
                             {
                                 label: 'Aggression - Tag',

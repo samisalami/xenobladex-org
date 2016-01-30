@@ -66,11 +66,67 @@ class Monster
     private $isUnique=false;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_story", type="boolean")
+     */
+    private $isStory=false;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="ep", type="string", length=255)
      */
     private $ep='';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="hp", type="string", length=255)
+     */
+    private $hp='';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="res_physic", type="smallint")
+     */
+    private $resPhysic=0;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="res_laser", type="smallint")
+     */
+    private $resLaser=0;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="res_ether", type="smallint")
+     */
+    private $resEther=0;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="res_thermo", type="smallint")
+     */
+    private $resThermo=0;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="res_electric", type="smallint")
+     */
+    private $resElectric=0;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="res_gravit", type="smallint")
+     */
+    private $resGravit=0;
 
     /**
      * @var string
@@ -580,5 +636,189 @@ class Monster
     public function getRegion()
     {
         return $this->region;
+    }
+
+    /**
+     * Set isStory
+     *
+     * @param boolean $isStory
+     * @return Monster
+     */
+    public function setIsStory($isStory)
+    {
+        $this->isStory = $isStory;
+
+        return $this;
+    }
+
+    /**
+     * Get isStory
+     *
+     * @return boolean 
+     */
+    public function getIsStory()
+    {
+        return $this->isStory;
+    }
+
+    /**
+     * Set hp
+     *
+     * @param string $hp
+     * @return Monster
+     */
+    public function setHp($hp)
+    {
+        $this->hp = $hp;
+
+        return $this;
+    }
+
+    /**
+     * Get hp
+     *
+     * @return string 
+     */
+    public function getHp()
+    {
+        return $this->hp;
+    }
+
+    /**
+     * Set resPhysic
+     *
+     * @param integer $resPhysic
+     * @return Monster
+     */
+    public function setResPhysic($resPhysic)
+    {
+        $this->resPhysic = $resPhysic;
+
+        return $this;
+    }
+
+    /**
+     * Get resPhysic
+     *
+     * @return integer 
+     */
+    public function getResPhysic()
+    {
+        return $this->resPhysic;
+    }
+
+    /**
+     * Set resLaser
+     *
+     * @param integer $resLaser
+     * @return Monster
+     */
+    public function setResLaser($resLaser)
+    {
+        $this->resLaser = $resLaser;
+
+        return $this;
+    }
+
+    /**
+     * Get resLaser
+     *
+     * @return integer 
+     */
+    public function getResLaser()
+    {
+        return $this->resLaser;
+    }
+
+    /**
+     * Set resEther
+     *
+     * @param integer $resEther
+     * @return Monster
+     */
+    public function setResEther($resEther)
+    {
+        $this->resEther = $resEther;
+
+        return $this;
+    }
+
+    /**
+     * Get resEther
+     *
+     * @return integer 
+     */
+    public function getResEther()
+    {
+        return $this->resEther;
+    }
+
+    /**
+     * Set resThermo
+     *
+     * @param integer $resThermo
+     * @return Monster
+     */
+    public function setResThermo($resThermo)
+    {
+        $this->resThermo = $resThermo;
+
+        return $this;
+    }
+
+    /**
+     * Get resThermo
+     *
+     * @return integer 
+     */
+    public function getResThermo()
+    {
+        return $this->resThermo;
+    }
+
+    /**
+     * Set resElectric
+     *
+     * @param integer $resElectric
+     * @return Monster
+     */
+    public function setResElectric($resElectric)
+    {
+        $this->resElectric = $resElectric;
+
+        return $this;
+    }
+
+    /**
+     * Get resElectric
+     *
+     * @return integer 
+     */
+    public function getResElectric()
+    {
+        return $this->resElectric;
+    }
+
+    /**
+     * Set resGravit
+     *
+     * @param integer $resGravit
+     * @return Monster
+     */
+    public function setResGravit($resGravit)
+    {
+        $this->resGravit = $resGravit;
+
+        return $this;
+    }
+
+    /**
+     * Get resGravit
+     *
+     * @return integer 
+     */
+    public function getResGravit()
+    {
+        return $this->resGravit;
     }
 }
