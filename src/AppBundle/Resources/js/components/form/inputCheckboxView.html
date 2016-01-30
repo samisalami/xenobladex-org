@@ -1,6 +1,2 @@
-<div class="checkbox">
-    <label for="{{contentId}}">
-        <input type="checkbox" id="{{contentId}}" ng-model="$parent.formFieldBind" />
-        {{formFieldLabel}}
-    </label>
-</div>
+<input type="checkbox" ng-model="$parent.formFieldBind" /><br/>
+<a href="#" ng-if="formFieldActionParam" class="clear-both btn btn-primary m-t-1" ng-click="formFieldAction({item : formFieldActionParam})"><span class="fa fa-check"></span></a>
