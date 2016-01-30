@@ -39,12 +39,25 @@ class PersonController extends FOSRestController {
         //mapmarkers
         $person = $em->getRepository('AppBundle:Person')->find($deserialized_person->getId());
         $newMapmarkers = $deserialized_person->getMapmarkers();
+        $countNewMapmarkers = count($newMapmarkers);
         $currentMapmarkers = $person->getMapmarkers();
 
-        foreach($currentMapmarkers as $mapmarker) {
-            if(!$newMapmarkers->contains($mapmarker)) {
-                $deserialized_person->removeMapmarker($mapmarker);
-                $em->remove($mapmarker);
+        foreach($currentMapmarkers as $currentMapmarker) {
+            $counter = 0;
+            $exists = false;
+            foreach($newMapmarkers as $newMapmarker) {
+                if($newMapmarker->getId()) {
+                    if($newMapmarker->getId() == $currentMapmarker->getId()) {
+                        $exists = true;
+                    }
+                }
+
+                $counter++;
+
+                if($counter==$countNewMapmarkers && !$exists) {
+                    $deserialized_person->removeMapmarker($currentMapmarker);
+                    $em->remove($currentMapmarker);
+                }
             }
         }
 
@@ -87,8 +100,8 @@ class PersonController extends FOSRestController {
             $deserialized_person = $serializer->deserialize($content, 'AppBundle\Entity\Person', 'json');
 
             $this->updatePerson($deserialized_person);
-            $response = new Response($serializer->serialize($deserialized_person, 'json'));
 
+            $response = new Response($serializer->serialize($deserialized_person, 'json'));
             $response->headers->set('Content-Type', 'application/json');
             return $response;
         }

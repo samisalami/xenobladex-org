@@ -66,7 +66,7 @@ angular.module('app')
 
                 var initFormModel = function() {
                     $scope.formModel = {
-                        orderBy: ['monster_type.name', 'name'],
+                        orderBy: ['monster_type.prio', 'name'],
                         fields:[
                             {
                                 label: 'Region',
@@ -158,7 +158,7 @@ angular.module('app')
                                 label: 'Gattung',
                                 type: 'customMonsterMonsterTypeInput',
                                 data: $scope.monsterTypes,
-                                fieldInfoTooltip: 'Das Auswählen einer Gattung überschreibt die bestehenden Materialien.'
+                                fieldInfoTooltip: 'Das Auswählen einer Gattung überschreibt die Materialien. Manchmal muss man außerhalb des Felds klicken, damit die Materialien eingefügt werden.'
                             },
                             {
                                 label: 'Material',

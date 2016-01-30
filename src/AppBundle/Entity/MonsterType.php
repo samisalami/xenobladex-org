@@ -38,6 +38,13 @@ class MonsterType
     private $description="";
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="prio", type="smallint")
+     */
+    private $prio=0;
+
+    /**
      * @ORM\ManyToMany(targetEntity="Material", cascade={"persist"})
      * @ORM\JoinTable(name="xenobladex_monster_type_material",
      *      joinColumns={@ORM\JoinColumn(name="monster_type_id", referencedColumnName="id", onDelete="CASCADE")},
@@ -140,5 +147,28 @@ class MonsterType
     public function getMaterials()
     {
         return $this->materials;
+    }
+
+    /**
+     * Set prio
+     *
+     * @param integer $prio
+     * @return MonsterType
+     */
+    public function setPrio($prio)
+    {
+        $this->prio = $prio;
+
+        return $this;
+    }
+
+    /**
+     * Get prio
+     *
+     * @return integer 
+     */
+    public function getPrio()
+    {
+        return $this->prio;
     }
 }

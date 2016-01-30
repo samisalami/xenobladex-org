@@ -54,13 +54,25 @@ class MonsterController extends FOSRestController {
 
         //mapmarkers
         $newMapmarkers = $deserialized_monster->getMapmarkers();
+        $countNewMapmarkers = count($newMapmarkers);
         $currentMapmarkers = $monster->getMapmarkers();
 
-        foreach($currentMapmarkers as $mapmarker) {
-            if(!$newMapmarkers->contains($mapmarker)) {
-                $mapmarker = $em->merge($mapmarker);
-                $deserialized_monster->removeMapmarker($mapmarker);
-                $em->remove($mapmarker);
+        foreach($currentMapmarkers as $currentMapmarker) {
+            $counter = 0;
+            $exists = false;
+            foreach($newMapmarkers as $newMapmarker) {
+                if($newMapmarker->getId()) {
+                    if($newMapmarker->getId() == $currentMapmarker->getId()) {
+                        $exists = true;
+                    }
+                }
+
+                $counter++;
+
+                if($counter==$countNewMapmarkers && !$exists) {
+                    $deserialized_monster->removeMapmarker($currentMapmarker);
+                    $em->remove($currentMapmarker);
+                }
             }
         }
 

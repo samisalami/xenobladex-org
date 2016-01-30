@@ -13,7 +13,7 @@ angular.module('app')
 
                 var initFormModel = function() {
                     $scope.formModel = {
-                        orderBy: ['name'],
+                        orderBy: ['prio', 'name'],
                         fields:[
                             {
                                 label: 'Beschreibung',
@@ -27,6 +27,12 @@ angular.module('app')
                                 type: 'customMaterialInput',
                                 data: $scope.materials,
                                 fieldInfoTooltip: 'In erster Zeile neues Material (muss nicht existieren) verknüpfen dann "Hinzufügen" wählen -> Änderungen werden via Häkchen oder bei neuer Gattung via "Hinzufügen" permanent gespeichert'
+                            },
+                            {
+                                label: 'Sortierung',
+                                name: 'prio',
+                                type: 'editableText',
+                                fieldInfoTooltip: 'Nur Zahlen erlaubt. Sortierung ist aufsteigend (am besten Spielraum zwischen den Zahlen lassen)'
                             }
                         ]
                     };
