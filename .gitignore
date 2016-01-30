@@ -13,6 +13,11 @@
 .idea
 *.iml
 node_modules
+web/*.png
+web/*.ico
+web/*.svg
+web/manifest.json
+web/browserconfig.xml
 web/css/*
 web/js/*
 web/libraries/*
