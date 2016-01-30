@@ -70,6 +70,9 @@ function config($routeProvider, $locationProvider) {
       .when('/admin/material', {
         templateUrl: 'views/admin_material.html'
       })
+      .when('/admin/material/was-fehlt', {
+          templateUrl: 'views/admin_materials_missing.html'
+      })
       .otherwise({
           templateUrl: 'views/404.html'
       });

@@ -1,5 +1,5 @@
 angular.module('app')
-    .directive('personMissingData',['personService', 'mapmarkerService', '$filter', function(personService, mapmarkerService, $filter) {
+    .directive('personMissingData',['personService', '$filter', function(personService, $filter) {
         return {
             restrict: 'E',
             templateUrl: 'js/components/person/personMissingDataView.html',

@@ -43,12 +43,13 @@ angular.module('app')
                                 label: 'Körperteil',
                                 name: 'body_part',
                                 type: 'editableText'
-                            },
-                            {
-                                label: 'Beschreibung',
-                                name: 'description',
-                                type: 'editableTextarea'
                             }
+                            //not needed for now
+                            //{
+                            //    label: 'Beschreibung',
+                            //    name: 'description',
+                            //    type: 'editableTextarea'
+                            //}
                         ]
                     };
                 };
