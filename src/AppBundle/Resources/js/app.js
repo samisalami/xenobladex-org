@@ -64,6 +64,9 @@ function config($routeProvider, $locationProvider) {
       .when('/admin/monster', {
         templateUrl: 'views/admin_monsters.html'
       })
+      .when('/admin/monster/was-fehlt', {
+          templateUrl: 'views/admin_monsters_missing.html'
+      })
       .when('/admin/monster_gattungen', {
         templateUrl: 'views/admin_monsterTypes.html'
       })

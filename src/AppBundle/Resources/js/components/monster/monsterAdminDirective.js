@@ -73,7 +73,8 @@ angular.module('app')
                                 label: 'Region',
                                 name: 'region',
                                 type: 'editableStringSelect',
-                                data: regions
+                                data: regions,
+                                fieldInfoTooltip: 'Standardwert: "Primordia"'
                             },
                             {
                                 label: 'Level Min.',
