@@ -1,2 +1,2 @@
-0.1.4
-new mission fields
+0.2
+monster types, monsters, material, map marker input
