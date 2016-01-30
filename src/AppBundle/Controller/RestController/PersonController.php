@@ -11,6 +11,7 @@ use AppBundle\Entity\Person;
 use Symfony\Component\HttpFoundation\AcceptHeader;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class PersonController extends FOSRestController {
     protected function getJMSSerializer() {

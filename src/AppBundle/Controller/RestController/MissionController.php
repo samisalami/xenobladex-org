@@ -8,8 +8,10 @@ namespace AppBundle\Controller\RestController;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations\Route;
 use AppBundle\Entity\Mission;
+use Symfony\Component\HttpFoundation\AcceptHeader;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class MissionController extends FOSRestController {
     protected function getJMSSerializer() {
@@ -106,11 +108,11 @@ class MissionController extends FOSRestController {
 
     /**
      * @Route("/api/mission/delete/{id}", methods={"DELETE"})
+     * @ParamConverter("mission", class="AppBundle:Mission")
+     * @param Mission $mission
+     * @return Response
      */
-    public function deleteMissionAction($id) {
-        $mission = $this->getDoctrine()
-            ->getRepository('AppBundle:Mission')
-            ->find($id);
+    public function deleteMissionAction(Mission $mission) {
         $this->deleteMission($mission);
         $serializer = $this->getJMSSerializer();
         $response = new Response($serializer->serialize($mission, 'json'));
