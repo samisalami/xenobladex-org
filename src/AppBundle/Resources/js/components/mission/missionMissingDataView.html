@@ -14,7 +14,7 @@
                         Erhalt wo
                     </th>
                     <th>
-                        Bedingungen
+                        Bedingungen / Kapitel / BLADE-Level
                     </th>
                     <th>
                         Beschreibung
@@ -30,6 +30,9 @@
                     </th>
                     <th>
                         Typ
+                    </th>
+                    <th>
+                        Kartenpunkte
                     </th>
                 </tr>
             </thead>
@@ -55,10 +58,10 @@
                         </span>
                     </td>
                     <td>
-                        <span ng-if="elm.conditions" class="text-success">
+                        <span ng-if="elm.conditions || elm.blade_level || elm.chapter" class="text-success">
                             gepflegt
                         </span>
-                        <span ng-if="!elm.conditions" class="text-danger">
+                        <span ng-if="!elm.conditions && !elm.blade_level && !elm.chapter" class="text-danger">
                             leer
                         </span>
                     </td>
@@ -99,6 +102,14 @@
                             gepflegt
                         </span>
                         <span ng-if="!elm.mission_type" class="text-danger">
+                            leer
+                        </span>
+                    </td>
+                    <td>
+                        <span ng-if="elm.mapmarkers" class="text-success">
+                            gepflegt
+                        </span>
+                        <span ng-if="!elm.mapmarkers" class="text-danger">
                             leer
                         </span>
                     </td>
