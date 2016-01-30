@@ -34,33 +34,73 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="mission in missions">
+                <tr ng-repeat="elm in missingDataArray">
                     <td>
-                        {{mission.name}}
+                        {{elm.name}}
                     </td>
                     <td>
-                        <span class="icon-missing-data" ng-class="{'complete text-success':mission.person || mission.person_unrelated, 'incomplete text-danger':!mission.person && !mission.person_unrelated}"></span>
+                        <span ng-if="elm.hasPerson || elm.person_unrelated" class="text-success">
+                            gepflegt
+                        </span>
+                        <span ng-if="!elm.hasPerson && !elm.person_unrelated" class="text-danger">
+                            leer
+                        </span>
                     </td>
                     <td>
-                        <span class="icon-missing-data" ng-class="{'complete text-success':mission.location_note, 'incomplete text-danger':!mission.location_note}"></span>
+                        <span ng-if="elm.location_note" class="text-success">
+                            gepflegt
+                        </span>
+                        <span ng-if="!elm.location_note" class="text-danger">
+                            leer
+                        </span>
                     </td>
                     <td>
-                        <span class="icon-missing-data" ng-class="{'complete text-success':mission.conditions, 'incomplete text-danger':!mission.conditions}"></span>
+                        <span ng-if="elm.conditions" class="text-success">
+                            gepflegt
+                        </span>
+                        <span ng-if="!elm.conditions" class="text-danger">
+                            leer
+                        </span>
                     </td>
                     <td>
-                        <span class="icon-missing-data" ng-class="{'complete text-success':mission.description, 'incomplete text-danger':!mission.description}"></span>
+                        <span ng-if="elm.description" class="text-success">
+                            gepflegt
+                        </span>
+                        <span ng-if="!elm.description" class="text-danger">
+                            leer
+                        </span>
                     </td>
                     <td>
-                        <span class="icon-missing-data" ng-class="{'complete text-success':mission.solution, 'incomplete text-danger':!mission.solution}"></span>
+                        <span ng-if="elm.solution" class="text-success">
+                            gepflegt
+                        </span>
+                        <span ng-if="!elm.solution" class="text-danger">
+                            leer
+                        </span>
                     </td>
                     <td>
-                        <span class="icon-missing-data" ng-class="{'complete text-success':mission.tasks, 'incomplete text-danger':!mission.tasks}"></span>
+                        <span ng-if="elm.tasks" class="text-success">
+                            gepflegt
+                        </span>
+                        <span ng-if="!elm.tasks" class="text-danger">
+                            leer
+                        </span>
                     </td>
                     <td>
-                        <span class="icon-missing-data" ng-class="{'complete text-success':mission.rewards, 'incomplete text-danger':!mission.rewards}"></span>
+                        <span ng-if="elm.rewards" class="text-success">
+                            gepflegt
+                        </span>
+                        <span ng-if="!elm.rewards" class="text-danger">
+                            leer
+                        </span>
                     </td>
                     <td>
-                        <span class="icon-missing-data" ng-class="{'complete text-success':mission.mission_type.id, 'incomplete text-danger':!mission.mission_type.id}"></span>
+                        <span ng-if="elm.mission_type" class="text-success">
+                            gepflegt
+                        </span>
+                        <span ng-if="!elm.mission_type" class="text-danger">
+                            leer
+                        </span>
                     </td>
                 </tr>
             </tbody>

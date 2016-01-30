@@ -11,7 +11,8 @@ angular.module('app')
                 var mapDataLoaded = false;
 
                 $scope.newMonster = {
-                    materials: []
+                    materials: [],
+                    mapmarkers: []
                 };
 
                 var regions = [
