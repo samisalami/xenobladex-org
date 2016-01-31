@@ -129,37 +129,37 @@ angular.module('app')
                                 label: 'Resistenz - Physisch',
                                 name: 'res_physic',
                                 type: 'editableText',
-                                fieldInfoTooltip: 'Nur Zahlen erlaubt'
+                                fieldInfoTooltip: 'Nur Zahlen erlaubt, Standardwert 0'
                             },
                             {
                                 label: 'Resistenz - Laser',
                                 name: 'res_laser',
                                 type: 'editableText',
-                                fieldInfoTooltip: 'Nur Zahlen erlaubt'
+                                fieldInfoTooltip: 'Nur Zahlen erlaubt, Standardwert 0'
                             },
                             {
                                 label: 'Resistenz - Äther',
                                 name: 'res_ether',
                                 type: 'editableText',
-                                fieldInfoTooltip: 'Nur Zahlen erlaubt'
+                                fieldInfoTooltip: 'Nur Zahlen erlaubt, Standardwert 0'
                             },
                             {
                                 label: 'Resistenz - Thermo',
                                 name: 'res_thermo',
                                 type: 'editableText',
-                                fieldInfoTooltip: 'Nur Zahlen erlaubt'
+                                fieldInfoTooltip: 'Nur Zahlen erlaubt, Standardwert 0'
                             },
                             {
                                 label: 'Resistenz - Elektro',
                                 name: 'res_electric',
                                 type: 'editableText',
-                                fieldInfoTooltip: 'Nur Zahlen erlaubt'
+                                fieldInfoTooltip: 'Nur Zahlen erlaubt, Standardwert 0'
                             },
                             {
                                 label: 'Resistenz - Gravit',
                                 name: 'res_gravit',
                                 type: 'editableText',
-                                fieldInfoTooltip: 'Nur Zahlen erlaubt'
+                                fieldInfoTooltip: 'Nur Zahlen erlaubt, Standardwert 0'
                             },
                             {
                                 label: 'Aggression - Tag',
