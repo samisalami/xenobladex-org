@@ -27,6 +27,10 @@ class MonsterController extends FOSRestController {
         $em = $this->getDoctrine()->getManager();
         $monster = $em->merge($deserialized_monster);
         $em->persist($monster);
+        foreach($deserialized_monster->getMaterials() as $material) {
+            $material = $em->merge($material);
+            $material->addMonster($monster);
+        }
         $em->flush();
     }
 
