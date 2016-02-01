@@ -15,7 +15,7 @@ angular.module('app')
                             {
                                 label: 'Beschreibung',
                                 name: 'description',
-                                type: 'editableTextarea'
+                                type: 'textarea'
                             },
                             {
                                 label: 'Bild',

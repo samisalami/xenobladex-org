@@ -77,20 +77,20 @@ angular.module('app')
                             {
                                 label: 'Region',
                                 name: 'region',
-                                type: 'editableStringSelect',
+                                type: 'stringSelect',
                                 data: regions,
                                 fieldInfoTooltip: 'Standardwert: "Primordia"'
                             },
                             {
                                 label: 'Level Min.',
                                 name: 'level_min',
-                                type: 'editableText',
+                                type: 'inputText',
                                 fieldInfoTooltip: 'Nur Zahlen erlaubt.'
                             },
                             {
                                 label: 'Level Max.',
                                 name: 'level_max',
-                                type: 'editableText',
+                                type: 'inputText',
                                 fieldInfoTooltip: 'Nur Zahlen erlaubt. Leerlassen falls nur ein exaktes Level vorhanden.'
                             },
                             {
@@ -121,88 +121,88 @@ angular.module('app')
                             {
                                 label: 'HP',
                                 name: 'hp',
-                                type: 'editableText',
+                                type: 'inputText',
                                 fieldInfoTooltip: 'Text - Zahlenraum mit Minus angeben'
                             },
                             {
                                 label: 'EP',
                                 name: 'ep',
-                                type: 'editableText',
+                                type: 'inputText',
                                 fieldInfoTooltip: 'Text - Zahlenraum mit Minus angeben'
                             },
                             {
                                 label: 'Resistenz - Physisch',
                                 name: 'res_physic',
-                                type: 'editableText',
+                                type: 'inputText',
                                 fieldInfoTooltip: 'Nur Zahlen erlaubt, Standardwert 0'
                             },
                             {
                                 label: 'Resistenz - Laser',
                                 name: 'res_laser',
-                                type: 'editableText',
+                                type: 'inputText',
                                 fieldInfoTooltip: 'Nur Zahlen erlaubt, Standardwert 0'
                             },
                             {
                                 label: 'Resistenz - Äther',
                                 name: 'res_ether',
-                                type: 'editableText',
+                                type: 'inputText',
                                 fieldInfoTooltip: 'Nur Zahlen erlaubt, Standardwert 0'
                             },
                             {
                                 label: 'Resistenz - Thermo',
                                 name: 'res_thermo',
-                                type: 'editableText',
+                                type: 'inputText',
                                 fieldInfoTooltip: 'Nur Zahlen erlaubt, Standardwert 0'
                             },
                             {
                                 label: 'Resistenz - Elektro',
                                 name: 'res_electric',
-                                type: 'editableText',
+                                type: 'inputText',
                                 fieldInfoTooltip: 'Nur Zahlen erlaubt, Standardwert 0'
                             },
                             {
                                 label: 'Resistenz - Gravit',
                                 name: 'res_gravit',
-                                type: 'editableText',
+                                type: 'inputText',
                                 fieldInfoTooltip: 'Nur Zahlen erlaubt, Standardwert 0'
                             },
                             {
                                 label: 'Aggression - Tag',
                                 name: 'aggression_day',
-                                type: 'editableStringSelect',
+                                type: 'stringSelect',
                                 data: aggressionTypes,
                                 fieldInfoTooltip: 'Standardwert: "Harmlos"'
                             },
                             {
                                 label: 'Aggression im Skell - Tag',
                                 name: 'agression_skell_day',
-                                type: 'editableStringSelect',
+                                type: 'stringSelect',
                                 data: aggressionTypes,
                                 fieldInfoTooltip: 'Standardwert: "Harmlos"'
                             },
                             {
                                 label: 'Aggression - Nacht',
                                 name: 'agression_night',
-                                type: 'editableStringSelect',
+                                type: 'stringSelect',
                                 data: aggressionTypes,
                                 fieldInfoTooltip: 'Standardwert: "Harmlos"'
                             },
                             {
                                 label: 'Aggression im Skell - Nacht',
                                 name: 'agression_skell_night',
-                                type: 'editableStringSelect',
+                                type: 'stringSelect',
                                 data: aggressionTypes,
                                 fieldInfoTooltip: 'Standardwert: "Harmlos"'
                             },
                             {
                                 label: 'Besonderheiten',
                                 name: 'description',
-                                type: 'editableTextarea'
+                                type: 'textarea'
                             },
                             {
                                 label: 'Ortsbeschreibung',
                                 name: 'location_note',
-                                type: 'editableTextarea'
+                                type: 'textarea'
                             },
                             {
                                 label: 'Kartenpunkte',

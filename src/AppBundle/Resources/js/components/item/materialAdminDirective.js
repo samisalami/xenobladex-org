@@ -23,26 +23,26 @@ angular.module('app')
                             {
                                 label: 'Seltenheit',
                                 name: 'rarity',
-                                type: 'editableStringSelect',
+                                type: 'stringSelect',
                                 data: rarities,
                                 fieldInfoTooltip: 'Wird auf "Gewöhnlich" gesetzt, wenn nichts gewählt.'
                             },
                             {
                                 label: 'Verkaufswert',
                                 name: 'credit_cost',
-                                type: 'editableText',
+                                type: 'inputText',
                                 fieldInfoTooltip: 'Nur Zahlen sind erlaubt.'
                             },
                             {
                                 label: 'Belohnungstickets',
                                 name: 'ticket_cost',
-                                type: 'editableText',
+                                type: 'inputText',
                                 fieldInfoTooltip: 'Nur Zahlen sind erlaubt.'
                             },
                             {
                                 label: 'Körperteil',
                                 name: 'body_part',
-                                type: 'editableText'
+                                type: 'inputText'
                             }
                             //not needed for now
                             //{

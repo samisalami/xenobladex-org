@@ -18,7 +18,7 @@ angular.module('app')
                             {
                                 label: 'Beschreibung',
                                 name: 'description',
-                                type: 'editableTextarea',
+                                type: 'textarea',
                                 fieldInfoTooltip: 'Gibt es nur, falls wir in Zukunft noch Extra Infos zur Gattung erfassen wollen.'
                             },
                             {
@@ -31,7 +31,7 @@ angular.module('app')
                             {
                                 label: 'Sortierung',
                                 name: 'prio',
-                                type: 'editableText',
+                                type: 'inputText',
                                 fieldInfoTooltip: 'Nur Zahlen erlaubt. Sortierung ist aufsteigend (am besten Spielraum zwischen den Zahlen lassen)'
                             }
                         ]
