@@ -49,7 +49,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="elm in missingDataArray">
+                <tr ng-repeat="elm in missingDataArray | orderBy: 'name'">
                     <td>
                         {{elm.name}}
                     </td>

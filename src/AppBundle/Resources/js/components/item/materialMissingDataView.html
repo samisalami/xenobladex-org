@@ -8,9 +8,6 @@
                         Name
                     </th>
                     <th>
-                        Seltenheit
-                    </th>
-                    <th>
                         Verkaufswert
                     </th>
                     <th>
@@ -22,17 +19,9 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="elm in missingDataArray">
+                <tr ng-repeat="elm in missingDataArray | orderBy: 'name'">
                     <td>
                         {{elm.name}}
-                    </td>
-                    <td>
-                        <span ng-if="elm.rarity" class="text-success">
-                            gepflegt
-                        </span>
-                        <span ng-if="!elm.rarity" class="text-danger">
-                            leer
-                        </span>
                     </td>
                     <td>
                         <span ng-if="elm.credit_cost" class="text-success">
