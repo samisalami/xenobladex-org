@@ -28,11 +28,11 @@ angular.module('app')
                     {name:"Immer"},
                     {name:"Tagsüber"},
                     {name:"Nachts"},
-                    {name:"Früher Morgen"},
-                    {name:"Vormittag"},
+                    {name:"Früh Morgens"},
+                    {name:"Vormittags"},
                     {name:"Nachmittags"},
-                    {name:"Abend"},
-                    {name:"Späte Nacht"}
+                    {name:"Abends"},
+                    {name:"Spät Nachts"}
                 ];
 
                 var weatherTypes = [
@@ -96,14 +96,14 @@ angular.module('app')
                             {
                                 label: 'Zeit',
                                 name: 'time',
-                                type: 'editableStringSelect',
+                                type: 'falsableStringSelect',
                                 data: times,
                                 fieldInfoTooltip: 'Standardwert: "Immer"'
                             },
                             {
                                 label: 'Wetter',
                                 name: 'weather',
-                                type: 'editableStringSelect',
+                                type: 'falsableStringSelect',
                                 data: weatherTypes,
                                 fieldInfoTooltip: 'Standardwert: "Immer"'
                             },
