@@ -27,7 +27,12 @@ angular.module('app')
                 var times = [
                     {name:"Immer"},
                     {name:"Tagsüber"},
-                    {name:"Nachts"}
+                    {name:"Nachts"},
+                    {name:"Früher Morgen"},
+                    {name:"Vormittag"},
+                    {name:"Nachmittags"},
+                    {name:"Abend"},
+                    {name:"Späte Nacht"}
                 ];
 
                 var weatherTypes = [
