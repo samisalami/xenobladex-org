@@ -5,7 +5,11 @@ angular.module('app')
         return function (list,filterValue,fieldname,childFieldname,returnEmpyList) {
             var result = [];
             if(!returnEmpyList && !filterValue) {
-                return list.slice();
+                if(Array.isArray(list)) {
+                    return list.slice();
+                } else {
+                    return list;
+                }
             } else {
                 if(list && filterValue) {
                     var item;

@@ -35,6 +35,12 @@ angular.module('app')
             });
         };
 
+        service.getMonsterTypesDetail = function(callback) {
+            $http.get(Routing.generate('get_monster_types_detail')).success(function(response){
+                callback(response);
+            });
+        };
+
         service.addMonsterType = function(monsterType, callback) {
             $http.post(Routing.generate('add_monster_type'), monsterType).success(function(){
                 callback();

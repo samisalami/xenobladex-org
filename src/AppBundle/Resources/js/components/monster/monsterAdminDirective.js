@@ -190,7 +190,7 @@ angular.module('app')
                             {
                                 label: 'Aggression im Skell - Nacht',
                                 name: 'agression_skell_night',
-                                type: 'stringSelect',
+                                type: 'editableStringSelect',
                                 data: aggressionTypes,
                                 fieldInfoTooltip: 'Standardwert: "Harmlos"'
                             },

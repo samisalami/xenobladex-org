@@ -23,6 +23,9 @@ function config($routeProvider, $locationProvider) {
       .when('/missionen', {
         templateUrl: 'views/missions.html'
       })
+      .when('/material', {
+        templateUrl: 'views/materials.html'
+      })
       .when('/login', {
         controller: 'UserController',
         templateUrl: 'js/components/user/loginView.html'
