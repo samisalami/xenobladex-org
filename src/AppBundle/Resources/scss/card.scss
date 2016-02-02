@@ -1,5 +1,11 @@
 .main-content {
   .card {
     background-color: $color-white-transparent;
+    .card-title {
+      h5 {
+        min-height: 2.2em;
+      }
+    }
   }
+
 }
