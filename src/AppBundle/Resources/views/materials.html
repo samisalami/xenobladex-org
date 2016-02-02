@@ -17,8 +17,8 @@ Sobald die Monster dazukommen, findet ihr hier dann diese konkret verknüpft.</p
         </div>
     </div>
     <section class="m-t-1" ng-repeat="monsterType in monsterTypes | listFilter:namefilterValue:'name'| orderBy:'prio'">
-        <h2 ng-if="monsterType.materials.length > 0" class="m-b-1">{{monsterType.name || 'Nicht zugeordnet'}}</h2>
-        <div class="col-xs-12 col-md-6 col-xl-4" ng-repeat="material in monsterType.materials | listFilter:materialfilterValue:'name'| orderBy:'name' track by material.id">
+        <h2 ng-if="monsterType.materials.length > 0" class="m-y-1">{{monsterType.name || 'Nicht zugeordnet'}}</h2>
+        <div class="col-xs-12 col-md-6 col-xl-4 m-t-1" ng-repeat="material in monsterType.materials | listFilter:materialfilterValue:'name'| orderBy:'name' track by material.id">
             <div class="card p-x-1 p-y-1">
                 <div class="card-title">
                     <h5>{{material.name}}</h5><br/>
