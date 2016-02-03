@@ -242,7 +242,7 @@ angular.module('app')
                     mapDataLoaded = true;
                 });
 
-                monsterService.getMonsters(function(response){
+                monsterService.getMonstersDetail(function(response){
                    $scope.monsters = response;
                 });
 

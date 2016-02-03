@@ -10,6 +10,7 @@ use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 use JMS\Serializer\SerializationContext;
 
 class MaterialController extends FOSRestController {
@@ -54,7 +55,7 @@ class MaterialController extends FOSRestController {
 
     public function getMaterialsDetailAction() {
         $em = $this->getDoctrine()->getManager();
-        $materials = $em->getRepository('AppBundle:Material')->findAll();
+        $materials = $em->getRepository('AppBundle:Material')->findBy(array(),null,5);
         $serializer = $this->getJMSSerializer();
         $response = new Response($serializer->serialize($materials, 'json', SerializationContext::create()->setGroups(array('materialDetail', 'Default'))));
         $response->headers->set('Content-Type', 'application/json');
@@ -95,11 +96,11 @@ class MaterialController extends FOSRestController {
 
     /**
      * @Route("/api/material/delete/{id}", methods={"DELETE"})
+     * @ParamConverter("monster", class="AppBundle:Monster")
+     * @param Material $material
+     * @return Response
      */
-    public function deleteMaterialAction($id) {
-        $material = $this->getDoctrine()
-            ->getRepository('AppBundle:Material')
-            ->find($id);
+    public function deleteMaterialAction($material) {
         $this->deleteMaterial($material);
         $serializer = $this->getJMSSerializer();
         $response = new Response($serializer->serialize($material, 'json'));

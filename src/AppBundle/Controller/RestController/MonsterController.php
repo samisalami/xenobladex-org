@@ -11,6 +11,7 @@ use FOS\RestBundle\Controller\Annotations\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use JMS\Serializer\SerializationContext;
 
 class MonsterController extends FOSRestController {
     protected function getJMSSerializer() {
@@ -91,7 +92,19 @@ class MonsterController extends FOSRestController {
         $em = $this->getDoctrine()->getManager();
         $monsters = $em->getRepository('AppBundle:Monster')->findAll();
         $serializer = $this->getJMSSerializer();
-        $response = new Response($serializer->serialize($monsters, 'json'));
+        $response = new Response($serializer->serialize($monsters, 'json', SerializationContext::create()->setGroups(array('Default'))));
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
+    }
+
+    /**
+     * @return Response
+     */
+    public function getMonstersDetailAction() {
+        $em = $this->getDoctrine()->getManager();
+        $monsters = $em->getRepository('AppBundle:Monster')->findAll();
+        $serializer = $this->getJMSSerializer();
+        $response = new Response($serializer->serialize($monsters, 'json', SerializationContext::create()->setGroups(array('monsterDetail', 'Default'))));
         $response->headers->set('Content-Type', 'application/json');
         return $response;
     }

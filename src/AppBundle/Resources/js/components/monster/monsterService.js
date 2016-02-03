@@ -10,6 +10,12 @@ angular.module('app')
             });
         };
 
+        service.getMonstersDetail = function(callback) {
+            $http.get(Routing.generate('get_monsters_detail')).success(function(response){
+                callback(response);
+            });
+        };
+
         service.addMonster = function(monsterType, callback) {
             $http.post(Routing.generate('add_monster'), monsterType).success(function(){
                 callback();

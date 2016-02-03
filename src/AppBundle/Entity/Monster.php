@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation\Type;
+use JMS\Serializer\Annotation\Groups;
 
 /**
  * Monster
@@ -20,6 +21,7 @@ class Monster
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Groups({"Default"})
      */
     private $id;
 
@@ -27,6 +29,7 @@ class Monster
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
+     * @Groups({"Default"})
      */
     private $name='';
 
@@ -34,6 +37,7 @@ class Monster
      * @var integer
      *
      * @ORM\Column(name="level_min", type="smallint")
+     * @Groups({"monsterDetail"})
      */
     private $levelMin=0;
 
@@ -41,6 +45,7 @@ class Monster
      * @var integer
      *
      * @ORM\Column(name="level_max", type="smallint")
+     * @Groups({"monsterDetail"})
      */
     private $levelMax=0;
 
@@ -48,6 +53,7 @@ class Monster
      * @var string
      *
      * @ORM\Column(name="time", type="string", length=255)
+     * @Groups({"monsterDetail"})
      */
     private $time='Immer';
 
@@ -55,6 +61,7 @@ class Monster
      * @var string
      *
      * @ORM\Column(name="weather", type="string", length=255)
+     * @Groups({"monsterDetail"})
      */
     private $weather='Immer';
 
@@ -62,6 +69,7 @@ class Monster
      * @var boolean
      *
      * @ORM\Column(name="is_unique", type="boolean")
+     * @Groups({"monsterDetail"})
      */
     private $isUnique=false;
 
@@ -69,6 +77,7 @@ class Monster
      * @var boolean
      *
      * @ORM\Column(name="is_story", type="boolean")
+     * @Groups({"monsterDetail"})
      */
     private $isStory=false;
 
@@ -76,6 +85,7 @@ class Monster
      * @var string
      *
      * @ORM\Column(name="ep", type="string", length=255)
+     * @Groups({"monsterDetail"})
      */
     private $ep='';
 
@@ -83,6 +93,7 @@ class Monster
      * @var string
      *
      * @ORM\Column(name="hp", type="string", length=255)
+     * @Groups({"monsterDetail"})
      */
     private $hp='';
 
@@ -90,6 +101,7 @@ class Monster
      * @var integer
      *
      * @ORM\Column(name="res_physic", type="smallint")
+     * @Groups({"monsterDetail"})
      */
     private $resPhysic=0;
 
@@ -97,6 +109,7 @@ class Monster
      * @var integer
      *
      * @ORM\Column(name="res_laser", type="smallint")
+     * @Groups({"monsterDetail"})
      */
     private $resLaser=0;
 
@@ -104,6 +117,7 @@ class Monster
      * @var integer
      *
      * @ORM\Column(name="res_ether", type="smallint")
+     * @Groups({"monsterDetail"})
      */
     private $resEther=0;
 
@@ -111,6 +125,7 @@ class Monster
      * @var integer
      *
      * @ORM\Column(name="res_thermo", type="smallint")
+     * @Groups({"monsterDetail"})
      */
     private $resThermo=0;
 
@@ -118,6 +133,7 @@ class Monster
      * @var integer
      *
      * @ORM\Column(name="res_electric", type="smallint")
+     * @Groups({"monsterDetail"})
      */
     private $resElectric=0;
 
@@ -125,6 +141,7 @@ class Monster
      * @var integer
      *
      * @ORM\Column(name="res_gravit", type="smallint")
+     * @Groups({"monsterDetail"})
      */
     private $resGravit=0;
 
@@ -132,6 +149,7 @@ class Monster
      * @var string
      *
      * @ORM\Column(name="aggression_day", type="string", length=255)
+     * @Groups({"monsterDetail"})
      */
     private $aggressionDay='Harmlos';
 
@@ -139,6 +157,7 @@ class Monster
      * @var string
      *
      * @ORM\Column(name="agression_night", type="string", length=255)
+     * @Groups({"monsterDetail"})
      */
     private $agressionNight='Harmlos';
 
@@ -146,6 +165,7 @@ class Monster
      * @var string
      *
      * @ORM\Column(name="agression_skell_day", type="string", length=255)
+     * @Groups({"monsterDetail"})
      */
     private $agressionSkellDay='Harmlos';
 
@@ -153,6 +173,7 @@ class Monster
      * @var string
      *
      * @ORM\Column(name="agression_skell_night", type="string", length=255)
+     * @Groups({"monsterDetail"})
      */
     private $agressionSkellNight='Harmlos';
 
@@ -160,6 +181,7 @@ class Monster
      * @var string
      *
      * @ORM\Column(name="description", type="text")
+     * @Groups({"monsterDetail"})
      */
     private $description='';
 
@@ -167,6 +189,7 @@ class Monster
      * @var string
      *
      * @ORM\Column(name="location_note", type="text")
+     * @Groups({"monsterDetail"})
      */
     private $locationNote='';
 
@@ -174,12 +197,14 @@ class Monster
      * @var string
      *
      * @ORM\Column(name="region", type="string", length=255)
+     * @Groups({"monsterDetail"})
      */
     private $region='Primordia';
 
     /**
      * @ORM\ManyToOne(targetEntity="MonsterType")
      * @ORM\JoinColumn(name="monster_type_id", referencedColumnName="id")
+     * @Groups({"monsterDetail"})
      */
     private $monsterType;
 
@@ -187,6 +212,7 @@ class Monster
      * @var ArrayCollection
      * @ORM\OneToMany(targetEntity="MonsterMapmarker", mappedBy="monster", cascade={"all"})
      * @Type("ArrayCollection<AppBundle\Entity\MonsterMapmarker>")
+     * @Groups({"monsterDetail"})
      */
     private $mapmarkers;
 
@@ -197,6 +223,7 @@ class Monster
      *      inverseJoinColumns={@ORM\JoinColumn(name="material_id", referencedColumnName="id", onDelete="CASCADE")}
      *      )
      * @Type("ArrayCollection<AppBundle\Entity\Material>")
+     * @Groups({"monsterDetail"})
      */
     private $materials;
 
