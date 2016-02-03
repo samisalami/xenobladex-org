@@ -45,7 +45,7 @@ class MonsterType
      * @var integer
      *
      * @ORM\Column(name="prio", type="smallint")
-     * @Groups({"monsterTypeDetail"})
+     * @Groups({"Default"})
      */
     private $prio=0;
 
