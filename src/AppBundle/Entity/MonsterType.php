@@ -37,7 +37,7 @@ class MonsterType
      * @var string
      *
      * @ORM\Column(name="description", type="text")
-     * @Groups({"Default"})
+     * @Groups({"monsterTypeDetail"})
      */
     private $description="";
 
@@ -45,7 +45,7 @@ class MonsterType
      * @var integer
      *
      * @ORM\Column(name="prio", type="smallint")
-     * @Groups({"Default"})
+     * @Groups({"monsterTypeDetail"})
      */
     private $prio=0;
 
