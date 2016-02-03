@@ -43,7 +43,7 @@ angular.module('app')
                     initFormModel();
                 });
 
-                monsterService.getMonsterTypes(function(response){
+                monsterService.getMonsterTypesDetail(function(response){
                     $scope.monsterTypes = response;
                 });
 

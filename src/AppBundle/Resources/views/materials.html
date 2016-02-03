@@ -2,35 +2,40 @@
     <h1>Material</h1>
 </header>
 <section class="content-box default-amrgin-b">
-<p class="content-body">Hier findet ihr schonmal das Material den Gattungen zugeordnet.
-Sobald die Monster dazukommen, findet ihr hier dann diese konkret verknüpft.</p>
+<p class="content-body">Hier findet ihr schonmal das Material und die Gattungen von denen ihr es erhaltet.
+Sobald die Monster dazukommen, findet ihr hier dann diese auch verknüpft.</p>
 </section>
 <material-view>
     <div class="row">
         <div class="col-xs-12 col-lg-4 search-input m-b-1">
-            <input ng-model="namefilterValue" ng-model-options='{ debounce: 750 }' type="text" placeholder="Nach Gattung filtern..." />
+            <input ng-model="materialfilterValue" ng-model-options='{ debounce: 750 }' type="text" placeholder="Nach Name filtern..." />
             <span class="fa fa-search"></span>
         </div>
         <div class="col-xs-12 col-lg-4 search-input m-b-1">
-            <input ng-model="materialfilterValue" ng-model-options='{ debounce: 750 }' type="text" placeholder="Nach Material filtern..." />
+            <input ng-model="monsterTypefilterValue" ng-model-options='{ debounce: 750 }' type="text" placeholder="Nach Gattung filtern..." />
             <span class="fa fa-search"></span>
         </div>
     </div>
-    <section class="m-t-1" ng-repeat="monsterType in monsterTypes | listFilter:namefilterValue:'name'| orderBy:'prio'">
-        <h2 ng-if="monsterType.materials.length > 0" class="m-y-1">{{monsterType.name || 'Nicht zugeordnet'}}</h2>
-        <div class="col-xs-12 col-md-6 col-xl-4 m-t-1" ng-repeat="material in monsterType.materials | listFilter:materialfilterValue:'name'| orderBy:'name' track by material.id">
-            <div class="card p-x-1 p-y-1">
-                <div class="card-title">
-                    <h5>{{material.name}}</h5><br/>
-                    <span class="note">{{material.rarity}}</span>
+        <div class="content-box default-amrgin-b p-b-1" ng-repeat="material in materials | filter:{name: materialfilterValue} | listFilter:monsterTypefilterValue:'monster_types':'name'| orderBy:'name' track by material.id">
+            <header>
+                <h5>{{material.name}}</h5>
+                <span class="date">{{material.rarity}}</span>
+            </header>
+            <p class="content-body p-y-0">{{material.credit_cost || '???'}} <span>Credits</span> | {{material.ticket_cost || '???'}} <span>Tickets</span></p>
+            <hr class="m-x-1" />
+            <div class="row">
+                <div class="col-xs-12 col-md-6">
+                    <strong>Körperteil:</strong><br/>
+                    {{material.body_part || '???'}}
                 </div>
-                <div class="card-text">
-                    {{material.credit_cost || '???'}} <span>Credits</span><br/>
-                    {{material.ticket_cost || '???'}} <span>Tickets</span><br/>
-                    <span>Körperteil:</span> {{material.body_part || '???'}}<br/>
+                <div class="col-xs-12 col-md-6">
+                    <strong ng-if="material.monster_types.length>0">Gattungen:</strong>
+                    <ul>
+                        <li ng-repeat="monsterType in material.monster_types">
+                            {{monsterType.name}}
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
-        <div class="clear-both"></div>
-    </section>
 </material-view>

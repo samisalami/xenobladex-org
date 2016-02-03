@@ -10,6 +10,12 @@ angular.module('app')
             });
         };
 
+        service.getMaterialsDetail = function(callback) {
+            $http.get(Routing.generate('get_materials_detail')).success(function(response){
+                callback(response);
+            });
+        };
+
         service.addMaterial = function(material, callback) {
             $http.post(Routing.generate('add_material'), material).success(function(){
                 callback();

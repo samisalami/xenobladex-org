@@ -5,6 +5,7 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation\Type;
+use JMS\Serializer\Annotation\Groups;
 
 /**
  * MonsterType
@@ -20,6 +21,7 @@ class MonsterType
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Groups({"Default"})
      */
     private $id;
 
@@ -27,6 +29,7 @@ class MonsterType
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
+     * @Groups({"Default"})
      */
     private $name="";
 
@@ -34,6 +37,7 @@ class MonsterType
      * @var string
      *
      * @ORM\Column(name="description", type="text")
+     * @Groups({"Default"})
      */
     private $description="";
 
@@ -41,6 +45,7 @@ class MonsterType
      * @var integer
      *
      * @ORM\Column(name="prio", type="smallint")
+     * @Groups({"Default"})
      */
     private $prio=0;
 
@@ -51,6 +56,7 @@ class MonsterType
      *      inverseJoinColumns={@ORM\JoinColumn(name="material_id", referencedColumnName="id", onDelete="CASCADE")}
      *      )
      * @Type("ArrayCollection<AppBundle\Entity\Material>")
+     * @Groups({"monsterTypeDetail"})
      */
     private $materials;
 

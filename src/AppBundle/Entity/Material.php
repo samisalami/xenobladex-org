@@ -5,8 +5,8 @@ namespace AppBundle\Entity;
 use AppBundle\Entity\MonsterType;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use JMS\Serializer\Annotation\Expose;
-use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Type;
+use JMS\Serializer\Annotation\Groups;
 
 /**
  * Material
@@ -15,17 +15,20 @@ use JMS\Serializer\Annotation\ExclusionPolicy;
  *
  * @ORM\Table(name="xenobladex_item_material")
  * @ORM\Entity
- * @ExclusionPolicy("all")
  */
 class Material extends Item
 {
     /**
      * @ORM\ManyToMany(targetEntity="MonsterType", mappedBy="materials", cascade={"persist"})
+     * @Type("ArrayCollection<AppBundle\Entity\MonsterType>")
+     * @Groups({"materialDetail"})
      */
     private $monster_types;
 
     /**
      * @ORM\ManyToMany(targetEntity="Monster", mappedBy="materials", cascade={"persist"})
+     * @Type("ArrayCollection<AppBundle\Entity\Monster>")
+     * @Groups({"materialDetail"})
      */
     private $monsters;
 

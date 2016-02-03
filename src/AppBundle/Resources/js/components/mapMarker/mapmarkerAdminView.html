@@ -11,6 +11,7 @@
         <label>Beschreibung:</label>
         <input ng-model="newMapmarker.description" type="text" class="form-control">
     </div>
+    {{newMapmarker.person.id}}
     <ul class="nav nav-tabs">
         <li class="nav-item">
             <a class="nav-link active" href="#">Personen</a>
@@ -19,7 +20,7 @@
     <div class="row m-t-1 map-container">
         <div class="col-xs-12">
             <img ng-if="currentMap" ng-click="addMapmarker($event)" ng-src="/xenobladex/attachment/{{currentMap.attachment.id}}" />
-            <div class="mapmarker-wrapper" ng-repeat="mapmarker in mapmarkers | listFilter:newMapmarker.person.id:'person':'id':true" ng-click="setZIndex($event)" style="position: absolute; top: {{mapmarker.y_coord}}px; left: {{mapmarker.x_coord}}px;">
+            <div class="mapmarker-wrapper" ng-repeat="mapmarker in mapmarkers | filter:{person: { id: newMapmarker.person.id }}" ng-click="setZIndex($event)" style="position: absolute; top: {{mapmarker.y_coord}}px; left: {{mapmarker.x_coord}}px;">
                 <button class="btn btn-primary" data-toggle="collapse" data-target="#mapmarker-edit-{{$index}}" aria-expanded="false">
                     <span class="fa fa-map-marker"></span> {{mapmarker.person.name}} - {{mapmarker.name}}
                 </button>

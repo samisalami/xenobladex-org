@@ -21,8 +21,22 @@ angular.module('app')
                         }
                         if(listValue) {
                             if(childFieldname) {
-                                if(listValue[childFieldname] == filterValue) {
-                                    result.push(item);
+                                var canonicalFilterValue = String(filterValue).toLowerCase();
+                                if(Array.isArray(listValue)) {
+                                    var subArrayCount = listValue.length;
+                                    for(var i=0; i<subArrayCount; i++) {
+                                        var subItem = listValue[i];
+                                        if(String(subItem[childFieldname]).toLowerCase().indexOf(canonicalFilterValue) !== -1 ) {
+                                            result.push(item);
+                                            break;
+                                        }
+                                    }
+                                } else {
+                                    if(listValue[childFieldname]) {
+                                        if(String(listValue[childFieldname]).toLowerCase().indexOf(canonicalFilterValue) !== -1) {
+                                            result.push(item);
+                                        }
+                                    }
                                 }
                             } else {
                                 if (String(listValue).toLowerCase().indexOf(String(filterValue).toLowerCase())!== -1) {
