@@ -55,7 +55,7 @@ class MaterialController extends FOSRestController {
 
     public function getMaterialsDetailAction() {
         $em = $this->getDoctrine()->getManager();
-        $materials = $em->getRepository('AppBundle:Material')->findBy(array(),null,5);
+        $materials = $em->getRepository('AppBundle:Material')->findAll();
         $serializer = $this->getJMSSerializer();
         $response = new Response($serializer->serialize($materials, 'json', SerializationContext::create()->setGroups(array('materialDetail', 'Default'))));
         $response->headers->set('Content-Type', 'application/json');
