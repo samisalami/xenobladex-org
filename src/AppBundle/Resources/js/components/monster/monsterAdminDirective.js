@@ -37,20 +37,23 @@ angular.module('app')
 
                 var weatherTypes = [
                     {name:"Immer"},
-                    {name:"Klar"},
+                    {name:'Atomflocken'},
                     {name:'Bewölkt'},
+                    {name:"Gewitter"},
+                    {name:"Hitzewelle"},
+                    {name:"Klar"},
+                    {name:'Lichtpartikel'},
+                    {name:'Magnetsturm'},
                     {name:'Nebel'},
+                    {name:'Polarlicht'},
                     {name:'Regen'},
                     {name:'Regenbogen'},
-                    {name:'Starker Regen'},
-                    {name:"Gewitter"},
-                    {name:'Sandsturm'},
-                    {name:'Lichtpartikel'},
-                    {name:'Polarlicht'},
                     {name:'Rotes Polarlicht'},
-                    {name:'Atomflocken'},
+                    {name:'Sandsturm'},
+                    {name:'Schwefelregen'},
                     {name:'Sporen'},
-                    {name:'Schwefelregen'}
+                    {name:'Starker Regen'},
+                    {name:'Sternschnuppen'}
                 ];
 
                 var aggressionTypes = [
@@ -190,7 +193,7 @@ angular.module('app')
                             {
                                 label: 'Aggression im Skell - Nacht',
                                 name: 'agression_skell_night',
-                                type: 'editableStringSelect',
+                                type: 'stringSelect',
                                 data: aggressionTypes,
                                 fieldInfoTooltip: 'Standardwert: "Harmlos"'
                             },
