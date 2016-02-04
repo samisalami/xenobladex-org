@@ -235,7 +235,7 @@ angular.module('app')
                     materialDataLoaded = true;
                 });
 
-                monsterService.getMonsterTypes(function(response){
+                monsterService.getMonsterTypesDetail(function(response){
                     $scope.monsterTypes = response;
                     monsterTypeDataLoaded = true;
                 });
