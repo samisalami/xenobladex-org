@@ -7,7 +7,7 @@
 Sobald die Monster dazukommen, findet ihr hier dann diese auch verknüpft.</p>
     </section>
 </div>
-<material-view>
+<div class="page-material" material-view>
     <div class="col-xs-12 m-b-1">
         <div class="col-xs-12 col-lg-4 search-input m-b-1">
             <input ng-model="materialfilterValue" ng-model-options='{ debounce: 750 }' type="text" placeholder="Nach Name filtern..." />
@@ -22,7 +22,7 @@ Sobald die Monster dazukommen, findet ihr hier dann diese auch verknüpft.</p>
         <div class="content-box p-b-1">
             <header>
                 <h5>{{material.name}}</h5>
-                <span class="date">{{material.rarity}}</span>
+                <span class="rarity" ng-class="getValidCssClass(material.rarity)">{{material.rarity}}</span>
             </header>
             <p class="content-body p-y-0">{{material.credit_cost || '???'}} <span>Credits</span> | {{material.ticket_cost || '???'}} <span>Tickets</span></p>
             <hr class="m-x-1" />
@@ -42,4 +42,4 @@ Sobald die Monster dazukommen, findet ihr hier dann diese auch verknüpft.</p>
             </div>
         </div>
     </div>
-</material-view>
+</div>
