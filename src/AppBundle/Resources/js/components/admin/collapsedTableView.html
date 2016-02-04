@@ -3,15 +3,8 @@
     <div class="collapse" id="new-item-view-{{$index}}">
         <div class="card card-block collapsed-table-card">
             <div class="row">
-                <h4 class="col-md-3 col-xs-6 card-title p-y-1"><a href="#" editable-text="newItem.name">{{newItem.name || 'eintragen'}}</a></h4>
-                <div class="col-lg-3 hidden-sm-down">
-                </div>
-                <div class="col-lg-3 hidden-sm-down">
-                </div>
-                <div class="col-md-3 col-xs-6 p-r-0">
-                    <button href="#" class="btn btn-success pull-right" ng-click="addItem({item : newItem})">
-                        Hinzufügen
-                    </button>
+                <div class="col-md-3 col-xs-6 p-y-1 p-x-0">
+                    <strong>Name</strong> <input class="form-control" type="text" ng-model="newItem.name">
                 </div>
             </div>
             <div class="row collapsed-table-row">
@@ -19,10 +12,17 @@
                     <span class="info-icon text-primary" bs-tooltip ng-if="column.fieldInfoTooltip" bs-tooltip-title="{{column.fieldInfoTooltip}}"></span>
                     <strong>{{column.label}}</strong>
                     <p>
-                        <!--TODO: find a solution to to this in onle line (tenary operator does not work)-->
+                        <!--TODO: find a solution to to this in one line (tenary operator does not work)-->
                         <form-field attachment-type="{{column.attachmentType}}" ng-if="column.type && column.name" form-field-bind="newItem[column.name]" form-select-options="column.data" form-template="{{column.type}}"></form-field>
                         <form-field attachment-type="{{column.attachmentType}}" ng-if="column.type && !column.name" form-field-bind="newItem" form-select-options="column.data" form-template="{{column.type}}"></form-field>
                     </p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-xs-12">
+                    <button href="#" class="btn btn-success pull-right" ng-click="addItem({item : newItem})">
+                        Hinzufügen
+                    </button>
                 </div>
             </div>
         </div>
@@ -32,15 +32,14 @@
         <div class="collapse" id="item-view-{{$index}}">
             <div class="card collapsed-table-card card-block">
                 <div class="row">
-                    <h4 class="col-md-3 col-xs-6 card-title p-y-1"><a href="#" editable-text="item.name" onaftersave="updateItem({item : item})">{{item.name || 'eintragen'}}</a></h4>
+                    <div class="col-md-3 col-xs-6 p-y-1 p-x-0">
+                        <strong>Name</strong> <input class="form-control" type="text" ng-model="item.name">
+                    </div>
                     <div class="col-lg-3 hidden-sm-down">
                     </div>
                     <div class="col-lg-3 hidden-sm-down">
                     </div>
                     <div class="col-md-3 col-xs-6 p-r-0">
-                        <button href="#" class="btn btn-success pull-right m-l-1" ng-click="updateItem({item : item})">
-                            Speichern
-                        </button>
                         <button href="#" class="btn btn-danger pull-right" ng-click="deleteItem({item : item})">
                             Löschen
                         </button>
@@ -54,6 +53,13 @@
                             <form-field ng-if="column.type && column.name" attachment-type="{{column.attachmentType}}" form-field-bind="item[column.name]" form-field-action="updateItem({item:item})" form-field-action-param="item" form-select-options="column.data" form-template="{{column.type}}"></form-field>
                             <form-field ng-if="column.type && !column.name" attachment-type="{{column.attachmentType}}" form-field-bind="item" form-field-action="updateItem({item:item})" form-field-action-param="item" form-select-options="column.data" form-template="{{column.type}}"></form-field>
                         </p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12 p-r-0">
+                        <button href="#" class="btn btn-success pull-right" ng-click="updateItem({item : item})">
+                            Speichern
+                        </button>
                     </div>
                 </div>
             </div>
