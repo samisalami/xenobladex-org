@@ -7,7 +7,7 @@ angular.module('app')
             link: function($scope, $element,$attrs) {
                 var monsters = [];
 
-                monsterService.getMonsters(function(response){
+                monsterService.getMonstersDetail(function(response){
                     monsters = response;
                     $scope.missingDataArray = $filter('missingData')(monsters);
                 });
