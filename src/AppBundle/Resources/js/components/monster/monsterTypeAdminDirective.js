@@ -54,7 +54,7 @@ angular.module('app')
                 $scope.addMonsterType = function(monsterType) {
                     if(monsterType) {
                         monsterService.addMonsterType(monsterType, function(){
-                            monsterService.getMonsterTypes(function(response){
+                            monsterService.getMonsterTypesDetail(function(response){
                                 $scope.monsterTypes = response;
                             });
                             $scope.newMonsterType = {

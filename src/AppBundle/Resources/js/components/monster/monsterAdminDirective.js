@@ -256,7 +256,7 @@ angular.module('app')
                 $scope.addMonster = function(monster) {
                     if(monster) {
                         monsterService.addMonster(monster, function(){
-                            monsterService.getMonsters(function(response){
+                            monsterService.getMonstersDetail(function(response){
                                 $scope.monsters = response;
                             });
                             $scope.newMonster = {
