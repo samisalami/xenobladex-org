@@ -6,7 +6,7 @@ angular.module('app')
             templateUrl:'js/components/item/materialAdminView.html',
             replace: true,
             link: function($scope, $element,$attrs){
-                $scope.newItem = {};
+                $scope.newMaterial = {};
 
                 var rarities = [
                     {name:'Gewöhnlich'},
@@ -70,7 +70,7 @@ angular.module('app')
                             itemService.getMaterials(function(response){
                                 $scope.materials = response;
                             });
-                            $scope.newItem = {};
+                            $scope.newMaterial = {};
                             flashService.clear();
                         });
                     } else {
