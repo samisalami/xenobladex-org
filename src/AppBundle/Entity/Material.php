@@ -19,6 +19,14 @@ use JMS\Serializer\Annotation\Groups;
 class Material extends Item
 {
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_not_buyable", type="boolean")
+     * @Groups({"Default"})
+     */
+    private $isNotBuyable = false;
+
+    /**
      * @ORM\ManyToMany(targetEntity="MonsterType", mappedBy="materials", cascade={"persist"})
      * @Type("ArrayCollection<AppBundle\Entity\MonsterType>")
      * @Groups({"materialDetail"})
@@ -106,5 +114,28 @@ class Material extends Item
     public function getMonsters()
     {
         return $this->monsters;
+    }
+
+    /**
+     * Set isNotBuyable
+     *
+     * @param boolean $isNotBuyable
+     * @return Material
+     */
+    public function setIsNotBuyable($isNotBuyable)
+    {
+        $this->isNotBuyable = $isNotBuyable;
+
+        return $this;
+    }
+
+    /**
+     * Get isNotBuyable
+     *
+     * @return boolean 
+     */
+    public function getIsNotBuyable()
+    {
+        return $this->isNotBuyable;
     }
 }

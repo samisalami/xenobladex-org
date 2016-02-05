@@ -43,6 +43,11 @@ angular.module('app')
                                 label: 'Körperteil',
                                 name: 'body_part',
                                 type: 'inputText'
+                            },
+                            {
+                                label: 'Kann nicht mit Tickets gekauft werden?',
+                                name: 'is_not_buyable',
+                                type: 'inputCheckbox'
                             }
                             //not needed for now
                             //{

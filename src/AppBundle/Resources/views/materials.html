@@ -24,7 +24,7 @@ Sobald die Monster dazukommen, findet ihr hier dann diese auch verknüpft.</p>
                 <h5>{{material.name}}</h5>
                 <span class="rarity" ng-class="getValidCssClass(material.rarity)">{{material.rarity}}</span>
             </header>
-            <p class="content-body p-y-0">{{material.credit_cost || '???'}} <span>Credits</span> | {{material.ticket_cost || '???'}} <span>Tickets</span></p>
+            <p class="content-body p-y-0"><span>{{material.credit_cost || '???'}} Credits</span> | <span ng-if="!material.is_not_buyable">{{material.ticket_cost || '???'}} Tickets</span><span ng-if="material.is_not_buyable">Kauf nicht möglich</span></p>
             <hr class="m-x-1" />
             <div class="row">
                 <div class="col-xs-12 col-sm-6">
