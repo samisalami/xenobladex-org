@@ -96,7 +96,7 @@ class MaterialController extends FOSRestController {
 
     /**
      * @Route("/api/material/delete/{id}", methods={"DELETE"})
-     * @ParamConverter("monster", class="AppBundle:Monster")
+     * @ParamConverter("material", class="AppBundle:Material")
      * @param Material $material
      * @return Response
      */
