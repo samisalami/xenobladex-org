@@ -26,6 +26,9 @@ function config($routeProvider, $locationProvider) {
       .when('/material', {
         templateUrl: 'views/materials.html'
       })
+      .when('/impressum', {
+        templateUrl: 'views/imprint.html'
+      })
       .when('/login', {
         controller: 'UserController',
         templateUrl: 'js/components/user/loginView.html'
