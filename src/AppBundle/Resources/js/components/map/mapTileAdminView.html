@@ -1,0 +1,10 @@
+<div class="map-admin map-tile-admin-view">
+    <div class="form-group">
+        <label>Karte wählen:</label>
+        <select ng-if="maps" ng-model="selectedMapId" ng-change="selectMap(selectedMapId)" class="form-control" ng-options="map.id as map.name for map in maps"></select>
+    </div>
+    <div ng-if="currentMap" class="map-container">
+        <map-grid map="currentMap"></map-grid>
+        <img ng-src="/xenobladex/attachment/{{currentMap.attachment.id}}" />
+    </div>
+</div>

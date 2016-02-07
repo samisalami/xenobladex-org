@@ -82,6 +82,9 @@ function config($routeProvider, $locationProvider) {
       .when('/admin/material/was-fehlt', {
           templateUrl: 'views/admin_materials_missing.html'
       })
+      .when('/admin/segmente', {
+          templateUrl: 'views/admin_mapTiles.html'
+      })
       .otherwise({
           templateUrl: 'views/404.html'
       });
