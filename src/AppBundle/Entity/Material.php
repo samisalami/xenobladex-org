@@ -27,6 +27,14 @@ class Material extends Item
     private $isNotBuyable = false;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="show_monsters", type="boolean")
+     * @Groups({"Default"})
+     */
+    private $showMonsters = false;
+
+    /**
      * @ORM\ManyToMany(targetEntity="MonsterType", mappedBy="materials", cascade={"persist"})
      * @Type("ArrayCollection<AppBundle\Entity\MonsterType>")
      * @Groups({"materialDetail"})
@@ -137,5 +145,28 @@ class Material extends Item
     public function getIsNotBuyable()
     {
         return $this->isNotBuyable;
+    }
+
+    /**
+     * Set showMonsters
+     *
+     * @param boolean $showMonsters
+     * @return Material
+     */
+    public function setShowMonsters($showMonsters)
+    {
+        $this->showMonsters = $showMonsters;
+
+        return $this;
+    }
+
+    /**
+     * Get showMonsters
+     *
+     * @return boolean 
+     */
+    public function getShowMonsters()
+    {
+        return $this->showMonsters;
     }
 }

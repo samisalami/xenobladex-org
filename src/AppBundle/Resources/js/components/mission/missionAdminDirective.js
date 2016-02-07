@@ -103,12 +103,6 @@ angular.module('app')
                                 data: sidejobTypes
                             },
                             {
-                                label: 'Nebenjob-Schwierigkeit',
-                                name: 'difficulty',
-                                type: 'inputText',
-                                fieldInfoTooltip: 'Nur Zahlen erlaubt (kleine Sterne addieren).'
-                            },
-                            {
                                 label: 'Beschreibung',
                                 name: 'description',
                                 type: 'textarea'
@@ -127,6 +121,12 @@ angular.module('app')
                                 label: 'Belohnung',
                                 name: 'rewards',
                                 type: 'textarea'
+                            },
+                            {
+                                label: 'Nebenjob-Schwierigkeit',
+                                name: 'difficulty',
+                                type: 'inputText',
+                                fieldInfoTooltip: 'Nur Zahlen erlaubt (kleine Sterne addieren).'
                             },
                             {
                                 label: 'Typ',

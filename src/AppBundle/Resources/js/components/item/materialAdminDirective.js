@@ -48,6 +48,11 @@ angular.module('app')
                                 label: 'Kann nicht mit Tickets gekauft werden?',
                                 name: 'is_not_buyable',
                                 type: 'inputCheckbox'
+                            },
+                            {
+                                label: 'Arten anzeigen statt Gattungen?',
+                                name: 'show_monsters',
+                                type: 'inputCheckbox'
                             }
                             //not needed for now
                             //{
