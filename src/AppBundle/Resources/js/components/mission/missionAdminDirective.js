@@ -7,7 +7,9 @@ angular.module('app')
             templateUrl:'js/components/mission/missionAdminView.html',
             replace: true,
             link: function($scope, $element,$attrs){
-                $scope.newMission = {};
+                $scope.newMission = {
+                    mapmarkers: []
+                };
                 var personDataLoaded = false;
                 var missionTypesDataLoaded = false;
                 var mapDataLoaded = false;
