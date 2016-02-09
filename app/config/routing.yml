@@ -78,6 +78,13 @@ material:
     options:
         expose: true
 
+collectible:
+    prefix: /xenobladex
+    type:     rest
+    resource: "@AppBundle/Controller/RestController/CollectibleController.php"
+    options:
+        expose: true
+
 show_attachment:
     path: /xenobladex/attachment/{id}
     defaults: { _controller: AppBundle:RestController/Attachment:showAttachment }

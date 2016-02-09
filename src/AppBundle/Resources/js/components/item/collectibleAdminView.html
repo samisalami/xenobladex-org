@@ -1,0 +1,7 @@
+<div class="collectible-admin-view">
+    <div class="alert alert-warning" ng-show="deletedCollectible">
+        <a ng-click="addDeletedCollectible()" href="#">Gelöschte Zeile wiederherstellen</a>
+    </div>
+    <input type="text" class="form-control text m-b-2" ng-model="modalFilterValue" ng-model-options='{ debounce: 200 }' placeholder="Filtern..." />
+    <collapsed-table ng-if="formModel && collectibles" view-data="collectibles" form-model="formModel" modal-filter-value="modalFilterValue" add-object="newCollectible" add-item="addCollectible(item)"  update-item="updateCollectible(item)" delete-item="deleteCollectible(item)"></collapsed-table>
+</div>

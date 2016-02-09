@@ -85,6 +85,9 @@ function config($routeProvider, $locationProvider) {
       .when('/admin/segmente', {
           templateUrl: 'views/admin_mapTiles.html'
       })
+      .when('/admin/sammelitems', {
+          templateUrl: 'views/admin_collectibles.html'
+      })
       .otherwise({
           templateUrl: 'views/404.html'
       });

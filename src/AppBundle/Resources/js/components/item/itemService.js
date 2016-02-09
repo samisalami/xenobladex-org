@@ -35,5 +35,30 @@ angular.module('app')
             });
         };
 
+        service.getCollectibles = function(callback) {
+            $http.get(Routing.generate('get_collectibles')).success(function(response){
+                callback(response);
+            });
+        };
+
+        service.addCollectible = function(collectible, callback) {
+            $http.post(Routing.generate('add_collectible'), collectible).success(function(){
+                callback();
+            });
+        };
+
+        service.updateCollectible = function(collectible) {
+            var promise = $timeout(function() {
+                $http.post(Routing.generate('update_collectible'), collectible);
+                $timeout.cancel(promise);
+            }, 100);
+        };
+
+        service.deleteCollectible = function(id, callback) {
+            $http.delete(Routing.generate('delete_collectible')+'/'+id).success(function(response){
+                callback(response);
+            });
+        };
+
         return service;
     }]);

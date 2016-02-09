@@ -26,42 +26,35 @@ class Collectible
      *
      * @ORM\Column(name="name", type="string", length=255)
      */
-    private $name;
+    private $name = '';
 
     /**
      * @var string
      *
      * @ORM\Column(name="description", type="text")
      */
-    private $description;
+    private $description = '';
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="value", type="smallint")
+     * @ORM\Column(name="credit_cost", type="smallint")
      */
-    private $value;
+    private $credit_cost = '';
 
     /**
      * @var string
      *
-     * @ORM\Column(name="region", type="string", length=255)
+     * @ORM\Column(name="rarity", type="text")
      */
-    private $region;
-
-    /**
-     * @var string
-     *
-     * @ORM\Column(name="category", type="string", length=255)
-     */
-    private $category;
+    private $rarity = 'Gewöhnlich';
 
     /**
      * @var string
      *
      * @ORM\Column(name="location_note", type="text")
      */
-    private $locationNote;
+    private $locationNote = '';
 
 
     /**
@@ -121,75 +114,6 @@ class Collectible
     }
 
     /**
-     * Set value
-     *
-     * @param integer $value
-     * @return Collectible
-     */
-    public function setValue($value)
-    {
-        $this->value = $value;
-
-        return $this;
-    }
-
-    /**
-     * Get value
-     *
-     * @return integer 
-     */
-    public function getValue()
-    {
-        return $this->value;
-    }
-
-    /**
-     * Set region
-     *
-     * @param string $region
-     * @return Collectible
-     */
-    public function setRegion($region)
-    {
-        $this->region = $region;
-
-        return $this;
-    }
-
-    /**
-     * Get region
-     *
-     * @return string 
-     */
-    public function getRegion()
-    {
-        return $this->region;
-    }
-
-    /**
-     * Set category
-     *
-     * @param string $category
-     * @return Collectible
-     */
-    public function setCategory($category)
-    {
-        $this->category = $category;
-
-        return $this;
-    }
-
-    /**
-     * Get category
-     *
-     * @return string 
-     */
-    public function getCategory()
-    {
-        return $this->category;
-    }
-
-    /**
      * Set locationNote
      *
      * @param string $locationNote
@@ -210,5 +134,51 @@ class Collectible
     public function getLocationNote()
     {
         return $this->locationNote;
+    }
+
+    /**
+     * Set credit_cost
+     *
+     * @param integer $creditCost
+     * @return Collectible
+     */
+    public function setCreditCost($creditCost)
+    {
+        $this->credit_cost = $creditCost;
+
+        return $this;
+    }
+
+    /**
+     * Get credit_cost
+     *
+     * @return integer 
+     */
+    public function getCreditCost()
+    {
+        return $this->credit_cost;
+    }
+
+    /**
+     * Set rarity
+     *
+     * @param string $rarity
+     * @return Collectible
+     */
+    public function setRarity($rarity)
+    {
+        $this->rarity = $rarity;
+
+        return $this;
+    }
+
+    /**
+     * Get rarity
+     *
+     * @return string 
+     */
+    public function getRarity()
+    {
+        return $this->rarity;
     }
 }
