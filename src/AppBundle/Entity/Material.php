@@ -5,8 +5,8 @@ namespace AppBundle\Entity;
 use AppBundle\Entity\MonsterType;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
-use JMS\Serializer\Annotation\Expose;
-use JMS\Serializer\Annotation\ExclusionPolicy;
+use JMS\Serializer\Annotation\Type;
+use JMS\Serializer\Annotation\Groups;
 
 /**
  * Material
@@ -15,17 +15,36 @@ use JMS\Serializer\Annotation\ExclusionPolicy;
  *
  * @ORM\Table(name="xenobladex_item_material")
  * @ORM\Entity
- * @ExclusionPolicy("all")
  */
 class Material extends Item
 {
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_not_buyable", type="boolean")
+     * @Groups({"Default"})
+     */
+    private $isNotBuyable = false;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="show_monsters", type="boolean")
+     * @Groups({"Default"})
+     */
+    private $showMonsters = false;
+
+    /**
      * @ORM\ManyToMany(targetEntity="MonsterType", mappedBy="materials", cascade={"persist"})
+     * @Type("ArrayCollection<AppBundle\Entity\MonsterType>")
+     * @Groups({"materialDetail"})
      */
     private $monster_types;
 
     /**
      * @ORM\ManyToMany(targetEntity="Monster", mappedBy="materials", cascade={"persist"})
+     * @Type("ArrayCollection<AppBundle\Entity\Monster>")
+     * @Groups({"materialDetail"})
      */
     private $monsters;
 
@@ -103,5 +122,51 @@ class Material extends Item
     public function getMonsters()
     {
         return $this->monsters;
+    }
+
+    /**
+     * Set isNotBuyable
+     *
+     * @param boolean $isNotBuyable
+     * @return Material
+     */
+    public function setIsNotBuyable($isNotBuyable)
+    {
+        $this->isNotBuyable = $isNotBuyable;
+
+        return $this;
+    }
+
+    /**
+     * Get isNotBuyable
+     *
+     * @return boolean 
+     */
+    public function getIsNotBuyable()
+    {
+        return $this->isNotBuyable;
+    }
+
+    /**
+     * Set showMonsters
+     *
+     * @param boolean $showMonsters
+     * @return Material
+     */
+    public function setShowMonsters($showMonsters)
+    {
+        $this->showMonsters = $showMonsters;
+
+        return $this;
+    }
+
+    /**
+     * Get showMonsters
+     *
+     * @return boolean 
+     */
+    public function getShowMonsters()
+    {
+        return $this->showMonsters;
     }
 }

@@ -10,6 +10,8 @@ use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use JMS\Serializer\SerializationContext;
 
 class MaterialController extends FOSRestController {
     protected function getJMSSerializer() {
@@ -45,7 +47,17 @@ class MaterialController extends FOSRestController {
         $em = $this->getDoctrine()->getManager();
         $materials = $em->getRepository('AppBundle:Material')->findAll();
         $serializer = $this->getJMSSerializer();
-        $response = new Response($serializer->serialize($materials, 'json'));
+        $response = new Response($serializer->serialize($materials, 'json', SerializationContext::create()->setGroups(array('Default'))));
+        $response->headers->set('Content-Type', 'application/json');
+        $em->clear();
+        return $response;
+    }
+
+    public function getMaterialsDetailAction() {
+        $em = $this->getDoctrine()->getManager();
+        $materials = $em->getRepository('AppBundle:Material')->findAll();
+        $serializer = $this->getJMSSerializer();
+        $response = new Response($serializer->serialize($materials, 'json', SerializationContext::create()->setGroups(array('materialDetail', 'Default'))));
         $response->headers->set('Content-Type', 'application/json');
         $em->clear();
         return $response;
@@ -84,11 +96,11 @@ class MaterialController extends FOSRestController {
 
     /**
      * @Route("/api/material/delete/{id}", methods={"DELETE"})
+     * @ParamConverter("material", class="AppBundle:Material")
+     * @param Material $material
+     * @return Response
      */
-    public function deleteMaterialAction($id) {
-        $material = $this->getDoctrine()
-            ->getRepository('AppBundle:Material')
-            ->find($id);
+    public function deleteMaterialAction($material) {
         $this->deleteMaterial($material);
         $serializer = $this->getJMSSerializer();
         $response = new Response($serializer->serialize($material, 'json'));

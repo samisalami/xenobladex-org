@@ -1,0 +1,164 @@
+<div class="missing-data-view">
+<a href="/admin/monster" class="btn-primary btn">Monster</a>
+    <div class="table-responsive m-t-2">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Level Min. / Max.
+                    </th>
+                    <th>
+                        HP
+                    </th>
+                    <th>
+                        EP
+                    </th>
+                    <th>
+                        Physisch
+                    </th>
+                    <th>
+                        Laser
+                    </th>
+                    <th>
+                        Äther
+                    </th>
+                    <th>
+                        Thermo
+                    </th>
+                    <th>
+                        Elektro
+                    </th>
+                    <th>
+                        Gravit
+                    </th>
+                    <th>
+                        Ortsbeschreibung
+                    </th>
+                    <th>
+                        Kartenpunkte
+                    </th>
+                    <th>
+                        Gattung
+                    </th>
+                    <th>
+                        Material
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="elm in missingDataArray | orderBy: 'name'">
+                    <td>
+                        {{elm.name}}
+                    </td>
+                    <td>
+                        <span ng-if="elm.level_min || elm.level_max" class="text-success">
+                            gepflegt
+                        </span>
+                        <span ng-if="!elm.level_min && !elm.level_max" class="text-danger">
+                            leer
+                        </span>
+                    </td>
+                    <td>
+                        <span ng-if="elm.hp" class="text-success">
+                            gepflegt
+                        </span>
+                        <span ng-if="!elm.hp" class="text-danger">
+                            leer
+                        </span>
+                    </td>
+                    <td>
+                        <span ng-if="elm.ep" class="text-success">
+                            gepflegt
+                        </span>
+                        <span ng-if="!elm.ep" class="text-danger">
+                            leer
+                        </span>
+                    </td>
+                    <td>
+                        <span ng-if="elm.res_physic" class="text-success">
+                            gepflegt
+                        </span>
+                        <span ng-if="!elm.res_physic" class="text-danger">
+                            leer
+                        </span>
+                    </td>
+                    <td>
+                        <span ng-if="elm.res_laser" class="text-success">
+                            gepflegt
+                        </span>
+                        <span ng-if="!elm.res_laser" class="text-danger">
+                            leer
+                        </span>
+                    </td>
+                    <td>
+                        <span ng-if="elm.res_ether" class="text-success">
+                            gepflegt
+                        </span>
+                        <span ng-if="!elm.res_ether" class="text-danger">
+                            leer
+                        </span>
+                    </td>
+                    <td>
+                        <span ng-if="elm.res_thermo" class="text-success">
+                            gepflegt
+                        </span>
+                        <span ng-if="!elm.res_thermo" class="text-danger">
+                            leer
+                        </span>
+                    </td>
+                    <td>
+                        <span ng-if="elm.res_electric" class="text-success">
+                            gepflegt
+                        </span>
+                        <span ng-if="!elm.res_electric" class="text-danger">
+                            leer
+                        </span>
+                    </td>
+                    <td>
+                        <span ng-if="elm.res_gravit" class="text-success">
+                            gepflegt
+                        </span>
+                        <span ng-if="!elm.res_gravit" class="text-danger">
+                            leer
+                        </span>
+                    </td>
+                    <td>
+                        <span ng-if="elm.location_note" class="text-success">
+                            gepflegt
+                        </span>
+                        <span ng-if="!elm.location_note" class="text-danger">
+                            leer
+                        </span>
+                    </td>
+                    <td>
+                        <span ng-if="elm.mapmarkers" class="text-success">
+                            gepflegt
+                        </span>
+                        <span ng-if="!elm.mapmarkers" class="text-danger">
+                            leer
+                        </span>
+                    </td>
+                    <td>
+                        <span ng-if="elm.monster_type" class="text-success">
+                            gepflegt
+                        </span>
+                        <span ng-if="!elm.monster_type" class="text-danger">
+                            leer
+                        </span>
+                    </td>
+                    <td>
+                        <span ng-if="elm.materials" class="text-success">
+                            gepflegt
+                        </span>
+                        <span ng-if="!elm.materials" class="text-danger">
+                            leer
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

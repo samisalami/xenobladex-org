@@ -1,15 +1,18 @@
 'use strict';
 
 angular.module('app')
-    .directive('missionAdmin',['missionService', 'personService', 'flashService', '$filter', function(missionService, personService, flashService, $filter) {
+    .directive('missionAdmin',['missionService', 'personService', 'mapService', 'flashService', '$filter', function(missionService, personService, mapService, flashService, $filter) {
         return {
             restrict: 'E',
             templateUrl:'js/components/mission/missionAdminView.html',
             replace: true,
             link: function($scope, $element,$attrs){
-                $scope.newMission = {};
+                $scope.newMission = {
+                    mapmarkers: []
+                };
                 var personDataLoaded = false;
                 var missionTypesDataLoaded = false;
+                var mapDataLoaded = false;
 
                 var sidejobTypes = [
                     {name:'Suche'},
@@ -32,7 +35,7 @@ angular.module('app')
                 ];
 
                 $scope.dataLoaded = function(){
-                    return personDataLoaded && missionTypesDataLoaded;
+                    return personDataLoaded && missionTypesDataLoaded && mapDataLoaded;
                 };
 
                 $scope.$watch($scope.dataLoaded, function(dataLoaded){
@@ -63,90 +66,101 @@ angular.module('app')
                                 hideValue: false,
                                 label: 'Auftraggeber',
                                 name: 'person_unrelated',
-                                type: 'editableText'
+                                type: 'inputText'
                             },
                             {
                                 label: 'Bedingung - BLADE-Level',
                                 name: 'blade_level',
-                                type: 'editableText',
+                                type: 'inputText',
                                 fieldInfoTooltip: 'Nur Zahlen erlaubt.'
                             },
                             {
                                 label: 'Bedingung - Kapitel',
                                 name: 'chapter',
-                                type: 'editableText',
+                                type: 'inputText',
                                 fieldInfoTooltip: 'Nur Zahlen erlaubt.'
                             },
                             {
                                 label: 'Bedingungen',
                                 name: 'conditions',
-                                type: 'editableTextarea'
+                                type: 'textarea'
                             },
                             {
                                 label: 'Erhalt wo?',
                                 name: 'location_note',
-                                type: 'editableTextarea'
+                                type: 'textarea'
                             },
                             {
                                 label: 'Nebenjob-Zielregion',
                                 name: 'target_area',
-                                type: 'editableStringSelect',
+                                type: 'stringSelect',
                                 data: regions
                             },
                             {
                                 label: 'Nebenjob-Typ',
                                 name: 'sidejob_type',
-                                type: 'editableStringSelect',
+                                type: 'stringSelect',
                                 data: sidejobTypes
-                            },
-                            {
-                                label: 'Nebenjob-Schwierigkeit',
-                                name: 'difficulty',
-                                type: 'editableText',
-                                fieldInfoTooltip: 'Nur Zahlen erlaubt (kleine Sterne addieren).'
                             },
                             {
                                 label: 'Beschreibung',
                                 name: 'description',
-                                type: 'editableTextarea'
+                                type: 'textarea'
                             },
                             {
                                 label: 'Aufgaben',
                                 name: 'tasks',
-                                type: 'editableTextarea'
+                                type: 'textarea'
                             },
                             {
                                 label: 'Lösung',
                                 name: 'solution',
-                                type: 'editableTextarea'
+                                type: 'textarea'
                             },
                             {
                                 label: 'Belohnung',
                                 name: 'rewards',
-                                type: 'editableTextarea'
+                                type: 'textarea'
+                            },
+                            {
+                                label: 'Nebenjob-Schwierigkeit',
+                                name: 'difficulty',
+                                type: 'inputText',
+                                fieldInfoTooltip: 'Nur Zahlen erlaubt (kleine Sterne addieren).'
                             },
                             {
                                 label: 'Typ',
                                 name: 'mission_type',
-                                type: 'editableObjectSelect',
+                                type: 'objectSelect',
                                 data: $scope.missionTypes
+                            },
+                            {
+                                label: 'Karte',
+                                name: 'mapmarkers',
+                                type: 'customMapmarkerInput',
+                                data: $scope.maps
                             }
                         ]
                     };
                 };
+
+                missionService.getMissions(function(response){
+                    $scope.missions = response;
+                });
 
                 missionService.getMissionTypes(function(response){
                     $scope.missionTypes = response;
                     missionTypesDataLoaded = true;
                 });
 
-                missionService.getMissions(function(response){
-                    $scope.missions = response;
-                });
-
                 personService.getPersons(function(response){
                     $scope.persons = response;
                     personDataLoaded = true;
+                });
+
+                mapService.getMaps(function(response){
+                    $scope.maps = response;
+                    mapDataLoaded = true;
                 });
 
                 $scope.updateMission = function(mission) {

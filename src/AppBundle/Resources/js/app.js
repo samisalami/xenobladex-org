@@ -23,6 +23,12 @@ function config($routeProvider, $locationProvider) {
       .when('/missionen', {
         templateUrl: 'views/missions.html'
       })
+      .when('/material', {
+        templateUrl: 'views/materials.html'
+      })
+      .when('/impressum', {
+        templateUrl: 'views/imprint.html'
+      })
       .when('/login', {
         controller: 'UserController',
         templateUrl: 'js/components/user/loginView.html'
@@ -64,11 +70,20 @@ function config($routeProvider, $locationProvider) {
       .when('/admin/monster', {
         templateUrl: 'views/admin_monsters.html'
       })
+      .when('/admin/monster/was-fehlt', {
+          templateUrl: 'views/admin_monsters_missing.html'
+      })
       .when('/admin/monster_gattungen', {
         templateUrl: 'views/admin_monsterTypes.html'
       })
       .when('/admin/material', {
         templateUrl: 'views/admin_material.html'
+      })
+      .when('/admin/material/was-fehlt', {
+          templateUrl: 'views/admin_materials_missing.html'
+      })
+      .when('/admin/segmente', {
+          templateUrl: 'views/admin_mapTiles.html'
       })
       .otherwise({
           templateUrl: 'views/404.html'

@@ -1,8 +1,10 @@
 a {
   color: $font-color-dark;
+  outline: 0;
 }
 
 a:hover,
 a:focus {
   color: $color-xenobladex;
+  outline: 0;
 }

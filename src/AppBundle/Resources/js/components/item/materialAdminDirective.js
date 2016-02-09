@@ -6,7 +6,7 @@ angular.module('app')
             templateUrl:'js/components/item/materialAdminView.html',
             replace: true,
             link: function($scope, $element,$attrs){
-                $scope.newItem = {};
+                $scope.newMaterial = {};
 
                 var rarities = [
                     {name:'Gewöhnlich'},
@@ -23,32 +23,43 @@ angular.module('app')
                             {
                                 label: 'Seltenheit',
                                 name: 'rarity',
-                                type: 'editableStringSelect',
+                                type: 'stringSelect',
                                 data: rarities,
                                 fieldInfoTooltip: 'Wird auf "Gewöhnlich" gesetzt, wenn nichts gewählt.'
                             },
                             {
                                 label: 'Verkaufswert',
                                 name: 'credit_cost',
-                                type: 'editableText',
+                                type: 'inputText',
                                 fieldInfoTooltip: 'Nur Zahlen sind erlaubt.'
                             },
                             {
                                 label: 'Belohnungstickets',
                                 name: 'ticket_cost',
-                                type: 'editableText',
+                                type: 'inputText',
                                 fieldInfoTooltip: 'Nur Zahlen sind erlaubt.'
                             },
                             {
                                 label: 'Körperteil',
                                 name: 'body_part',
-                                type: 'editableText'
+                                type: 'inputText'
                             },
                             {
-                                label: 'Beschreibung',
-                                name: 'description',
-                                type: 'editableTextarea'
+                                label: 'Kann nicht mit Tickets gekauft werden?',
+                                name: 'is_not_buyable',
+                                type: 'inputCheckbox'
+                            },
+                            {
+                                label: 'Arten anzeigen statt Gattungen?',
+                                name: 'show_monsters',
+                                type: 'inputCheckbox'
                             }
+                            //not needed for now
+                            //{
+                            //    label: 'Beschreibung',
+                            //    name: 'description',
+                            //    type: 'editableTextarea'
+                            //}
                         ]
                     };
                 };
@@ -69,7 +80,7 @@ angular.module('app')
                             itemService.getMaterials(function(response){
                                 $scope.materials = response;
                             });
-                            $scope.newItem = {};
+                            $scope.newMaterial = {};
                             flashService.clear();
                         });
                     } else {

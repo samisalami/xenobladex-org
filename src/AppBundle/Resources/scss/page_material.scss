@@ -1,0 +1,19 @@
+.page-material {
+  .rarity {
+    &.wertvoll {
+      color: deepskyblue;
+    }
+
+    &.sehrwertvoll {
+      color: green;
+    }
+
+    &.extremwertvoll {
+      color: gold;
+    }
+
+    &.unbezahlbar {
+      color: orange;
+    }
+  }
+}

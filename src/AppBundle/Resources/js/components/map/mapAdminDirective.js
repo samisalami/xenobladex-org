@@ -15,7 +15,7 @@ angular.module('app')
                             {
                                 label: 'Beschreibung',
                                 name: 'description',
-                                type: 'editableTextarea'
+                                type: 'textarea'
                             },
                             {
                                 label: 'Bild',
@@ -23,6 +23,42 @@ angular.module('app')
                                 type: 'customAttachmentInput',
                                 attachmentType: 'image',
                                 data: $scope.attachments
+                            },
+                            {
+                                label: 'Segment - Durchmesser',
+                                name: 'grid_tile_diameter',
+                                type: 'inputText',
+                                fieldInfoTooltip: 'Wert in Pixeln. Nur Zahlen erlaubt.'
+                            },
+                            //{
+                            //    label: 'Segment - Abstand',
+                            //    name: 'grid_tile_margin',
+                            //    type: 'inputText',
+                            //    fieldInfoTooltip: 'Wert in Pixeln. Nur Zahlen erlaubt.'
+                            //},
+                            {
+                                label: 'Raster - Breite',
+                                name: 'grid_width',
+                                type: 'inputText',
+                                fieldInfoTooltip: 'Muss nicht exakt sein, Wert in Pixeln. Nur Zahlen erlaubt.'
+                            },
+                            {
+                                label: 'Raster - Höhe',
+                                name: 'grid_height',
+                                type: 'inputText',
+                                fieldInfoTooltip: 'Muss nicht exakt sein, Wert in Pixeln. Nur Zahlen erlaubt.'
+                            },
+                            {
+                                label: 'Raster horizontal verschieben um...',
+                                name: 'grid_offset_x',
+                                type: 'inputText',
+                                fieldInfoTooltip: 'Wert in Pixeln. Nur Zahlen erlaubt.'
+                            },
+                            {
+                                label: 'Raster vertikal verschieben um...',
+                                name: 'grid_offset_y',
+                                type: 'inputText',
+                                fieldInfoTooltip: 'Wert in Pixeln. Nur Zahlen erlaubt.'
                             }
                         ]
                     };

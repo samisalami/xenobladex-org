@@ -24,3 +24,16 @@
 .default-amrgin-y {
   margin: $default-margin 0;
 }
+
+.table {
+  display: table;
+  table-layout: fixed;
+}
+
+.table-row {
+  display: table-row;
+}
+
+.table-cell {
+  float: none !important;
+}

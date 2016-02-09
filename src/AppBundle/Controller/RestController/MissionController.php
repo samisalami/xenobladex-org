@@ -8,8 +8,10 @@ namespace AppBundle\Controller\RestController;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations\Route;
 use AppBundle\Entity\Mission;
+use Symfony\Component\HttpFoundation\AcceptHeader;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class MissionController extends FOSRestController {
     protected function getJMSSerializer() {
@@ -31,7 +33,33 @@ class MissionController extends FOSRestController {
 
     protected function updateMission(Mission $deserialized_mission) {
         $em = $this->getDoctrine()->getManager();
-        $updated_mission = $em->merge($deserialized_mission);
+
+        //mapmarkers
+        $mission = $em->getRepository('AppBundle:Mission')->find($deserialized_mission->getId());
+        $newMapmarkers = $deserialized_mission->getMapmarkers();
+        $countNewMapmarkers = count($newMapmarkers);
+        $currentMapmarkers = $mission->getMapmarkers();
+
+        foreach($currentMapmarkers as $currentMapmarker) {
+            $counter = 0;
+            $exists = false;
+            foreach($newMapmarkers as $newMapmarker) {
+                if($newMapmarker->getId()) {
+                    if($newMapmarker->getId() == $currentMapmarker->getId()) {
+                        $exists = true;
+                    }
+                }
+
+                $counter++;
+
+                if($counter==$countNewMapmarkers && !$exists) {
+                    $deserialized_mission->removeMapmarker($currentMapmarker);
+                    $em->remove($currentMapmarker);
+                }
+            }
+        }
+
+        $em->merge($deserialized_mission);
         $em->flush();
     }
 
@@ -80,11 +108,11 @@ class MissionController extends FOSRestController {
 
     /**
      * @Route("/api/mission/delete/{id}", methods={"DELETE"})
+     * @ParamConverter("mission", class="AppBundle:Mission")
+     * @param Mission $mission
+     * @return Response
      */
-    public function deleteMissionAction($id) {
-        $mission = $this->getDoctrine()
-            ->getRepository('AppBundle:Mission')
-            ->find($id);
+    public function deleteMissionAction(Mission $mission) {
         $this->deleteMission($mission);
         $serializer = $this->getJMSSerializer();
         $response = new Response($serializer->serialize($mission, 'json'));

@@ -9,11 +9,10 @@ angular.module('app')
                 var monsterTypeDataLoaded = false;
                 var materialDataLoaded = false;
                 var mapDataLoaded = false;
+
                 $scope.newMonster = {
                     materials: [],
-                    monster_type: {
-                        materials: []
-                    }
+                    mapmarkers: []
                 };
 
                 var regions = [
@@ -28,25 +27,33 @@ angular.module('app')
                 var times = [
                     {name:"Immer"},
                     {name:"Tagsüber"},
-                    {name:"Nachts"}
+                    {name:"Nachts"},
+                    {name:"Früh Morgens"},
+                    {name:"Vormittags"},
+                    {name:"Nachmittags"},
+                    {name:"Abends"},
+                    {name:"Spät Nachts"}
                 ];
 
                 var weatherTypes = [
                     {name:"Immer"},
-                    {name:"Klar"},
+                    {name:'Atomflocken'},
                     {name:'Bewölkt'},
+                    {name:"Gewitter"},
+                    {name:"Hitzewelle"},
+                    {name:"Klar"},
+                    {name:'Lichtpartikel'},
+                    {name:'Magnetischer Sturm'},
                     {name:'Nebel'},
+                    {name:'Polarlicht'},
                     {name:'Regen'},
                     {name:'Regenbogen'},
-                    {name:'Starker Regen'},
-                    {name:"Gewitter"},
-                    {name:'Sandsturm'},
-                    {name:'Lichtpartikel'},
-                    {name:'Polarlicht'},
                     {name:'Rotes Polarlicht'},
-                    {name:'Atomflocken'},
+                    {name:'Sandsturm'},
+                    {name:'Schwefelregen'},
                     {name:'Sporen'},
-                    {name:'Schwefelregen'}
+                    {name:'Starker Regen'},
+                    {name:'Sternschnuppen'}
                 ];
 
                 var aggressionTypes = [
@@ -68,37 +75,38 @@ angular.module('app')
 
                 var initFormModel = function() {
                     $scope.formModel = {
-                        orderBy: ['monster_type.name', 'name'],
+                        orderBy: ['monster_type.prio', 'name'],
                         fields:[
                             {
                                 label: 'Region',
                                 name: 'region',
-                                type: 'editableStringSelect',
-                                data: regions
+                                type: 'stringSelect',
+                                data: regions,
+                                fieldInfoTooltip: 'Standardwert: "Primordia"'
                             },
                             {
                                 label: 'Level Min.',
                                 name: 'level_min',
-                                type: 'editableText',
+                                type: 'inputText',
                                 fieldInfoTooltip: 'Nur Zahlen erlaubt.'
                             },
                             {
                                 label: 'Level Max.',
                                 name: 'level_max',
-                                type: 'editableText',
+                                type: 'inputText',
                                 fieldInfoTooltip: 'Nur Zahlen erlaubt. Leerlassen falls nur ein exaktes Level vorhanden.'
                             },
                             {
                                 label: 'Zeit',
                                 name: 'time',
-                                type: 'editableStringSelect',
+                                type: 'falsableStringSelect',
                                 data: times,
                                 fieldInfoTooltip: 'Standardwert: "Immer"'
                             },
                             {
                                 label: 'Wetter',
                                 name: 'weather',
-                                type: 'editableStringSelect',
+                                type: 'falsableStringSelect',
                                 data: weatherTypes,
                                 fieldInfoTooltip: 'Standardwert: "Immer"'
                             },
@@ -108,47 +116,96 @@ angular.module('app')
                                 type: 'inputCheckbox'
                             },
                             {
+                                label: 'Boss?',
+                                name: 'is_story',
+                                type: 'inputCheckbox',
+                                fieldInfoTooltip: 'Handlungs- & Missionsgegner'
+                            },
+                            {
+                                label: 'HP',
+                                name: 'hp',
+                                type: 'inputText',
+                                fieldInfoTooltip: 'Text - Zahlenraum mit Minus angeben'
+                            },
+                            {
                                 label: 'EP',
                                 name: 'ep',
-                                type: 'editableText'
+                                type: 'inputText',
+                                fieldInfoTooltip: 'Text - Zahlenraum mit Minus angeben'
+                            },
+                            {
+                                label: 'Resistenz - Physisch',
+                                name: 'res_physic',
+                                type: 'inputText',
+                                fieldInfoTooltip: 'Nur Zahlen erlaubt, Standardwert 0'
+                            },
+                            {
+                                label: 'Resistenz - Laser',
+                                name: 'res_laser',
+                                type: 'inputText',
+                                fieldInfoTooltip: 'Nur Zahlen erlaubt, Standardwert 0'
+                            },
+                            {
+                                label: 'Resistenz - Äther',
+                                name: 'res_ether',
+                                type: 'inputText',
+                                fieldInfoTooltip: 'Nur Zahlen erlaubt, Standardwert 0'
+                            },
+                            {
+                                label: 'Resistenz - Thermo',
+                                name: 'res_thermo',
+                                type: 'inputText',
+                                fieldInfoTooltip: 'Nur Zahlen erlaubt, Standardwert 0'
+                            },
+                            {
+                                label: 'Resistenz - Elektro',
+                                name: 'res_electric',
+                                type: 'inputText',
+                                fieldInfoTooltip: 'Nur Zahlen erlaubt, Standardwert 0'
+                            },
+                            {
+                                label: 'Resistenz - Gravit',
+                                name: 'res_gravit',
+                                type: 'inputText',
+                                fieldInfoTooltip: 'Nur Zahlen erlaubt, Standardwert 0'
                             },
                             {
                                 label: 'Aggression - Tag',
                                 name: 'aggression_day',
-                                type: 'editableStringSelect',
+                                type: 'stringSelect',
                                 data: aggressionTypes,
                                 fieldInfoTooltip: 'Standardwert: "Harmlos"'
                             },
                             {
                                 label: 'Aggression im Skell - Tag',
                                 name: 'agression_skell_day',
-                                type: 'editableStringSelect',
+                                type: 'stringSelect',
                                 data: aggressionTypes,
                                 fieldInfoTooltip: 'Standardwert: "Harmlos"'
                             },
                             {
                                 label: 'Aggression - Nacht',
                                 name: 'agression_night',
-                                type: 'editableStringSelect',
+                                type: 'stringSelect',
                                 data: aggressionTypes,
                                 fieldInfoTooltip: 'Standardwert: "Harmlos"'
                             },
                             {
                                 label: 'Aggression im Skell - Nacht',
                                 name: 'agression_skell_night',
-                                type: 'editableStringSelect',
+                                type: 'stringSelect',
                                 data: aggressionTypes,
                                 fieldInfoTooltip: 'Standardwert: "Harmlos"'
                             },
                             {
                                 label: 'Besonderheiten',
                                 name: 'description',
-                                type: 'editableTextarea'
+                                type: 'textarea'
                             },
                             {
                                 label: 'Ortsbeschreibung',
                                 name: 'location_note',
-                                type: 'editableTextarea'
+                                type: 'textarea'
                             },
                             {
                                 label: 'Kartenpunkte',
@@ -158,10 +215,16 @@ angular.module('app')
                             },
                             {
                                 label: 'Gattung',
-                                name: 'materials',
-                                type: 'customMonsterMaterialInput',
+                                type: 'customMonsterMonsterTypeInput',
                                 data: $scope.monsterTypes,
-                                fieldInfoTooltip: 'In erster Zeile neues Material (muss nicht existieren) verknüpfen dann "Hinzufügen" wählen -> Änderungen werden via Häkchen oder bei neuer Gattung via "Hinzufügen" permanent gespeichert'
+                                fieldInfoTooltip: 'Das Auswählen einer Gattung überschreibt die Materialien. Manchmal muss man außerhalb des Felds klicken, damit die Materialien eingefügt werden.'
+                            },
+                            {
+                                label: 'Material',
+                                name: 'materials',
+                                type: 'customMaterialInput',
+                                data: $scope.materials,
+                                fieldInfoTooltip: 'Wähle eine Gattung aus, um die Materialien der Gattung hier zu erhalten, die dann angepasst werden können.'
                             }
                         ]
                     };
@@ -172,7 +235,7 @@ angular.module('app')
                     materialDataLoaded = true;
                 });
 
-                monsterService.getMonsterTypes(function(response){
+                monsterService.getMonsterTypesDetail(function(response){
                     $scope.monsterTypes = response;
                     monsterTypeDataLoaded = true;
                 });
@@ -182,7 +245,7 @@ angular.module('app')
                     mapDataLoaded = true;
                 });
 
-                monsterService.getMonsters(function(response){
+                monsterService.getMonstersDetail(function(response){
                    $scope.monsters = response;
                 });
 
@@ -193,7 +256,7 @@ angular.module('app')
                 $scope.addMonster = function(monster) {
                     if(monster) {
                         monsterService.addMonster(monster, function(){
-                            monsterService.getMonsters(function(response){
+                            monsterService.getMonstersDetail(function(response){
                                 $scope.monsters = response;
                             });
                             $scope.newMonster = {

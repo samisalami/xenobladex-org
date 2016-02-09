@@ -13,12 +13,12 @@ angular.module('app')
 
                 var initFormModel = function() {
                     $scope.formModel = {
-                        orderBy: ['name'],
+                        orderBy: ['prio', 'name'],
                         fields:[
                             {
                                 label: 'Beschreibung',
                                 name: 'description',
-                                type: 'editableTextarea',
+                                type: 'textarea',
                                 fieldInfoTooltip: 'Gibt es nur, falls wir in Zukunft noch Extra Infos zur Gattung erfassen wollen.'
                             },
                             {
@@ -27,6 +27,12 @@ angular.module('app')
                                 type: 'customMaterialInput',
                                 data: $scope.materials,
                                 fieldInfoTooltip: 'In erster Zeile neues Material (muss nicht existieren) verknüpfen dann "Hinzufügen" wählen -> Änderungen werden via Häkchen oder bei neuer Gattung via "Hinzufügen" permanent gespeichert'
+                            },
+                            {
+                                label: 'Sortierung',
+                                name: 'prio',
+                                type: 'inputText',
+                                fieldInfoTooltip: 'Nur Zahlen erlaubt. Sortierung ist aufsteigend (am besten Spielraum zwischen den Zahlen lassen)'
                             }
                         ]
                     };
@@ -37,7 +43,7 @@ angular.module('app')
                     initFormModel();
                 });
 
-                monsterService.getMonsterTypes(function(response){
+                monsterService.getMonsterTypesDetail(function(response){
                     $scope.monsterTypes = response;
                 });
 
@@ -48,7 +54,7 @@ angular.module('app')
                 $scope.addMonsterType = function(monsterType) {
                     if(monsterType) {
                         monsterService.addMonsterType(monsterType, function(){
-                            monsterService.getMonsterTypes(function(response){
+                            monsterService.getMonsterTypesDetail(function(response){
                                 $scope.monsterTypes = response;
                             });
                             $scope.newMonsterType = {

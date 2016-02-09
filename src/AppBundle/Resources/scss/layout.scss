@@ -175,6 +175,7 @@ body {
     }
 
     .main-view {
+      overflow: auto;
       margin-bottom: $default-element-margin*5;
       padding: 0 $default-element-margin;
       > header {
@@ -188,7 +189,6 @@ body {
         margin-bottom: $default-element-margin*2;
 
         > header {
-          margin-bottom: $default-element-margin;
           h1 {
             font-size: $font-size-h1;
           }

@@ -37,36 +37,81 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="person in combinedPersons">
+                <tr ng-repeat="elm in missingDataArray">
                     <td>
-                        {{person.name}}
+                        {{elm.name}}
                     </td>
                     <td>
-                        <span class="icon-missing-data" ng-class="{'complete text-success':person.age, 'incomplete text-danger':!person.age}"></span>
+                        <span ng-if="elm.age" class="text-success">
+                            gepflegt
+                        </span>
+                        <span ng-if="!elm.age" class="text-danger">
+                            leer
+                        </span>
                     </td>
                     <td>
-                        <span class="icon-missing-data" ng-class="{'complete text-success':person.species, 'incomplete text-danger':!person.species}"></span>
+                        <span ng-if="elm.species" class="text-success">
+                            gepflegt
+                        </span>
+                        <span ng-if="!elm.species" class="text-danger">
+                            leer
+                        </span>
                     </td>
                     <td>
-                        <span class="icon-missing-data" ng-class="{'complete text-success':person.job, 'incomplete text-danger':!person.job}"></span>
+                        <span ng-if="elm.job" class="text-success">
+                            gepflegt
+                        </span>
+                        <span ng-if="!elm.job" class="text-danger">
+                            leer
+                        </span>
                     </td>
                     <td>
-                        <span class="icon-missing-data" ng-class="{'complete text-success':person.description, 'incomplete text-danger':!person.description}"></span>
+                        <span ng-if="elm.description" class="text-success">
+                            gepflegt
+                        </span>
+                        <span ng-if="!elm.description" class="text-danger">
+                            leer
+                        </span>
                     </td>
                     <td>
-                        <span class="icon-missing-data" ng-class="{'complete text-success':person.region, 'incomplete text-danger':!person.region}"></span>
+                        <span ng-if="elm.region" class="text-success">
+                            gepflegt
+                        </span>
+                        <span ng-if="!elm.region" class="text-danger">
+                            leer
+                        </span>
                     </td>
                     <td>
-                        <span class="icon-missing-data" ng-class="{'complete text-success':person.activity_time, 'incomplete text-danger':!person.activity_time}"></span>
+                        <span ng-if="elm.activity_time" class="text-success">
+                            gepflegt
+                        </span>
+                        <span ng-if="!elm.activity_time" class="text-danger">
+                            leer
+                        </span>
                     </td>
                     <td>
-                        <span class="icon-missing-data" ng-class="{'complete text-success':person.location_note, 'incomplete text-danger':!person.location_note}"></span>
+                        <span ng-if="elm.location_note" class="text-success">
+                            gepflegt
+                        </span>
+                        <span ng-if="!elm.location_note" class="text-danger">
+                            leer
+                        </span>
                     </td>
                     <td>
-                        <span class="icon-missing-data" ng-class="{'complete text-success':person.conditions, 'incomplete text-danger':!person.conditions}"></span>
+                        <span ng-if="elm.conditions" class="text-success">
+                            gepflegt
+                        </span>
+                        <span ng-if="!elm.conditions" class="text-danger">
+                            leer
+                        </span>
                     </td>
                     <td>
-                        <span class="icon-missing-data" ng-class="{'complete text-success':person.hasMapmarker, 'incomplete text-danger':!person.hasMapmarker}"></span>
+                        <span ng-if="elm.mapmarkers" class="text-success">
+                            gepflegt
+                        </span>
+                        <span ng-if="!elm.mapmarkers" class="text-danger">
+                            leer
+                        </span>
                     </td>
                 </tr>
             </tbody>

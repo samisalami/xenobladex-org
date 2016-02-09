@@ -26,17 +26,17 @@ angular.module('app')
                             {
                                 label: 'Antwort',
                                 name: 'answer',
-                                type: 'editableTextarea'
+                                type: 'textarea'
                             },
                             {
                                 label: 'Antwort - Erweitert',
                                 name: 'answer_read_more',
-                                type: 'editableTextarea'
+                                type: 'textarea'
                             },
                             {
                                 label: 'Kategorie',
                                 name: 'category',
-                                type: 'editableStringSelect',
+                                type: 'stringSelect',
                                 data: categoryList,
                                 fieldInfoTooltip: 'Wenn keine Kategorie gewählt, wird "Sonstiges" gesetzt.'
                             }

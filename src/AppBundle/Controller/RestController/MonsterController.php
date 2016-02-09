@@ -11,6 +11,7 @@ use FOS\RestBundle\Controller\Annotations\Route;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
+use JMS\Serializer\SerializationContext;
 
 class MonsterController extends FOSRestController {
     protected function getJMSSerializer() {
@@ -27,17 +28,20 @@ class MonsterController extends FOSRestController {
         $em = $this->getDoctrine()->getManager();
         $monster = $em->merge($deserialized_monster);
         $em->persist($monster);
+        foreach($deserialized_monster->getMaterials() as $material) {
+            $material = $em->merge($material);
+            $material->addMonster($monster);
+        }
         $em->flush();
     }
 
     protected function updateMonster(Monster $deserialized_monster) {
         $em = $this->getDoctrine()->getManager();
-        $newMaterials = [];
-        $newMapmarkers = [];
-
-        $monster = $em->getRepository('AppBundle:Person')->find($deserialized_monster->getId());
 
         //material
+        $newMaterials = [];
+        $monster = $em->getRepository('AppBundle:Monster')->find($deserialized_monster->getId());
+
         foreach($deserialized_monster->getMaterials() as $material) {
             $material =  $em->merge($material);
             $material->addMonster($monster);
@@ -52,21 +56,32 @@ class MonsterController extends FOSRestController {
             }
         }
 
+
         //mapmarkers
-        foreach($deserialized_monster->getMapmarkers() as $mapmarker) {
-            $mapmarker =  $em->merge($mapmarker);
-            $mapmarker->setMonster($monster);
-            $newMapmarkers[] = $mapmarker;
-        }
+        $newMapmarkers = $deserialized_monster->getMapmarkers();
+        $countNewMapmarkers = count($newMapmarkers);
+        $currentMapmarkers = $monster->getMapmarkers();
 
-        $monsterMapmarkers = $monster->getMapmarkers();
+        foreach($currentMapmarkers as $currentMapmarker) {
+            $counter = 0;
+            $exists = false;
+            foreach($newMapmarkers as $newMapmarker) {
+                if($newMapmarker->getId()) {
+                    if($newMapmarker->getId() == $currentMapmarker->getId()) {
+                        $exists = true;
+                    }
+                }
 
-        foreach ($monsterMapmarkers as $mapmarker) {
-            if(!in_array($mapmarker,$newMapmarkers,true)) {
-                $monster->removeMapmarker($mapmarker);
-                $em->remove($mapmarker);
+                $counter++;
+
+                if($counter==$countNewMapmarkers && !$exists) {
+                    $deserialized_monster->removeMapmarker($currentMapmarker);
+                    $em->remove($currentMapmarker);
+                }
             }
         }
+
+        $em->merge($deserialized_monster);
         $em->flush();
     }
 
@@ -77,7 +92,19 @@ class MonsterController extends FOSRestController {
         $em = $this->getDoctrine()->getManager();
         $monsters = $em->getRepository('AppBundle:Monster')->findAll();
         $serializer = $this->getJMSSerializer();
-        $response = new Response($serializer->serialize($monsters, 'json'));
+        $response = new Response($serializer->serialize($monsters, 'json', SerializationContext::create()->setGroups(array('Default'))));
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
+    }
+
+    /**
+     * @return Response
+     */
+    public function getMonstersDetailAction() {
+        $em = $this->getDoctrine()->getManager();
+        $monsters = $em->getRepository('AppBundle:Monster')->findAll();
+        $serializer = $this->getJMSSerializer();
+        $response = new Response($serializer->serialize($monsters, 'json', SerializationContext::create()->setGroups(array('monsterDetail', 'Default'))));
         $response->headers->set('Content-Type', 'application/json');
         return $response;
     }

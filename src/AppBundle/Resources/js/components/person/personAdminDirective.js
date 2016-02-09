@@ -48,39 +48,39 @@ angular.module('app')
                             {
                                 label: 'Alter',
                                 name: 'age',
-                                type: 'editableText'
+                                type: 'inputText'
                             },
                             {
                                 label: 'Spezies',
                                 name: 'species',
-                                type: 'editableStringSelect',
+                                type: 'stringSelect',
                                 data: speciesList
                             },
                             {
                                 label: 'Beruf',
                                 name: 'job',
-                                type: 'editableText'
+                                type: 'inputText'
                             },
                             {
                                 label: 'Beschreibung',
                                 name: 'description',
-                                type: 'editableTextarea'
+                                type: 'textarea'
                             },
                             {
                                 label: 'Region',
                                 name: 'region',
-                                type: 'editableStringSelect',
+                                type: 'stringSelect',
                                 data: regions
                             },
                             {
                                 label: 'Zeit',
                                 name: 'activity_time',
-                                type: 'editableText'
+                                type: 'inputText'
                             },
                             {
                                 label: 'Ortsbeschreibung',
                                 name: 'location_note',
-                                type: 'editableTextarea'
+                                type: 'textarea'
                             },
                             {
                                 label: 'Karte',
@@ -91,7 +91,7 @@ angular.module('app')
                             {
                                 label: 'Bedingungen',
                                 name: 'conditions',
-                                type: 'editableTextarea'
+                                type: 'textarea'
                             }
                         ]
                     };
