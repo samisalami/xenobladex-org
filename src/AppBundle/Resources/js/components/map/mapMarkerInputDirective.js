@@ -4,17 +4,18 @@ angular.module('app')
     .directive('mapmarkerInput',['mapmarkerService', '$filter', '$timeout',function(mapMarkerService, $filter, $timeout) {
         return {
             restrict: 'EA',
-            templateUrl:'js/components/mapMarker/mapmarkerInputView.html',
+            templateUrl:'js/components/map/mapmarkerInputView.html',
             replace: true,
             scope: {
                 mapmarkers: '=',
                 maps: '='
             },
             link: function($scope, element, attrs) {
+                var domIndex = angular.element('.map-marker-input').length;
                 $scope.shownMapmarkers = {};
                 $scope.currentMap = {};
                 $scope.selectedMapId = null;
-                $scope.contentId = 'map-marker-input-'+Date.now();
+                $scope.contentId = 'map-marker-input-'+domIndex;
 
                 var getRelatedMapmarkers = function() {
                     $scope.shownMapmarkers = $filter('filter')($scope.mapmarkers, {map:{id:$scope.currentMap.id}});
