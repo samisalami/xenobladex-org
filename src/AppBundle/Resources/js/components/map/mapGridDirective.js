@@ -9,7 +9,6 @@ angular.module('app')
                 map: '='
             },
             link: function($scope, $element,$attrs){
-                $scope.contentId = 'mapGrid-'+Date.now();
                 var tileDiameter = $scope.map.grid_tile_diameter;
                 $scope.gridWidth = $scope.map.grid_width;
                 $scope.gridHeight = $scope.map.grid_height;

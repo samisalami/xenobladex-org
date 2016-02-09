@@ -12,8 +12,8 @@ angular.module('app')
                 autocompleteCallback: '&'
             },
             link: function($scope, element, attrs) {
-                var contentId = $('.autocomplete-select-input').length;
-                $scope.selectModalId = 'autocomplete-select-modal-'+contentId;
+                var domIndex = angular.element('.autocomplete-select-input').length;
+                $scope.selectModalId = 'autocomplete-select-modal-'+domIndex;
                 $scope.modalFilterValue = '';
                 $scope.autocompleteOptionName = attrs.autocompleteOptionName;
                 $scope.autocompleteOptionValue = attrs.autocompleteOptionValue;
