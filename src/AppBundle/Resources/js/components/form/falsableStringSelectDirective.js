@@ -8,7 +8,7 @@ angular.module('app')
                 var prefix = attrs.falsableCheckboxPrefix;
 
                 if($scope.$parent.formFieldBind) {
-                    $scope.selectValue = $scope.$parent.formFieldBind.replace(prefix, '').replace(/\s+/g, '');
+                    $scope.selectValue = $scope.$parent.formFieldBind.replace(prefix+' ', '');
                     if($scope.$parent.formFieldBind.indexOf(prefix)!== -1) {
                         $scope.checkboxValue = true;
                     } else {

@@ -43,7 +43,7 @@ angular.module('app')
                     {name:"Hitzewelle"},
                     {name:"Klar"},
                     {name:'Lichtpartikel'},
-                    {name:'Magnetsturm'},
+                    {name:'Magnetischer Sturm'},
                     {name:'Nebel'},
                     {name:'Polarlicht'},
                     {name:'Regen'},
