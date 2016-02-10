@@ -4,8 +4,8 @@
 <div class="col-xs-12">
     <section class="content-box m-b-1">
         <p class="content-body">Hier findet ihr das Material und von welchen Gattungen/Kreaturen ihr es erhaltet.
-Material gibt es entweder von mehreren Gattungen (und all deren Kreaturen) oder nur von spezifischen Kreaturen einer Gattung - entsprechend wird nur eins vom beiden angezeigt.
-Sobald wir die Monster veröffentlichen, werden diese dann hier auch verknüpft.</p>
+Material gibt es entweder von mehreren Gattungen (und all deren Kreaturen) oder nur von spezifischen Kreaturen einer Gattung, entsprechend wird nur eins vom beiden angezeigt. Teils wird auch nur die Gattung angezeigt da die Pflege noch nicht komplett und das Material somit noch nicht den Kreaturen zugeordnet ist.
+Sobald wir die Kreaturen veröffentlichen, werden diese dann hier auch verknüpft.</p>
     </section>
 </div>
 <div class="page-material" material-view>
@@ -35,7 +35,7 @@ Sobald wir die Monster veröffentlichen, werden diese dann hier auch verknüpft.
                         <strong>Körperteil:</strong><br/>
                         {{material.body_part || '???'}}
                     </div>
-                    <div class="col-xs-12 col-sm-6" ng-if="!material.show_monsters">
+                    <div class="col-xs-12 col-sm-6" ng-if="!material.show_monsters || (material.monsters.length==0 && material.monster_types.length>0)">
                         <strong ng-if="material.monster_types.length>0">Gattungen:</strong>
                         <ul>
                             <li ng-repeat="monsterType in material.monster_types">
