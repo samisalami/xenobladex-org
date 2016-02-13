@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\Groups;
 
 /**
  * Item
@@ -20,6 +21,7 @@ class Item
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Groups({"default", "itemDetail"})
      */
     protected $id;
 
@@ -27,6 +29,7 @@ class Item
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
+     * @Groups({"default", "itemDetail"})
      */
     protected $name = "";
 
@@ -34,6 +37,7 @@ class Item
      * @var string
      *
      * @ORM\Column(name="rarity", type="string", length=255)
+     * @Groups({"itemDetail"})
      */
     protected $rarity = "Gewöhnlich";
 
@@ -41,6 +45,7 @@ class Item
      * @var integer
      *
      * @ORM\Column(name="credit_cost", type="smallint")
+     * @Groups({"itemDetail"})
      */
     protected $creditCost = 0;
 
@@ -48,6 +53,7 @@ class Item
      * @var integer
      *
      * @ORM\Column(name="ticket_cost", type="smallint")
+     * @Groups({"itemDetail"})
      */
     protected $ticketCost = 0;
 
@@ -55,6 +61,7 @@ class Item
      * @var string
      *
      * @ORM\Column(name="body_part", type="string", length=255)
+     * @Groups({"itemDetail"})
      */
     protected $bodyPart = "";
 
@@ -62,6 +69,7 @@ class Item
      * @var string
      *
      * @ORM\Column(name="description", type="text")
+     * @Groups({"itemDetail"})
      */
     protected $description = "";
 

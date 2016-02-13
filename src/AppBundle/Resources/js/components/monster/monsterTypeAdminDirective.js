@@ -43,9 +43,9 @@ angular.module('app')
                     initFormModel();
                 });
 
-                monsterService.getMonsterTypesDetail(function(response){
+                monsterService.getMonsterTypes(function(response){
                     $scope.monsterTypes = response;
-                });
+                }, 'monsterTypeDetail');
 
                 $scope.updateMonsterType = function(monsterType) {
                     monsterService.updateMonsterType(monsterType);
@@ -54,9 +54,9 @@ angular.module('app')
                 $scope.addMonsterType = function(monsterType) {
                     if(monsterType) {
                         monsterService.addMonsterType(monsterType, function(){
-                            monsterService.getMonsterTypesDetail(function(response){
+                            monsterService.getMonsterTypes(function(response){
                                 $scope.monsterTypes = response;
-                            });
+                            }, 'monsterTypeDetail');
                             $scope.newMonsterType = {
                                 materials: [
                                 ]

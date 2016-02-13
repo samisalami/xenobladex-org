@@ -35,14 +35,11 @@ angular.module('app')
             });
         };
 
-        service.getMonsterTypes = function(callback) {
-            $http.get(Routing.generate('get_monster_types')).success(function(response){
-                callback(response);
-            });
-        };
-
-        service.getMonsterTypesDetail = function(callback) {
-            $http.get(Routing.generate('get_monster_types_detail')).success(function(response){
+        service.getMonsterTypes = function(callback,context) {
+            if(!context) {
+                context = "default";
+            }
+            $http.get(Routing.generate('get_monster_types', {context: context})).success(function(response){
                 callback(response);
             });
         };

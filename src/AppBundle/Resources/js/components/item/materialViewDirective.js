@@ -5,9 +5,9 @@ angular.module('app')
         return {
             restrict: 'EA',
             link: function($scope, $element,$attrs){
-                itemService.getMaterialsDetail(function(response){
+                itemService.getMaterials(function(response){
                     $scope.materials = response;
-                });
+                }, 'itemDetail');
 
                 $scope.getValidCssClass = function(string) {
                     var regExp = new RegExp("[^A-Za-z0-9\-_]", "g");

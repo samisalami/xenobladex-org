@@ -22,7 +22,7 @@ class Material extends Item
      * @var boolean
      *
      * @ORM\Column(name="is_not_buyable", type="boolean")
-     * @Groups({"Default"})
+     * @Groups({"itemDetail"})
      */
     private $isNotBuyable = false;
 
@@ -30,21 +30,21 @@ class Material extends Item
      * @var boolean
      *
      * @ORM\Column(name="show_monsters", type="boolean")
-     * @Groups({"Default"})
+     * @Groups({"itemDetail"})
      */
     private $showMonsters = false;
 
     /**
      * @ORM\ManyToMany(targetEntity="MonsterType", mappedBy="materials", cascade={"persist"})
      * @Type("ArrayCollection<AppBundle\Entity\MonsterType>")
-     * @Groups({"materialDetail"})
+     * @Groups({"itemDetail"})
      */
     private $monster_types;
 
     /**
      * @ORM\ManyToMany(targetEntity="Monster", mappedBy="materials", cascade={"persist"})
      * @Type("ArrayCollection<AppBundle\Entity\Monster>")
-     * @Groups({"materialDetail"})
+     * @Groups({"itemDetail"})
      */
     private $monsters;
 

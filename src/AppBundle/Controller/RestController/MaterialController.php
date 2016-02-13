@@ -25,41 +25,34 @@ class MaterialController extends FOSRestController {
         $em->clear();
     }
 
-    protected function addMaterial(Material $deserialized_material) {
+    protected function saveMaterial(Material $material) {
         $em = $this->getDoctrine()->getManager();
-        $material = $em->merge($deserialized_material);
         $em->persist($material);
         $em->flush();
         $em->clear();
     }
 
-    protected function updateMaterial(Material $deserialized_material) {
-        $em = $this->getDoctrine()->getManager();
-        $updated_material = $em->merge($deserialized_material);
-        $em->flush();
-        $em->clear();
-    }
-
     /**
+     * @param $context
      * @return Response
+     * @Route("/materials/{context}", methods={"GET"})
      */
-    public function getMaterialsAction() {
-        $em = $this->getDoctrine()->getManager();
-        $materials = $em->getRepository('AppBundle:Material')->findAll();
-        $serializer = $this->getJMSSerializer();
-        $response = new Response($serializer->serialize($materials, 'json', SerializationContext::create()->setGroups(array('Default'))));
-        $response->headers->set('Content-Type', 'application/json');
-        $em->clear();
-        return $response;
-    }
+    public function getMaterialsAction($context="") {
+        $groups = array('itemDetail');
 
-    public function getMaterialsDetailAction() {
         $em = $this->getDoctrine()->getManager();
         $materials = $em->getRepository('AppBundle:Material')->findAll();
         $serializer = $this->getJMSSerializer();
-        $response = new Response($serializer->serialize($materials, 'json', SerializationContext::create()->setGroups(array('materialDetail', 'Default'))));
+
+        if(in_array($context, $groups)) {
+            $data = $serializer->serialize($materials, 'json', SerializationContext::create()->setGroups(array('default',$context)));
+        } else {
+            $data = $serializer->serialize($materials, 'json', SerializationContext::create()->setGroups(array('default')));
+        }
+
+        $response = new Response($data);
         $response->headers->set('Content-Type', 'application/json');
-        $em->clear();
+
         return $response;
     }
 
@@ -71,7 +64,7 @@ class MaterialController extends FOSRestController {
         if(!empty($content)) {
             $serializer = $this->getJMSSerializer();
             $deserialized_material = $serializer->deserialize($content, 'AppBundle\Entity\Material', 'json');
-            $this->addMaterial($deserialized_material);
+            $this->saveMaterial($deserialized_material);
         }
         return new Response(Response::HTTP_OK);
     }
@@ -85,7 +78,7 @@ class MaterialController extends FOSRestController {
             $serializer = $this->getJMSSerializer();
             $deserialized_material = $serializer->deserialize($content, 'AppBundle\Entity\Material', 'json');
 
-            $this->updateMaterial($deserialized_material);
+            $this->saveMaterial($deserialized_material);
 
             $response = new Response($serializer->serialize($deserialized_material, 'json'));
             $response->headers->set('Content-Type', 'application/json');

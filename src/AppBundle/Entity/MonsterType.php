@@ -21,7 +21,7 @@ class MonsterType
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @Groups({"Default"})
+     * @Groups({"default", "monsterTypeDetail"})
      */
     private $id;
 
@@ -29,7 +29,7 @@ class MonsterType
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
-     * @Groups({"Default"})
+     * @Groups({"default", "monsterTypeDetail"})
      */
     private $name="";
 
@@ -45,7 +45,7 @@ class MonsterType
      * @var integer
      *
      * @ORM\Column(name="prio", type="smallint")
-     * @Groups({"Default"})
+     * @Groups({"default", "monsterTypeDetail"})
      */
     private $prio=0;
 

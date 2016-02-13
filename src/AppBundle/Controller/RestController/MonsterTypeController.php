@@ -24,56 +24,32 @@ class MonsterTypeController extends FOSRestController {
         $em->flush();
     }
 
-    protected function addMonsterType(MonsterType $deserialized_monsterType) {
+    protected function saveMonsterType(MonsterType $monsterType) {
         $em = $this->getDoctrine()->getManager();
-        $monster_type = $em->merge($deserialized_monsterType);
-        $em->persist($monster_type);
-        foreach($deserialized_monsterType->getMaterials() as $material) {
-            $material = $em->merge($material);
-            $material->addMonsterType($monster_type);
-        }
+        $em->persist($monsterType);
         $em->flush();
-    }
-
-    protected function updateMonsterType(MonsterType $deserialized_monsterType) {
-        $em = $this->getDoctrine()->getManager();
-        $monster_type = $em->merge($deserialized_monsterType);
-        $newMaterials = [];
-
-        foreach($deserialized_monsterType->getMaterials() as $material) {
-            $material =  $em->merge($material);
-            $material->addMonsterType($monster_type);
-            $newMaterials[] = $material;
-        }
-
-        foreach ($monster_type->getMaterials() as $material) {
-            if(!in_array($material,$newMaterials,true)) {
-                $monster_type->removeMaterial($material);
-            }
-        }
-        $em->flush();
+        $em->clear();
     }
 
     /**
+     * @param $context
      * @return Response
+     * @Route("/monster_types/{context}", methods={"GET"})
      */
-    public function getMonsterTypesAction() {
-        $em = $this->getDoctrine()->getManager();
-        $monsterTypes = $em->getRepository('AppBundle:MonsterType')->findAll();
-        $serializer = $this->getJMSSerializer();
-        $response = new Response($serializer->serialize($monsterTypes, 'json', SerializationContext::create()->setGroups(array('Default'))));
-        $response->headers->set('Content-Type', 'application/json');
-        return $response;
-    }
+    public function getMonsterTypesAction($context="") {
+        $groups = array('monsterTypeDetail');
 
-    /**
-     * @return Response
-     */
-    public function getMonsterTypesDetailAction() {
         $em = $this->getDoctrine()->getManager();
         $monsterTypes = $em->getRepository('AppBundle:MonsterType')->findAll();
         $serializer = $this->getJMSSerializer();
-        $response = new Response($serializer->serialize($monsterTypes, 'json', SerializationContext::create()->setGroups(array('Default', 'monsterTypeDetail'))));
+
+        if(in_array($context, $groups)) {
+            $data = $serializer->serialize($monsterTypes, 'json', SerializationContext::create()->setGroups(array('default',$context)));
+        } else {
+            $data = $serializer->serialize($monsterTypes, 'json', SerializationContext::create()->setGroups(array('default')));
+        }
+
+        $response = new Response($data);
         $response->headers->set('Content-Type', 'application/json');
         return $response;
     }
@@ -86,7 +62,7 @@ class MonsterTypeController extends FOSRestController {
         if(!empty($content)) {
             $serializer = $this->getJMSSerializer();
             $deserialized_monsterType = $serializer->deserialize($content, 'AppBundle\Entity\MonsterType', 'json');
-            $this->addMonsterType($deserialized_monsterType);
+            $this->saveMonsterType($deserialized_monsterType);
         }
         return new Response(Response::HTTP_OK);
     }
@@ -100,7 +76,7 @@ class MonsterTypeController extends FOSRestController {
             $serializer = $this->getJMSSerializer();
             $deserialized_monsterType = $serializer->deserialize($content, 'AppBundle\Entity\MonsterType', 'json');
 
-            $this->updateMonsterType($deserialized_monsterType);
+            $this->saveMonsterType($deserialized_monsterType);
 
             $response = new Response($serializer->serialize($deserialized_monsterType, 'json'));
             $response->headers->set('Content-Type', 'application/json');

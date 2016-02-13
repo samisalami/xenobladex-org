@@ -68,7 +68,7 @@ angular.module('app')
 
                 itemService.getMaterials(function(response){
                     $scope.materials = response;
-                });
+                }, 'itemDetail');
 
                 $scope.updateMaterial = function(material) {
                     itemService.updateMaterial(material);

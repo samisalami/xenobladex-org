@@ -235,10 +235,10 @@ angular.module('app')
                     materialDataLoaded = true;
                 });
 
-                monsterService.getMonsterTypesDetail(function(response){
+                monsterService.getMonsterTypes(function(response){
                     $scope.monsterTypes = response;
                     monsterTypeDataLoaded = true;
-                });
+                }, 'monsterTypeDetail');
 
                 mapService.getMaps(function(response){
                     $scope.maps = response;

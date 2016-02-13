@@ -4,18 +4,14 @@ angular.module('app')
     .factory('itemService', ['$http', '$timeout', function($http, $timeout) {
         var service = {};
 
-        service.getMaterials = function(callback) {
-            $http.get(Routing.generate('get_materials')).success(function(response){
+        service.getMaterials = function(callback, context) {
+            if(!context) {
+                context = "default";
+            }
+            $http.get(Routing.generate('get_materials', {context: context})).success(function(response){
                 callback(response);
             });
         };
-
-        service.getMaterialsDetail = function(callback) {
-            $http.get(Routing.generate('get_materials_detail')).success(function(response){
-                callback(response);
-            });
-        };
-
         service.addMaterial = function(material, callback) {
             $http.post(Routing.generate('add_material'), material).success(function(){
                 callback();
