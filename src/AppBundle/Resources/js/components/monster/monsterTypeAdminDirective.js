@@ -38,14 +38,18 @@ angular.module('app')
                     };
                 };
 
+                var getMonsterTypes = function() {
+                    monsterService.getMonsterTypes(function(response){
+                        $scope.monsterTypes = response;
+                    }, 'monsterTypeDetail');
+                };
+
                 itemService.getMaterials(function(response){
                     $scope.materials = response;
                     initFormModel();
                 });
 
-                monsterService.getMonsterTypes(function(response){
-                    $scope.monsterTypes = response;
-                }, 'monsterTypeDetail');
+                getMonsterTypes();
 
                 $scope.updateMonsterType = function(monsterType) {
                     monsterService.updateMonsterType(monsterType);
@@ -54,9 +58,7 @@ angular.module('app')
                 $scope.addMonsterType = function(monsterType) {
                     if(monsterType) {
                         monsterService.addMonsterType(monsterType, function(){
-                            monsterService.getMonsterTypes(function(response){
-                                $scope.monsterTypes = response;
-                            }, 'monsterTypeDetail');
+                            getMonsterTypes();
                             $scope.newMonsterType = {
                                 materials: [
                                 ]

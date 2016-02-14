@@ -18,16 +18,20 @@ angular.module('app')
                     };
                 };
 
-                resetNewAttachment();
+                var getAttachments = function() {
+                    attachmentService.getAttachments(function(attachments){
+                        $scope.attachments = attachments;
+                    });
+                };
 
-                attachmentService.getAttachments(function(attachments){
-                    $scope.attachments = attachments;
-                });
+                resetNewAttachment();
+                getAttachments();
+
 
                 $scope.$watch('file', function(){
                     if ($scope.file) {
-                        attachmentService.addAttachmentFile($scope.file, function(newAttachment){
-                            $scope.attachments.push(newAttachment);
+                        attachmentService.addAttachmentFile($scope.file, function(){
+                            getAttachments();
                             resetNewAttachment();
                         });
                     }

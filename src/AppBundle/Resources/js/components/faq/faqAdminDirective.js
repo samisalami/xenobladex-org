@@ -44,10 +44,13 @@ angular.module('app')
                     };
                 };
 
-                faqService.getFAQs(function(response){
-                    $scope.faqs = response;
-                });
+                var getFAQs = function() {
+                    faqService.getFAQs(function(response){
+                        $scope.faqs = response;
+                    });
+                };
 
+                getFAQs();
                 initFormModel();
 
                 $scope.updateFAQ = function(faq) {
@@ -57,9 +60,7 @@ angular.module('app')
                 $scope.addFAQ = function(faq) {
                     if(faq) {
                         faqService.addFAQ(faq, function(){
-                            faqService.getFAQs(function(response){
-                                $scope.faqs = response;
-                            });
+                            getFAQs();
                             $scope.newFAQ = {};
                             flashService.clear();
                         });

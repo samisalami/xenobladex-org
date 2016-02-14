@@ -64,11 +64,14 @@ angular.module('app')
                     };
                 };
 
-                initFormModel();
+                var getMaterials = function() {
+                    itemService.getMaterials(function(response){
+                        $scope.materials = response;
+                    }, 'itemDetail');
+                };
 
-                itemService.getMaterials(function(response){
-                    $scope.materials = response;
-                }, 'itemDetail');
+                getMaterials();
+                initFormModel();
 
                 $scope.updateMaterial = function(material) {
                     itemService.updateMaterial(material);
@@ -77,9 +80,7 @@ angular.module('app')
                 $scope.addMaterial = function(material) {
                     if(material) {
                         itemService.addMaterial(material, function(){
-                            itemService.getMaterials(function(response){
-                                $scope.materials = response;
-                            });
+                            getMaterials();
                             $scope.newMaterial = {};
                             flashService.clear();
                         });

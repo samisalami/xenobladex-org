@@ -4,14 +4,12 @@ angular.module('app')
     .factory('monsterService', ['$http', '$timeout', function($http, $timeout) {
         var service = {};
 
-        service.getMonsters = function(callback) {
-            $http.get(Routing.generate('get_monsters')).success(function(response){
-                callback(response);
-            });
-        };
-
-        service.getMonstersDetail = function(callback) {
-            $http.get(Routing.generate('get_monsters_detail')).success(function(response){
+        service.getMonsters = function(callback, context) {
+            console.log(context);
+            if(!context) {
+                context = "default";
+            }
+            $http.get(Routing.generate('get_monsters', {context: context})).success(function(response){
                 callback(response);
             });
         };

@@ -64,9 +64,13 @@ angular.module('app')
                     };
                 };
 
-                mapService.getMaps(function(response){
-                    $scope.maps = response;
-                });
+                var getMaps = function() {
+                    mapService.getMaps(function(response){
+                        $scope.maps = response;
+                    });
+                };
+
+                getMaps();
 
                 attachmentService.getAttachments(function(attachments){
                     $scope.attachments = attachments;
@@ -80,9 +84,7 @@ angular.module('app')
                 $scope.addMap = function(map) {
                     if(map) {
                         mapService.addMap(map, function(){
-                            mapService.getMaps(function(response){
-                                $scope.maps = response;
-                            });
+                            getMaps();
                             $scope.newMap = {};
                             flashService.clear();
                         });

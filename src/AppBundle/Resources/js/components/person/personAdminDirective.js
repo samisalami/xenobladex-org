@@ -15,9 +15,11 @@ angular.module('app')
                     initFormModel();
                 });
 
-                personService.getPersons(function(response){
-                    $scope.persons = response;
-                });
+                var getPersons = function() {
+                    personService.getPersons(function(response){
+                        $scope.persons = response;
+                    });
+                };
 
                 var regions = [
                     {name:'NLA'},
@@ -97,6 +99,8 @@ angular.module('app')
                     };
                 };
 
+                getPersons();
+
                 $scope.updatePerson = function(person) {
                     personService.updatePerson(person);
                 };
@@ -104,9 +108,7 @@ angular.module('app')
                 $scope.addPerson = function(person) {
                     if(person) {
                         personService.addPerson(person, function(){
-                            personService.getPersons(function(response){
-                                $scope.persons = response;
-                            });
+                            getPersons();
                             $scope.newPerson = {};
                             flashService.clear();
                         });

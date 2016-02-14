@@ -86,25 +86,24 @@ class MonsterController extends FOSRestController {
     }
 
     /**
+     * @param $context
      * @return Response
+     * @Route("/monsters/{context}", methods={"GET"})
      */
-    public function getMonstersAction() {
-        $em = $this->getDoctrine()->getManager();
-        $monsters = $em->getRepository('AppBundle:Monster')->findAll();
-        $serializer = $this->getJMSSerializer();
-        $response = new Response($serializer->serialize($monsters, 'json', SerializationContext::create()->setGroups(array('Default'))));
-        $response->headers->set('Content-Type', 'application/json');
-        return $response;
-    }
+    public function getMonstersAction($context="") {
+        $groups = array('monsterDetail');
 
-    /**
-     * @return Response
-     */
-    public function getMonstersDetailAction() {
         $em = $this->getDoctrine()->getManager();
         $monsters = $em->getRepository('AppBundle:Monster')->findAll();
         $serializer = $this->getJMSSerializer();
-        $response = new Response($serializer->serialize($monsters, 'json', SerializationContext::create()->setGroups(array('monsterDetail', 'Default'))));
+
+        if(in_array($context, $groups)) {
+            $data = $serializer->serialize($monsters, 'json', SerializationContext::create()->setGroups(array('default',$context)));
+        } else {
+            $data = $serializer->serialize($monsters, 'json', SerializationContext::create()->setGroups(array('default')));
+        }
+
+        $response = new Response($data);
         $response->headers->set('Content-Type', 'application/json');
         return $response;
     }

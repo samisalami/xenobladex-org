@@ -21,7 +21,7 @@ class Monster
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @Groups({"Default"})
+     * @Groups({"default"})
      */
     private $id;
 
@@ -29,7 +29,7 @@ class Monster
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
-     * @Groups({"Default"})
+     * @Groups({"default"})
      */
     private $name='';
 

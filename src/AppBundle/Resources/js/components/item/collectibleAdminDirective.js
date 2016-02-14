@@ -47,11 +47,14 @@ angular.module('app')
                     };
                 };
 
-                initFormModel();
+                var getCollectibles = function() {
+                    itemService.getCollectibles(function(response){
+                        $scope.collectibles = response;
+                    });
+                };
 
-                itemService.getCollectibles(function(response){
-                    $scope.collectibles = response;
-                });
+                getCollectibles();
+                initFormModel();
 
                 $scope.updateCollectible = function(collectible) {
                     itemService.updateCollectible(collectible);
@@ -60,9 +63,7 @@ angular.module('app')
                 $scope.addCollectible = function(collectible) {
                     if(collectible) {
                         itemService.addCollectible(collectible, function(){
-                            itemService.getCollectibles(function(response){
-                                $scope.collectibles = response;
-                            });
+                            getCollectibles();
                             $scope.newCollectible = {};
                             flashService.clear();
                         });

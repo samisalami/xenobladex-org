@@ -144,9 +144,13 @@ angular.module('app')
                     };
                 };
 
-                missionService.getMissions(function(response){
-                    $scope.missions = response;
-                });
+                var getMissions = function() {
+                    missionService.getMissions(function(response){
+                        $scope.missions = response;
+                    });
+                };
+
+                getMissions();
 
                 missionService.getMissionTypes(function(response){
                     $scope.missionTypes = response;
@@ -175,9 +179,7 @@ angular.module('app')
                 $scope.addMission = function(mission) {
                     if(mission) {
                         missionService.addMission(mission, function(){
-                            missionService.getMissions(function(response){
-                                $scope.missions = response;
-                            });
+                            getMissions();
                             $scope.newMission = {};
                             flashService.clear();
                         });

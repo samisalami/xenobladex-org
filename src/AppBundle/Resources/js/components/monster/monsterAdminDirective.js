@@ -230,6 +230,12 @@ angular.module('app')
                     };
                 };
 
+                var getMonsters = function(){
+                    monsterService.getMonsters(function(response){
+                        $scope.monsters = response;
+                    }, 'monsterDetail');
+                };
+
                 itemService.getMaterials(function(response){
                     $scope.materials = response;
                     materialDataLoaded = true;
@@ -245,9 +251,7 @@ angular.module('app')
                     mapDataLoaded = true;
                 });
 
-                monsterService.getMonstersDetail(function(response){
-                   $scope.monsters = response;
-                });
+                getMonsters();
 
                 $scope.updateMonster = function(monster) {
                     monsterService.updateMonster(monster);
@@ -256,9 +260,7 @@ angular.module('app')
                 $scope.addMonster = function(monster) {
                     if(monster) {
                         monsterService.addMonster(monster, function(){
-                            monsterService.getMonstersDetail(function(response){
-                                $scope.monsters = response;
-                            });
+                            getMonsters();
                             $scope.newMonster = {
                                 materials: [
                                 ]
