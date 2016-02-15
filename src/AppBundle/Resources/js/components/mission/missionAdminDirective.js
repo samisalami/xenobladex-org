@@ -133,13 +133,13 @@ angular.module('app')
                                 name: 'mission_type',
                                 type: 'objectSelect',
                                 data: $scope.missionTypes
-                            },
-                            {
-                                label: 'Karte',
-                                name: 'mapmarkers',
-                                type: 'customMapmarkerInput',
-                                data: $scope.maps
                             }
+                            //{
+                            //    label: 'Karte',
+                            //    name: 'mapmarkers',
+                            //    type: 'customMapmarkerInput',
+                            //    data: $scope.maps
+                            //}
                         ]
                     };
                 };

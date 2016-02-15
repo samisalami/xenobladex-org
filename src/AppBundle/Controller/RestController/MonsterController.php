@@ -24,6 +24,48 @@ class MonsterController extends FOSRestController {
         $em->flush();
     }
 
+    protected function saveMonster(Monster $monster) {
+        $em = $this->getDoctrine()->getManager();
+//        TODO: mapmarkers
+//        $newMapmarkers = $monster->getMapmarkers();
+//        $countNewMapmarkers = count($newMapmarkers);
+//
+//        if($monster->getId()) {
+//            $currentMonster = $em->getRepository('AppBundle:Monster')->find($monster->getId());
+//            $currentMapmarkers = $currentMonster->getMapmarkers();
+//
+//            foreach($currentMapmarkers as $currentMapmarker) {
+//                $counter = 0;
+//                $exists = false;
+//                foreach($newMapmarkers as $newMapmarker) {
+//                    if($newMapmarker->getId()) {
+//                        if($newMapmarker->getId() == $currentMapmarker->getId()) {
+//                            $exists = true;
+//                        }
+//                    }
+//
+//                    $counter++;
+//
+//                    if($counter==$countNewMapmarkers && !$exists) {
+//                        $currentMonster->removeMapmarker($currentMapmarker);
+//                        $em->remove($currentMapmarker);
+//                    }
+//                }
+//            }
+//        }
+
+//        $em->persist($monster);
+//        $em->flush();
+
+//        foreach($newMapmarkers as $mapmarker) {
+//            $mapmarker->setMonster($monster);
+////            $em->persist($mapmarker);
+//        }
+        $em->persist($monster);
+        $em->flush();
+        $em->clear();
+    }
+
     protected function addMonster(Monster $deserialized_monster) {
         $em = $this->getDoctrine()->getManager();
         $monster = $em->merge($deserialized_monster);
@@ -116,7 +158,7 @@ class MonsterController extends FOSRestController {
         if(!empty($content)) {
             $serializer = $this->getJMSSerializer();
             $deserialized_monster = $serializer->deserialize($content, 'AppBundle\Entity\Monster', 'json');
-            $this->addMonster($deserialized_monster);
+            $this->saveMonster($deserialized_monster);
         }
         return new Response(Response::HTTP_OK);
     }
@@ -130,7 +172,7 @@ class MonsterController extends FOSRestController {
             $serializer = $this->getJMSSerializer();
             $deserialized_monster = $serializer->deserialize($content, 'AppBundle\Entity\Monster', 'json');
 
-            $this->updateMonster($deserialized_monster);
+            $this->saveMonster($deserialized_monster);
 
             $response = new Response($serializer->serialize($deserialized_monster, 'json'));
             $response->headers->set('Content-Type', 'application/json');

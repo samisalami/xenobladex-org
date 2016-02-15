@@ -4,7 +4,7 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Component\HttpFoundation\File\UploadedFile;
-use Symfony\Component\Validator\Constraints as Assert;
+use JMS\Serializer\Annotation\Groups;
 
 /**
  * Attachment
@@ -20,6 +20,7 @@ class Attachment
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Groups({"default"})
      */
     private $id;
 
@@ -27,6 +28,7 @@ class Attachment
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
+     * @Groups({"default"})
      */
     private $name = '';
 

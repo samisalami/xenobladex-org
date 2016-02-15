@@ -207,12 +207,12 @@ angular.module('app')
                                 name: 'location_note',
                                 type: 'textarea'
                             },
-                            {
-                                label: 'Kartenpunkte',
-                                name: 'mapmarkers',
-                                type: 'customMapmarkerInput',
-                                data: $scope.maps
-                            },
+                            //{
+                            //    label: 'Kartenpunkte',
+                            //    name: 'mapmarkers',
+                            //    type: 'customMapmarkerInput',
+                            //    data: $scope.maps
+                            //},
                             {
                                 label: 'Gattung',
                                 type: 'customMonsterMonsterTypeInput',

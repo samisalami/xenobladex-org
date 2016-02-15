@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\Groups;
 
 /**
  * MapMarker
@@ -20,6 +21,7 @@ class Mapmarker
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
+     * @Groups({"default"})
      */
     protected $id;
 
@@ -27,6 +29,7 @@ class Mapmarker
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
+     * @Groups({"default"})
      */
     protected $name='';
 
@@ -34,6 +37,7 @@ class Mapmarker
      * @var string
      *
      * @ORM\Column(name="x_coord", type="string", length=255)
+     * @Groups({"default"})
      */
     protected $xCoord='';
 
@@ -41,6 +45,7 @@ class Mapmarker
      * @var string
      *
      * @ORM\Column(name="y_coord", type="string", length=255)
+     * @Groups({"default"})
      */
     protected $yCoord='';
 
@@ -48,12 +53,14 @@ class Mapmarker
      * @var string
      *
      * @ORM\Column(name="description", type="text")
+     * @Groups({"default"})
      */
     protected $description='';
 
     /**
      * @ORM\ManyToOne(targetEntity="Map")
      * @ORM\JoinColumn(name="map_id", referencedColumnName="id")
+     * @Groups({"default"})
      */
     protected $map;
 

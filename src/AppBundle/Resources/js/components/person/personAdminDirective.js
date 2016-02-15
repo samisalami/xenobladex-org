@@ -84,12 +84,12 @@ angular.module('app')
                                 name: 'location_note',
                                 type: 'textarea'
                             },
-                            {
-                                label: 'Karte',
-                                name: 'mapmarkers',
-                                type: 'customMapmarkerInput',
-                                data: $scope.maps
-                            },
+                            //{
+                            //    label: 'Karte',
+                            //    name: 'mapmarkers',
+                            //    type: 'customMapmarkerInput',
+                            //    data: $scope.maps
+                            //},
                             {
                                 label: 'Bedingungen',
                                 name: 'conditions',

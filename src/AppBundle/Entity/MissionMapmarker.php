@@ -14,7 +14,7 @@ class MissionMapmarker extends Mapmarker
 {
 
     /**
-     * @ORM\ManyToOne(targetEntity="Mission", inversedBy="mission", cascade={"all"})
+     * @ORM\ManyToOne(targetEntity="Mission", inversedBy="mapmarkers", cascade={"all"})
      * @ORM\JoinColumn(name="mission_id", referencedColumnName="id",onDelete="CASCADE")
      */
     private $mission;
