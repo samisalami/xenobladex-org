@@ -1,0 +1,51 @@
+<div class="missing-data-view">
+<a href="/admin/sammelitems" class="btn-primary btn">Sammelitems</a>
+    <div class="table-responsive m-t-2">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Beschreibung
+                    </th>
+                    <th>
+                        Seltenheit
+                    </th>
+                    <th>
+                        Ortsbeschreibung
+                    </th>
+                    <th>
+                        Kosten<br/>
+                        (aus Seltenheit)
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="collectible in collectibles | orderBy: ['name']">
+                    <td>
+                        {{collectible.name}}
+                    </td>
+                    <td>
+                        {{collectible.description}}
+                    </td>
+                    <td>
+                        {{collectible.rarity}}
+                    </td>
+                    <td>
+                        {{collectible.location_note}}
+                    </td>
+                    <td ng-switch="collectible.rarity">
+                        <span ng-switch-when="Gewöhnlich">100</span>
+                        <span ng-switch-when="Wertvoll">200</span>
+                        <span ng-switch-when="Sehr wertvoll">300</span>
+                        <span ng-switch-when="Extrem wertvoll">400</span>
+                        <span ng-switch-when="Unbezahlbar">500</span>
+                        <span ng-switch-default></span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

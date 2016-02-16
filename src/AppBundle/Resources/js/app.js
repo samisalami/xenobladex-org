@@ -88,6 +88,9 @@ function config($routeProvider, $locationProvider) {
       .when('/admin/sammelitems', {
           templateUrl: 'views/admin_collectibles.html'
       })
+      .when('/admin/sammelitems/was-fehlt', {
+          templateUrl: 'views/admin_collectibles_missing.html'
+      })
       .otherwise({
           templateUrl: 'views/404.html'
       });
