@@ -170,34 +170,34 @@ angular.module('app')
                                 type: 'inputText',
                                 fieldInfoTooltip: 'Nur Zahlen erlaubt, Standardwert 0'
                             },
-                            {
-                                label: 'Aggression - Tag',
-                                name: 'aggression_day',
-                                type: 'stringSelect',
-                                data: aggressionTypes,
-                                fieldInfoTooltip: 'Standardwert: "Harmlos"'
-                            },
-                            {
-                                label: 'Aggression im Skell - Tag',
-                                name: 'agression_skell_day',
-                                type: 'stringSelect',
-                                data: aggressionTypes,
-                                fieldInfoTooltip: 'Standardwert: "Harmlos"'
-                            },
-                            {
-                                label: 'Aggression - Nacht',
-                                name: 'agression_night',
-                                type: 'stringSelect',
-                                data: aggressionTypes,
-                                fieldInfoTooltip: 'Standardwert: "Harmlos"'
-                            },
-                            {
-                                label: 'Aggression im Skell - Nacht',
-                                name: 'agression_skell_night',
-                                type: 'stringSelect',
-                                data: aggressionTypes,
-                                fieldInfoTooltip: 'Standardwert: "Harmlos"'
-                            },
+                            //{
+                            //    label: 'Aggression - Tag',
+                            //    name: 'aggression_day',
+                            //    type: 'stringSelect',
+                            //    data: aggressionTypes,
+                            //    fieldInfoTooltip: 'Standardwert: "Harmlos"'
+                            //},
+                            //{
+                            //    label: 'Aggression im Skell - Tag',
+                            //    name: 'agression_skell_day',
+                            //    type: 'stringSelect',
+                            //    data: aggressionTypes,
+                            //    fieldInfoTooltip: 'Standardwert: "Harmlos"'
+                            //},
+                            //{
+                            //    label: 'Aggression - Nacht',
+                            //    name: 'agression_night',
+                            //    type: 'stringSelect',
+                            //    data: aggressionTypes,
+                            //    fieldInfoTooltip: 'Standardwert: "Harmlos"'
+                            //},
+                            //{
+                            //    label: 'Aggression im Skell - Nacht',
+                            //    name: 'agression_skell_night',
+                            //    type: 'stringSelect',
+                            //    data: aggressionTypes,
+                            //    fieldInfoTooltip: 'Standardwert: "Harmlos"'
+                            //},
                             {
                                 label: 'Besonderheiten',
                                 name: 'description',

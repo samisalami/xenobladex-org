@@ -17,25 +17,7 @@
                         EP
                     </th>
                     <th>
-                        Physisch
-                    </th>
-                    <th>
-                        Laser
-                    </th>
-                    <th>
-                        Äther
-                    </th>
-                    <th>
-                        Thermo
-                    </th>
-                    <th>
-                        Elektro
-                    </th>
-                    <th>
-                        Gravit
-                    </th>
-                    <th>
-                        Ortsbeschreibung
+                        Physisch | Laser | Äther | Thermo | Elektro | Gravit
                     </th>
                     <th>
                         Kartenpunkte
@@ -49,89 +31,26 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="elm in missingDataArray | orderBy: 'name'">
+                <tr ng-repeat="monster in monsters | orderBy: ['monster_type.prio','name']">
                     <td>
-                        {{elm.name}}
+                        {{monster.name}}
                     </td>
                     <td>
-                        <span ng-if="elm.level_min || elm.level_max" class="text-success">
-                            gepflegt
+                        <span ng-if="monster.level_min" class="text-success">
+                            {{monster.level_min}}
                         </span>
-                        <span ng-if="!elm.level_min && !elm.level_max" class="text-danger">
-                            leer
-                        </span>
-                    </td>
-                    <td>
-                        <span ng-if="elm.hp" class="text-success">
-                            gepflegt
-                        </span>
-                        <span ng-if="!elm.hp" class="text-danger">
-                            leer
+                        <span ng-if="monster.level_max" class="text-success">
+                            - {{monster.level_max}}
                         </span>
                     </td>
                     <td>
-                        <span ng-if="elm.ep" class="text-success">
-                            gepflegt
-                        </span>
-                        <span ng-if="!elm.ep" class="text-danger">
-                            leer
-                        </span>
+                        {{monster.hp}}
                     </td>
                     <td>
-                        <span ng-if="elm.res_physic" class="text-success">
-                            gepflegt
-                        </span>
-                        <span ng-if="!elm.res_physic" class="text-danger">
-                            leer
-                        </span>
+                        {{monster.ep}}
                     </td>
                     <td>
-                        <span ng-if="elm.res_laser" class="text-success">
-                            gepflegt
-                        </span>
-                        <span ng-if="!elm.res_laser" class="text-danger">
-                            leer
-                        </span>
-                    </td>
-                    <td>
-                        <span ng-if="elm.res_ether" class="text-success">
-                            gepflegt
-                        </span>
-                        <span ng-if="!elm.res_ether" class="text-danger">
-                            leer
-                        </span>
-                    </td>
-                    <td>
-                        <span ng-if="elm.res_thermo" class="text-success">
-                            gepflegt
-                        </span>
-                        <span ng-if="!elm.res_thermo" class="text-danger">
-                            leer
-                        </span>
-                    </td>
-                    <td>
-                        <span ng-if="elm.res_electric" class="text-success">
-                            gepflegt
-                        </span>
-                        <span ng-if="!elm.res_electric" class="text-danger">
-                            leer
-                        </span>
-                    </td>
-                    <td>
-                        <span ng-if="elm.res_gravit" class="text-success">
-                            gepflegt
-                        </span>
-                        <span ng-if="!elm.res_gravit" class="text-danger">
-                            leer
-                        </span>
-                    </td>
-                    <td>
-                        <span ng-if="elm.location_note" class="text-success">
-                            gepflegt
-                        </span>
-                        <span ng-if="!elm.location_note" class="text-danger">
-                            leer
-                        </span>
+                        {{monster.res_physic}} | {{monster.res_laser}} | {{monster.res_ether}} | {{monster.res_thermo}} | {{monster.res_electric}} | {{monster.res_gravit}}
                     </td>
                     <td>
                         <span ng-if="elm.mapmarkers" class="text-success">
@@ -142,20 +61,12 @@
                         </span>
                     </td>
                     <td>
-                        <span ng-if="elm.monster_type" class="text-success">
-                            gepflegt
-                        </span>
-                        <span ng-if="!elm.monster_type" class="text-danger">
-                            leer
-                        </span>
+                        {{monster.monster_type.name}}
                     </td>
                     <td>
-                        <span ng-if="elm.materials" class="text-success">
-                            gepflegt
-                        </span>
-                        <span ng-if="!elm.materials" class="text-danger">
-                            leer
-                        </span>
+                        <ul style="text-align: left">
+                            <li ng-repeat="material in monster.materials">{{material.name}}</li>
+                        </ul>
                     </td>
                 </tr>
             </tbody>

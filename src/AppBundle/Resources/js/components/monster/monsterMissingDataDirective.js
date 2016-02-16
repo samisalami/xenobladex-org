@@ -5,12 +5,9 @@ angular.module('app')
             templateUrl: 'js/components/monster/monsterMissingDataView.html',
             replace: true,
             link: function($scope, $element,$attrs) {
-                var monsters = [];
-
-                monsterService.getMonstersDetail(function(response){
-                    monsters = response;
-                    $scope.missingDataArray = $filter('missingData')(monsters);
-                });
+                monsterService.getMonsters(function(response){
+                    $scope.monsters = response;
+                }, 'monsterDetail');
             }
         }
     }]);
