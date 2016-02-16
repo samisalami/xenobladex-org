@@ -16,6 +16,8 @@ angular.module('app')
                     {name:'Unbezahlbar'}
                 ];
 
+                //TODO: output rarity -> cost (100, 200, 300, 400, 500)
+
                 var initFormModel = function() {
                     $scope.formModel = {
                         orderBy: ['name'],
@@ -31,12 +33,6 @@ angular.module('app')
                                 type: 'stringSelect',
                                 data: rarities,
                                 fieldInfoTooltip: 'Wird auf "Gewöhnlich" gesetzt, wenn nichts gewählt.'
-                            },
-                            {
-                                label: 'Verkaufswert',
-                                name: 'credit_cost',
-                                type: 'inputText',
-                                fieldInfoTooltip: 'Nur Zahlen sind erlaubt.'
                             },
                             {
                                 label: 'Ortsbeschreibung',

@@ -36,13 +36,6 @@ class Collectible
     private $description = '';
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="credit_cost", type="smallint")
-     */
-    private $credit_cost = '';
-
-    /**
      * @var string
      *
      * @ORM\Column(name="rarity", type="text")
@@ -134,29 +127,6 @@ class Collectible
     public function getLocationNote()
     {
         return $this->locationNote;
-    }
-
-    /**
-     * Set credit_cost
-     *
-     * @param integer $creditCost
-     * @return Collectible
-     */
-    public function setCreditCost($creditCost)
-    {
-        $this->credit_cost = $creditCost;
-
-        return $this;
-    }
-
-    /**
-     * Get credit_cost
-     *
-     * @return integer 
-     */
-    public function getCreditCost()
-    {
-        return $this->credit_cost;
     }
 
     /**
