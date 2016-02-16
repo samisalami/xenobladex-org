@@ -21,7 +21,8 @@ angular.module('app')
                     {name:'Noctilum'},
                     {name:'Oblivia'},
                     {name:'Sylvalum'},
-                    {name:'Cauldros'}
+                    {name:'Cauldros'},
+                    {name:'Sonstige'}
                 ];
 
                 var times = [
