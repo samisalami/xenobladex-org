@@ -10,7 +10,7 @@ angular.module('app')
                 itemService.getMaterials(function(response){
                     materials = response;
                     $scope.missingDataArray = $filter('missingData')(materials);
-                }, 'materialDetail');
+                }, 'itemDetail');
             }
         }
     }]);
