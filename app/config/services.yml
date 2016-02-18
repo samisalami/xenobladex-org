@@ -12,3 +12,9 @@ services:
           class:        %jms_serializer.doctrine_object_constructor.class%
           public:       false
           arguments:    ["@doctrine", "@jms_serializer.unserialize_object_constructor"]
+
+  app.form.mission.type:
+      class: AppBundle\Form\MissionType
+      arguments: ["@doctrine.orm.entity_manager"]
+      tags:
+          - { name: form.type }

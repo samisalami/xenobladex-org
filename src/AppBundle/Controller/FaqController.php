@@ -3,73 +3,74 @@
  * Created by: SamiSalami (Samjessa Lewy) // 11.12.2015 - 20:14
  */
 
-namespace AppBundle\Controller\RestController;
+namespace AppBundle\Controller;
 
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations\Route;
-use AppBundle\Entity\Map;
+use AppBundle\Entity\Faq;
+use Symfony\Component\HttpFoundation\AcceptHeader;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class MapController extends FOSRestController {
+class FaqController extends FOSRestController {
     protected function getJMSSerializer() {
         return $this->get('jms_serializer');
     }
 
-    protected function deleteMap(Map $map) {
+    protected function deleteFaq(Faq $faq) {
         $em = $this->getDoctrine()->getManager();
-        $em->remove($map);
+        $em->remove($faq);
         $em->flush();
     }
 
-    protected function addMap(Map $deserialized_map) {
+    protected function addFaq(Faq $deserialized_faq) {
         $em = $this->getDoctrine()->getManager();
-        $map = $em->merge($deserialized_map);
-        $em->persist($map);
+        $faq = $em->merge($deserialized_faq);
+        $em->persist($faq);
         $em->flush();
     }
 
-    protected function updateMap(Map $deserialized_map) {
+    protected function updateFaq(Faq $deserialized_faq) {
         $em = $this->getDoctrine()->getManager();
-        $updated_map = $em->merge($deserialized_map);
+        $updated_faq = $em->merge($deserialized_faq);
         $em->flush();
     }
 
     /**
      * @return Response
      */
-    public function getMapsAction() {
+    public function getFaqsAction() {
         $em = $this->getDoctrine()->getManager();
-        $maps = $em->getRepository('AppBundle:Map')->findAll();
+        $faqs = $em->getRepository('AppBundle:Faq')->findAll();
         $serializer = $this->getJMSSerializer();
-        $response = new Response($serializer->serialize($maps, 'json'));
+        $response = new Response($serializer->serialize($faqs, 'json'));
         $response->headers->set('Content-Type', 'application/json');
         return $response;
     }
 
     /**
-     * @Route("/map/add", methods={"POST"})
+     * @Route("/api/faq/add", methods={"POST"})
      */
-    public function addMapAction(Request $request) {
+    public function addFaqAction(Request $request) {
         $content = $request->getContent();
         if(!empty($content)) {
             $serializer = $this->getJMSSerializer();
-            $deserialized_map = $serializer->deserialize($content, 'AppBundle\Entity\Map', 'json');
-            $this->addMap($deserialized_map);
+            $deserialized_faq = $serializer->deserialize($content, 'AppBundle\Entity\Faq', 'json');
+            $this->addFaq($deserialized_faq);
         }
         return new Response(Response::HTTP_OK);
     }
 
     /**
-     * @Route("/map/update", methods={"POST"})
+     * @Route("/api/faq/update", methods={"POST"})
      */
-    public function updateMapAction(Request $request) {
+    public function updateFaqAction(Request $request) {
         $content = $request->getContent();
         if(!empty($content)) {
             $serializer = $this->getJMSSerializer();
-            $deserialized_map = $serializer->deserialize($content, 'AppBundle\Entity\Map', 'json');
-            $this->updateMap($deserialized_map);
-            $response = new Response($serializer->serialize($deserialized_map, 'json'));
+            $deserialized_faq = $serializer->deserialize($content, 'AppBundle\Entity\Faq', 'json');
+            $this->updateFaq($deserialized_faq);
+            $response = new Response($serializer->serialize($deserialized_faq, 'json'));
 
             $response->headers->set('Content-Type', 'application/json');
             return $response;
@@ -77,13 +78,16 @@ class MapController extends FOSRestController {
         return new Response(Response::HTTP_OK);
     }
 
-    public function deleteMapAction($id) {
-        $map = $this->getDoctrine()
-            ->getRepository('AppBundle:Map')
+    /**
+     * @Route("/api/faq/delete/{id}", methods={"DELETE"})
+     */
+    public function deleteFaqAction($id) {
+        $faq = $this->getDoctrine()
+            ->getRepository('AppBundle:Faq')
             ->find($id);
-        $this->deleteMap($map);
+        $this->deleteFaq($faq);
         $serializer = $this->getJMSSerializer();
-        $response = new Response($serializer->serialize($map, 'json'));
+        $response = new Response($serializer->serialize($faq, 'json'));
         $response->headers->set('Content-Type', 'application/json');
         return $response;
     }

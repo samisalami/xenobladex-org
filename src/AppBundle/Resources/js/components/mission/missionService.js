@@ -24,13 +24,13 @@ angular.module('app')
 
     service.updateMission = function(mission) {
         var promise = $timeout(function() {
-            $http.post(Routing.generate('update_mission'), mission);
+            $http.put(Routing.generate('update_mission', {id: mission.id}), mission);
             $timeout.cancel(promise);
         }, 100);
     };
 
     service.deleteMission = function(id, callback) {
-        $http.delete(Routing.generate('delete_mission')+'/'+id).success(function(response){
+        $http.delete(Routing.generate('delete_mission', {id: id})).success(function(response){
             callback(response);
         });
     };

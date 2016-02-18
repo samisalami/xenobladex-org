@@ -27,51 +27,51 @@ class Mission
     /**
      * @var string
      *
-     * @ORM\Column(name="name", type="string", length=255)
+     * @ORM\Column(name="name", type="string", length=255, nullable=true)
      */
-    private $name = '';
+    private $name;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="description", type="text")
+     * @ORM\Column(name="description", type="text", nullable=true)
      */
-    private $description = '';
+    private $description;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="locationNote", type="text")
+     * @ORM\Column(name="locationNote", type="text", nullable=true)
      */
-    private $location_note = '';
+    private $location_note;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="conditions", type="text")
+     * @ORM\Column(name="conditions", type="text", nullable=true)
      */
-    private $conditions = '';
+    private $conditions;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="tasks", type="text")
+     * @ORM\Column(name="tasks", type="text", nullable=true)
      */
-    private $tasks = '';
+    private $tasks;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="solution", type="text")
+     * @ORM\Column(name="solution", type="text", nullable=true)
      */
-    private $solution = '';
+    private $solution;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="rewards", type="text")
+     * @ORM\Column(name="rewards", type="text", nullable=true)
      */
-    private $rewards = '';
+    private $rewards;
 
     /**
      * @ORM\ManyToOne(targetEntity="MissionType")
@@ -88,9 +88,9 @@ class Mission
     /**
      * @var string
      *
-     * @ORM\Column(name="person_unrelated", type="string", length=255)
+     * @ORM\Column(name="person_unrelated", type="string", length=255, nullable=true)
      */
-    private $person_unrelated = '';
+    private $person_unrelated;
 
     /**
      * @var boolean
@@ -102,16 +102,16 @@ class Mission
     /**
      * @var string
      *
-     * @ORM\Column(name="target_area", type="string", length=255)
+     * @ORM\Column(name="target_area", type="string", length=255, nullable=true)
      */
-    private $target_area = '';
+    private $target_area;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="sidejob_type", type="string", length=255)
+     * @ORM\Column(name="sidejob_type", type="string", length=255, nullable=true)
      */
-    private $sidejob_type = '';
+    private $sidejob_type;
 
     /**
      * @var integer
@@ -136,7 +136,7 @@ class Mission
 
     /**
      * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="MissionMapmarker", mappedBy="mission", cascade={"all"})
+     * @ORM\OneToMany(targetEntity="MissionMapmarker", mappedBy="mission")
      * @Type("ArrayCollection<AppBundle\Entity\MissionMapmarker>")
      */
     private $mapmarkers;

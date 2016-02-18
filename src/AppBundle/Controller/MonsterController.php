@@ -3,7 +3,7 @@
  * Created by: SamiSalami (Samjessa Lewy) // 11.12.2015 - 20:14
  */
 
-namespace AppBundle\Controller\RestController;
+namespace AppBundle\Controller;
 
 use AppBundle\Entity\Monster;
 use FOS\RestBundle\Controller\FOSRestController;

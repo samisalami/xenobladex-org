@@ -1,6 +1,6 @@
 <?php
 
-namespace AppBundle\Controller\RestController;
+namespace AppBundle\Controller;
 
 use AppBundle\Entity\User;
 use FOS\RestBundle\Controller\FOSRestController;
