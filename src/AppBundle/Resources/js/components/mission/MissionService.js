@@ -55,38 +55,38 @@ angular.module('app')
         }
 
         function createFromResponse(mission) {
-            return new Mission(
-                mission['id'],
-                mission['name'],
-                mission['description'],
-                mission['location_note'],
-                mission['conditions'],
-                mission['tasks'],
-                mission['solution'],
-                mission['rewards'],
-                MissionTypeService.createFromResponse(mission['mission_type']),
-                //PersonService.create(mission['person']),
-                mission['person'],
-                mission['person_unrelated'],
-                mission['has_person'],
-                mission['target_area'],
-                mission['sidejob_type'],
-                mission['difficulty'],
-                mission['blade_level'],
-                mission['chapter']
-            );
+            if (mission) {
+                return new Mission(
+                    mission['id'],
+                    mission['name'],
+                    mission['description'],
+                    mission['location_note'],
+                    mission['conditions'],
+                    mission['tasks'],
+                    mission['solution'],
+                    mission['rewards'],
+                    MissionTypeService.create(mission['mission_type']),
+                    //PersonService.create(mission['person']),
+                    mission['person'],
+                    mission['person_unrelated'],
+                    mission['has_person'],
+                    mission['target_area'],
+                    mission['sidejob_type'],
+                    mission['difficulty'],
+                    mission['blade_level'],
+                    mission['chapter']
+                );
+            }
+
+            return {};
         }
 
-        function loadMissions() {
+        function loadMissions(callback) {
             var url = Routing.generate('get_missions');
             return $http
                 .get(url)
                 .then(function(response){
-                    return response.map(
-                        function(mission) {
-                            return createFromResponse(mission);
-                        }
-                    )
+                    callback(response.data);
                 })
         }
 

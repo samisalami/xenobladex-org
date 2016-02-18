@@ -19,22 +19,21 @@ angular.module('app')
         }
 
         function createFromResponse(missionType) {
-            return new MissionType(
-                missionType['id'],
-                missionType['name']
-            );
+            if(missionType) {
+                return new MissionType(
+                    missionType['id'],
+                    missionType['name']
+                );
+            }
+            return {};
         }
 
-        function loadMissionTypes() {
+        function loadMissionTypes(callback) {
             var url = Routing.generate('get_mission_types');
             return $http
                 .get(url)
                 .then(function(response){
-                    return response.map(
-                        function(missionType) {
-                            return createFromResponse(missionType);
-                        }
-                    )
+                    callback(response.data);
                 })
         }
 

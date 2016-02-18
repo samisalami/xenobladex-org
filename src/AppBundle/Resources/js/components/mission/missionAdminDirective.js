@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app')
-    .directive('missionAdmin',['MissionService', 'personService', 'mapService', 'flashService', '$filter', function(missionService, personService, mapService, flashService, $filter) {
+    .directive('missionAdmin',['MissionService', 'MissionTypeService', 'personService', 'mapService', 'flashService', '$filter', function(MissionService, MissionTypeService, personService, mapService, flashService, $filter) {
         return {
             restrict: 'E',
             templateUrl:'js/components/mission/missionAdminView.html',
@@ -145,14 +145,14 @@ angular.module('app')
                 };
 
                 var getMissions = function() {
-                    missionService.getMissions(function(response){
+                    MissionService.loadMissions(function(response){
                         $scope.missions = response;
                     });
                 };
 
                 getMissions();
 
-                missionService.getMissionTypes(function(response){
+                MissionTypeService.loadMissionTypes(function(response){
                     $scope.missionTypes = response;
                     missionTypesDataLoaded = true;
                 });
@@ -168,7 +168,7 @@ angular.module('app')
                 });
 
                 $scope.updateMission = function(mission) {
-                    missionService.updateMission(mission);
+                    MissionService.updateMission(mission);
                     if(mission.person) {
                         personService.getPersons(function(response) {
                             $scope.persons = response;
@@ -178,7 +178,7 @@ angular.module('app')
 
                 $scope.addMission = function(mission) {
                     if(mission) {
-                        missionService.addMission(mission, function(){
+                        MissionService.addMission(mission, function(){
                             getMissions();
                             $scope.newMission = {};
                             flashService.clear();
@@ -189,7 +189,7 @@ angular.module('app')
                 };
 
                 $scope.deleteMission = function(mission) {
-                  missionService.deleteMission(mission.id, function(deletedMission){
+                  MissionService.deleteMission(mission.id, function(deletedMission){
                     $scope.deletedMission = deletedMission;
                     var index = $scope.missions.indexOf(mission);
                     if(index !== -1) {
