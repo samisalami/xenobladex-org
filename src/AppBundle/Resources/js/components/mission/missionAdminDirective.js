@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app')
-    .directive('missionAdmin',['missionService', 'personService', 'mapService', 'flashService', '$filter', function(missionService, personService, mapService, flashService, $filter) {
+    .directive('missionAdmin',['MissionService', 'personService', 'mapService', 'flashService', '$filter', function(missionService, personService, mapService, flashService, $filter) {
         return {
             restrict: 'E',
             templateUrl:'js/components/mission/missionAdminView.html',
