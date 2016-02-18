@@ -5,10 +5,10 @@
 
 namespace AppBundle\Controller;
 
-use AppBundle\Form\MissionType;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations\Route;
 use AppBundle\Entity\Mission;
+use JMS\Serializer\DeserializationContext;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
@@ -40,19 +40,19 @@ class MissionController extends FOSRestController {
      * @return Response
      */
     public function addMissionAction(Request $request) {
+        $serializer = $this->get("jms_serializer");
+        $data = $request->getContent();
+
         $mission = new Mission();
-        $form = $this->createForm($this->get("app.form.mission.type"), $mission, array('method' => 'POST'));
-        $form->handleRequest($request);
+        $context = new DeserializationContext();
+        $context->setAttribute('target', $mission);
+        $mission = $serializer->deserialize($data, 'AppBundle\Entity\Mission', 'json', $context);
 
-        if($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($mission);
-            $em->flush();
-            return new Response(Response::HTTP_OK);
-        }
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($mission);
+        $em->flush();
 
-        $view = $this->view($form, 400);
-        return $this->handleView($view);
+        return new Response(Response::HTTP_OK);
     }
 
     /**
@@ -62,18 +62,18 @@ class MissionController extends FOSRestController {
      * @return Response
      */
     public function updateMissionAction(Request $request, Mission $mission) {
-        $form = $this->createForm($this->get('app.form.mission.type'), $mission, array('method' => 'PUT'));
-        $form->handleRequest($request);
+        $serializer = $this->get("jms_serializer");
+        $data = $request->getContent();
 
-        if($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
-            $em->persist($mission);
-            $em->flush();
-            return new Response(Response::HTTP_OK);
-        }
+        $context = new DeserializationContext();
+        $context->setAttribute('target', $mission);
+        $mission = $serializer->deserialize($data, 'AppBundle\Entity\Mission', 'json', $context);
 
-        $view = $this->view($form, 400);
-        return $this->handleView($view);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($mission);
+        $em->flush();
+
+        return new Response(Response::HTTP_OK);
     }
 
     /**
@@ -85,6 +85,7 @@ class MissionController extends FOSRestController {
         $em = $this->getDoctrine()->getManager();
         $em->remove($mission);
         $em->flush();
+
         return new Response(Response::HTTP_OK);
     }
 }
