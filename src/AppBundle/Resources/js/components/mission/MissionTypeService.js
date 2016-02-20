@@ -6,9 +6,16 @@ angular.module('app')
     MissionTypeService.$inject = ['$http', '$timeout'];
 
     function MissionTypeService($http, $timeout) {
+        var onMissionTypesChangedCallbacks = [];
+        var missionTypesRequested = false;
+        var missionTypes = [];
+
         return {
             MissionType: MissionType,
-            loadMissionTypes: loadMissionTypes
+            MissionTypes: getMissionTypes(),
+            loadMissionTypes: loadMissionTypes,
+            createFromResponse: createFromResponse,
+            onMissionTypesChanged: onMissionTypesChanged
         };
 
         function MissionType(id, name) {
@@ -16,6 +23,14 @@ angular.module('app')
             this.name = name;
 
             Object.seal(this);
+        }
+
+        function getMissionTypes() {
+            if(missionTypes.length == 0 && !missionTypesRequested) {
+                loadMissionTypes();
+            }
+
+            return missionTypes;
         }
 
         function createFromResponse(missionType) {
@@ -28,12 +43,29 @@ angular.module('app')
             return {};
         }
 
-        function loadMissionTypes(callback) {
+        function onMissionTypesChanged(callback) {
+            onMissionTypesChangedCallbacks.push(callback);
+            if(!missionTypesRequested) {
+                loadMissionTypes();
+            }
+        }
+
+        function notifyMissionTypesChanged(missionTypes) {
+            onMissionTypesChangedCallbacks.forEach(function(callback){
+                callback(missionTypes);
+            });
+        }
+
+        function loadMissionTypes() {
+            missionTypesRequested = true;
             var url = Routing.generate('get_mission_types');
             return $http
                 .get(url)
                 .then(function(response){
-                    callback(response.data);
+                    var missionTypes = response.data.map(function(missionType){
+                        return createFromResponse(missionType);
+                    });
+                    notifyMissionTypesChanged(missionTypes);
                 })
         }
 

@@ -14,7 +14,7 @@
         padding: $default-element-margin;
       }
       .collapsed-table-row {
-        .collapsed-table-col {
+        .collapsed-table-cell-wrapper {
           &:nth-of-type(4n+1) {
             clear: left;
           }

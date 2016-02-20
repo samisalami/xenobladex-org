@@ -1,0 +1,5 @@
+<div class="list-group collapsed-table-view">
+    <button ng-click="visible(item, $event)" class="list-group-item" data-toggle="collapse" data-target="#item-view-{{$index}}" aria-expanded="false" aria-controls="item-view-{{$index}}">{{item.name}}</button>
+    <div class="collapse" id="item-view-{{$index}}" ng-transclude="">
+    </div>
+</div>

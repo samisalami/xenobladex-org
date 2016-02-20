@@ -16,6 +16,11 @@
             </ul>
         </div>
         <h1>Missionen</h1>
-        <mission-admin></mission-admin>
+        <mission-admin>
+            <collapsed-table-list ng-repeat="item in vm.missions track by item.id" ng-if="vm.missions">
+                <mission-form mission="item">
+                </mission-form>
+            </collapsed-table-list>
+        </mission-admin>
     </div>
 </main>

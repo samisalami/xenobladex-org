@@ -1,0 +1,61 @@
+<div class="card collapsed-table-card card-block">
+    <div class="row">
+        <div class="col-md-3 col-xs-6 p-y-1 p-x-0">
+            <strong>Name</strong> <input class="form-control" type="text" ng-model="form.mission.name">
+        </div>
+        <div class="col-lg-3 hidden-sm-down">
+        </div>
+        <div class="col-lg-3 hidden-sm-down">
+        </div>
+        <div class="col-md-3 col-xs-6 p-r-0">
+            <button href="#" class="btn btn-danger pull-right" ng-click="deleteItem(item)">
+                Löschen
+            </button>
+        </div>
+    </div>
+    <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <strong>Richtige Person?</strong>
+        <form-field form-field-bind="form.mission.has_person" form-template="inputCheckbox"></form-field>
+    </div>
+    <div class="collapsed-table-cell-wrapper" collapsed-table-cell ng-if="form.mission.has_person">
+        <strong>Auftraggeber:</strong>
+        <!--<form-field form-field-bind="form.mission.person" form-select-options="vm.persons" form-template="customAutoCompleteSelect"></form-field>-->
+    </div>
+    <div class="collapsed-table-cell-wrapper" collapsed-table-cell ng-if="!form.mission.has_person">
+        <strong>Auftraggeber:</strong>
+        <form-field form-field-bind="form.mission.person_unrelated" form-template="inputText"></form-field>
+    </div>
+    <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <strong>Beschreibung:</strong>
+        <form-field form-field-bind="form.mission.description" form-template="textarea"></form-field>
+    </div>
+    <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <span class="info-icon text-primary" bs-tooltip bs-tooltip-title="Nur Zahlen erlaubt."></span>
+        <strong>Bedingung - BLADE-Level:</strong>
+        <form-field form-field-bind="form.mission.blade_level" form-template="inputText"></form-field>
+    </div>
+    <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <span class="info-icon text-primary" bs-tooltip bs-tooltip-title="Nur Zahlen erlaubt."></span>
+        <strong>Bedingung - Kapitel:</strong>
+        <form-field form-field-bind="form.mission.chapter" form-template="inputText"></form-field>
+    </div>
+    <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <strong>Bedingungen:</strong>
+        <form-field form-field-bind="form.mission.conditions" form-template="textarea"></form-field>
+    </div>
+    <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <strong>Erhalt wo?</strong>
+        <form-field form-field-bind="form.mission.location_note" form-template="textarea"></form-field>
+    </div>
+    <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <strong>Nebenjob-Zielregion</strong>
+        <form-field form-field-bind="form.mission.target_area" form-template="stringSelect" form-select-options="form.regions"></form-field>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 p-r-0">
+            <button href="#" class="btn btn-success pull-right" ng-click="updateItem(item)">
+                Speichern
+            </button>
+        </div>
+    </div>
+</div>

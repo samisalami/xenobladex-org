@@ -52,7 +52,7 @@ class MissionController extends FOSRestController {
         $em->persist($mission);
         $em->flush();
 
-        return new Response(Response::HTTP_OK);
+        $this->getMissionsAction();
     }
 
     /**
@@ -73,7 +73,7 @@ class MissionController extends FOSRestController {
         $em->persist($mission);
         $em->flush();
 
-        return new Response(Response::HTTP_OK);
+        $this->getMissionsAction();
     }
 
     /**
@@ -86,6 +86,6 @@ class MissionController extends FOSRestController {
         $em->remove($mission);
         $em->flush();
 
-        return new Response(Response::HTTP_OK);
+        $this->getMissionsAction();
     }
 }

@@ -6,12 +6,18 @@ angular.module('app')
     MissionService.$inject = ['$http', '$timeout', 'MissionTypeService'];
 
     function MissionService($http, $timeout, MissionTypeService) {
+        var onMissionsChangedCallbacks = [];
+        var missionsRequested = false;
+        var missions = [];
+
         return {
             Mission: Mission,
+            Missions: getMissions(),
             loadMissions: loadMissions,
             addMission: addMission,
             updateMission: updateMission,
-            deleteMission: deleteMission
+            deleteMission: deleteMission,
+            onMissionsChanged: onMissionsChanged
         };
 
         function Mission(
@@ -24,7 +30,7 @@ angular.module('app')
             solution,
             rewards,
             missionType,
-            person,
+            //person,
             person_unrelated,
             has_person,
             target_area,
@@ -42,7 +48,7 @@ angular.module('app')
             this.solution = solution;
             this.rewards = rewards;
             this.missionType = missionType;
-            this.person = person;
+            //this.person = person;
             this.person_unrelated = person_unrelated;
             this.has_person = has_person;
             this.target_area = target_area;
@@ -65,9 +71,9 @@ angular.module('app')
                     mission['tasks'],
                     mission['solution'],
                     mission['rewards'],
-                    MissionTypeService.create(mission['mission_type']),
+                    MissionTypeService.createFromResponse(mission['mission_type']),
                     //PersonService.create(mission['person']),
-                    mission['person'],
+                    //mission['person'],
                     mission['person_unrelated'],
                     mission['has_person'],
                     mission['target_area'],
@@ -81,36 +87,66 @@ angular.module('app')
             return {};
         }
 
-        function loadMissions(callback) {
+        function getMissions() {
+            if(!missionsRequested && missions.length == 0) {
+                loadMissions();
+            }
+            return missions;
+        }
+
+        function onMissionsChanged(callback) {
+            onMissionsChangedCallbacks.push(callback);
+        }
+
+        function notifyMissionsChanged(missions) {
+            onMissionsChangedCallbacks.forEach(function(callback){
+               callback(missions);
+            });
+        }
+
+        function loadMissions() {
+            missionsRequested = true;
             var url = Routing.generate('get_missions');
             return $http
                 .get(url)
                 .then(function(response){
-                    callback(response.data);
+                    var missions = response.data.map(function(mission){
+                        return createFromResponse(mission);
+                    });
+                    notifyMissionsChanged(missions);
                 })
         }
 
-        function addMission(mission, callback) {
+        function addMission(mission) {
             var url = Routing.generate('add_mission');
             return $http.post(url, mission)
-                .then(function(){
-                    callback();
+                .then(function(response){
+                    var missions = response.data.map(function(mission){
+                        return createFromResponse(mission);
+                    });
+                    notifyMissionsChanged(missions);
                 });
         }
 
-        function updateMission(mission, callback) {
+        function updateMission(mission) {
             var url = Routing.generate('update_mission', {id: mission.id});
             return $http.put(url, mission)
-                .then(function(){
-                    callback();
+                .then(function(response){
+                    missions = response.data.map(function(mission){
+                        return createFromResponse(mission);
+                    });
+                    notifyMissionsChanged(missions);
                 });
         }
 
-        function deleteMission(id, callback) {
-            var url = Routing.generate('delete_mission', {id: id});
+        function deleteMission(mission) {
+            var url = Routing.generate('delete_mission', {id: mission.id});
             return $http.delete(url)
-                .then(function(){
-                    callback();
+                .then(function(response){
+                    var missions = response.data.map(function(mission){
+                        return createFromResponse(mission);
+                    });
+                    notifyMissionsChanged(missions);
                 });
         }
     }
