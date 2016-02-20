@@ -44,7 +44,7 @@ class Item
     /**
      * @var integer
      *
-     * @ORM\Column(name="credit_cost", type="smallint")
+     * @ORM\Column(name="credit_cost", type="integer")
      * @Groups({"itemDetail"})
      */
     protected $creditCost = 0;
