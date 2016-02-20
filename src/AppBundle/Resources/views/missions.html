@@ -9,22 +9,26 @@ Im Allgemeinen ist das BLADE-Level nur eine Voraussetzung für Nebenjobs und kei
     </section>
     <mission-view>
         <div class="row m-b-1">
-            <div class="col-xs-12 col-lg-4 search-input m-b-1">
+            <div class="col-xs-12 col-lg-3 search-input m-b-1">
                 <input ng-model="namefilterValue" ng-model-options='{ debounce: 750 }' type="text" placeholder="Nach Namen filtern..." />
                 <span class="fa fa-search"></span>
             </div>
-            <div class="col-xs-12 col-lg-4 search-input m-b-1">
+            <div class="col-xs-12 col-lg-3 search-input m-b-1">
                 <input ng-model="bladeLevelfilterValue" ng-model-options='{ debounce: 750 }' type="text" placeholder="Nach Blade-Level filtern..." />
                 <span class="fa fa-search"></span>
             </div>
-            <div class="col-xs-12 col-lg-4 search-input m-b-1">
+            <div class="col-xs-12 col-lg-3 search-input m-b-1">
                 <input ng-model="chapterfilterValue" ng-model-options='{ debounce: 750 }' type="text" placeholder="Nach Kapitel filtern..." />
+                <span class="fa fa-search"></span>
+            </div>
+            <div class="col-xs-12 col-lg-3 search-input m-b-1">
+                <input ng-model="personfilterValue" ng-model-options='{ debounce: 750 }' type="text" placeholder="Nach Person filtern..." />
                 <span class="fa fa-search"></span>
             </div>
         </div>
         <section class="collapse-grouped" ng-repeat="missionGroup in groupedMissions | orderBy:'name'">
             <h1>{{missionGroup.name || 'Nicht zugeordnet'}}</h1>
-            <div class="collapse-item" ng-repeat="mission in missionGroup.rows | listFilter:namefilterValue:'name'| listFilter:bladeLevelfilterValue:'blade_level'| listFilter:chapterfilterValue:'chapter' | orderBy:[natural('name'), 'blade_level', 'chapter']  track by mission.id">
+            <div class="collapse-item" ng-repeat="mission in missionGroup.rows | listFilter:namefilterValue:'name'| listFilter:bladeLevelfilterValue:'blade_level'| listFilter:chapterfilterValue:'chapter' | listFilter:personfilterValue:'person':'name' | orderBy:[natural('name'), 'blade_level', 'chapter']  track by mission.id">
                 <a href="#mission-{{$parent.$index}}-{{$index}}" class="collapsed content-box" onclick="return false;" data-toggle="collapse" aria-expanded="false">
                     <strong>{{mission.name}}</strong><span class="collapse-arrow fa"></span>
                     <ul class="collapse-notes">
