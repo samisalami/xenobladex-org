@@ -12,6 +12,7 @@ angular.module('app')
 
                 function init() {
                     that.missions = MissionService.Missions;
+                    that.newMission = MissionService.Mission;
                     MissionService.onMissionsChanged(onMissionsChanged);
                 }
 

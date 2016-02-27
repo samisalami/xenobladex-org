@@ -17,7 +17,12 @@
         </div>
         <h1>Missionen</h1>
         <mission-admin>
-            <collapsed-table-list ng-repeat="item in vm.missions track by item.id" ng-if="vm.missions">
+            <input type="text" class="form-control text m-y-2" ng-model="nameFilter" ng-model-options='{ debounce: 200 }' placeholder="Filtern..." />
+            <collapsed-table-list add-form="true">
+                <mission-form mission="newMission">
+                </mission-form>
+            </collapsed-table-list>
+            <collapsed-table-list ng-repeat="item in vm.missions | listFilter:nameFilter:'name' track by item.id" ng-if="vm.missions">
                 <mission-form mission="item">
                 </mission-form>
             </collapsed-table-list>

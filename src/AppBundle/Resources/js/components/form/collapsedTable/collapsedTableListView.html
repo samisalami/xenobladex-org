@@ -1,5 +1,5 @@
 <div class="list-group collapsed-table-view">
-    <button ng-click="visible(item, $event)" class="list-group-item" data-toggle="collapse" data-target="#item-view-{{$index}}" aria-expanded="false" aria-controls="item-view-{{$index}}">{{item.name}}</button>
+    <button ng-click="visible(item, $event)" class="list-group-item" ng-class="{'list-group-item-success':addForm}" data-toggle="collapse" data-target="#item-view-{{$index}}" aria-expanded="false" aria-controls="item-view-{{$index}}"><span ng-if="addForm" class="fa fa-plus-circle"></span> {{item.name}} <span ng-if="addForm">Neu</span></button>
     <div class="collapse" id="item-view-{{$index}}" ng-transclude="">
     </div>
 </div>

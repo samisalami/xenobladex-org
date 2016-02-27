@@ -3,11 +3,18 @@
 angular.module('app')
     .directive('collapsedTableList',['$filter',function($filter) {
         return {
-            restrict: 'E',
+            restrict: 'EA',
+            replace: true,
             transclude: true,
             templateUrl: 'js/components/form/collapsedTable/collapsedTableListView.html',
             link: function($scope, $element, attrs) {
                 $scope.visibleElements = [];
+
+                if(attrs.addForm) {
+                    $scope.addForm = true;
+                } else {
+                    $scope.addForm = false;
+                }
 
                 $scope.visible = function(item, $event) {
                     var id = angular.element($event.target).data('target');

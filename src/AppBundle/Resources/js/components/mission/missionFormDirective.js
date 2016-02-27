@@ -7,20 +7,26 @@ angular.module('app')
             replace: false,
             templateUrl: 'js/components/mission/missionFormView.html',
             scope: {
-                missionSealed: "=mission"
+                missionSealed: "=mission",
+                addForm: "@"
             },
             controller: ['$scope',function($scope) {
                 var that = this;
                 init();
 
                 function init() {
-                    that.mission = $.extend({}, $scope.missionSealed, true);
+                    getFormMission();
                     that.missionTypes = MissionTypeService.MissionTypes;
                     that.regions = RegionService.Regions;
+
 
                     //personService.getPersons(function(response){
                     //    that.persons = response;
                     //});
+                }
+
+                function getFormMission() {
+                    that.mission = $.extend({}, $scope.missionSealed, true);
                 }
 
                 that.deleteMission = function() {
@@ -28,7 +34,12 @@ angular.module('app')
                 };
 
                 that.updateMission = function() {
-                  MissionService.updateMission(that.mission);
+                    if(that.mission.id) {
+                        MissionService.updateMission(that.mission);
+                    } else {
+                        MissionService.addMission(that.mission);
+                        getFormMission();
+                    }
                 }
             }],
             controllerAs: 'form'
