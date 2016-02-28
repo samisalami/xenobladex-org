@@ -12,7 +12,15 @@
       width: 100%;
       .collapsed-table-card {
         padding: $default-element-margin;
+
+        .collapsed-table-cell-wrapper {
+          &:nth-of-type(4n+1) {
+            clear: left;
+          }
+        }
       }
+
+      //old
       .collapsed-table-row {
         .collapsed-table-cell-wrapper {
           &:nth-of-type(4n+1) {
