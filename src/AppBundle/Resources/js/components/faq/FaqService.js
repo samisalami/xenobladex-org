@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app')
-    .factory('faqService', FaqService);
+    .factory('FaqService', FaqService);
 
 FaqService.$inject = ['$http'];
 
