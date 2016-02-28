@@ -7,6 +7,7 @@ angular.module('app')
 
     function MissionService($http, $timeout, MissionTypeService) {
         var onMissionsChangedCallbacks = [];
+        var onMissionDeletedCallbacks = [];
         var missions = null;
         var missionsRequested = false;
 
@@ -17,7 +18,8 @@ angular.module('app')
             addMission: addMission,
             updateMission: updateMission,
             deleteMission: deleteMission,
-            onMissionsChanged: onMissionsChanged
+            onMissionsChanged: onMissionsChanged,
+            onMissionDeleted: onMissionDeleted
         };
 
         function Mission(
@@ -99,9 +101,19 @@ angular.module('app')
             onMissionsChangedCallbacks.push(callback);
         }
 
+        function onMissionDeleted(callback) {
+            onMissionDeletedCallbacks.push(callback);
+        }
+
         function notifyMissionsChanged(missions) {
             onMissionsChangedCallbacks.forEach(function(callback){
                callback(missions);
+            });
+        }
+
+        function notifyMissionDeleted(mission) {
+            onMissionDeletedCallbacks.forEach(function(callback){
+                callback(mission);
             });
         }
 
@@ -148,6 +160,7 @@ angular.module('app')
                         return createFromResponse(mission);
                     });
                     notifyMissionsChanged(missions);
+                    notifyMissionDeleted(mission);
                 });
         }
     }

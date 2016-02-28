@@ -4,14 +4,14 @@ angular.module('app')
     .directive('missionAdmin',['MissionService', 'MissionTypeService','SideJobTypeService', 'personService', 'mapService', 'flashService', '$filter', function(MissionService, MissionTypeService, RegionService, personService, mapService, flashService, $filter) {
         return {
             restrict: 'E',
-            //templateUrl:'js/components/mission/missionAdminView.html',
             replace: true,
-            controller: function() {
+            controller: ['$scope',function($scope) {
                 var that = this;
                 init();
 
                 function init() {
                     MissionService.onMissionsChanged(setMissions);
+                    MissionService.onMissionDeleted(setDeletedMission);
                     setMissions(MissionService.getMissions());
 
                     that.newMission = MissionService.Mission;
@@ -21,43 +21,15 @@ angular.module('app')
                     that.missions = missions;
                 }
 
+                function setDeletedMission(mission) {
+                    that.deletedMission = mission;
+                }
 
-                //that.updateItem = function(mission) {
-                //    MissionService.updateMission(mission);
-                //    if(mission.person) {
-                //        personService.getPersons(function(response) {
-                //            $scope.persons = response;
-                //        });
-                //    }
-                //};
-
-                //that.addItem = function(mission) {
-                //    if(mission) {
-                //        MissionService.addMission(mission, function(){
-                //            getMissions();
-                //            $scope.newMission = {};
-                //            flashService.clear();
-                //        });
-                //    } else {
-                //        flashService.error('Komplett leere Daten werden nicht angelegt.');
-                //    }
-                //};
-                //
-                //that.deleteItem = function(mission) {
-                //    MissionService.deleteMission(mission.id, function(deletedMission){
-                //        $scope.deletedMission = deletedMission;
-                //        var index = $scope.missions.indexOf(mission);
-                //        if(index !== -1) {
-                //            $scope.missions.splice(index,1);
-                //        }
-                //    });
-                //};
-                //
-                //that.addDeletedItem = function() {
-                //    $scope.addMission($scope.deletedMission);
-                //    $scope.deletedMission = null;
-                //};
-            },
+                that.addDeletedMission = function() {
+                    MissionService.addMission(that.deletedMission);
+                    that.deletedMission = null;
+                };
+            }],
             controllerAs: 'vm',
             link: function($scope, $element,$attrs){
                 //$scope.newMission = {

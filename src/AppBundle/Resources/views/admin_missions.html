@@ -17,6 +17,9 @@
         </div>
         <h1>Missionen</h1>
         <mission-admin>
+            <div class="alert alert-warning m-y-2" ng-show="vm.deletedMission">
+                <a ng-click="vm.addDeletedMission()" href="#">Gelöschte Zeile wiederherstellen</a>
+            </div>
             <input type="text" class="form-control text m-y-2" ng-model="nameFilter" ng-model-options='{ debounce: 200 }' placeholder="Filtern..." />
             <collapsed-table-list add-form="true">
                 <mission-form mission="newMission">
