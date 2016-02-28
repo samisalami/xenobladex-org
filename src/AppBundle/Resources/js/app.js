@@ -24,7 +24,7 @@ function config($routeProvider, $locationProvider) {
         templateUrl: 'js/data/mission/view/missions.html'
       })
       .when('/material', {
-        templateUrl: 'views/materials.html'
+        templateUrl: 'js/data/material/view/materials.html'
       })
       .when('/impressum', {
         templateUrl: 'views/imprint.html'
@@ -77,10 +77,10 @@ function config($routeProvider, $locationProvider) {
         templateUrl: 'views/admin_monsterTypes.html'
       })
       .when('/admin/material', {
-        templateUrl: 'views/admin_material.html'
+        templateUrl: 'js/data/material/view/admin_material.html'
       })
       .when('/admin/material/was-fehlt', {
-          templateUrl: 'views/admin_materials_missing.html'
+        templateUrl: 'js/data/material/view/admin_materials_missing.html'
       })
       .when('/admin/segmente', {
           templateUrl: 'views/admin_mapTiles.html'

@@ -5,7 +5,7 @@ angular.module('app')
         return {
             restrict: 'E',
             replace: false,
-            templateUrl: 'js/data/faq/directive/faqFormView.html',
+            templateUrl: 'js/data/faq/view/faqFormView.html',
             scope: {
                 faqSealed: "=faq",
                 addForm: "@"

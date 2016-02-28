@@ -5,7 +5,7 @@ angular.module('app')
         return {
             restrict: 'E',
             replace: false,
-            templateUrl: 'js/data/collectible/directive/collectibleFormView.html',
+            templateUrl: 'js/data/collectible/view/collectibleFormView.html',
             scope: {
                 collectibleSealed: "=collectible",
                 addForm: "@"

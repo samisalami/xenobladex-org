@@ -2,7 +2,7 @@ angular.module('app')
     .directive('personMissingData',['PersonService', '$filter', function(PersonService, $filter) {
         return {
             restrict: 'E',
-            templateUrl: 'js/data/person/directive/personMissingDataView.html',
+            templateUrl: 'js/data/person/view/personMissingDataView.html',
             replace: true,
             link: function($scope, $element,$attrs) {
                 init();

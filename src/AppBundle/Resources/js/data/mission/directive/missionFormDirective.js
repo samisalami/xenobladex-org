@@ -5,7 +5,7 @@ angular.module('app')
         return {
             restrict: 'E',
             replace: false,
-            templateUrl: 'js/data/mission/directive/missionFormView.html',
+            templateUrl: 'js/data/mission/view/missionFormView.html',
             scope: {
                 missionSealed: "=mission",
                 addForm: "@"
