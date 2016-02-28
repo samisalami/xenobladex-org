@@ -23,11 +23,12 @@ angular.module('app')
 
                 function setDeletedMission(mission) {
                     that.deletedMission = mission;
+                    delete that.deletedMission.id;
                 }
 
                 that.addDeletedMission = function() {
                     MissionService.addMission(that.deletedMission);
-                    that.deletedMission = null;
+                    delete that.deletedMission;
                 };
             }],
             controllerAs: 'vm',

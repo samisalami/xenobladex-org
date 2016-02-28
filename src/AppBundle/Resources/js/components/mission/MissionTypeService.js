@@ -40,7 +40,6 @@ angular.module('app')
                     missionType['name']
                 );
             }
-            return {};
         }
 
         function onMissionTypesChanged(callback) {

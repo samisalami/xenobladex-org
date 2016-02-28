@@ -93,8 +93,6 @@ angular.module('app')
                     mission['chapter']
                 );
             }
-
-            return {};
         }
 
         function onMissionsChanged(callback) {
