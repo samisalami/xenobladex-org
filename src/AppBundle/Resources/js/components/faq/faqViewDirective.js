@@ -1,13 +1,20 @@
 'use strict';
 
 angular.module('app')
-    .directive('faqView',['faqService','$filter', function(faqService, $filter) {
+    .directive('faqView',['FaqService','$filter', function(FaqService, $filter) {
         return {
             restrict: 'E',
             link: function($scope, $element,$attrs){
-                faqService.getFAQs(function(response){
-                    $scope.groupedFaqs = $filter('groupByFilter')(response,'category');
-                });
+                init();
+
+                function init() {
+                    FaqService.onFaqsChanged(setFaqs);
+                    setFaqs(FaqService.getFaqs());
+                }
+
+                function setFaqs(faqs) {
+                    $scope.groupedFaqs = $filter('groupByFilter')(faqs,'category');
+                }
             }
         }
     }]);
