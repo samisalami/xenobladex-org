@@ -8,11 +8,9 @@ angular.module('app')
     function MissionService($http, $timeout, MissionTypeService) {
         var onMissionsChangedCallbacks = [];
         var missionsRequested = false;
-        var missions = [];
 
         return {
             Mission: Mission,
-            Missions: getMissions(),
             loadMissions: loadMissions,
             addMission: addMission,
             updateMission: updateMission,
@@ -87,13 +85,6 @@ angular.module('app')
             return {};
         }
 
-        function getMissions() {
-            if(!missionsRequested && missions.length == 0) {
-                loadMissions();
-            }
-            return missions;
-        }
-
         function onMissionsChanged(callback) {
             onMissionsChangedCallbacks.push(callback);
         }
@@ -132,7 +123,7 @@ angular.module('app')
             var url = Routing.generate('update_mission', {id: mission.id});
             return $http.put(url, mission)
                 .then(function(response){
-                    missions = response.data.map(function(mission){
+                    var missions = response.data.map(function(mission){
                         return createFromResponse(mission);
                     });
                     notifyMissionsChanged(missions);

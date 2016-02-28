@@ -11,9 +11,9 @@ angular.module('app')
                 init();
 
                 function init() {
-                    that.missions = MissionService.Missions;
-                    that.newMission = MissionService.Mission;
                     MissionService.onMissionsChanged(onMissionsChanged);
+                    MissionService.loadMissions();
+                    that.newMission = MissionService.Mission;
                 }
 
                 function onMissionsChanged(missions) {
