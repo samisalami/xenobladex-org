@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app')
-    .directive('personAdmin',['PersonService', 'mapService', 'flashService', '$filter', function(PersonService, mapService, flashService, $filter) {
+    .directive('personAdmin',['PersonService', function(PersonService) {
         return {
             restrict: 'E',
             replace: true,

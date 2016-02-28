@@ -5,7 +5,7 @@ angular.module('app')
         return {
             restrict: 'E',
             replace: false,
-            templateUrl: 'js/data/person/directive//personFormView.html',
+            templateUrl: 'js/data/person/directive/personFormView.html',
             scope: {
                 personSealed: "=person",
                 addForm: "@"
