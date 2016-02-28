@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app')
-    .directive('missionForm',['MissionService', 'MissionTypeService', 'personService', 'RegionService', 'flashService', '$filter', function(MissionService, MissionTypeService, personService, RegionService, flashService, $filter) {
+    .directive('missionForm',['MissionService', 'MissionTypeService', 'personService', 'RegionService', 'SideJobTypeService', 'flashService', '$filter', function(MissionService, MissionTypeService, personService, RegionService, SideJobTypeService, flashService, $filter) {
         return {
             restrict: 'E',
             replace: false,
@@ -15,9 +15,13 @@ angular.module('app')
                 init();
 
                 function init() {
-                    getFormMission();
-                    that.missionTypes = MissionTypeService.MissionTypes;
-                    that.regions = RegionService.Regions;
+                    setFormMission($scope.missionSealed);
+
+                    MissionTypeService.onMissionTypesChanged(setMissionTypes);
+                    setMissionTypes(MissionTypeService.getMissionTypes());
+
+                    setRegions(RegionService.Regions);
+                    setSideJobTypes(SideJobTypeService.SideJobTypes);
 
 
                     //personService.getPersons(function(response){
@@ -25,8 +29,20 @@ angular.module('app')
                     //});
                 }
 
-                function getFormMission() {
-                    that.mission = $.extend({}, $scope.missionSealed, true);
+                function setRegions(regions) {
+                    that.regions = regions;
+                }
+
+                function setSideJobTypes(sideJobTypes) {
+                    that.sideJobTypes = sideJobTypes;
+                }
+
+                function setMissionTypes(missionTypes) {
+                    that.missionTypes = missionTypes;
+                }
+
+                function setFormMission(mission) {
+                    that.mission = $.extend({}, mission, true);
                 }
 
                 that.deleteMission = function() {
@@ -38,7 +54,7 @@ angular.module('app')
                         MissionService.updateMission(that.mission);
                     } else {
                         MissionService.addMission(that.mission);
-                        getFormMission();
+                        setFormMission($scope.missionSealed);
                     }
                 }
             }],

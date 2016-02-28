@@ -7,10 +7,12 @@ angular.module('app')
 
     function MissionService($http, $timeout, MissionTypeService) {
         var onMissionsChangedCallbacks = [];
+        var missions = null;
         var missionsRequested = false;
 
         return {
             Mission: Mission,
+            getMissions: getMissions,
             loadMissions: loadMissions,
             addMission: addMission,
             updateMission: updateMission,
@@ -58,6 +60,14 @@ angular.module('app')
             Object.seal(this);
         }
 
+        function getMissions() {
+            if(!missionsRequested) {
+                loadMissions();
+            } else {
+                return missions;
+            }
+        }
+
         function createFromResponse(mission) {
             if (mission) {
                 return new Mission(
@@ -101,7 +111,7 @@ angular.module('app')
             return $http
                 .get(url)
                 .then(function(response){
-                    var missions = response.data.map(function(mission){
+                    missions = response.data.map(function(mission){
                         return createFromResponse(mission);
                     });
                     notifyMissionsChanged(missions);
@@ -112,7 +122,7 @@ angular.module('app')
             var url = Routing.generate('add_mission');
             return $http.post(url, mission)
                 .then(function(response){
-                    var missions = response.data.map(function(mission){
+                    missions = response.data.map(function(mission){
                         return createFromResponse(mission);
                     });
                     notifyMissionsChanged(missions);
@@ -123,7 +133,7 @@ angular.module('app')
             var url = Routing.generate('update_mission', {id: mission.id});
             return $http.put(url, mission)
                 .then(function(response){
-                    var missions = response.data.map(function(mission){
+                    missions = response.data.map(function(mission){
                         return createFromResponse(mission);
                     });
                     notifyMissionsChanged(missions);
@@ -134,7 +144,7 @@ angular.module('app')
             var url = Routing.generate('delete_mission', {id: mission.id});
             return $http.delete(url)
                 .then(function(response){
-                    var missions = response.data.map(function(mission){
+                    missions = response.data.map(function(mission){
                         return createFromResponse(mission);
                     });
                     notifyMissionsChanged(missions);

@@ -7,10 +7,12 @@ angular.module('app')
 
     function MissionTypeService($http, $timeout) {
         var onMissionTypesChangedCallbacks = [];
+        var missionTypes = null;
         var missionTypesRequested = false;
 
         return {
             MissionType: MissionType,
+            getMissionTypes: getMissionTypes,
             loadMissionTypes: loadMissionTypes,
             createFromResponse: createFromResponse,
             onMissionTypesChanged: onMissionTypesChanged
@@ -24,11 +26,11 @@ angular.module('app')
         }
 
         function getMissionTypes() {
-            if(missionTypes.length == 0 && !missionTypesRequested) {
+            if(!missionTypesRequested) {
                 loadMissionTypes();
+            } else {
+                return missionTypes;
             }
-
-            return missionTypes;
         }
 
         function createFromResponse(missionType) {
@@ -57,7 +59,7 @@ angular.module('app')
             return $http
                 .get(url)
                 .then(function(response){
-                    var missionTypes = response.data.map(function(missionType){
+                    missionTypes = response.data.map(function(missionType){
                         return createFromResponse(missionType);
                     });
                     notifyMissionTypesChanged(missionTypes);

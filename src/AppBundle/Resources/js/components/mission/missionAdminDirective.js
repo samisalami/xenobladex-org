@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app')
-    .directive('missionAdmin',['MissionService', 'MissionTypeService','RegionService', 'personService', 'mapService', 'flashService', '$filter', function(MissionService, MissionTypeService, RegionService, personService, mapService, flashService, $filter) {
+    .directive('missionAdmin',['MissionService', 'MissionTypeService','SideJobTypeService', 'personService', 'mapService', 'flashService', '$filter', function(MissionService, MissionTypeService, RegionService, personService, mapService, flashService, $filter) {
         return {
             restrict: 'E',
             //templateUrl:'js/components/mission/missionAdminView.html',
@@ -11,12 +11,13 @@ angular.module('app')
                 init();
 
                 function init() {
-                    MissionService.onMissionsChanged(onMissionsChanged);
-                    MissionService.loadMissions();
+                    MissionService.onMissionsChanged(setMissions);
+                    setMissions(MissionService.getMissions());
+
                     that.newMission = MissionService.Mission;
                 }
 
-                function onMissionsChanged(missions) {
+                function setMissions(missions) {
                     that.missions = missions;
                 }
 

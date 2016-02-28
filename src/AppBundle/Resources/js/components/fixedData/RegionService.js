@@ -6,10 +6,7 @@ angular.module('app')
     RegionService.$inject = ['$http'];
 
     function RegionService($http) {
-        var regions = [];
-        var reqionsRequested = false;
-
-        function regionsData() {
+        function data() {
             return [
                 'BLADE-Quartier',
                 'Industriegebiet',
@@ -26,19 +23,10 @@ angular.module('app')
         }
 
         return {
-            Regions: getRegions(),
-            loadRegions: loadRegions
+            Regions: load()
         };
 
-        function getRegions() {
-            if(regions.length==0 && !reqionsRequested) {
-                loadRegions();
-            }
-
-            return regions;
-        }
-
-        function loadRegions() {
-            regions = regionsData();
+        function load() {
+            return data();
         }
     }
