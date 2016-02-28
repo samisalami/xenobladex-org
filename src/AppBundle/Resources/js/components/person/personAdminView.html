@@ -1,8 +1,0 @@
-<div class="person-admin-view">
-    <a href="/admin/personen/was-fehlt" class="btn-primary btn m-b-2">Welche Daten fehlen?</a>
-    <div class="alert alert-warning" ng-show="deletedPerson">
-        <a ng-click="addDeletedPerson()" href="#">Gelöschte Zeile wiederherstellen</a>
-    </div>
-    <input type="text" class="form-control text m-y-2" ng-model="modalFilterValue" ng-model-options='{ debounce: 200 }' placeholder="Filtern..." />
-    <collapsed-table ng-if="formModel && persons" view-data="persons" modal-filter-value="modalFilterValue" form-model="formModel" add-object="newPerson" add-item="addPerson(item)"  update-item="updatePerson(item)" delete-item="deletePerson(item)"></collapsed-table>
-</div>

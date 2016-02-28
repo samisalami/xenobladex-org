@@ -25,7 +25,7 @@ class MissionController extends FOSRestController {
     }
 
     /**
-     * @Route("/mission/{id}", methods={"GET"}, requirements={"id"="^[0-9].$"})
+     * @Route("/mission/{id}", methods={"GET"}, requirements={"id"="^[0-9].*$"})
      * @param Mission $mission
      * @return Mission
      */
@@ -56,7 +56,7 @@ class MissionController extends FOSRestController {
     }
 
     /**
-     * @Route("/api/mission/{id}", methods={"PUT"}, requirements={"id"="^[0-9].$"})
+     * @Route("/api/mission/{id}", methods={"PUT"}, requirements={"id"="^[0-9].*$"})
      * @param Request $request
      * @param Mission $mission
      * @return Response
@@ -77,7 +77,7 @@ class MissionController extends FOSRestController {
     }
 
     /**
-     * @Route("/api/mission/{id}", methods={"DELETE"}, requirements={"id"="^[0-9].$"})
+     * @Route("/api/mission/{id}", methods={"DELETE"}, requirements={"id"="^[0-9].*$"})
      * @param Mission $mission
      * @return Response
      */

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app')
-    .directive('missionForm',['MissionService', 'MissionTypeService', 'personService', 'RegionService', 'SideJobTypeService', 'flashService', '$filter', function(MissionService, MissionTypeService, personService, RegionService, SideJobTypeService, flashService, $filter) {
+    .directive('missionForm',['MissionService', 'MissionTypeService', 'PersonService', 'RegionService', 'SideJobTypeService', 'flashService', '$filter', function(MissionService, MissionTypeService, PersonService, RegionService, SideJobTypeService, flashService, $filter) {
         return {
             restrict: 'E',
             replace: false,
@@ -20,13 +20,11 @@ angular.module('app')
                     MissionTypeService.onMissionTypesChanged(setMissionTypes);
                     setMissionTypes(MissionTypeService.getMissionTypes());
 
+                    PersonService.onPersonsChanged(setPersons);
+                    setPersons(PersonService.getPersons());
+
                     setRegions(RegionService.Regions);
                     setSideJobTypes(SideJobTypeService.SideJobTypes);
-
-
-                    //personService.getPersons(function(response){
-                    //    that.persons = response;
-                    //});
                 }
 
                 function setRegions(regions) {
@@ -39,6 +37,10 @@ angular.module('app')
 
                 function setMissionTypes(missionTypes) {
                     that.missionTypes = missionTypes;
+                }
+
+                function setPersons(persons) {
+                    that.persons = persons;
                 }
 
                 function setFormMission(mission) {

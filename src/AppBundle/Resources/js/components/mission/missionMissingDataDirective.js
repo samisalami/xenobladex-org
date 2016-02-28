@@ -5,11 +5,16 @@ angular.module('app')
             templateUrl: 'js/components/mission/missionMissingDataView.html',
             replace: true,
             link: function($scope, $element,$attrs) {
-                var missions = [];
-                MissionService.loadMissions(function (response) {
-                    missions = response;
+                init();
+
+                function init() {
+                    MissionService.onMissionsChanged(setMissions);
+                    setMissions(MissionService.getMissions());
+                }
+
+                function setMissions(missions) {
                     $scope.missingDataArray = $filter('missingData')(missions);
-                });
+                }
             }
         }
     }]);

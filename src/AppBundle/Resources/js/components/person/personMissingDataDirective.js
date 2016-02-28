@@ -1,16 +1,20 @@
 angular.module('app')
-    .directive('personMissingData',['personService', '$filter', function(personService, $filter) {
+    .directive('personMissingData',['PersonService', '$filter', function(PersonService, $filter) {
         return {
             restrict: 'E',
             templateUrl: 'js/components/person/personMissingDataView.html',
             replace: true,
             link: function($scope, $element,$attrs) {
-                var persons = [];
+                init();
 
-                personService.getPersons(function(response){
-                    persons = response;
+                function init() {
+                    PersonService.onPersonsChanged(setPersons);
+                    setPersons(PersonService.getPersons());
+                }
+
+                function setPersons(persons) {
                     $scope.missingDataArray = $filter('missingData')(persons);
-                });
+                }
             }
         }
     }]);

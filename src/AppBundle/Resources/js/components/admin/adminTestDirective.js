@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app')
-    .directive('adminTest',['missionService', 'personService',function(missionService, personService) {
+    .directive('adminTest',['missionService', 'PersonService',function(missionService, PersonService) {
         return {
             restrict: 'E',
             templateUrl: 'js/components/admin/adminTestView.html',

@@ -17,7 +17,7 @@
         </div>
         <div class="collapsed-table-cell-wrapper" collapsed-table-cell ng-if="form.mission.has_person">
             <strong>Auftraggeber:</strong>
-            <!--<form-field form-field-bind="form.mission.person" form-select-options="vm.persons" form-template="customAutoCompleteSelect"></form-field>-->
+            <form-field ng-if="form.persons" form-field-bind="form.mission.person" form-select-options="form.persons" form-template="customAutoCompleteSelect"></form-field>
         </div>
         <div class="collapsed-table-cell-wrapper" collapsed-table-cell ng-if="!form.mission.has_person">
             <strong>Auftraggeber:</strong>
@@ -54,7 +54,7 @@
         </div>
         <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
             <strong>Typ:</strong>
-            <form-field form-field-bind="form.mission.mission_type" form-template="objectSelect" form-select-options="form.missionTypes"></form-field>
+            <form-field ng-if="form.missionTypes" form-field-bind="form.mission.mission_type" form-template="objectSelect" form-select-options="form.missionTypes"></form-field>
         </div>
         <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
             <span class="info-icon text-primary" bs-tooltip bs-tooltip-title="Nur Zahlen erlaubt."></span>

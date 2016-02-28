@@ -3,9 +3,9 @@
 angular.module('app')
     .factory('MissionService', MissionService);
 
-    MissionService.$inject = ['$http', '$timeout', 'MissionTypeService'];
+    MissionService.$inject = ['$http', 'MissionTypeService', 'PersonService'];
 
-    function MissionService($http, $timeout, MissionTypeService) {
+    function MissionService($http, MissionTypeService, PersonService) {
         var onMissionsChangedCallbacks = [];
         var onMissionDeletedCallbacks = [];
         var missions = null;
@@ -32,7 +32,7 @@ angular.module('app')
             solution,
             rewards,
             mission_type,
-            //person,
+            person,
             person_unrelated,
             has_person,
             target_area,
@@ -50,7 +50,7 @@ angular.module('app')
             this.solution = solution;
             this.rewards = rewards;
             this.mission_type = mission_type;
-            //this.person = person;
+            this.person = person;
             this.person_unrelated = person_unrelated;
             this.has_person = has_person;
             this.target_area = target_area;
@@ -82,8 +82,7 @@ angular.module('app')
                     mission['solution'],
                     mission['rewards'],
                     MissionTypeService.createFromResponse(mission['mission_type']),
-                    //PersonService.create(mission['person']),
-                    //mission['person'],
+                    PersonService.createFromResponse(mission['person']),
                     mission['person_unrelated'],
                     mission['has_person'],
                     mission['target_area'],

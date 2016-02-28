@@ -3,9 +3,9 @@
 angular.module('app')
     .factory('MissionTypeService', MissionTypeService);
 
-    MissionTypeService.$inject = ['$http', '$timeout'];
+    MissionTypeService.$inject = ['$http'];
 
-    function MissionTypeService($http, $timeout) {
+    function MissionTypeService($http) {
         var onMissionTypesChangedCallbacks = [];
         var missionTypes = null;
         var missionTypesRequested = false;

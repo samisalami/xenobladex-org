@@ -26,7 +26,7 @@ class PersonController extends FOSRestController {
     }
 
     /**
-     * @Route("/person/{id}", methods={"GET"}, requirements={"id"="^[0-9].$"})
+     * @Route("/person/{id}", methods={"GET"}, requirements={"id"="^[0-9].*$"})
      * @param Person $person
      * @return Person
      */
@@ -57,7 +57,7 @@ class PersonController extends FOSRestController {
     }
 
     /**
-     * @Route("/api/person/{id}", methods={"PUT"}, requirements={"id"="^[0-9].$"})
+     * @Route("/api/person/{id}", methods={"PUT"}, requirements={"id"="^[0-9].*$"})
      * @param Request $request
      * @param Person $person
      * @return Response
@@ -78,7 +78,7 @@ class PersonController extends FOSRestController {
     }
 
     /**
-     * @Route("/api/person/{id}", methods={"DELETE"}, requirements={"id"="^[0-9].$"})
+     * @Route("/api/person/{id}", methods={"DELETE"}, requirements={"id"="^[0-9].*$"})
      * @param Person $person
      * @return Response
      */

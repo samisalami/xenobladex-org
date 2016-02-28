@@ -3,7 +3,7 @@
 <autocomplete-select autocomplete-list="attachments" autocomplete-option-name="name" autocomplete-option-value="id" autocomplete-bind="newMap.attachment_id" ng-if="attachmentDataLoaded"></autocomplete-select>
 -->
     <div class="input-group">
-        <input ng-model="autocompleteTextInputBind" ng-change="setBindings()" class="autocomplete-select-input text form-control" type="text" placeholder="Namen eintippen oder alle Optionen via Button anzeigen lassen" />
+        <input ng-model="autocompleteBind[autocompleteOptionName]" ng-change="setBindings()" class="autocomplete-select-input text form-control" type="text" placeholder="Namen eintippen oder alle Optionen via Button anzeigen lassen" />
         <span class="input-group-btn">
             <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#{{selectModalId}}"><span class="fa fa-folder-open"></span></a>
         </span>

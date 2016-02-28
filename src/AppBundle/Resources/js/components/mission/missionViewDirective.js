@@ -5,9 +5,16 @@ angular.module('app')
         return {
             restrict: 'E',
             link: function($scope, $element,$attrs){
-                MissionService.loadMissions(function(response){
-                    $scope.groupedMissions = $filter('groupByFilter')(response,'mission_type',true);
-                });
+                init();
+
+                function init() {
+                    MissionService.onMissionsChanged(setMissions);
+                    setMissions(MissionService.getMissions());
+                }
+
+                function setMissions(missions) {
+                    $scope.groupedMissions = $filter('groupByFilter')(missions,'mission_type',true);
+                }
             }
         }
     }]);

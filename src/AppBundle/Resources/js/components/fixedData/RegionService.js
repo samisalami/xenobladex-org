@@ -8,6 +8,7 @@ angular.module('app')
     function RegionService($http) {
         function data() {
             return [
+                'NLA',
                 'BLADE-Quartier',
                 'Industriegebiet',
                 'Verwaltungsbezirk',

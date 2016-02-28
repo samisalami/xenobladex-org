@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app')
-    .directive('mapmarkerAdmin',['mapmarkerService', 'mapService', 'personService', 'flashService', '$filter', function(mapmarkerService, mapService, personService, flashService, $filter) {
+    .directive('mapmarkerAdmin',['mapmarkerService', 'mapService', 'PersonService', 'flashService', '$filter', function(mapmarkerService, mapService, PersonService, flashService, $filter) {
         return {
             templateUrl:'js/components/map/mapmarkerAdminView.html',
             replace: true,
