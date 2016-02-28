@@ -31,33 +31,6 @@ angular.module('app')
                     delete that.deletedFaq;
                 };
             }],
-            controllerAs: 'vm',
-            link: function($scope, $element,$attrs){
-
-                var initFormModel = function() {
-                    $scope.formModel = {
-                        orderBy: ['category', 'name'],
-                        fields:[
-                            {
-                                label: 'Antwort',
-                                name: 'answer',
-                                type: 'textarea'
-                            },
-                            {
-                                label: 'Antwort - Erweitert',
-                                name: 'answer_read_more',
-                                type: 'textarea'
-                            },
-                            {
-                                label: 'Kategorie',
-                                name: 'category',
-                                type: 'stringSelect',
-                                data: categoryList,
-                                fieldInfoTooltip: 'Wenn keine Kategorie gewählt, wird "Sonstiges" gesetzt.'
-                            }
-                        ]
-                    };
-                };
-            }
+            controllerAs: 'vm'
         }
     }]);
