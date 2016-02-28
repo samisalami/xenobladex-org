@@ -1,23 +1,38 @@
 'use strict';
 
 angular.module('app')
-    .directive('faqAdmin',['faqService', 'attachmentService', 'flashService', '$filter', function(faqService, attachmentService, flashService, $filter) {
+    .directive('faqAdmin',['FaqService', function(FaqService) {
         return {
-            templateUrl:'js/components/faq/faqAdminView.html',
+            restrict: "E",
             replace: true,
-            link: function($scope, $element,$attrs){
-                $scope.newFAQ = {};
+            controller: ['$scope',function($scope) {
+                var that = this;
+                init();
 
-                var categoryList = [
-                    {name:'Generelles'},
-                    {name:'Charakterentwicklung'},
-                    {name:'Kampfsystem'},
-                    {name:'Sonden'},
-                    {name:'Skells'},
-                    {name:'BLADE & Divisionen'},
-                    {name:'Online'},
-                    {name:'Sonstiges'}
-                ];
+                function init() {
+                    FaqService.onFaqsChanged(setFaqs);
+                    FaqService.onFaqDeleted(setDeletedFaq);
+                    setFaqs(FaqService.getFaqs());
+
+                    that.newFaq = FaqService.Faq;
+                }
+
+                function setFaqs(faqs) {
+                    that.faqs = faqs;
+                }
+
+                function setDeletedFaq(faq) {
+                    that.deletedFaq = faq;
+                    delete that.deletedFaq.id;
+                }
+
+                that.addDeletedFaq = function() {
+                    FaqService.addFaq(that.deletedFaq);
+                    delete that.deletedFaq;
+                };
+            }],
+            controllerAs: 'vm',
+            link: function($scope, $element,$attrs){
 
                 var initFormModel = function() {
                     $scope.formModel = {
@@ -42,46 +57,6 @@ angular.module('app')
                             }
                         ]
                     };
-                };
-
-                var getFAQs = function() {
-                    faqService.getFAQs(function(response){
-                        $scope.faqs = response;
-                    });
-                };
-
-                getFAQs();
-                initFormModel();
-
-                $scope.updateFAQ = function(faq) {
-                    faqService.updateFAQ(faq);
-                };
-
-                $scope.addFAQ = function(faq) {
-                    if(faq) {
-                        faqService.addFAQ(faq, function(){
-                            getFAQs();
-                            $scope.newFAQ = {};
-                            flashService.clear();
-                        });
-                    } else {
-                        flashService.error('Komplett leere Daten werden nicht angelegt.');
-                    }
-                };
-
-                $scope.deleteFAQ = function(faq) {
-                    faqService.deleteFAQ(faq.id, function(deletedFaq){
-                        $scope.deletedFAQ = deletedFaq;
-                        var index = $scope.faqs.indexOf(faq);
-                        if(index !== -1) {
-                            $scope.faqs.splice(index,1);
-                        }
-                    });
-                };
-
-                $scope.addDeletedFAQ = function() {
-                    $scope.addFAQ($scope.deletedFAQ);
-                    $scope.deletedFAQ = null;
                 };
             }
         }

@@ -8,87 +8,84 @@ namespace AppBundle\Controller;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations\Route;
 use AppBundle\Entity\Faq;
+use JMS\Serializer\DeserializationContext;
 use Symfony\Component\HttpFoundation\AcceptHeader;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class FaqController extends FOSRestController {
-    protected function getJMSSerializer() {
-        return $this->get('jms_serializer');
-    }
-
-    protected function deleteFaq(Faq $faq) {
-        $em = $this->getDoctrine()->getManager();
-        $em->remove($faq);
-        $em->flush();
-    }
-
-    protected function addFaq(Faq $deserialized_faq) {
-        $em = $this->getDoctrine()->getManager();
-        $faq = $em->merge($deserialized_faq);
-        $em->persist($faq);
-        $em->flush();
-    }
-
-    protected function updateFaq(Faq $deserialized_faq) {
-        $em = $this->getDoctrine()->getManager();
-        $updated_faq = $em->merge($deserialized_faq);
-        $em->flush();
-    }
-
     /**
-     * @return Response
+     * @Route("/faq", methods={"GET"})
      */
     public function getFaqsAction() {
         $em = $this->getDoctrine()->getManager();
         $faqs = $em->getRepository('AppBundle:Faq')->findAll();
-        $serializer = $this->getJMSSerializer();
-        $response = new Response($serializer->serialize($faqs, 'json'));
-        $response->headers->set('Content-Type', 'application/json');
-        return $response;
+        $view = $this->view($faqs, 200);
+        return $this->handleView($view);
     }
 
     /**
-     * @Route("/api/faq/add", methods={"POST"})
+     * @Route("/faq/{id}", methods={"GET"}, requirements={"id"="^[0-9].*$"})
+     * @param Faq $faq
+     * @return Faq
+     */
+    public function getFaqAction(Faq $faq) {
+        $view = $this->view($faq, 200);
+        return $this->handleView($view);
+    }
+
+    /**
+     * @Route("/api/faq/", methods={"POST"})
+     * @param Request $request
+     * @return Response
      */
     public function addFaqAction(Request $request) {
-        $content = $request->getContent();
-        if(!empty($content)) {
-            $serializer = $this->getJMSSerializer();
-            $deserialized_faq = $serializer->deserialize($content, 'AppBundle\Entity\Faq', 'json');
-            $this->addFaq($deserialized_faq);
-        }
-        return new Response(Response::HTTP_OK);
+        $serializer = $this->get("jms_serializer");
+        $data = $request->getContent();
+
+        $faq = new Faq();
+        $context = new DeserializationContext();
+        $context->setAttribute('target', $faq);
+        $faq = $serializer->deserialize($data, 'AppBundle\Entity\Faq', 'json', $context);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($faq);
+        $em->flush();
+
+        return $this->getFaqsAction();
     }
 
     /**
-     * @Route("/api/faq/update", methods={"POST"})
+     * @Route("/api/faq/{id}", methods={"PUT"}, requirements={"id"="^[0-9].*$"})
+     * @param Request $request
+     * @param Faq $faq
+     * @return Response
      */
-    public function updateFaqAction(Request $request) {
-        $content = $request->getContent();
-        if(!empty($content)) {
-            $serializer = $this->getJMSSerializer();
-            $deserialized_faq = $serializer->deserialize($content, 'AppBundle\Entity\Faq', 'json');
-            $this->updateFaq($deserialized_faq);
-            $response = new Response($serializer->serialize($deserialized_faq, 'json'));
+    public function updateFaqAction(Request $request, Faq $faq) {
+        $serializer = $this->get("jms_serializer");
+        $data = $request->getContent();
 
-            $response->headers->set('Content-Type', 'application/json');
-            return $response;
-        }
-        return new Response(Response::HTTP_OK);
+        $context = new DeserializationContext();
+        $context->setAttribute('target', $faq);
+        $faq = $serializer->deserialize($data, 'AppBundle\Entity\Faq', 'json', $context);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($faq);
+        $em->flush();
+
+        return $this->getFaqsAction();
     }
 
     /**
-     * @Route("/api/faq/delete/{id}", methods={"DELETE"})
+     * @Route("/api/faq/{id}", methods={"DELETE"}, requirements={"id"="^[0-9].*$"})
+     * @param Faq $faq
+     * @return Response
      */
-    public function deleteFaqAction($id) {
-        $faq = $this->getDoctrine()
-            ->getRepository('AppBundle:Faq')
-            ->find($id);
-        $this->deleteFaq($faq);
-        $serializer = $this->getJMSSerializer();
-        $response = new Response($serializer->serialize($faq, 'json'));
-        $response->headers->set('Content-Type', 'application/json');
-        return $response;
+    public function deleteFaqAction(Faq $faq) {
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($faq);
+        $em->flush();
+
+        return $this->getFaqsAction();
     }
 }
