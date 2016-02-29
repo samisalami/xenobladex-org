@@ -1,0 +1,21 @@
+<main role="main">
+    <div ng-include src="'templates/_adminHeader.html'"></div>
+    <div class="admin-view col-md-12 p-y-1">
+        <h1>Sammelitems</h1>
+        <collectible-admin>
+            <div class="alert alert-warning m-y-2" ng-show="vm.deletedCollectible">
+                <a ng-click="vm.addDeletedCollectible()" href="#">Gelöschte Zeile wiederherstellen</a>
+            </div>
+            <a href="/admin/sammelitems/was-fehlt" class="btn-primary btn">Welche Daten fehlen?</a>
+            <input type="text" class="form-control text m-y-1" ng-model="nameFilter" ng-model-options='{ debounce: 200 }' placeholder="Filtern..." />
+            <collapsed-table-list add-form="true">
+                <collectible-form collectible="newCollectible">
+                </collectible-form>
+            </collapsed-table-list>
+            <collapsed-table-list ng-repeat="item in vm.collectibles | listFilter:nameFilter:'name' track by item.id" ng-if="vm.collectibles">
+                <collectible-form collectible="item">
+                </collectible-form>
+            </collapsed-table-list>
+        </collectible-admin>
+    </div>
+</main>

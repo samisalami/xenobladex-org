@@ -8,118 +8,85 @@ namespace AppBundle\Controller;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations\Route;
 use AppBundle\Entity\Person;
+use JMS\Serializer\DeserializationContext;
 use Symfony\Component\HttpFoundation\AcceptHeader;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\ParamConverter;
 
 class PersonController extends FOSRestController {
-    protected function getJMSSerializer() {
-        return $this->get('jms_serializer');
-    }
-
-    protected function deletePerson(Person $person) {
-        $em = $this->getDoctrine()->getManager();
-        $em->remove($person);
-        $em->flush();
-    }
-
-    protected function addPerson(Person $deserialized_person) {
-        $em = $this->getDoctrine()->getManager();
-        $person = $em->merge($deserialized_person);
-        $em->persist($person);
-        $em->flush();
-    }
-
     /**
-     * @param Person $deserialized_person
-     */
-    protected function updatePerson(Person $deserialized_person) {
-        $em = $this->getDoctrine()->getManager();
-
-        //mapmarkers
-        $person = $em->getRepository('AppBundle:Person')->find($deserialized_person->getId());
-        $newMapmarkers = $deserialized_person->getMapmarkers();
-        $countNewMapmarkers = count($newMapmarkers);
-        $currentMapmarkers = $person->getMapmarkers();
-
-        foreach($currentMapmarkers as $currentMapmarker) {
-            $counter = 0;
-            $exists = false;
-            foreach($newMapmarkers as $newMapmarker) {
-                if($newMapmarker->getId()) {
-                    if($newMapmarker->getId() == $currentMapmarker->getId()) {
-                        $exists = true;
-                    }
-                }
-
-                $counter++;
-
-                if($counter==$countNewMapmarkers && !$exists) {
-                    $deserialized_person->removeMapmarker($currentMapmarker);
-                    $em->remove($currentMapmarker);
-                }
-            }
-        }
-
-        $em->merge($deserialized_person);
-        $em->flush();
-    }
-
-    /**
-     * @return Response
+     * @Route("/person", methods={"GET"})
      */
     public function getPersonsAction() {
         $em = $this->getDoctrine()->getManager();
         $persons = $em->getRepository('AppBundle:Person')->findAll();
-        $serializer = $this->getJMSSerializer();
-        $response = new Response($serializer->serialize($persons, 'json'));
-        $response->headers->set('Content-Type', 'application/json');
-        return $response;
+        $view = $this->view($persons, 200);
+        return $this->handleView($view);
     }
 
     /**
-     * @Route("/person/add", methods={"POST"})
+     * @Route("/person/{id}", methods={"GET"}, requirements={"id"="^[0-9].*$"})
+     * @param Person $person
+     * @return Person
+     */
+    public function getPersonAction(Person $person) {
+        $view = $this->view($person, 200);
+        return $this->handleView($view);
+    }
+
+    /**
+     * @Route("/api/person/", methods={"POST"})
+     * @param Request $request
+     * @return Response
      */
     public function addPersonAction(Request $request) {
-        $content = $request->getContent();
-        if(!empty($content)) {
-            $serializer = $this->getJMSSerializer();
-            $deserialized_person = $serializer->deserialize($content, 'AppBundle\Entity\Person', 'json');
-            $this->addPerson($deserialized_person);
-        }
-        return new Response(Response::HTTP_OK);
+        $serializer = $this->get("jms_serializer");
+        $data = $request->getContent();
+
+        $person = new Person();
+        $context = new DeserializationContext();
+        $context->setAttribute('target', $person);
+        $person = $serializer->deserialize($data, 'AppBundle\Entity\Person', 'json', $context);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($person);
+        $em->flush();
+
+        return $this->getPersonsAction();
     }
 
     /**
-     * @Route("/person/update", methods={"POST"})
+     * @Route("/api/person/{id}", methods={"PUT"}, requirements={"id"="^[0-9].*$"})
+     * @param Request $request
+     * @param Person $person
+     * @return Response
      */
-    public function updatePersonAction(Request $request) {
-        $content = $request->getContent();
-        if(!empty($content)) {
-            $serializer = $this->getJMSSerializer();
-            $deserialized_person = $serializer->deserialize($content, 'AppBundle\Entity\Person', 'json');
+    public function updatePersonAction(Request $request, Person $person) {
+        $serializer = $this->get("jms_serializer");
+        $data = $request->getContent();
 
-            $this->updatePerson($deserialized_person);
+        $context = new DeserializationContext();
+        $context->setAttribute('target', $person);
+        $person = $serializer->deserialize($data, 'AppBundle\Entity\Person', 'json', $context);
 
-            $response = new Response($serializer->serialize($deserialized_person, 'json'));
-            $response->headers->set('Content-Type', 'application/json');
-            return $response;
-        }
-        return new Response(Response::HTTP_OK);
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($person);
+        $em->flush();
+
+        return $this->getPersonsAction();
     }
 
-    /*
-     * @Route("/api/person/delete/{id}", methods={"DELETE"})
-     * @ParamConverter("person", class="AppBundle:Person")
+    /**
+     * @Route("/api/person/{id}", methods={"DELETE"}, requirements={"id"="^[0-9].*$"})
      * @param Person $person
      * @return Response
      */
     public function deletePersonAction(Person $person) {
-        $this->deletePerson($person);
-        $serializer = $this->getJMSSerializer();
-        $response = new Response($serializer->serialize($person, 'json'));
-        $response->headers->set('Content-Type', 'application/json');
-        return $response;
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($person);
+        $em->flush();
+
+        return $this->getPersonsAction();
     }
 }

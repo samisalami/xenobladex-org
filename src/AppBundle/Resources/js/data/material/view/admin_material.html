@@ -1,0 +1,21 @@
+<main role="main">
+    <div ng-include src="'templates/_adminHeader.html'"></div>
+    <div class="admin-view col-md-12 p-y-1">
+        <h1>Material</h1>
+        <material-admin>
+            <div class="alert alert-warning m-y-2" ng-show="vm.deletedMaterial">
+                <a ng-click="vm.addDeletedMaterial()" href="#">Gelöschte Zeile wiederherstellen</a>
+            </div>
+            <a href="/admin/material/was-fehlt" class="btn-primary btn">Welche Daten fehlen?</a>
+            <input type="text" class="form-control text m-y-1" ng-model="nameFilter" ng-model-options='{ debounce: 200 }' placeholder="Filtern..." />
+            <collapsed-table-list add-form="true">
+                <material-form material="newMaterial">
+                </material-form>
+            </collapsed-table-list>
+            <collapsed-table-list ng-repeat="item in vm.materials | listFilter:nameFilter:'name' track by item.id" ng-if="vm.materials">
+                <material-form material="item">
+                </material-form>
+            </collapsed-table-list>
+        </material-admin>
+    </div>
+</main>
