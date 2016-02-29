@@ -74,8 +74,7 @@ class MissionController extends FOSRestController {
         $em->persist($mission);
         $em->flush();
 
-        $view = $this->view($mission, 200);
-        return $this->handleView($view);
+        return $this->getMissionsAction();
     }
 
     /**
@@ -88,7 +87,6 @@ class MissionController extends FOSRestController {
         $em->remove($mission);
         $em->flush();
 
-        $view = $this->view($mission, 200);
-        return $this->handleView($view);
+        return $this->getMissionsAction();
     }
 }

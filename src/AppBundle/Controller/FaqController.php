@@ -74,8 +74,7 @@ class FaqController extends FOSRestController {
         $em->persist($faq);
         $em->flush();
 
-        $view = $this->view($faq, 200);
-        return $this->handleView($view);
+        return $this->getFaqsAction();
     }
 
     /**
@@ -88,7 +87,6 @@ class FaqController extends FOSRestController {
         $em->remove($faq);
         $em->flush();
 
-        $view = $this->view($faq, 200);
-        return $this->handleView($view);
+        return $this->getFaqsAction();
     }
 }

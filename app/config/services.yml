@@ -13,11 +13,11 @@ services:
           public:       false
           arguments:    ["@doctrine", "@jms_serializer.unserialize_object_constructor"]
 
-  app.form.mission.type:
-      class: AppBundle\Form\MissionType
-      arguments: ["@doctrine.orm.entity_manager"]
-      tags:
-          - { name: form.type }
+  app.serializer.handler.relatedEntity:
+     class: AppBundle\Serializer\Handler\RelatedEntityHandler
+     arguments: ["@doctrine.orm.entity_manager"]
+     tags:
+         - { name: jms_serializer.subscribing_handler }
 
   fos_user.doctrine_registry:
       alias: doctrine

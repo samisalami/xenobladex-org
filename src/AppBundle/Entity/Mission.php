@@ -82,6 +82,7 @@ class Mission
     /**
      * @ORM\ManyToOne(targetEntity="Person", cascade={"persist"})
      * @ORM\JoinColumn(name="person_id", referencedColumnName="id")
+     * @Type("RelatedEntity<'AppBundle:Person'>")
      */
     private $person;
 
@@ -141,6 +142,9 @@ class Mission
      */
     private $mapmarkers;
 
+    public function __construct() {
+        $this->mapmarkers = new \Doctrine\Common\Collections\ArrayCollection();
+    }
 
     /**
      * Get id
@@ -518,13 +522,6 @@ class Mission
     public function getChapter()
     {
         return $this->chapter;
-    }
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->mapmarkers = new \Doctrine\Common\Collections\ArrayCollection();
     }
 
     /**
