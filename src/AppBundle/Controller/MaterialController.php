@@ -53,7 +53,8 @@ class MaterialController extends FOSRestController {
         $em->persist($material);
         $em->flush();
 
-        return $this->getMaterialsAction();
+        $view = $this->view($material, 200);
+        return $this->handleView($view);
     }
 
     /**
@@ -74,7 +75,8 @@ class MaterialController extends FOSRestController {
         $em->persist($material);
         $em->flush();
 
-        return $this->getMaterialsAction();
+        $view = $this->view($material, 200);
+        return $this->handleView($view);
     }
 
     /**
@@ -87,6 +89,7 @@ class MaterialController extends FOSRestController {
         $em->remove($material);
         $em->flush();
 
-        return $this->getMaterialsAction();
+        $view = $this->view($material, 200);
+        return $this->handleView($view);
     }
 }

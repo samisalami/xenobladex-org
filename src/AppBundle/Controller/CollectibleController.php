@@ -53,7 +53,8 @@ class CollectibleController extends FOSRestController {
         $em->persist($collectible);
         $em->flush();
 
-        return $this->getCollectiblesAction();
+        $view = $this->view($collectible, 200);
+        return $this->handleView($view);
     }
 
     /**
@@ -74,7 +75,8 @@ class CollectibleController extends FOSRestController {
         $em->persist($collectible);
         $em->flush();
 
-        return $this->getCollectiblesAction();
+        $view = $this->view($collectible, 200);
+        return $this->handleView($view);
     }
 
     /**
@@ -87,6 +89,7 @@ class CollectibleController extends FOSRestController {
         $em->remove($collectible);
         $em->flush();
 
-        return $this->getCollectiblesAction();
+        $view = $this->view($collectible, 200);
+        return $this->handleView($view);
     }
 }

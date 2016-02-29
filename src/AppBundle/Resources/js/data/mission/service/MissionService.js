@@ -3,9 +3,9 @@
 angular.module('app')
     .factory('MissionService', MissionService);
 
-    MissionService.$inject = ['$http', 'MissionTypeService', 'PersonService'];
+    MissionService.$inject = ['$http', 'ServiceDataParserService', 'MissionTypeService', 'PersonService'];
 
-    function MissionService($http, MissionTypeService, PersonService) {
+    function MissionService($http, ServiceDataParserService, MissionTypeService, PersonService) {
         var onMissionsChangedCallbacks = [];
         var onMissionDeletedCallbacks = [];
         var missions = null;
@@ -127,37 +127,51 @@ angular.module('app')
                 })
         }
 
-        function addMission(mission) {
-            var url = Routing.generate('add_mission');
-            return $http.post(url, mission)
-                .then(function(response){
-                    missions = response.data.map(function(mission){
-                        return createFromResponse(mission);
-                    });
-                    notifyMissionsChanged(missions);
+        function parseMission(mission, callback) {
+            ServiceDataParserService.parseRelation(mission, 'mission_type');
+            ServiceDataParserService.parseRelation(mission, 'person');
+
+            if(mission.person.name && !mission.person.id) {
+                PersonService.addPerson(mission.person).then(function(newPerson) {
+                    mission.person = newPerson.id;
+                    callback();
                 });
+            } else {
+                callback();
+            }
+        }
+
+        function addMission(mission) {
+            parseMission(mission, function() {
+                var url = Routing.generate('add_mission');
+                return $http.post(url, mission)
+                    .then(function(response){
+                        missions = missions.push(createFromResponse(response.data));
+                        notifyMissionsChanged(missions);
+                    });
+            });
         }
 
         function updateMission(mission) {
-            var url = Routing.generate('update_mission', {id: mission.id});
-            return $http.put(url, mission)
-                .then(function(response){
-                    missions = response.data.map(function(mission){
-                        return createFromResponse(mission);
-                    });
-                    notifyMissionsChanged(missions);
-                });
+            parseMission(mission, function() {
+                var url = Routing.generate('update_mission', {id: mission.id});
+                return $http.put(url, mission)
+                    .then(function(response){
+                          var index = missions.indexOf(mission);
+                          missions.splice(index, 1, response.data);
+                          notifyMissionsChanged(missions);
+                      });
+            });
         }
 
         function deleteMission(mission) {
             var url = Routing.generate('delete_mission', {id: mission.id});
             return $http.delete(url)
                 .then(function(response){
-                    missions = response.data.map(function(mission){
-                        return createFromResponse(mission);
-                    });
+                    var index = missions.indexOf(mission);
+                    missions.splice(index, 1);
                     notifyMissionsChanged(missions);
-                    notifyMissionDeleted(mission);
+                    notifyMissionDeleted(response.data);
                 });
         }
     }
