@@ -17,7 +17,7 @@
         </div>
         <div class="collapsed-table-cell-wrapper" collapsed-table-cell ng-if="form.mission.has_person">
             <strong>Auftraggeber:</strong>
-            <form-field person-from-id="form.mission.person" ng-if="form.persons" form-field-bind="personFromId" form-select-options="form.persons" form-template="customAutoCompleteSelect"></form-field>
+            <form-field person-by-id="form.mission.person" ng-if="form.persons" form-field-bind="personById" form-select-options="form.persons" form-template="customAutoCompleteSelect"></form-field>
         </div>
         <div class="collapsed-table-cell-wrapper" collapsed-table-cell ng-if="!form.mission.has_person">
             <strong>Auftraggeber:</strong>

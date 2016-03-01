@@ -47,16 +47,26 @@ angular.module('app')
                     that.mission = $.extend({}, mission, true);
                 }
 
-                that.deleteMission = function() {
-                    MissionService.deleteMission(that.mission);
-                };
-
-                that.updateMission = function() {
+                function submitChangeToService() {
                     if(that.mission.id) {
                         MissionService.updateMission(that.mission);
                     } else {
                         MissionService.addMission(that.mission);
                         setFormMission($scope.missionSealed);
+                    }
+                }
+
+                that.deleteMission = function() {
+                    MissionService.deleteMission(that.mission);
+                };
+
+                that.updateMission = function() {
+                    if(that.mission.person.id) {
+                        PersonService.addPerson(mission.person).then(function() {
+                            submitChangeToService();
+                        })
+                    } else {
+                        submitChangeToService();
                     }
                 }
             }],
