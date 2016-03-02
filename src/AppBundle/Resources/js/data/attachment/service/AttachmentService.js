@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app')
-    .factory('attachmentService', ['$http', function($http) {
+    .factory('AttachmentService', ['$http', function($http) {
         var service = {};
 
         service.getAttachments = function(callback) {

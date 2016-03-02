@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app')
-    .directive('attachmentInput',['attachmentService', '$filter',function(attachmentService, $filter) {
+    .directive('attachmentInput',['AttachmentService', '$filter',function(AttachmentService, $filter) {
         return {
             restrict: 'EA',
             templateUrl:'js/data/attachment/view/attachmentInputView.html',

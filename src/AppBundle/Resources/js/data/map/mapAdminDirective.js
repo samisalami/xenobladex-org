@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app')
-    .directive('mapAdmin',['mapService', 'attachmentService', 'flashService', '$filter', function(mapService, attachmentService, flashService, $filter) {
+    .directive('mapAdmin',['mapService', 'AttachmentService', 'flashService', '$filter', function(mapService, AttachmentService, flashService, $filter) {
         return {
             templateUrl:'js/data/map/mapAdminView.html',
             replace: true,
@@ -72,7 +72,7 @@ angular.module('app')
 
                 getMaps();
 
-                attachmentService.getAttachments(function(attachments){
+                AttachmentService.getAttachments(function(attachments){
                     $scope.attachments = attachments;
                     initFormModel();
                 });

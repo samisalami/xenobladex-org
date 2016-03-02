@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app')
-    .directive('attachmentAdmin', ['attachmentService',function(attachmentService) {
+    .directive('attachmentAdmin', ['AttachmentService',function(AttachmentService) {
         return {
             restrict: 'E',
             templateUrl:'js/data/attachment/view/attachmentAdminView.html',
@@ -19,7 +19,7 @@ angular.module('app')
                 };
 
                 var getAttachments = function() {
-                    attachmentService.getAttachments(function(attachments){
+                    AttachmentService.getAttachments(function(attachments){
                         $scope.attachments = attachments;
                     });
                 };
@@ -30,7 +30,7 @@ angular.module('app')
 
                 $scope.$watch('file', function(){
                     if ($scope.file) {
-                        attachmentService.addAttachmentFile($scope.file, function(){
+                        AttachmentService.addAttachmentFile($scope.file, function(){
                             getAttachments();
                             resetNewAttachment();
                         });
@@ -38,11 +38,11 @@ angular.module('app')
                 });
 
                 $scope.updateAttachment = function(attachment) {
-                    attachmentService.updateAttachment(attachment);
+                    AttachmentService.updateAttachment(attachment);
                 };
 
                 $scope.deleteAttachment = function(attachment) {
-                    attachmentService.deleteAttachment(attachment.id, function(){
+                    AttachmentService.deleteAttachment(attachment.id, function(){
                         var index = $scope.attachments.indexOf(attachment);
                         if(index !== -1) {
                             $scope.attachments.splice(index,1);
