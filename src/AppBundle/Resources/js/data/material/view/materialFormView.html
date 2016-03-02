@@ -1,46 +1,44 @@
-<div class="card collapsed-table-card card-block">
+<div class="row">
+    <div class="col-md-offset-9 col-md-3 col-xs-offset-6 col-xs-6 p-r-0 p-b-1">
+        <button href="#" class="btn btn-danger pull-right" ng-click="form.deleteMaterial()">
+            Löschen
+        </button>
+    </div>
+</div>
+<form ng-submit="form.updateMaterial()">
+    <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <strong>Name:</strong>
+        <form-field form-field-bind="form.material.name" form-template="inputText"></form-field>
+    </div>
+    <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <strong>Seltenheit:</strong>
+        <form-field form-field-bind="form.material.rarity" form-template="stringSelect" form-select-options="form.rarities"></form-field>
+    </div>
+    <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <span class="info-icon text-primary" bs-tooltip bs-tooltip-title="Nur Zahlen erlaubt."></span>
+        <strong>Verkaufswert:</strong>
+        <form-field form-field-bind="form.material.credit_cost" form-template="inputText"></form-field>
+    </div>
+    <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <span class="info-icon text-primary" bs-tooltip bs-tooltip-title="Nur Zahlen erlaubt."></span>
+        <strong>Belohnungstickets:</strong>
+        <form-field form-field-bind="form.material.ticket_cost" form-template="inputText"></form-field>
+    </div>
+    <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <strong>Körperteil:</strong>
+        <form-field form-field-bind="form.material.body_part" form-template="inputText"></form-field>
+    </div>
+    <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <strong>Kann nicht mit Tickets gekauft werden?</strong>
+        <form-field form-field-bind="form.material.is_not_buyable" form-template="inputCheckbox"></form-field>
+    </div>
+    <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <strong>Arten anzeigen statt Gattungen?</strong>
+        <form-field form-field-bind="form.material.show_monsters" form-template="inputCheckbox"></form-field>
+    </div>
     <div class="row">
-        <div class="col-md-offset-9 col-md-3 col-xs-offset-6 col-xs-6 p-r-0 p-b-1">
-            <button href="#" class="btn btn-danger pull-right" ng-click="form.deleteMaterial()">
-                Löschen
-            </button>
+        <div class="col-xs-12 p-r-0">
+            <input type="submit" href="#" class="btn btn-success pull-right" value="Speichern" />
         </div>
     </div>
-    <form ng-submit="form.updateMaterial()">
-        <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
-            <strong>Name:</strong>
-            <form-field form-field-bind="form.material.name" form-template="inputText"></form-field>
-        </div>
-        <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
-            <strong>Seltenheit:</strong>
-            <form-field form-field-bind="form.material.rarity" form-template="stringSelect" form-select-options="form.rarities"></form-field>
-        </div>
-        <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
-            <span class="info-icon text-primary" bs-tooltip bs-tooltip-title="Nur Zahlen erlaubt."></span>
-            <strong>Verkaufswert:</strong>
-            <form-field form-field-bind="form.material.credit_cost" form-template="inputText"></form-field>
-        </div>
-        <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
-            <span class="info-icon text-primary" bs-tooltip bs-tooltip-title="Nur Zahlen erlaubt."></span>
-            <strong>Belohnungstickets:</strong>
-            <form-field form-field-bind="form.material.ticket_cost" form-template="inputText"></form-field>
-        </div>
-        <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
-            <strong>Körperteil:</strong>
-            <form-field form-field-bind="form.material.body_part" form-template="inputText"></form-field>
-        </div>
-        <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
-            <strong>Kann nicht mit Tickets gekauft werden?</strong>
-            <form-field form-field-bind="form.material.is_not_buyable" form-template="inputCheckbox"></form-field>
-        </div>
-        <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
-            <strong>Arten anzeigen statt Gattungen?</strong>
-            <form-field form-field-bind="form.material.show_monsters" form-template="inputCheckbox"></form-field>
-        </div>
-        <div class="row">
-            <div class="col-xs-12 p-r-0">
-                <input type="submit" href="#" class="btn btn-success pull-right" value="Speichern" />
-            </div>
-        </div>
-    </form>
-</div>
+</form>
