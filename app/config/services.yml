@@ -13,11 +13,18 @@ services:
           public:       false
           arguments:    ["@doctrine", "@jms_serializer.unserialize_object_constructor"]
 
-  app.serializer.handler.relatedEntity:
+  app.serializer.handler.related_entity:
      class: AppBundle\Serializer\Handler\RelatedEntityHandler
      arguments: ["@doctrine.orm.entity_manager"]
      tags:
          - { name: jms_serializer.subscribing_handler }
+
+  app.service.attachment:
+     class: AppBundle\Service\AttachmentService
+
+  app.controller.attachment:
+     class: AppBundle\Controller\AttachmentController
+     arguments: [app.service.attachment]
 
   fos_user.doctrine_registry:
       alias: doctrine

@@ -44,7 +44,7 @@ map:
         expose: true
 
 attachment:
-    prefix: /xenobladex/api
+    prefix: /xenobladex
     type:     rest
     resource: "@AppBundle/Controller/AttachmentController.php"
     options:
