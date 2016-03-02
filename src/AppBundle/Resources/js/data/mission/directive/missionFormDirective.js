@@ -20,8 +20,8 @@ angular.module('app')
                     MissionTypeService.onMissionTypesChanged(setMissionTypes);
                     setMissionTypes(MissionTypeService.getMissionTypes());
 
-                    PersonService.onPersonsChanged(setPersons);
-                    setPersons(PersonService.getPersons());
+                    PersonService.onPersonsChanged(setPersonData);
+                    setPersonData(PersonService.getPersons());
 
                     setRegions(RegionService.Regions);
                     setSideJobTypes(SideJobTypeService.SideJobTypes);
@@ -39,20 +39,25 @@ angular.module('app')
                     that.missionTypes = missionTypes;
                 }
 
-                function setPersons(persons) {
+                function setPersonData(persons) {
                     that.persons = persons;
+                    that.person = that.mission.person ? $.extend({},$filter('byId')(persons, that.mission.person),true) : {};
                 }
 
                 function setFormMission(mission) {
                     that.mission = $.extend({}, mission, true);
                 }
 
-                function submitChangeToService() {
-                    if(that.mission.id) {
-                        MissionService.updateMission(that.mission);
+                function setPerson(callback) {
+                    if(that.person.id) {
+                        that.mission.person = that.person.id;
+                        callback();
                     } else {
-                        MissionService.addMission(that.mission);
-                        setFormMission($scope.missionSealed);
+                        PersonService.addPerson(that.person).then(function(response) {
+                            console.log(response);
+                            that.mission.person = response.data.id;
+                            callback();
+                        });
                     }
                 }
 
@@ -61,13 +66,14 @@ angular.module('app')
                 };
 
                 that.updateMission = function() {
-                    if(that.mission.person.id) {
-                        PersonService.addPerson(mission.person).then(function() {
-                            submitChangeToService();
-                        })
-                    } else {
-                        submitChangeToService();
-                    }
+                    setPerson(function() {
+                        if(that.mission.id) {
+                            MissionService.updateMission(that.mission);
+                        } else {
+                            MissionService.addMission(that.mission);
+                            setFormMission($scope.missionSealed);
+                        }
+                    });
                 }
             }],
             controllerAs: 'form'

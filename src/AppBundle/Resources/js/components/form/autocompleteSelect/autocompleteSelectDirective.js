@@ -34,7 +34,7 @@ angular.module('app')
                     select: function( event, ui ) {
                         $selectInputElm.val(ui.item.value);
                         $scope.$apply(function () {
-                            $scope.autocompleteBind = ui.item.id;
+                            $scope.autocompleteBind.id = ui.item.id;
                         });
                         return false;
                     },
@@ -48,13 +48,14 @@ angular.module('app')
 
                 $scope.selectOption = function(listItem) {
                     $selectInputElm.val(listItem[$scope.autocompleteOptionName]);
-                    $scope.autocompleteBind = listItem[$scope.autocompleteOptionValue];
+                    $scope.autocompleteBind = {};
+                    $scope.autocompleteBind.id = listItem[$scope.autocompleteOptionValue];
+                    $scope.autocompleteBind.name = listItem[$scope.autocompleteOptionName];
                     if(element.find('#'+$scope.selectModalId).is(':visible')) {
                         element.find('#'+$scope.selectModalId).modal('hide');
                         var promise = $timeout(function() {
                             $scope.autocompleteCallback();
                             $timeout.cancel(promise);
-                            console.log($scope.autocompleteBind);
                         }, 100);
                     }
                 };
@@ -69,7 +70,8 @@ angular.module('app')
                     });
 
                     if(!exists) {
-                        delete $scope.autocompleteBind;
+                        $scope.autocompleteBind = {};
+                        $scope.autocompleteBind.name = value;
                     }
                 };
             }

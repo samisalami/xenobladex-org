@@ -9,6 +9,7 @@ namespace AppBundle\Serializer\Handler;
 use Doctrine\ORM\EntityManager;
 use JMS\Serializer\GraphNavigator;
 use JMS\Serializer\Handler\SubscribingHandlerInterface;
+use JMS\Serializer\JsonDeserializationVisitor;
 use JMS\Serializer\JsonSerializationVisitor;
 
 class RelatedEntityHandler implements SubscribingHandlerInterface
@@ -45,7 +46,7 @@ class RelatedEntityHandler implements SubscribingHandlerInterface
         return $relatedEntity->getId();
     }
 
-    public function serializeIdToObject(JsonSerializationVisitor $visitor, $id, array $type) {
+    public function serializeIdToObject(JsonDeserializationVisitor $visitor, $id, array $type) {
         return $this->entityManager->getRepository($type['params'][0])->find($id);
     }
 }

@@ -111,10 +111,8 @@ function PersonService($http) {
         var url = Routing.generate('add_person');
         return $http.post(url, person)
             .then(function(response){
-                persons = response.data.map(function(person){
-                    return createFromResponse(person);
-                });
-                notifyPersonsChanged(persons);
+                loadPersons();
+                return response;
             });
     }
 
@@ -122,10 +120,8 @@ function PersonService($http) {
         var url = Routing.generate('update_person', {id: person.id});
         return $http.put(url, person)
             .then(function(response){
-                persons = response.data.map(function(person){
-                    return createFromResponse(person);
-                });
-                notifyPersonsChanged(persons);
+                loadPersons();
+                return response;
             });
     }
 
@@ -133,11 +129,9 @@ function PersonService($http) {
         var url = Routing.generate('delete_person', {id: person.id});
         return $http.delete(url)
             .then(function(response){
-                persons = response.data.map(function(person){
-                    return createFromResponse(person);
-                });
-                notifyPersonsChanged(persons);
+                loadPersons();
                 notifyPersonDeleted(person);
+                return response;
             });
     }
 }

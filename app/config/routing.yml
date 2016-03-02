@@ -51,7 +51,7 @@ attachment:
         expose: true
 
 person:
-    prefix: /xenobladex/api
+    prefix: /xenobladex
     type:     rest
     resource: "@AppBundle/Controller/PersonController.php"
     options:

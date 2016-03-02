@@ -105,10 +105,8 @@ function MaterialService($http) {
         var url = Routing.generate('add_material');
         return $http.post(url, material)
             .then(function(response){
-                materials = response.data.map(function(material){
-                    return createFromResponse(material);
-                });
-                notifyMaterialsChanged(materials);
+                loadMaterials();
+                return response;
             });
     }
 
@@ -116,10 +114,8 @@ function MaterialService($http) {
         var url = Routing.generate('update_material', {id: material.id});
         return $http.put(url, material)
             .then(function(response){
-                materials = response.data.map(function(material){
-                    return createFromResponse(material);
-                });
-                notifyMaterialsChanged(materials);
+                loadMaterials();
+                return response;
             });
     }
 
@@ -127,11 +123,9 @@ function MaterialService($http) {
         var url = Routing.generate('delete_material', {id: material.id});
         return $http.delete(url)
             .then(function(response){
-                materials = response.data.map(function(material){
-                    return createFromResponse(material);
-                });
-                notifyMaterialsChanged(materials);
+                loadMaterials();
                 notifyMaterialDeleted(material);
+                return response;
             });
     }
 }

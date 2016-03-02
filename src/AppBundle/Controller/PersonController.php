@@ -75,7 +75,8 @@ class PersonController extends FOSRestController {
         $em->persist($person);
         $em->flush();
 
-        return $this->getPersonsAction();
+        $view = $this->view($person, 200);
+        return $this->handleView($view);
     }
 
     /**
@@ -88,6 +89,6 @@ class PersonController extends FOSRestController {
         $em->remove($person);
         $em->flush();
 
-        return $this->getPersonsAction();
+        return new Response(Response::HTTP_OK);
     }
 }

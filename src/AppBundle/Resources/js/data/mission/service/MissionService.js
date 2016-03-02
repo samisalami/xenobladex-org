@@ -131,8 +131,8 @@ angular.module('app')
             var url = Routing.generate('add_mission');
             return $http.post(url, mission)
                 .then(function(response){
-                    missions = missions.push(createFromResponse(response.data));
-                    notifyMissionsChanged(missions);
+                    loadMissions();
+                    return response;
                 });
         }
 
@@ -140,10 +140,8 @@ angular.module('app')
             var url = Routing.generate('update_mission', {id: mission.id});
             return $http.put(url, mission)
                 .then(function(response){
-                        missions = response.data.map(function(mission){
-                            return createFromResponse(mission);
-                        });
-                      notifyMissionsChanged(missions);
+                    loadMissions();
+                    return response;
                   });
         }
 
@@ -151,11 +149,9 @@ angular.module('app')
             var url = Routing.generate('delete_mission', {id: mission.id});
             return $http.delete(url)
                 .then(function(response){
-                    missions = response.data.map(function(mission){
-                        return createFromResponse(mission);
-                    });
-                    notifyMissionsChanged(missions);
+                    loadMissions();
                     notifyMissionDeleted(mission);
+                    return response;
                 });
         }
     }

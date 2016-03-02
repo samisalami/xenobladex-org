@@ -96,10 +96,8 @@ function FaqService($http) {
         var url = Routing.generate('add_faq');
         return $http.post(url, faq)
             .then(function(response){
-                faqs = response.data.map(function(faq){
-                    return createFromResponse(faq);
-                });
-                notifyFaqsChanged(faqs);
+                loadFaqs();
+                return response;
             });
     }
 
@@ -107,10 +105,8 @@ function FaqService($http) {
         var url = Routing.generate('update_faq', {id: faq.id});
         return $http.put(url, faq)
             .then(function(response){
-                faqs = response.data.map(function(faq){
-                    return createFromResponse(faq);
-                });
-                notifyFaqsChanged(faqs);
+                loadFaqs();
+                return response;
             });
     }
 
@@ -118,11 +114,9 @@ function FaqService($http) {
         var url = Routing.generate('delete_faq', {id: faq.id});
         return $http.delete(url)
             .then(function(response){
-                faqs = response.data.map(function(faq){
-                    return createFromResponse(faq);
-                });
-                notifyFaqsChanged(faqs);
+                loadFaqs();
                 notifyFaqDeleted(faq);
+                return response;
             });
     }
 }

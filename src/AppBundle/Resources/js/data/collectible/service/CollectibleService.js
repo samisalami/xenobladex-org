@@ -96,10 +96,8 @@ function CollectibleService($http) {
         var url = Routing.generate('add_collectible');
         return $http.post(url, collectible)
             .then(function(response){
-                collectibles = response.data.map(function(collectible){
-                    return createFromResponse(collectible);
-                });
-                notifyCollectiblesChanged(collectibles);
+                loadCollectibles();
+                return response;
             });
     }
 
@@ -107,10 +105,8 @@ function CollectibleService($http) {
         var url = Routing.generate('update_collectible', {id: collectible.id});
         return $http.put(url, collectible)
             .then(function(response){
-                collectibles = response.data.map(function(collectible){
-                    return createFromResponse(collectible);
-                });
-                notifyCollectiblesChanged(collectibles);
+                loadCollectibles();
+                return response;
             });
     }
 
@@ -118,11 +114,9 @@ function CollectibleService($http) {
         var url = Routing.generate('delete_collectible', {id: collectible.id});
         return $http.delete(url)
             .then(function(response){
-                collectibles = response.data.map(function(collectible){
-                    return createFromResponse(collectible);
-                });
-                notifyCollectiblesChanged(collectibles);
+                loadCollectibles();
                 notifyCollectibleDeleted(collectible);
+                return response;
             });
     }
 }
