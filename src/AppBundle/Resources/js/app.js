@@ -50,7 +50,7 @@ function config($routeProvider, $locationProvider) {
         templateUrl: 'views/admin_maps.html'
       })
       .when('/admin/dateien', {
-        templateUrl: 'views/admin_attachments.html'
+        templateUrl: 'js/data/attachment/view/admin_attachments.html'
       })
       .when('/admin/personen', {
         templateUrl: 'js/data/person/view/admin_persons.html'

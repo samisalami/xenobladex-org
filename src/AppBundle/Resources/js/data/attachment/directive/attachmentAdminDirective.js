@@ -4,7 +4,7 @@ angular.module('app')
     .directive('attachmentAdmin', ['attachmentService',function(attachmentService) {
         return {
             restrict: 'E',
-            templateUrl:'js/data/attachment/attachmentAdminView.html',
+            templateUrl:'js/data/attachment/view/attachmentAdminView.html',
             replace: true,
             link: function($scope) {
                 var resetNewAttachment = function() {

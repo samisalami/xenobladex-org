@@ -26,11 +26,11 @@ angular.module('app')
         };
 
         service.updateAttachment = function(attachment) {
-            $http.post(Routing.generate('update_attachment'), attachment);
+            $http.put(Routing.generate('update_attachment', {id: attachment.id}), attachment);
         };
 
         service.deleteAttachment = function(id, callback) {
-            $http.delete(Routing.generate('delete_attachment')+'/'+id).success(function(){
+            $http.delete(Routing.generate('delete_attachment', {id: id})).success(function(){
                 callback();
             });
         };

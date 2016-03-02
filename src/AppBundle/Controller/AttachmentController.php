@@ -20,12 +20,11 @@ class AttachmentController extends FOSRestController {
     /**
      * @var AttachmentService
      */
-    private $attachmentService;
-
-    public function __construct(AttachmentService $attachmentService) {
-
-        $this->attachmentService = $attachmentService;
-    }
+//    private $attachmentService;
+//
+//    public function __construct() {
+//        $this->attachmentService = $this->container->get('app.service.attachment');
+//    }
 
     /**
      * @Route("/attachment", methods={"GET"})
@@ -48,7 +47,8 @@ class AttachmentController extends FOSRestController {
         $file = $request->files->get('file');
 
         if(!empty($file)) {
-            $attachment = $this->attachmentService->createAttachmentFromUpload($file);
+            $attachmentService = $this->container->get('app.service.attachment');
+            $attachment = $attachmentService->createAttachmentFromUpload($file);
 
             $em = $this->getDoctrine()->getManager();
             $em->persist($attachment);
@@ -81,16 +81,18 @@ class AttachmentController extends FOSRestController {
         return $this->handleView($view);
     }
 
-    /*
-     * @ParamConverter("attachment", class="AppBundle:Attachment")
-     * @Route("api/attachment/{id}", methods={"DELETE"})
+    /**
+     * @Route("api/attachment/{id}", methods={"DELETE"}, requirements={"id"="^[0-9].*$"})
+     * @param Attachment $attachment
+     * @return Response
      */
-    public function deleteAttachmentAction(Request $request, Attachment $attachment) {
+    public function deleteAttachmentAction(Attachment $attachment) {
         $em = $this->getDoctrine()->getManager();
         $em->remove($attachment);
         $em->flush();
 
-        $this->attachmentService->removeAttachmentFileFromServer($attachment);
+        $attachmentService = $this->container->get('app.service.attachment');
+        $attachmentService->removeAttachmentFileFromServer($attachment);
 
         return new Response(Response::HTTP_OK);
     }
@@ -99,7 +101,8 @@ class AttachmentController extends FOSRestController {
      * @ParamConverter("attachment", class="AppBundle\Entity\Attachment")
      */
     public function showAttachmentAction(Attachment $attachment) {
-        $attachment_file_path = $this->attachmentService->getFullPathToAttachmentFile($attachment);
+        $attachmentService = $this->container->get('app.service.attachment');
+        $attachment_file_path = $attachmentService->getFullPathToAttachmentFile($attachment);
         if (file_exists($attachment_file_path)) {
             $response = new StreamedResponse();
             $response->setCallback(

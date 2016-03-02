@@ -87,6 +87,7 @@ collectible:
 
 show_attachment:
     path: /xenobladex/attachment/{id}
+    methods: [GET]
     defaults: { _controller: AppBundle:Attachment:showAttachment }
 
 
