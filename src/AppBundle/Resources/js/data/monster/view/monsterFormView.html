@@ -1,0 +1,84 @@
+<div class="row">
+    <div class="col-md-offset-9 col-md-3 col-xs-offset-6 col-xs-6 p-r-0 p-b-1">
+        <button href="#" class="btn btn-danger pull-right" ng-click="form.deleteMonster()">
+            Löschen
+        </button>
+    </div>
+</div>
+<form ng-submit="form.updateMonster()">
+    <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <strong>Name:</strong>
+        <form-field form-field-bind="form.monster.name" form-template="inputText"></form-field>
+    </div>
+    <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <strong>Region:</strong>
+        <form-field form-field-bind="form.monster.region" form-template="stringSelect" form-select-options="form.regions"></form-field>
+    </div>
+    <div class="collapsed-table-cell-wrapper" collapsed-table-cell ng-if="form.monster.has_person">
+        <span class="info-icon text-primary" bs-tooltip bs-tooltip-title="Nur Zahlen erlaubt."></span>
+        <strong>Level Min.:</strong>
+        <form-field form-field-bind="form.monster.level_min" form-template="inputText"></form-field>
+    </div>
+    <div class="collapsed-table-cell-wrapper" collapsed-table-cell ng-if="!form.monster.has_person">
+        <span class="info-icon text-primary" bs-tooltip bs-tooltip-title="Nur Zahlen erlaubt. Leerlassen falls nur ein exaktes Level vorhanden."></span>
+        <strong>Level Max.:</strong>
+        <form-field form-field-bind="form.monster.level_max" form-template="inputText"></form-field>
+    </div>
+    <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <span class="info-icon text-primary" bs-tooltip bs-tooltip-title='Standardwert: "Immer"'></span>
+        <strong>Zeit:</strong>
+        <form-field form-field-bind="form.monster.time" form-template="falsableStringSelect" form-select-options="form.dayTimes"></form-field>
+    </div>
+    <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <strong>Beschreibung:</strong>
+        <form-field form-field-bind="form.monster.description" form-template="textarea"></form-field>
+    </div>
+    <!--<div class="collapsed-table-cell-wrapper" collapsed-table-cell>-->
+        <!--<strong>Bedingungen:</strong>-->
+        <!--<form-field form-field-bind="form.monster.conditions" form-template="textarea"></form-field>-->
+    <!--</div>-->
+    <!--<div class="collapsed-table-cell-wrapper" collapsed-table-cell>-->
+        <!--<strong>Erhalt wo?</strong>-->
+        <!--<form-field form-field-bind="form.monster.location_note" form-template="textarea"></form-field>-->
+    <!--</div>-->
+    <!--<div class="collapsed-table-cell-wrapper" collapsed-table-cell>-->
+        <!--<strong>Aufgaben:</strong>-->
+        <!--<form-field form-field-bind="form.monster.tasks" form-template="textarea"></form-field>-->
+    <!--</div>-->
+    <!--<div class="collapsed-table-cell-wrapper" collapsed-table-cell>-->
+        <!--<strong>Lösung:</strong>-->
+        <!--<form-field form-field-bind="form.monster.solution" form-template="textarea"></form-field>-->
+    <!--</div>-->
+    <!--<div class="collapsed-table-cell-wrapper" collapsed-table-cell>-->
+        <!--<strong>Belohnung:</strong>-->
+        <!--<form-field form-field-bind="form.monster.rewards" form-template="textarea"></form-field>-->
+    <!--</div>-->
+    <!--<div class="collapsed-table-cell-wrapper" collapsed-table-cell>-->
+        <!--<strong>Typ:</strong>-->
+        <!--<form-field ng-if="form.monsterTypes" form-field-bind="form.monster.monster_type" form-template="objectSelect" form-select-options="form.monsterTypes"></form-field>-->
+    <!--</div>-->
+    <!--<div class="collapsed-table-cell-wrapper" collapsed-table-cell>-->
+        <!--<span class="info-icon text-primary" bs-tooltip bs-tooltip-title="Nur Zahlen erlaubt."></span>-->
+        <!--<strong>Bedingung - BLADE-Level:</strong>-->
+        <!--<form-field form-field-bind="form.monster.blade_level" form-template="inputText"></form-field>-->
+    <!--</div>-->
+    <!--<div class="collapsed-table-cell-wrapper" collapsed-table-cell>-->
+        <!--<strong>Nebenjob-Zielregion</strong>-->
+        <!--<form-field form-field-bind="form.monster.target_area" form-template="stringSelect" form-select-options="form.regions"></form-field>-->
+    <!--</div>-->
+    <!--<div class="collapsed-table-cell-wrapper" collapsed-table-cell>-->
+        <!--<strong>Nebenjob-Typ</strong>-->
+        <!--<form-field form-field-bind="form.monster.sidejob_type" form-template="stringSelect" form-select-options="form.sideJobTypes"></form-field>-->
+    <!--</div>-->
+    <!--<div class="collapsed-table-cell-wrapper" collapsed-table-cell>-->
+        <!--<span class="info-icon text-primary" bs-tooltip bs-tooltip-title="Nur Zahlen erlaubt (kleine Sterne addieren)."></span>-->
+        <!--<strong>Nebenjob-Schwierigkeit</strong>-->
+        <!--<form-field form-field-bind="form.monster.difficulty" form-template="inputText"></form-field>-->
+        <!--<form-field ng-if="form.persons" form-field-bind="form.person" form-select-options="form.persons" form-template="customAutoCompleteSelect"></form-field>-->
+    <!--</div>-->
+    <!--<div class="row">-->
+        <!--<div class="col-xs-12 p-r-0">-->
+            <!--<input type="submit" href="#" class="btn btn-success pull-right" value="Speichern" />-->
+        <!--</div>-->
+    <!--</div>-->
+</form>

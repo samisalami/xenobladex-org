@@ -3,9 +3,9 @@
 angular.module('app')
     .factory('MissionService', MissionService);
 
-    MissionService.$inject = ['$http', 'PersonService'];
+    MissionService.$inject = ['$http'];
 
-    function MissionService($http, PersonService) {
+    function MissionService($http) {
         var onMissionsChangedCallbacks = [];
         var onMissionDeletedCallbacks = [];
         var missions = null;

@@ -1,19 +1,38 @@
 'use strict';
 
 angular.module('app')
-    .directive('monsterAdmin',['monsterService', 'itemService', 'mapService', 'flashService', '$filter', function(monsterService, itemService, mapService, flashService, $filter) {
+    .directive('monsterAdmin',['MonsterService', function(MonsterService) {
         return {
-            templateUrl:'js/data/monster/monsterAdminView.html',
+            restrict: 'E',
             replace: true,
-            link: function($scope, $element,$attrs){
-                var monsterTypeDataLoaded = false;
-                var materialDataLoaded = false;
-                var mapDataLoaded = false;
+            controller: ['$scope',function($scope) {
+                var that = this;
+                init();
 
-                $scope.newMonster = {
-                    materials: [],
-                    mapmarkers: []
+                function init() {
+                    MonsterService.onMonstersChanged(setMonsters);
+                    MonsterService.onMonsterDeleted(setDeletedMonster);
+                    setMonsters(MonsterService.getMonsters());
+
+                    that.newMonster = MonsterService.Monster;
+                }
+
+                function setMonsters(monsters) {
+                    that.monsters = monsters;
+                }
+
+                function setDeletedMonster(monster) {
+                    that.deletedMonster = monster;
+                    delete that.deletedMonster.id;
+                }
+
+                that.addDeletedMonster = function() {
+                    MonsterService.addMonster(that.deletedMonster);
+                    delete that.deletedMonster;
                 };
+            }],
+            controllerAs: 'vm',
+            link: function($scope, $element,$attrs){
 
                 var regions = [
                     {name:'NLA'},
@@ -64,16 +83,6 @@ angular.module('app')
                     {name:'Visuell, Auditiv'}
                 ];
 
-                $scope.dataLoaded = function(){
-                    return monsterTypeDataLoaded && materialDataLoaded && mapDataLoaded;
-                };
-
-                $scope.$watch($scope.dataLoaded, function(dataLoaded){
-                    if(dataLoaded && !$scope.formModel) {
-                        initFormModel();
-                    }
-                });
-
                 var initFormModel = function() {
                     $scope.formModel = {
                         orderBy: ['monster_type.prio', 'name'],
@@ -120,7 +129,7 @@ angular.module('app')
                                 label: 'Boss?',
                                 name: 'is_story',
                                 type: 'inputCheckbox',
-                                fieldInfoTooltip: 'Handlungs- & Missionsgegner'
+                                fieldInfoTooltip: 'Handlungs- & Monstersgegner'
                             },
                             {
                                 label: 'HP',
@@ -229,63 +238,6 @@ angular.module('app')
                             }
                         ]
                     };
-                };
-
-                var getMonsters = function(){
-                    monsterService.getMonsters(function(response){
-                        $scope.monsters = response;
-                    }, 'monsterDetail');
-                };
-
-                itemService.getMaterials(function(response){
-                    $scope.materials = response;
-                    materialDataLoaded = true;
-                });
-
-                monsterService.getMonsterTypes(function(response){
-                    $scope.monsterTypes = response;
-                    monsterTypeDataLoaded = true;
-                }, 'monsterTypeDetail');
-
-                mapService.getMaps(function(response){
-                    $scope.maps = response;
-                    mapDataLoaded = true;
-                });
-
-                getMonsters();
-
-                $scope.updateMonster = function(monster) {
-                    monsterService.updateMonster(monster);
-                };
-
-                $scope.addMonster = function(monster) {
-                    if(monster) {
-                        monsterService.addMonster(monster, function(){
-                            getMonsters();
-                            $scope.newMonster = {
-                                materials: [
-                                ]
-                            };
-                            flashService.clear();
-                        });
-                    } else {
-                        flashService.error('Komplett leere Daten werden nicht angelegt.');
-                    }
-                };
-
-                $scope.deleteMonster = function(monster) {
-                    monsterService.deleteMonster(monster.id, function(deletedMonster){
-                        $scope.deletedMonster = deletedMonster;
-                        var index = $scope.monsters.indexOf(monster);
-                        if(index !== -1) {
-                            $scope.monsters.splice(index,1);
-                        }
-                    });
-                };
-
-                $scope.addDeletedMonster = function() {
-                    $scope.addMonster($scope.deletedMonster);
-                    $scope.deletedMonster = null;
                 };
             }
         }

@@ -1,8 +1,0 @@
-<div class="monster-admin-view">
-    <a href="/admin/monster/was-fehlt" class="btn-primary btn m-b-2">Welche Daten fehlen?</a>
-    <div class="alert alert-warning" ng-show="deletedMonster">
-        <a ng-click="addDeletedMonster()" href="#">Gelöschte Zeile wiederherstellen</a>
-    </div>
-    <input type="text" class="form-control text m-b-2" ng-model="modalFilterValue" ng-model-options='{ debounce: 200 }' placeholder="Filtern..." />
-    <collapsed-table ng-if="formModel && monsters" view-data="monsters" form-model="formModel" modal-filter-value="modalFilterValue" add-object="newMonster" add-item="addMonster(item)"  update-item="updateMonster(item)" delete-item="deleteMonster(item)"></collapsed-table>
-</div>

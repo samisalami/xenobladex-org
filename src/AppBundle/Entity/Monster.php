@@ -205,6 +205,7 @@ class Monster
      * @ORM\ManyToOne(targetEntity="MonsterType")
      * @ORM\JoinColumn(name="monster_type_id", referencedColumnName="id")
      * @Groups({"monsterDetail"})
+     * @Type("RelatedEntity<'AppBundle:MonsterType'>")
      */
     private $monsterType;
 

@@ -68,13 +68,13 @@ function config($routeProvider, $locationProvider) {
         templateUrl: 'views/admin_mapmarkers.html'
       })
       .when('/admin/monster', {
-        templateUrl: 'views/admin_monsters.html'
+        templateUrl: 'js/data/monster/view/admin_monsters.html'
       })
       .when('/admin/monster/was-fehlt', {
-          templateUrl: 'views/admin_monsters_missing.html'
+        templateUrl: 'js/data/monster/view/admin_monsters_missing.html'
       })
       .when('/admin/monster_gattungen', {
-        templateUrl: 'views/admin_monsterTypes.html'
+        templateUrl: 'js/data/monster/view/admin_monsterTypes.html'
       })
       .when('/admin/material', {
         templateUrl: 'js/data/material/view/admin_material.html'
