@@ -1,16 +1,19 @@
 angular.module('app')
-    .directive('personById',['$filter','PersonService', function(PersonService, $filter) {
+    .directive('personById',['$filter','PersonService', function($filter, PersonService) {
         return {
             restrict: 'A',
             link: function($scope, $element,$attrs){
-                var personId = $attrs.person;
+                var personId = $attrs.personById;
 
-                PersonService.onPersonsChanged(setPersonById);
-                setPersonById(PersonService.getPersons());
+                if(personId) {
+                    PersonService.onPersonsChanged(setPersonById);
+                    setPersonById(PersonService.getPersons());
 
-                var setPersonById = function(persons) {
-                    $scope.personById = $filter('byId')(persons, personId);
-                };
+                }
+
+                function setPersonById(persons) {
+                    $scope.personById = $filter('byId')(persons, personId) || null;
+                }
             }
         }
     }]);

@@ -91,6 +91,10 @@ module.exports = function (grunt) {
       options: {
         interrupt: true
       },
+      html: {
+        files: ['src/AppBundle/Resources/js/**/*.html', 'src/AppBundle/Resources/views/**/*.html'],
+        tasks: ['ngtemplates:app']
+      },
       mainTemplate: {
         files: ['src/AppBundle/Resources/app.html'],
         tasks: ['copy:mainTemplate']
