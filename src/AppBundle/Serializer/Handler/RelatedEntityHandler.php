@@ -6,7 +6,9 @@
 namespace AppBundle\Serializer\Handler;
 
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\EntityManager;
+use JMS\Serializer\Context;
 use JMS\Serializer\GraphNavigator;
 use JMS\Serializer\Handler\SubscribingHandlerInterface;
 use JMS\Serializer\JsonDeserializationVisitor;
@@ -42,11 +44,25 @@ class RelatedEntityHandler implements SubscribingHandlerInterface
         );
     }
 
-    public function serializeObjectToId(JsonSerializationVisitor $visitor, $relatedEntity) {
+    public function serializeObjectToId(JsonSerializationVisitor $visitor, $relatedEntity, array $type, Context $context) {
+        if(is_array($relatedEntity) || $relatedEntity instanceof \Traversable) {
+            $entities = [];
+            foreach ($relatedEntity as $entity) {
+                $entities[] = ($entity->getId());
+            }
+            return $entities;
+        }
         return $relatedEntity->getId();
     }
 
-    public function serializeIdToObject(JsonDeserializationVisitor $visitor, $id, array $type) {
-        return $this->entityManager->getRepository($type['params'][0])->find($id);
+    public function serializeIdToObject(JsonDeserializationVisitor $visitor, $relatedEntity, array $type, Context $context) {
+        if(is_array($relatedEntity) || $relatedEntity instanceof \Traversable) {
+            $entities = new ArrayCollection();
+            foreach ($relatedEntity as $entity) {
+                $entities->add($this->entityManager->getRepository($type['params'][0])->find($entity));
+            }
+            return $entities;
+        }
+        return $this->entityManager->getRepository($type['params'][0])->find($relatedEntity);
     }
 }

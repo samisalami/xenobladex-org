@@ -55,7 +55,7 @@ class MonsterType
      *      joinColumns={@ORM\JoinColumn(name="monster_type_id", referencedColumnName="id", onDelete="CASCADE")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="material_id", referencedColumnName="id", onDelete="CASCADE")}
      *      )
-     * @Type("ArrayCollection<AppBundle\Entity\Material>")
+     * @Type("RelatedEntity<'AppBundle:Material'>")
      * @Groups({"monsterTypeDetail"})
      */
     private $materials;

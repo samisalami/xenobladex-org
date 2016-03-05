@@ -2,7 +2,7 @@ angular.module('app')
     .directive('monsterMissingData',['MonsterService', '$filter', function(MonsterService, $filter) {
         return {
             restrict: 'E',
-            templateUrl: 'js/data/monster/monsterMissingDataView.html',
+            templateUrl: 'js/data/monster/view/monsterMissingDataView.html',
             replace: true,
             link: function($scope, $element,$attrs) {
                 init();

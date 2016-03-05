@@ -54,7 +54,6 @@ angular.module('app')
                         callback();
                     } else {
                         PersonService.addPerson(that.person).then(function(response) {
-                            console.log(response);
                             that.mission.person = response.data.id;
                             callback();
                         });

@@ -5,6 +5,8 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation\Type;
+use JMS\Serializer\Annotation\VirtualProperty;
+use JMS\Serializer\Annotation\SerializedName;
 use JMS\Serializer\Annotation\Groups;
 
 /**
@@ -212,7 +214,7 @@ class Monster
     /**
      * @var ArrayCollection
      * @ORM\OneToMany(targetEntity="MonsterMapmarker", mappedBy="monster", cascade={"all"})
-     * @Type("ArrayCollection<AppBundle\Entity\MonsterMapmarker>")
+     * @Type("RelatedEntity<'AppBundle:MonsterMapmarker'>")
      * @Groups({"monsterDetail"})
      */
     private $mapmarkers;
@@ -223,10 +225,18 @@ class Monster
      *      joinColumns={@ORM\JoinColumn(name="monster_id", referencedColumnName="id", onDelete="CASCADE")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="material_id", referencedColumnName="id", onDelete="CASCADE")}
      *      )
-     * @Type("ArrayCollection<AppBundle\Entity\Material>")
+     * @Type("RelatedEntity<'AppBundle:Material'>")
      * @Groups({"monsterDetail"})
      */
     private $materials;
+
+    /**
+     * @VirtualProperty
+     * @SerializedName("monster_type_prio")
+     */
+    public function getMonsterTypePrio() {
+        return $this->getMonsterType()->getPrio();
+    }
 
     /**
      * Monster constructor.

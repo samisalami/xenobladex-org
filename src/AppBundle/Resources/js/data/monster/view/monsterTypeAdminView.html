@@ -1,7 +1,0 @@
-<div class="monster-type-admin-view">
-    <div class="alert alert-warning" ng-show="deletedMonsterType">
-        <a ng-click="addDeletedMonsterType()" href="#">Gelöschte Zeile wiederherstellen</a>
-    </div>
-    <input type="text" class="form-control text m-b-2" ng-model="modalFilterValue" ng-model-options='{ debounce: 200 }' placeholder="Filtern..." />
-    <collapsed-table ng-if="formModel && monsterTypes" view-data="monsterTypes" form-model="formModel" modal-filter-value="modalFilterValue" add-object="newMonsterType" add-item="addMonsterType(item)"  update-item="updateMonsterType(item)" delete-item="deleteMonsterType(item)"></collapsed-table>
-</div>

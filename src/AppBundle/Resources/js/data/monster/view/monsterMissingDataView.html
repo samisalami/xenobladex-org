@@ -1,5 +1,5 @@
 <div class="missing-data-view">
-<a href="/admin/monster" class="btn-primary btn">Monster</a>
+    <a href="/admin/monster" class="btn-primary btn">Monster</a>
     <div class="table-responsive m-t-2">
         <table class="table table-bordered">
             <thead>
@@ -31,7 +31,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="monster in monsters | orderBy: ['monster_type.prio','name']">
+                <tr monster-type-by-id="{{monster.monster_type}}" ng-repeat="monster in monsters | orderBy:['monster_type_prio','name'] track by monster.id">
                     <td>
                         {{monster.name}}
                     </td>
@@ -53,15 +53,15 @@
                         {{monster.res_physic}} | {{monster.res_laser}} | {{monster.res_ether}} | {{monster.res_thermo}} | {{monster.res_electric}} | {{monster.res_gravit}}
                     </td>
                     <td>
-                        <span ng-if="elm.mapmarkers" class="text-success">
+                        <span ng-if="monster.mapmarkers[0]" class="text-success">
                             gepflegt
                         </span>
-                        <span ng-if="!elm.mapmarkers" class="text-danger">
+                        <span ng-if="!monster.mapmarkers[0]" class="text-danger">
                             leer
                         </span>
                     </td>
                     <td>
-                        {{monster.monster_type.name}}
+                        {{monsterTypeById.name}}
                     </td>
                     <td>
                         {{ monster.location_note }}

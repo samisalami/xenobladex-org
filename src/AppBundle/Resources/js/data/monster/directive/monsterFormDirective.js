@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app')
-    .directive('monsterForm',['MonsterService', 'MonsterTypeService', 'RegionService', 'DayTimeService', 'WeatherService', function(MonsterService, MonsterTypeService, RegionService, DayTimeService, WeatherService) {
+    .directive('monsterForm',['MonsterService', 'MonsterTypeService', 'RegionService', 'DayTimeService', 'WeatherService', '$filter', function(MonsterService, MonsterTypeService, RegionService, DayTimeService, WeatherService, $filter) {
         return {
             restrict: 'E',
             replace: false,
@@ -17,8 +17,8 @@ angular.module('app')
                 function init() {
                     setFormMonster($scope.monsterSealed);
 
-                    //MonsterTypeService.onMonsterTypesChanged(setMonsterTypeData);
-                    //setMonsterTypeData(MonsterTypeService.getMonsterTypes());
+                    MonsterTypeService.onMonsterTypesChanged(setMonsterTypeData);
+                    setMonsterTypeData(MonsterTypeService.getMonsterTypes());
 
                     setRegions(RegionService.Regions);
                     setDayTimes(DayTimeService.DayTimes);
@@ -37,26 +37,25 @@ angular.module('app')
                     that.weathers = weathers;
                 }
 
-                //function setMonsterTypeData(monsterTypes) {
-                //    that.monsterTypes = monsterTypes;
-                //    that.monsterType = that.monster.monsterType ? $.extend({},$filter('byId')(monsterTypes, that.monster.monsterType),true) : {};
-                //}
+                function setMonsterTypeData(monsterTypes) {
+                    that.monsterTypes = monsterTypes;
+                    that.monsterType = that.monster.monster_type ? $.extend({},$filter('byId')(monsterTypes, that.monster.monster_type),true) : {};
+                }
 
                 function setFormMonster(monster) {
                     that.monster = $.extend({}, monster, true);
                 }
 
                 function setMonsterType(callback) {
-                    //if(that.monsterType.id) {
-                    //    that.monster.monsterType = that.monsterType.id;
+                    if(that.monsterType.id) {
+                        that.monster.monster_type = that.monsterType.id;
                         callback();
-                    //} else {
-                    //    MonsterTypeService.addMonsterType(that.monsterType).then(function(response) {
-                    //        console.log(response);
-                    //        that.monster.monsterType = response.data.id;
-                    //        callback();
-                    //    });
-                    //}
+                    } else {
+                        MonsterTypeService.addMonsterType(that.monsterType).then(function(response) {
+                            that.monster.monster_type = response.data.id;
+                            callback();
+                        });
+                    }
                 }
 
                 that.deleteMonster = function() {

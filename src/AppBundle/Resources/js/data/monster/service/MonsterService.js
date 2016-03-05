@@ -32,6 +32,7 @@ function MonsterService($http) {
         time,
         weather,
         monster_type,
+        monster_type_prio,
         is_unique,
         is_story,
         ep,
@@ -42,7 +43,10 @@ function MonsterService($http) {
         res_electric,
         res_gravit,
         region,
-        res_thermo)
+        res_thermo,
+        materials,
+        mapmarkers
+    )
     {
         this.id = id;
         this.name = name;
@@ -53,6 +57,7 @@ function MonsterService($http) {
         this.time = time;
         this.weather = weather;
         this.monster_type = monster_type;
+        this.monster_type_prio = monster_type_prio;
         this.is_unique = is_unique;
         this.is_story = is_story;
         this.ep = ep;
@@ -64,6 +69,8 @@ function MonsterService($http) {
         this.res_gravit = res_gravit;
         this.region = region;
         this.res_thermo = res_thermo;
+        this.materials = materials;
+        this.mapmarkers = mapmarkers;
 
         Object.seal(this);
     }
@@ -88,6 +95,7 @@ function MonsterService($http) {
                 monster['time'],
                 monster['weather'],
                 monster['monster_type'],
+                monster['monster_type_prio'],
                 monster['is_unique'],
                 monster['is_story'],
                 monster['ep'],
@@ -98,7 +106,9 @@ function MonsterService($http) {
                 monster['res_electric'],
                 monster['res_gravit'],
                 monster['region'],
-                monster['res_thermo']
+                monster['res_thermo'],
+                monster['materials'],
+                monster['mapmarkers']
             );
         }
     }

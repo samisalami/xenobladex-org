@@ -2,6 +2,19 @@
     <div ng-include src="'views/_adminHeader.html'"></div>
     <div class="admin-view col-md-12 p-y-1">
         <h1>Monster-Gattungen</h1>
-        <monster-type-admin></monster-type-admin>
+        <monster-type-admin>
+            <div class="alert alert-warning m-y-2" ng-show="vm.deletedMonsterType">
+                <a ng-click="vm.addDeletedMonsterType()" href="#">Gelöschte Zeile wiederherstellen</a>
+            </div>
+            <input type="text" class="form-control text m-y-1" ng-model="nameFilter" ng-model-options='{ debounce: 200 }' placeholder="Filtern..." />
+            <collapsed-table-list add-form="true">
+                <monster-type-form monsterType="newMonsterType">
+                </monster-type-form>
+            </collapsed-table-list>
+            <collapsed-table-list ng-repeat="item in vm.monsterTypes | listFilter:nameFilter:'name' track by item.id" ng-if="vm.monsterTypes">
+                <monster-type-form monsterType="item">
+                </monster-type-form>
+            </collapsed-table-list>
+        </monster-type-admin>
     </div>
 </main>

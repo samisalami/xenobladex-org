@@ -3,14 +3,36 @@
 angular.module('app')
     .directive('monsterTypeAdmin',['monsterService', 'itemService', 'flashService', '$filter', function(monsterService, itemService, flashService, $filter) {
         return {
-            templateUrl:'js/data/monster/monsterTypeAdminView.html',
+            restrict: 'E',
             replace: true,
-            link: function($scope, $element,$attrs){
-                $scope.newMonsterType = {
-                    materials: [
-                    ]
-                };
+            controller: ['$scope',function($scope) {
+                var that = this;
+                init();
 
+                function init() {
+                    MonsterTypeService.onMonsterTypesChanged(setMonsterTypes);
+                    MonsterTypeService.onMonsterTypeDeleted(setDeletedMonsterType);
+                    setMonsterTypes(MonsterTypeService.getMonsterTypes());
+
+                    that.newMonsterType = MonsterTypeService.MonsterType;
+                }
+
+                function setMonsterTypes(monsterTypes) {
+                    that.monsterTypes = monsterTypes;
+                }
+
+                function setDeletedMonsterType(monsterType) {
+                    that.deletedMonsterType = monsterType;
+                    delete that.deletedMonsterType.id;
+                }
+
+                that.addDeletedMonsterType = function() {
+                    MonsterTypeService.addMonsterType(that.deletedMonsterType);
+                    delete that.deletedMonsterType;
+                };
+            }],
+            controllerAs: 'vm',
+            link: function($scope, $element,$attrs){
                 var initFormModel = function() {
                     $scope.formModel = {
                         orderBy: ['prio', 'name'],
@@ -36,53 +58,6 @@ angular.module('app')
                             }
                         ]
                     };
-                };
-
-                var getMonsterTypes = function() {
-                    monsterService.getMonsterTypes(function(response){
-                        $scope.monsterTypes = response;
-                    }, 'monsterTypeDetail');
-                };
-
-                itemService.getMaterials(function(response){
-                    $scope.materials = response;
-                    initFormModel();
-                });
-
-                getMonsterTypes();
-
-                $scope.updateMonsterType = function(monsterType) {
-                    monsterService.updateMonsterType(monsterType);
-                };
-
-                $scope.addMonsterType = function(monsterType) {
-                    if(monsterType) {
-                        monsterService.addMonsterType(monsterType, function(){
-                            getMonsterTypes();
-                            $scope.newMonsterType = {
-                                materials: [
-                                ]
-                            };
-                            flashService.clear();
-                        });
-                    } else {
-                        flashService.error('Komplett leere Daten werden nicht angelegt.');
-                    }
-                };
-
-                $scope.deleteMonsterType = function(monsterType) {
-                    monsterService.deleteMonsterType(monsterType.id, function(deletedMonsterType){
-                        $scope.deletedMonsterType = deletedMonsterType;
-                        var index = $scope.monsterTypes.indexOf(monsterType);
-                        if(index !== -1) {
-                            $scope.monsterTypes.splice(index,1);
-                        }
-                    });
-                };
-
-                $scope.addDeletedMonsterType = function() {
-                    $scope.addMonsterType($scope.deletedMonsterType);
-                    $scope.deletedMonsterType = null;
                 };
             }
         }

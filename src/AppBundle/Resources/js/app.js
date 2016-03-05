@@ -64,9 +64,9 @@ function config($routeProvider, $locationProvider) {
       .when('/admin/faq', {
         templateUrl: 'js/data/faq/view/admin_faqs.html'
       })
-      .when('/admin/kartenpunkte', {
-        templateUrl: 'views/admin_mapmarkers.html'
-      })
+      //.when('/admin/kartenpunkte', {
+      //  templateUrl: 'views/admin_mapmarkers.html'
+      //})
       .when('/admin/monster', {
         templateUrl: 'js/data/monster/view/admin_monsters.html'
       })

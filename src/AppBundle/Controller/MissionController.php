@@ -13,7 +13,6 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class MissionController extends FOSRestController {
-
     /**
      * @Route("/mission", methods={"GET"})
      */
