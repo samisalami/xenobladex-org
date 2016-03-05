@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app')
-    .directive('monsterForm',['MonsterService', 'MonsterTypeService', 'RegionService', 'DayTimeService', function(MonsterService, MonsterTypeService, RegionService, DayTimeService) {
+    .directive('monsterForm',['MonsterService', 'MonsterTypeService', 'RegionService', 'DayTimeService', 'WeatherService', function(MonsterService, MonsterTypeService, RegionService, DayTimeService, WeatherService) {
         return {
             restrict: 'E',
             replace: false,
@@ -22,6 +22,7 @@ angular.module('app')
 
                     setRegions(RegionService.Regions);
                     setDayTimes(DayTimeService.DayTimes);
+                    setWeathers(WeatherService.Weathers);
                 }
 
                 function setRegions(regions) {
@@ -30,6 +31,10 @@ angular.module('app')
 
                 function setDayTimes(dayTimes) {
                     that.dayTimes = dayTimes;
+                }
+
+                function setWeathers(weathers) {
+                    that.weathers = weathers;
                 }
 
                 //function setMonsterTypeData(monsterTypes) {

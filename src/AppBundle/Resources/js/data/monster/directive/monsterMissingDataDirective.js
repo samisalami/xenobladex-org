@@ -1,13 +1,20 @@
 angular.module('app')
-    .directive('monsterMissingData',['monsterService', '$filter', function(monsterService, $filter) {
+    .directive('monsterMissingData',['MonsterService', '$filter', function(MonsterService, $filter) {
         return {
             restrict: 'E',
             templateUrl: 'js/data/monster/monsterMissingDataView.html',
             replace: true,
             link: function($scope, $element,$attrs) {
-                monsterService.getMonsters(function(response){
-                    $scope.monsters = response;
-                }, 'monsterDetail');
+                init();
+
+                function init() {
+                    MonsterService.onMonstersChanged(setMonsters);
+                    setMonsters(MonsterService.getMonsters());
+                }
+
+                function setMonsters(monsters) {
+                    $scope.monsters = monsters;
+                }
             }
         }
     }]);
