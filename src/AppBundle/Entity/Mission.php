@@ -6,6 +6,7 @@ use AppBundle\Entity\MissionMapmarker;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation\Type;
+use JMS\Serializer\Annotation\MaxDepth;
 
 /**
  * Mission
@@ -76,13 +77,15 @@ class Mission
     /**
      * @ORM\ManyToOne(targetEntity="MissionType")
      * @ORM\JoinColumn(name="mission_type_id", referencedColumnName="id")
+     * @MaxDepth(1)
      */
     private $mission_type;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Person", cascade={"persist"})
+     * @ORM\ManyToOne(targetEntity="Person")
      * @ORM\JoinColumn(name="person_id", referencedColumnName="id")
      * @Type("RelatedEntity<'AppBundle:Person'>")
+     * @MaxDepth(1)
      */
     private $person;
 
@@ -137,8 +140,9 @@ class Mission
 
     /**
      * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="MissionMapmarker", mappedBy="mission")
-     * @Type("ArrayCollection<AppBundle\Entity\MissionMapmarker>")
+     * @ORM\OneToMany(targetEntity="MissionMapmarker", mappedBy="mission", fetch="EXTRA_LAZY")
+     * @Type("RelatedEntity<'AppBundle:MissionMapmarker'>")
+     * @MaxDepth(1)
      */
     private $mapmarkers;
 

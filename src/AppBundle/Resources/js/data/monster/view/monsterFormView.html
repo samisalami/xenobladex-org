@@ -36,11 +36,11 @@
     </div>
     <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
         <strong>Tyrann?</strong>
-        <form-field form-field-bind="form.mission.is_unique" form-template="inputCheckbox"></form-field>
+        <form-field form-field-bind="form.monster.is_unique" form-template="inputCheckbox"></form-field>
     </div>
     <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
         <strong>Story?</strong>
-        <form-field form-field-bind="form.mission.is_story" form-template="inputCheckbox"></form-field>
+        <form-field form-field-bind="form.monster.is_story" form-template="inputCheckbox"></form-field>
     </div>
     <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
         <span class="info-icon text-primary" bs-tooltip bs-tooltip-title="Text - Zahlenraum mit Minus angeben"></span>
@@ -93,5 +93,10 @@
     <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
         <strong>Gattung:</strong>
         <form-field ng-if="form.monsterTypes" form-field-bind="form.monsterType" form-select-options="form.monsterTypes" form-template="customAutoCompleteSelect"></form-field>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 p-r-0">
+            <input type="submit" href="#" class="btn btn-success pull-right" value="Speichern" />
+        </div>
     </div>
 </form>

@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app')
-    .directive('monsterTypeAdmin',['monsterService', 'itemService', 'flashService', '$filter', function(monsterService, itemService, flashService, $filter) {
+    .directive('monsterTypeAdmin',['MonsterTypeService', function(MonsterTypeService) {
         return {
             restrict: 'E',
             replace: true,
@@ -31,34 +31,6 @@ angular.module('app')
                     delete that.deletedMonsterType;
                 };
             }],
-            controllerAs: 'vm',
-            link: function($scope, $element,$attrs){
-                var initFormModel = function() {
-                    $scope.formModel = {
-                        orderBy: ['prio', 'name'],
-                        fields:[
-                            {
-                                label: 'Beschreibung',
-                                name: 'description',
-                                type: 'textarea',
-                                fieldInfoTooltip: 'Gibt es nur, falls wir in Zukunft noch Extra Infos zur Gattung erfassen wollen.'
-                            },
-                            {
-                                label: 'Material',
-                                name: 'materials',
-                                type: 'customMaterialInput',
-                                data: $scope.materials,
-                                fieldInfoTooltip: 'In erster Zeile neues Material (muss nicht existieren) verknüpfen dann "Hinzufügen" wählen -> Änderungen werden via Häkchen oder bei neuer Gattung via "Hinzufügen" permanent gespeichert'
-                            },
-                            {
-                                label: 'Sortierung',
-                                name: 'prio',
-                                type: 'inputText',
-                                fieldInfoTooltip: 'Nur Zahlen erlaubt. Sortierung ist aufsteigend (am besten Spielraum zwischen den Zahlen lassen)'
-                            }
-                        ]
-                    };
-                };
-            }
+            controllerAs: 'vm'
         }
     }]);

@@ -7,6 +7,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\MaxDepth;
 
 /**
  * Material
@@ -22,7 +23,7 @@ class Material extends Item
      * @var boolean
      *
      * @ORM\Column(name="is_not_buyable", type="boolean")
-     * @Groups({"itemDetail"})
+     * @Groups({"default"})
      */
     private $isNotBuyable = false;
 
@@ -30,21 +31,23 @@ class Material extends Item
      * @var boolean
      *
      * @ORM\Column(name="show_monsters", type="boolean")
-     * @Groups({"itemDetail"})
+     * @Groups({"default"})
      */
     private $showMonsters = false;
 
     /**
-     * @ORM\ManyToMany(targetEntity="MonsterType", mappedBy="materials", cascade={"persist"})
-     * @Type("ArrayCollection<AppBundle\Entity\MonsterType>")
-     * @Groups({"itemDetail"})
+     * @ORM\ManyToMany(targetEntity="MonsterType", mappedBy="materials", fetch="EXTRA_LAZY")
+     * @Type("RelatedEntity<'AppBundle:MonsterType'>")
+     * @Groups({"viewOnly"})
+     * @MaxDepth(1)
      */
     private $monster_types;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Monster", mappedBy="materials", cascade={"persist"})
-     * @Type("ArrayCollection<AppBundle\Entity\Monster>")
-     * @Groups({"itemDetail"})
+     * @ORM\ManyToMany(targetEntity="Monster", mappedBy="materials", fetch="EXTRA_LAZY")
+     * @Type("RelatedEntity<'AppBundle:Monster'>")
+     * @Groups({"viewOnly"})
+     * @MaxDepth(1)
      */
     private $monsters;
 

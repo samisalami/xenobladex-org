@@ -18,10 +18,17 @@ class MonsterTypeController extends FOSRestController {
      * @Route("/monsterType", methods={"GET"})
      */
     public function getMonsterTypesAction() {
+        $serializer = $this->get("jms_serializer");
         $em = $this->getDoctrine()->getManager();
         $monsterTypes = $em->getRepository('AppBundle:MonsterType')->findAll();
-        $view = $this->view($monsterTypes, 200);
-        return $this->handleView($view);
+
+        $context = new SerializationContext();
+        $context->setGroups(['default', 'viewOnly']);
+        $context->enableMaxDepthChecks();
+
+        $response = new Response($serializer->serialize($monsterTypes, 'json', $context));
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
     }
 
     /**
@@ -30,8 +37,15 @@ class MonsterTypeController extends FOSRestController {
      * @return MonsterType
      */
     public function getMonsterTypeAction(MonsterType $monsterType) {
-        $view = $this->view($monsterType, 200);
-        return $this->handleView($view);
+        $serializer = $this->get("jms_serializer");
+
+        $context = new SerializationContext();
+        $context->setGroups(['default', 'viewOnly']);
+        $context->enableMaxDepthChecks();
+
+        $response = new Response($serializer->serialize($monsterType, 'json', $context));
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
     }
 
     /**
@@ -46,6 +60,7 @@ class MonsterTypeController extends FOSRestController {
         $monsterType = new MonsterType();
         $context = new DeserializationContext();
         $context->setAttribute('target', $monsterType);
+        $context->setGroups(['default']);
         $monsterType = $serializer->deserialize($data, 'AppBundle\Entity\MonsterType', 'json', $context);
 
         $em = $this->getDoctrine()->getManager();
@@ -68,6 +83,7 @@ class MonsterTypeController extends FOSRestController {
 
         $context = new DeserializationContext();
         $context->setAttribute('target', $monsterType);
+        $context->setGroups(['default']);
         $monsterType = $serializer->deserialize($data, 'AppBundle\Entity\MonsterType', 'json', $context);
 
         $em = $this->getDoctrine()->getManager();

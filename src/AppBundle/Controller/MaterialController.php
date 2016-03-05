@@ -19,10 +19,17 @@ class MaterialController extends FOSRestController {
      * @Route("/material", methods={"GET"})
      */
     public function getMaterialsAction() {
+        $serializer = $this->get("jms_serializer");
         $em = $this->getDoctrine()->getManager();
         $materials = $em->getRepository('AppBundle:Material')->findAll();
-        $view = $this->view($materials, 200);
-        return $this->handleView($view);
+
+        $context = new SerializationContext();
+        $context->setGroups(['default', 'viewOnly']);
+        $context->enableMaxDepthChecks();
+
+        $response = new Response($serializer->serialize($materials, 'json', $context));
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
     }
 
     /**
@@ -31,8 +38,15 @@ class MaterialController extends FOSRestController {
      * @return Material
      */
     public function getMaterialAction(Material $material) {
-        $view = $this->view($material, 200);
-        return $this->handleView($view);
+        $serializer = $this->get("jms_serializer");
+
+        $context = new SerializationContext();
+        $context->setGroups(['default', 'viewOnly']);
+        $context->enableMaxDepthChecks();
+
+        $response = new Response($serializer->serialize($material, 'json', $context));
+        $response->headers->set('Content-Type', 'application/json');
+        return $response;
     }
 
     /**
@@ -47,6 +61,7 @@ class MaterialController extends FOSRestController {
         $material = new Material();
         $context = new DeserializationContext();
         $context->setAttribute('target', $material);
+        $context->setGroups(['default']);
         $material = $serializer->deserialize($data, 'AppBundle\Entity\Material', 'json', $context);
 
         $em = $this->getDoctrine()->getManager();
@@ -69,6 +84,7 @@ class MaterialController extends FOSRestController {
 
         $context = new DeserializationContext();
         $context->setAttribute('target', $material);
+        $context->setGroups(['default']);
         $material = $serializer->deserialize($data, 'AppBundle\Entity\Material', 'json', $context);
 
         $em = $this->getDoctrine()->getManager();

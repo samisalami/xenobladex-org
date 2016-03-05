@@ -21,7 +21,7 @@ class Item
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @Groups({"default", "itemDetail"})
+     * @Groups({"default"})
      */
     protected $id;
 
@@ -29,7 +29,7 @@ class Item
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
-     * @Groups({"default", "itemDetail"})
+     * @Groups({"default"})
      */
     protected $name = "";
 
@@ -37,7 +37,7 @@ class Item
      * @var string
      *
      * @ORM\Column(name="rarity", type="string", length=255)
-     * @Groups({"itemDetail"})
+     * @Groups({"default"})
      */
     protected $rarity = "Gewöhnlich";
 
@@ -45,7 +45,7 @@ class Item
      * @var integer
      *
      * @ORM\Column(name="credit_cost", type="integer")
-     * @Groups({"itemDetail"})
+     * @Groups({"default"})
      */
     protected $creditCost = 0;
 
@@ -53,7 +53,7 @@ class Item
      * @var integer
      *
      * @ORM\Column(name="ticket_cost", type="smallint")
-     * @Groups({"itemDetail"})
+     * @Groups({"default"})
      */
     protected $ticketCost = 0;
 
@@ -61,7 +61,7 @@ class Item
      * @var string
      *
      * @ORM\Column(name="body_part", type="string", length=255)
-     * @Groups({"itemDetail"})
+     * @Groups({"default"})
      */
     protected $bodyPart = "";
 
@@ -69,7 +69,7 @@ class Item
      * @var string
      *
      * @ORM\Column(name="description", type="text")
-     * @Groups({"itemDetail"})
+     * @Groups({"default"})
      */
     protected $description = "";
 

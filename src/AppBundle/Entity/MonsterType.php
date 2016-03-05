@@ -6,6 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\MaxDepth;
 
 /**
  * MonsterType
@@ -21,7 +22,7 @@ class MonsterType
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @Groups({"default", "monsterTypeDetail"})
+     * @Groups({"default"})
      */
     private $id;
 
@@ -29,7 +30,7 @@ class MonsterType
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
-     * @Groups({"default", "monsterTypeDetail"})
+     * @Groups({"default"})
      */
     private $name="";
 
@@ -37,7 +38,7 @@ class MonsterType
      * @var string
      *
      * @ORM\Column(name="description", type="text")
-     * @Groups({"monsterTypeDetail"})
+     * @Groups({"default"})
      */
     private $description="";
 
@@ -45,18 +46,19 @@ class MonsterType
      * @var integer
      *
      * @ORM\Column(name="prio", type="smallint")
-     * @Groups({"default", "monsterTypeDetail"})
+     * @Groups({"default"})
      */
     private $prio=0;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Material", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="Material", fetch="EXTRA_LAZY")
      * @ORM\JoinTable(name="xenobladex_monster_type_material",
      *      joinColumns={@ORM\JoinColumn(name="monster_type_id", referencedColumnName="id", onDelete="CASCADE")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="material_id", referencedColumnName="id", onDelete="CASCADE")}
      *      )
      * @Type("RelatedEntity<'AppBundle:Material'>")
-     * @Groups({"monsterTypeDetail"})
+     * @Groups({"viewOnly"})
+     * @MaxDepth(1)
      */
     private $materials;
 

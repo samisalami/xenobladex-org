@@ -11,8 +11,8 @@
                 <monster-type-form monsterType="newMonsterType">
                 </monster-type-form>
             </collapsed-table-list>
-            <collapsed-table-list ng-repeat="item in vm.monsterTypes | listFilter:nameFilter:'name' track by item.id" ng-if="vm.monsterTypes">
-                <monster-type-form monsterType="item">
+            <collapsed-table-list ng-repeat="item in vm.monsterTypes | listFilter:nameFilter:'name' | orderBy: 'prio' track by item.id" ng-if="vm.monsterTypes">
+                <monster-type-form monster-type="item">
                 </monster-type-form>
             </collapsed-table-list>
         </monster-type-admin>

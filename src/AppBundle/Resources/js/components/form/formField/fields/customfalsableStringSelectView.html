@@ -3,6 +3,6 @@
         <span class="input-group-addon">
             <input type="checkbox" ng-change="setModel()" ng-model="checkboxValue"/> nicht?
         </span>
-        <select class="form-control" ng-change="setModel()" ng-model="selectValue" ng-options="item.name as item.name for item in formSelectOptions"></select>
+        <select class="form-control" ng-change="setModel()" ng-model="selectValue" ng-options="item as item for item in formSelectOptions"></select>
     </div>
 </falsable-string-select>
