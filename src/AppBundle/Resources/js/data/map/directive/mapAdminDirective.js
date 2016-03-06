@@ -3,7 +3,7 @@
 angular.module('app')
     .directive('mapAdmin',['mapService', 'AttachmentService', 'flashService', '$filter', function(mapService, AttachmentService, flashService, $filter) {
         return {
-            templateUrl:'js/data/map/mapAdminView.html',
+            templateUrl:'js/data/map/view/mapAdminView.html',
             replace: true,
             link: function($scope, $element,$attrs){
                 $scope.newMap = {};

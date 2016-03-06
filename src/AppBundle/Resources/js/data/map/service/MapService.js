@@ -18,13 +18,13 @@ angular.module('app')
 
         service.updateMap = function(map) {
             var promise = $timeout(function() {
-                $http.post(Routing.generate('update_map'), map);
+                $http.put(Routing.generate('update_map', {id: map.id}), map);
                 $timeout.cancel(promise);
             }, 100);
         };
 
         service.deleteMap = function(id, callback) {
-            $http.delete(Routing.generate('delete_map')+'/'+id).success(function(response){
+            $http.delete(Routing.generate('delete_map', {id: id})).success(function(response){
                 callback(response);
             });
         };

@@ -47,7 +47,7 @@ function config($routeProvider, $locationProvider) {
         templateUrl: 'js/data/mission/view/admin_missions_missing.html'
       })
       .when('/admin/karten', {
-        templateUrl: 'views/admin_maps.html'
+        templateUrl: 'js/data/map/view/admin_maps.html'
       })
       .when('/admin/dateien', {
         templateUrl: 'js/data/attachment/view/admin_attachments.html'
@@ -83,7 +83,7 @@ function config($routeProvider, $locationProvider) {
         templateUrl: 'js/data/material/view/admin_materials_missing.html'
       })
       .when('/admin/segmente', {
-          templateUrl: 'views/admin_mapTiles.html'
+          templateUrl: 'js/data/map/view/admin_mapTiles.html'
       })
       .when('/admin/sammelitems', {
           templateUrl: 'js/data/collectible/view/admin_collectibles.html'

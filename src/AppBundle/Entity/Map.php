@@ -4,8 +4,6 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation\Groups;
-use JMS\Serializer\Annotation\Type;
-use JMS\Serializer\Annotation\MaxDepth;
 
 /**
  * Map
@@ -48,7 +46,7 @@ class Map
     /**
      * @var integer
      *
-     * @ORM\Column(name="grid_offset_Y", type="smallint")
+     * @ORM\Column(name="grid_offset_y", type="smallint")
      */
     private $gridOffsetY = 0;
 
@@ -83,8 +81,6 @@ class Map
     /**
      * @ORM\ManyToOne(targetEntity="Attachment")
      * @ORM\JoinColumn(name="attachment_id", referencedColumnName="id")
-     * @Type("RelatedEntity<'AppBundle:Attachment'>")
-     * @MaxDepth(1)
      */
     private $attachment;
 

@@ -37,7 +37,7 @@ monsterType:
         expose: true
 
 map:
-    prefix: /xenobladex/api
+    prefix: /xenobladex
     type:     rest
     resource: "@AppBundle/Controller/MapController.php"
     options:
