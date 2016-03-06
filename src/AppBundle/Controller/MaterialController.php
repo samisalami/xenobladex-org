@@ -6,6 +6,7 @@
 namespace AppBundle\Controller;
 
 use AppBundle\Entity\Material;
+use AppBundle\Entity\Monster;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations\Route;
 use JMS\Serializer\DeserializationContext;
@@ -24,7 +25,6 @@ class MaterialController extends FOSRestController {
         $materials = $em->getRepository('AppBundle:Material')->findAll();
 
         $context = new SerializationContext();
-        $context->setGroups(['default', 'viewOnly']);
         $context->enableMaxDepthChecks();
 
         $response = new Response($serializer->serialize($materials, 'json', $context));
@@ -41,7 +41,6 @@ class MaterialController extends FOSRestController {
         $serializer = $this->get("jms_serializer");
 
         $context = new SerializationContext();
-        $context->setGroups(['default', 'viewOnly']);
         $context->enableMaxDepthChecks();
 
         $response = new Response($serializer->serialize($material, 'json', $context));
@@ -61,7 +60,6 @@ class MaterialController extends FOSRestController {
         $material = new Material();
         $context = new DeserializationContext();
         $context->setAttribute('target', $material);
-        $context->setGroups(['default']);
         $material = $serializer->deserialize($data, 'AppBundle\Entity\Material', 'json', $context);
 
         $em = $this->getDoctrine()->getManager();

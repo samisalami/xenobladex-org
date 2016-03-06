@@ -23,7 +23,6 @@ class Material extends Item
      * @var boolean
      *
      * @ORM\Column(name="is_not_buyable", type="boolean")
-     * @Groups({"default"})
      */
     private $isNotBuyable = false;
 
@@ -31,14 +30,12 @@ class Material extends Item
      * @var boolean
      *
      * @ORM\Column(name="show_monsters", type="boolean")
-     * @Groups({"default"})
      */
     private $showMonsters = false;
 
     /**
      * @ORM\ManyToMany(targetEntity="MonsterType", mappedBy="materials", fetch="EXTRA_LAZY")
      * @Type("RelatedEntity<'AppBundle:MonsterType'>")
-     * @Groups({"viewOnly"})
      * @MaxDepth(1)
      */
     private $monster_types;
@@ -46,7 +43,6 @@ class Material extends Item
     /**
      * @ORM\ManyToMany(targetEntity="Monster", mappedBy="materials", fetch="EXTRA_LAZY")
      * @Type("RelatedEntity<'AppBundle:Monster'>")
-     * @Groups({"viewOnly"})
      * @MaxDepth(1)
      */
     private $monsters;

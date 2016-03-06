@@ -24,7 +24,6 @@ class MonsterController extends FOSRestController {
         $monsters = $em->getRepository('AppBundle:Monster')->findAll();
 
         $context = new SerializationContext();
-        $context->setGroups(['default', 'viewOnly']);
         $context->enableMaxDepthChecks();
 
         $response = new Response($serializer->serialize($monsters, 'json', $context));
@@ -41,7 +40,6 @@ class MonsterController extends FOSRestController {
         $serializer = $this->get("jms_serializer");
 
         $context = new SerializationContext();
-        $context->setGroups(['default', 'viewOnly']);
         $context->enableMaxDepthChecks();
 
         $response = new Response($serializer->serialize($monster, 'json', $context));
@@ -61,7 +59,6 @@ class MonsterController extends FOSRestController {
         $monster = new Monster();
         $context = new DeserializationContext();
         $context->setAttribute('target', $monster);
-        $context->setGroups(['default']);
         $monster = $serializer->deserialize($data, 'AppBundle\Entity\Monster', 'json', $context);
 
         $em = $this->getDoctrine()->getManager();
@@ -84,7 +81,6 @@ class MonsterController extends FOSRestController {
 
         $context = new DeserializationContext();
         $context->setAttribute('target', $monster);
-        $context->setGroups(['default']);
         $monster = $serializer->deserialize($data, 'AppBundle\Entity\Monster', 'json', $context);
 
         $em = $this->getDoctrine()->getManager();

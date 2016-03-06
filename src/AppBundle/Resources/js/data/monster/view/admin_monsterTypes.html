@@ -8,7 +8,7 @@
             </div>
             <input type="text" class="form-control text m-y-1" ng-model="nameFilter" ng-model-options='{ debounce: 200 }' placeholder="Filtern..." />
             <collapsed-table-list add-form="true">
-                <monster-type-form monsterType="newMonsterType">
+                <monster-type-form monster-type="newMonsterType">
                 </monster-type-form>
             </collapsed-table-list>
             <collapsed-table-list ng-repeat="item in vm.monsterTypes | listFilter:nameFilter:'name' | orderBy: 'prio' track by item.id" ng-if="vm.monsterTypes">

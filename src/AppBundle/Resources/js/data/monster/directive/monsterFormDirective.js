@@ -49,10 +49,12 @@ angular.module('app')
                     that.materialsData = materials;
                     that.materials = [];
 
-                    var count = that.monster.materials.length;
-                    for (var i=0; i<count; i++) {
-                        var material = that.monster.materials[i];
-                        that.materials.push($.extend({},$filter('byId')(materials, material),true))
+                    if(that.monster.materials) {
+                        var count = that.monster.materials.length;
+                        for (var i=0; i<count; i++) {
+                            var material = that.monster.materials[i];
+                            that.materials.push($.extend({},$filter('byId')(materials, material),true))
+                        }
                     }
                 }
 
@@ -99,6 +101,12 @@ angular.module('app')
                         callback();
                     }
                 }
+
+                that.setMaterialByMonsterType = function() {
+                    var monsterType = $filter('byId')(that.monsterTypes, that.monsterType.id);
+                    that.monster.materials = monsterType ? monsterType.materials || [] : [];
+                    setMaterialData(that.materialsData);
+                };
 
                 that.deleteMonster = function() {
                     MonsterService.deleteMonster(that.monster);

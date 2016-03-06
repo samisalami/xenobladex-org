@@ -29,10 +29,12 @@ angular.module('app')
                     that.materialsData = materials;
                     that.materials = [];
 
-                    var count = that.monsterType.materials.length;
-                    for (var i=0; i<count; i++) {
-                        var material = that.monsterType.materials[i];
-                        that.materials.push($.extend({},$filter('byId')(materials, material),true))
+                    if(that.monsterType.materials) {
+                        var count = that.monsterType.materials.length;
+                        for (var i=0; i<count; i++) {
+                            var material = that.monsterType.materials[i];
+                            that.materials.push($.extend({},$filter('byId')(materials, material),true))
+                        }
                     }
                 }
 

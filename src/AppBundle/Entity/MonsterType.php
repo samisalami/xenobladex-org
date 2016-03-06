@@ -22,7 +22,6 @@ class MonsterType
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @Groups({"default"})
      */
     private $id;
 
@@ -30,7 +29,6 @@ class MonsterType
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
-     * @Groups({"default"})
      */
     private $name="";
 
@@ -38,7 +36,6 @@ class MonsterType
      * @var string
      *
      * @ORM\Column(name="description", type="text")
-     * @Groups({"default"})
      */
     private $description="";
 
@@ -46,7 +43,6 @@ class MonsterType
      * @var integer
      *
      * @ORM\Column(name="prio", type="smallint")
-     * @Groups({"default"})
      */
     private $prio=0;
 
@@ -57,7 +53,6 @@ class MonsterType
      *      inverseJoinColumns={@ORM\JoinColumn(name="material_id", referencedColumnName="id", onDelete="CASCADE")}
      *      )
      * @Type("RelatedEntity<'AppBundle:Material'>")
-     * @Groups({"viewOnly"})
      * @MaxDepth(1)
      */
     private $materials;
