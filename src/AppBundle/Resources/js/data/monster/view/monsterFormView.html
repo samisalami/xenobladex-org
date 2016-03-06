@@ -94,6 +94,10 @@
         <strong>Gattung:</strong>
         <form-field ng-if="form.monsterTypes" form-field-bind="form.monsterType" form-select-options="form.monsterTypes" form-template="customAutoCompleteSelect"></form-field>
     </div>
+    <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <strong>Material:</strong>
+        <form-field ng-if="form.materialsData" form-field-bind="form.materials" form-select-options="form.materialsData" form-template="customMaterialInput"></form-field>
+    </div>
     <div class="row">
         <div class="col-xs-12 p-r-0">
             <input type="submit" href="#" class="btn btn-success pull-right" value="Speichern" />

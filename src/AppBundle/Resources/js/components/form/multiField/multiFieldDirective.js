@@ -9,7 +9,22 @@ angular.module('app')
 
                 $scope.multiFieldAdd = function(){
                     if($scope.newItem) {
-                        $scope.formFieldBind.push($scope.newItem);
+                        var add = true;
+                        if($scope.newItem.id) {
+                            var count = $scope.formFieldBind.length;
+                            for(var i=0;i<count;i++) {
+                                var material = $scope.formFieldBind[i];
+                                if(material.id == $scope.newItem.id) {
+                                    add = false;
+                                    break;
+                                }
+                            }
+                        }
+
+                        if(add) {
+                            $scope.formFieldBind.push($scope.newItem);
+                        }
+
                         $scope.newItem = null;
                     }
                 };
