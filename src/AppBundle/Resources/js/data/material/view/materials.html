@@ -38,16 +38,16 @@ Sobald wir die Kreaturen veröffentlichen, werden diese dann hier auch verknüpf
                     <div class="col-xs-12 col-sm-6" ng-if="!material.show_monsters || (material.monsters.length==0 && material.monster_types.length>0)">
                         <strong ng-if="material.monster_types.length>0">Gattungen:</strong>
                         <ul>
-                            <li ng-repeat="monsterType in material.monster_types">
-                                {{monsterType.name}}
+                            <li ng-repeat="monsterType in material.monster_types" monster-type-by-id="{{monsterType}}">
+                                {{monsterTypeById.name}}
                             </li>
                         </ul>
                     </div>
                     <div class="col-xs-12 col-sm-6" ng-if="material.show_monsters">
                         <strong ng-if="material.monsters.length>0">Kreaturen:</strong>
                         <ul>
-                            <li ng-repeat="monster in material.monsters">
-                                {{monster.name}}
+                            <li ng-repeat="monster in material.monsters" monster-by-id="{{monster}}">
+                                {{monsterById.name}}
                             </li>
                         </ul>
                     </div>

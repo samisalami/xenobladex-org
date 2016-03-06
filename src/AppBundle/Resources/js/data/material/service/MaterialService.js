@@ -31,7 +31,9 @@ function MaterialService($http) {
         body_part,
         is_not_buyable,
         rarity,
-        show_monsters)
+        show_monsters,
+        monster_types,
+        monsters)
     {
         this.id = id;
         this.name = name;
@@ -41,6 +43,8 @@ function MaterialService($http) {
         this.is_not_buyable = is_not_buyable;
         this.rarity = rarity;
         this.show_monsters = show_monsters;
+        this.monster_types = monster_types;
+        this.monsters = monsters;
 
         Object.seal(this);
     }
@@ -63,7 +67,9 @@ function MaterialService($http) {
                 material['body_part'],
                 material['is_not_buyable'],
                 material['rarity'],
-                material['show_monsters']
+                material['show_monsters'],
+                material['monster_types'],
+                material['monsters']
             );
         }
     }

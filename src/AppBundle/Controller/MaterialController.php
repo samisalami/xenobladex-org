@@ -82,7 +82,6 @@ class MaterialController extends FOSRestController {
 
         $context = new DeserializationContext();
         $context->setAttribute('target', $material);
-        $context->setGroups(['default']);
         $material = $serializer->deserialize($data, 'AppBundle\Entity\Material', 'json', $context);
 
         $em = $this->getDoctrine()->getManager();
