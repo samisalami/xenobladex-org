@@ -1,0 +1,73 @@
+<div class="missing-data-view">
+    <a href="/admin/monster" class="btn-primary btn">Monster</a>
+    <div class="table-responsive m-t-2">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Level Min. / Max.
+                    </th>
+                    <th>
+                        HP
+                    </th>
+                    <th>
+                        EP
+                    </th>
+                    <th>
+                        Physisch | Laser | Äther | Thermo | Elektro | Gravit
+                    </th>
+                    <th>
+                        Kartenpunkte
+                    </th>
+                    <th>
+                        Gattung
+                    </th>
+                    <th>
+                        Ortsbeschreibung
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr monster-type-by-id="{{monster.monster_type}}" ng-repeat="monster in monsters | orderBy:['monster_type_prio','name'] track by monster.id">
+                    <td>
+                        {{monster.name}}
+                    </td>
+                    <td>
+                        <span ng-if="monster.level_min">
+                            {{monster.level_min}}
+                        </span>
+                        <span ng-if="monster.level_max">
+                            - {{monster.level_max}}
+                        </span>
+                    </td>
+                    <td>
+                        {{monster.hp}}
+                    </td>
+                    <td>
+                        {{monster.ep}}
+                    </td>
+                    <td>
+                        {{monster.res_physic}} | {{monster.res_laser}} | {{monster.res_ether}} | {{monster.res_thermo}} | {{monster.res_electric}} | {{monster.res_gravit}}
+                    </td>
+                    <td>
+                        <span ng-if="monster.mapmarkers[0]" class="text-success">
+                            gepflegt
+                        </span>
+                        <span ng-if="!monster.mapmarkers[0]" class="text-danger">
+                            leer
+                        </span>
+                    </td>
+                    <td>
+                        {{monsterTypeById.name}}
+                    </td>
+                    <td>
+                        {{ monster.location_note }}
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

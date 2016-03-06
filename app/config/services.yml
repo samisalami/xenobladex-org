@@ -4,6 +4,23 @@ parameters:
 #    parameter_name: value
 
 services:
-#    service_name:
-#        class: AppBundle\Directory\ClassName
-#        arguments: ["@another_service_name", "plain_value", "%parameter_name%"]
+  jms_serializer.object_constructor:
+          alias: jms_serializer.doctrine_object_constructor
+          public: false
+
+  jms_serializer.doctrine_object_constructor:
+          class:        %jms_serializer.doctrine_object_constructor.class%
+          public:       false
+          arguments:    ["@doctrine", "@jms_serializer.unserialize_object_constructor"]
+
+  app.serializer.handler.related_entity:
+     class: AppBundle\Serializer\Handler\RelatedEntityHandler
+     arguments: ["@doctrine.orm.entity_manager"]
+     tags:
+         - { name: jms_serializer.subscribing_handler }
+
+  app.service.attachment:
+     class: AppBundle\Service\AttachmentService
+
+  fos_user.doctrine_registry:
+      alias: doctrine

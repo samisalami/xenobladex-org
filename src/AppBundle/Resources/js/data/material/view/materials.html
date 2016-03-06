@@ -1,0 +1,58 @@
+<header class="col-xs-12">
+    <h1>Material</h1>
+</header>
+<div class="col-xs-12">
+    <section class="content-box m-b-1">
+        <p class="content-body">Hier findet ihr das Material und von welchen Gattungen/Kreaturen ihr es erhaltet.
+Material gibt es entweder von mehreren Gattungen (und all deren Kreaturen) oder nur von spezifischen Kreaturen einer Gattung, entsprechend wird nur eins vom beiden angezeigt. Teils wird auch nur die Gattung angezeigt da die Pflege noch nicht komplett und das Material somit noch nicht den Kreaturen zugeordnet ist.
+Sobald wir die Kreaturen veröffentlichen, werden diese dann hier auch verknüpft.</p>
+    </section>
+</div>
+<div class="page-material" material-view>
+    <div class="row">
+        <div class="col-xs-12 m-b-1">
+            <div class="col-xs-12 col-lg-4 search-input m-b-1">
+                <input ng-model="materialfilterValue" ng-model-options='{ debounce: 750 }' type="text" placeholder="Nach Name filtern..." />
+                <span class="fa fa-search"></span>
+            </div>
+            <div class="col-xs-12 col-lg-4 search-input m-b-1">
+                <input ng-model="monsterTypefilterValue" ng-model-options='{ debounce: 750 }' type="text" placeholder="Nach Gattung filtern..." />
+                <span class="fa fa-search"></span>
+            </div>
+        </div>
+    </div>
+    <div class="materials-list row">
+        <div class="material-item col-xs-12 m-b-1" ng-class="{'clear-both': $index%2==0}" ng-repeat="material in materials | filter:{name: materialfilterValue} | listFilter:monsterTypefilterValue:'monster_types':'name'| orderBy:'name' track by material.id">
+            <div class="content-box p-b-1">
+                <header>
+                    <h5>{{material.name}}</h5>
+                    <span class="rarity" ng-class="getValidCssClass(material.rarity)">{{material.rarity}}</span>
+                </header>
+                <p class="content-body p-y-0"><span>{{material.credit_cost || '???'}} Credits</span> | <span ng-if="!material.is_not_buyable">{{material.ticket_cost || '???'}} Tickets</span><span ng-if="material.is_not_buyable">Kauf nicht möglich</span></p>
+                <hr class="m-x-1" />
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6">
+                        <strong>Körperteil:</strong><br/>
+                        {{material.body_part || '???'}}
+                    </div>
+                    <div class="col-xs-12 col-sm-6" ng-if="!material.show_monsters || (material.monsters.length==0 && material.monster_types.length>0)">
+                        <strong ng-if="material.monster_types.length>0">Gattungen:</strong>
+                        <ul>
+                            <li ng-repeat="monsterType in material.monster_types" monster-type-by-id="{{monsterType}}">
+                                {{monsterTypeById.name}}
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="col-xs-12 col-sm-6" ng-if="material.show_monsters">
+                        <strong ng-if="material.monsters.length>0">Kreaturen:</strong>
+                        <ul>
+                            <li ng-repeat="monster in material.monsters" monster-by-id="{{monster}}">
+                                {{monsterById.name}}
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

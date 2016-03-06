@@ -12,12 +12,31 @@
       width: 100%;
       .collapsed-table-card {
         padding: $default-element-margin;
-      }
-      .collapsed-table-row {
-        .collapsed-table-col {
-          min-height: 150px;
+
+        .collapsed-table-cell-wrapper {
           &:nth-of-type(4n+1) {
             clear: left;
+          }
+
+          &:last-of-type:after {
+            content: "";
+            display: block;
+            clear: both;
+          }
+        }
+      }
+
+      //old
+      .collapsed-table-row {
+        .collapsed-table-cell-wrapper {
+          &:nth-of-type(4n+1) {
+            clear: left;
+          }
+
+          &:last-of-type:after {
+            content: "";
+            display: block;
+            clear: both;
           }
         }
       }

@@ -1,0 +1,42 @@
+<div class="row">
+    <div class="col-md-offset-9 col-md-3 col-xs-offset-6 col-xs-6 p-r-0 p-b-1">
+        <button href="#" class="btn btn-danger pull-right" ng-click="form.deleteMap()">
+            Löschen
+        </button>
+    </div>
+</div>
+<form ng-submit="form.updateMap()">
+    <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <strong>Name:</strong>
+        <form-field form-field-bind="form.map.name" form-template="inputText"></form-field>
+    </div>
+    <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <strong>Bild:</strong>
+        <form-field ng-if="form.attachments" form-field-bind="form.attachment" form-select-options="form.attachments" form-template="customAttachmentInput" form-field-action-param="image"></form-field>
+    </div>
+    <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <span class="info-icon text-primary" bs-tooltip bs-tooltip-title="Wert in Pixeln. Nur Zahlen erlaubt."></span>
+        <strong>Segment - Durchmesser:</strong>
+        <form-field form-field-bind="form.map.grid_tile_diameter" form-template="inputText"></form-field>
+    </div>
+    <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <span class="info-icon text-primary" bs-tooltip bs-tooltip-title="Muss nicht exakt sein, Wert in Pixeln. Nur Zahlen erlaubt."></span>
+        <strong>Raster - Breite:</strong>
+        <form-field form-field-bind="form.map.grid_width" form-template="inputText"></form-field>
+    </div>
+    <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <span class="info-icon text-primary" bs-tooltip bs-tooltip-title="Muss nicht exakt sein, Wert in Pixeln. Nur Zahlen erlaubt."></span>
+        <strong>Raster - Höhe:</strong>
+        <form-field form-field-bind="form.map.grid_height" form-template="inputText"></form-field>
+    </div>
+    <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <span class="info-icon text-primary" bs-tooltip bs-tooltip-title="Wert in Pixeln. Nur Zahlen erlaubt."></span>
+        <strong>Raster horizontal verschieben um...</strong>
+        <form-field form-field-bind="form.map.grid_offset_x" form-template="inputText"></form-field>
+    </div>
+    <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <span class="info-icon text-primary" bs-tooltip bs-tooltip-title="Wert in Pixeln. Nur Zahlen erlaubt."></span>
+        <strong>Raster vertikal verschieben um...</strong>
+        <form-field form-field-bind="form.map.grid_offset_y" form-template="inputText"></form-field>
+    </div>
+</form>

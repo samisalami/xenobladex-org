@@ -1,0 +1,147 @@
+<header class="col-xs-12">
+    <h1>Missionen</h1>
+</header>
+<div class="col-xs-12">
+    <section class="content-box default-amrgin-b">
+        <p class="content-body">Die Kapitelangaben bedeuten immer, dass ihr das Kapitel abgeschlossen haben müsst, um Zugang zu der jeweiligen Mission zu erhalten.
+Die Filter zeigen euch Einträge an, die den eingebenen Wert enthalten und können auch kombiniert werden.
+Im Allgemeinen ist das BLADE-Level nur eine Voraussetzung für Nebenjobs und keine Voraussetzung für Standard- oder Harmoniemissionen</p>
+    </section>
+    <mission-view>
+        <div class="row m-b-1">
+            <div class="col-xs-12 col-lg-3 search-input m-b-1">
+                <input ng-model="namefilterValue" ng-model-options='{ debounce: 750 }' type="text" placeholder="Nach Namen filtern..." />
+                <span class="fa fa-search"></span>
+            </div>
+            <div class="col-xs-12 col-lg-3 search-input m-b-1">
+                <input ng-model="bladeLevelfilterValue" ng-model-options='{ debounce: 750 }' type="text" placeholder="Nach Blade-Level filtern..." />
+                <span class="fa fa-search"></span>
+            </div>
+            <div class="col-xs-12 col-lg-3 search-input m-b-1">
+                <input ng-model="chapterfilterValue" ng-model-options='{ debounce: 750 }' type="text" placeholder="Nach Kapitel filtern..." />
+                <span class="fa fa-search"></span>
+            </div>
+            <div class="col-xs-12 col-lg-3 search-input m-b-1">
+                <input ng-model="personfilterValue" ng-model-options='{ debounce: 750 }' type="text" placeholder="Nach Person filtern..." />
+                <span class="fa fa-search"></span>
+            </div>
+        </div>
+        <section class="collapse-grouped" ng-repeat="missionGroup in groupedMissions | orderBy:'name'">
+            <h1>{{missionGroup.name || 'Nicht zugeordnet'}}</h1>
+            <div person-by-id="{{mission.person}}" class="collapse-item" ng-repeat="mission in missionGroup.rows | listFilter:namefilterValue:'name'| listFilter:bladeLevelfilterValue:'blade_level'| listFilter:chapterfilterValue:'chapter' | listFilter:personfilterValue:'person':'name' | orderBy:[natural('name'), 'blade_level', 'chapter']  track by mission.id">
+                <a href="#mission-{{$parent.$index}}-{{$index}}" class="collapsed content-box" onclick="return false;" data-toggle="collapse" aria-expanded="false">
+                    <strong>{{mission.name}}</strong><span class="collapse-arrow fa"></span>
+                    <ul class="collapse-notes">
+                        <li ng-if="mission.blade_level">
+                            <span>BLADE-Level {{mission.blade_level}}</span>
+                        </li>
+                        <li ng-if="mission.chapter && mission.mission_type.name!='Handlungsmission'">
+                            <span>Kapitel {{mission.chapter}}</span>
+                        </li>
+                        <li>
+                            {{missionGroup.name}}
+                        </li>
+                    </ul>
+                </a>
+                <div id="mission-{{$parent.$index}}-{{$index}}" class="content-box collapse">
+                    <div class="content-body">
+                        <div class="complete-row" ng-if="personById.name || mission.person_unrelated || mission.location_note">
+                            <div class="row">
+                                <div ng-if="personById.name || mission.person_unrelated" class="col-xs-12 col-md-6">
+                                    <h3>Person:</h3>
+                                </div>
+
+                                <div ng-if="mission.location_note" class="col-xs-12 col-md-6">
+                                    <h3>Erhalt:</h3>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div ng-if="personById.name || mission.person_unrelated" class="col-xs-12 col-md-6">
+                                    {{personById.name || mission.person_unrelated}}
+                                </div>
+                                <div ng-if="mission.location_note" class="col-xs-12 col-md-6">
+                                    <p>{{mission.location_note}}</p>
+                                </div>
+                            </div>
+                            <hr/>
+                        </div>
+                        <div class="complete-row" ng-if="mission.conditions || mission.blade_level || mission.chapter || mission.rewards">
+                            <div class="row">
+                                <div ng-if="mission.conditions || mission.blade_level || mission.chapter" class="col-xs-12 col-md-6">
+                                    <h3>Voraussetzungen:</h3>
+                                </div>
+                                <div ng-if="mission.rewards" class="col-xs-12 col-md-6">
+                                    <h3>Belohnung:</h3>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div ng-if="mission.conditions || mission.blade_level || mission.chapter" class="col-xs-12 col-md-6">
+                                    <span ng-if="mission.blade_level">BLADE-Level: {{mission.blade_level}}<br/></span>
+                                    <span ng-if="mission.chapter">Abschluss Kapitel: {{mission.chapter}}</span>
+                                    <p ng-if="mission.conditions"><br ng-if="mission.chapter || mission.blade_level" />{{mission.conditions}}</p>
+                                </div>
+                                <div ng-if="mission.rewards" class="col-xs-12 col-md-6">
+                                    <p>{{mission.rewards}}</p>
+                                </div>
+                            </div>
+                            <hr/>
+                        </div>
+                        <div class="complete-row" ng-if="mission.mission_type.name=='Nebenjob' && (mission.target_area || mission.sidejob_type || mission.difficulty)">
+                            <div class="row">
+                                <div class="col-xs-12 col-md-6">
+                                    <h3>Zielregion:</h3>
+                                </div>
+                                <div class="col-xs-12 col-md-6">
+                                    <h3>Typ & Schwierigkeit:</h3>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-xs-12 col-md-6">
+                                    <p>{{mission.target_area}}</p>
+                                </div>
+                                <div class="col-xs-12 col-md-6">
+                                    <span>Typ: {{mission.sidejob_type}}<br/></span>
+                                    <span>Schwierigkeit: {{mission.difficulty}}</span>
+                                </div>
+                            </div>
+                            <hr />
+                        </div>
+                        <div class="complete-row" ng-if="mission.description">
+                            <div class="row">
+                                <div ng-if="mission.description" class="col-xs-12 col-md-6">
+                                    <h3>Beschreibung:</h3>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div ng-if="mission.description" class="col-xs-12 col-md-6">
+                                    <p>{{mission.description}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <a ng-if="mission.solution || mission.tasks" href="#mission-solution-{{$parent.$parent.$index}}-{{$index}}" class="collapsed" data-toggle="collapse" aria-expanded="false" onclick="return false;"><span class="fa collapse-arrow"></span><strong>Aufgaben & Lösung</strong></a>
+                    <div ng-if="mission.solution || mission.tasks" id="mission-solution-{{$parent.$parent.$index}}-{{$index}}" class="collapse">
+                        <div class="content-body">
+                            <div class="row">
+                                <div ng-if="mission.tasks" class="col-xs-12 col-md-6">
+                                    <h3>Aufgaben:</h3>
+                                </div>
+                                <div ng-if="mission.solution" class="col-xs-12 col-md-6">
+                                    <h3>Lösungshinweise:</h3>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div ng-if="mission.tasks" class="col-xs-12 col-md-6">
+                                    <p>{{mission.tasks}}</p>
+                                </div>
+                                <div ng-if="mission.solution" class="col-xs-12 col-md-6">
+                                    <p>{{mission.solution}}</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </mission-view>
+</div>

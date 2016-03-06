@@ -1,0 +1,35 @@
+<main role="main">
+    <div ng-include src="'views/_adminHeader.html'"></div>
+    <div class="admin-view col-md-12 p-y-1">
+        <div class="alert alert-info" role="alert">
+            <strong>Person kann nun gepflegt werden.</strong>
+            <ul>
+                <li>
+                    Handelt es sich um eine nicht gepflegte Person (z.B. "Filialleiter"), den Text einfach eintragen
+                </li>
+                <li>
+                    Handelt es sich um eine "richtige Person", entsprechendes Häkchen setzen und Person raussuchen
+                </li>
+                <li>
+                    Handelt es sich um eine "richtige Person" die noch nicht gepflegt wurde, kann ihr Name (mit gesetztem Häkchen) eingetragen werden und die Person wird automatisch angelegt.
+                </li>
+            </ul>
+        </div>
+        <h1>Missionen</h1>
+        <mission-admin>
+            <div class="alert alert-warning m-y-2" ng-show="vm.deletedMission">
+                <a ng-click="vm.addDeletedMission()" href="#">Gelöschte Zeile wiederherstellen</a>
+            </div>
+            <a href="/admin/missionen/was-fehlt" class="btn-primary btn">Welche Daten fehlen?</a>
+            <input type="text" class="form-control text m-y-1" ng-model="nameFilter" ng-model-options='{ debounce: 200 }' placeholder="Filtern..." />
+            <collapsed-table-list add-form="true">
+                <mission-form mission="newMission">
+                </mission-form>
+            </collapsed-table-list>
+            <collapsed-table-list ng-repeat="item in vm.missions | listFilter:nameFilter:'name' track by item.id" ng-if="vm.missions">
+                <mission-form mission="item">
+                </mission-form>
+            </collapsed-table-list>
+        </mission-admin>
+    </div>
+</main>

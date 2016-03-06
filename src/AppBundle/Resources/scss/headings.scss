@@ -1,15 +1,29 @@
 .main-content {
-  h1 {
-    font-family: 'Bangers';
-    color: $color-xenobladex;
-    letter-spacing: 0.1rem;
+  header {
+    h1 {
+      font-family: 'Bangers';
+      color: $color-xenobladex;
+      letter-spacing: 0.1rem;
+    }
   }
 
-  h1, h2, h3, h4, h5, h6 {
+  h1, h2 {
+    color: $font-color-dark;
+    margin: $default-margin 0;
+    font-family: $font-family-default;
+    font-size: $font-size-h3;
+    letter-spacing: normal;
+  }
+
+  h1, h2, h3, h4, h5, h6{
     font-weight: bold;
   }
 
   h3, h4, h5, h6 {
     display: inline-block;
+  }
+
+  h5, h6 {
+    font-size: $font-size-copy;
   }
 }

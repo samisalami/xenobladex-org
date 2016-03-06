@@ -1,0 +1,106 @@
+<div class="row">
+    <div class="col-md-offset-9 col-md-3 col-xs-offset-6 col-xs-6 p-r-0 p-b-1">
+        <button href="#" class="btn btn-danger pull-right" ng-click="form.deleteMonster()">
+            Löschen
+        </button>
+    </div>
+</div>
+<form ng-submit="form.updateMonster()">
+    <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <strong>Name:</strong>
+        <form-field form-field-bind="form.monster.name" form-template="inputText"></form-field>
+    </div>
+    <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <strong>Region:</strong>
+        <form-field form-field-bind="form.monster.region" form-template="stringSelect" form-select-options="form.regions"></form-field>
+    </div>
+    <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <span class="info-icon text-primary" bs-tooltip bs-tooltip-title="Nur Zahlen erlaubt."></span>
+        <strong>Level Min.:</strong>
+        <form-field form-field-bind="form.monster.level_min" form-template="inputText"></form-field>
+    </div>
+    <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <span class="info-icon text-primary" bs-tooltip bs-tooltip-title="Nur Zahlen erlaubt. Leerlassen falls nur ein exaktes Level vorhanden."></span>
+        <strong>Level Max.:</strong>
+        <form-field form-field-bind="form.monster.level_max" form-template="inputText"></form-field>
+    </div>
+    <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <span class="info-icon text-primary" bs-tooltip bs-tooltip-title='Standardwert: "Immer"'></span>
+        <strong>Zeit:</strong>
+        <form-field form-field-bind="form.monster.time" form-template="falsableStringSelect" form-select-options="form.dayTimes"></form-field>
+    </div>
+    <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <span class="info-icon text-primary" bs-tooltip bs-tooltip-title='Standardwert: "Immer"'></span>
+        <strong>Wetter:</strong>
+        <form-field form-field-bind="form.monster.weather" form-template="falsableStringSelect" form-select-options="form.weathers"></form-field>
+    </div>
+    <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <strong>Tyrann?</strong>
+        <form-field form-field-bind="form.monster.is_unique" form-template="inputCheckbox"></form-field>
+    </div>
+    <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <strong>Story?</strong>
+        <form-field form-field-bind="form.monster.is_story" form-template="inputCheckbox"></form-field>
+    </div>
+    <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <span class="info-icon text-primary" bs-tooltip bs-tooltip-title="Text - Zahlenraum mit Minus angeben"></span>
+        <strong>HP:</strong>
+        <form-field form-field-bind="form.monster.hp" form-template="inputText"></form-field>
+    </div>
+    <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <span class="info-icon text-primary" bs-tooltip bs-tooltip-title="Text - Zahlenraum mit Minus angeben"></span>
+        <strong>EP:</strong>
+        <form-field form-field-bind="form.monster.ep" form-template="inputText"></form-field>
+    </div>
+    <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <span class="info-icon text-primary" bs-tooltip bs-tooltip-title="Nur Zahlen erlaubt, Standardwert 0"></span>
+        <strong>Resistenz - Physisch:</strong>
+        <form-field form-field-bind="form.monster.res_physic" form-template="inputText"></form-field>
+    </div>
+    <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <span class="info-icon text-primary" bs-tooltip bs-tooltip-title="Nur Zahlen erlaubt, Standardwert 0"></span>
+        <strong>Resistenz - Laser:</strong>
+        <form-field form-field-bind="form.monster.res_laser" form-template="inputText"></form-field>
+    </div>
+    <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <span class="info-icon text-primary" bs-tooltip bs-tooltip-title="Nur Zahlen erlaubt, Standardwert 0"></span>
+        <strong>Resistenz - Äther:</strong>
+        <form-field form-field-bind="form.monster.res_ether" form-template="inputText"></form-field>
+    </div>
+    <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <span class="info-icon text-primary" bs-tooltip bs-tooltip-title="Nur Zahlen erlaubt, Standardwert 0"></span>
+        <strong>Resistenz - Thermo:</strong>
+        <form-field form-field-bind="form.monster.res_thermo" form-template="inputText"></form-field>
+    </div>
+    <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <span class="info-icon text-primary" bs-tooltip bs-tooltip-title="Nur Zahlen erlaubt, Standardwert 0"></span>
+        <strong>Resistenz - Elektro:</strong>
+        <form-field form-field-bind="form.monster.res_electric" form-template="inputText"></form-field>
+    </div>
+    <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <span class="info-icon text-primary" bs-tooltip bs-tooltip-title="Nur Zahlen erlaubt, Standardwert 0"></span>
+        <strong>Resistenz - Gravit:</strong>
+        <form-field form-field-bind="form.monster.res_gravit" form-template="inputText"></form-field>
+    </div>
+    <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <strong>Besonderheiten:</strong>
+        <form-field form-field-bind="form.monster.description" form-template="textarea"></form-field>
+    </div>
+    <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <strong>Ortsbeschreibung:</strong>
+        <form-field form-field-bind="form.monster.location_note" form-template="textarea"></form-field>
+    </div>
+    <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <strong>Gattung:</strong>
+        <form-field ng-if="form.monsterTypes" form-field-callback="form.setMaterialByMonsterType()" form-field-bind="form.monsterType" form-select-options="form.monsterTypes" form-template="customAutoCompleteSelect"></form-field>
+    </div>
+    <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <strong>Material:</strong>
+        <form-field ng-if="form.materialsData" form-field-bind="form.materials" form-select-options="form.materialsData" form-template="customMaterialInput"></form-field>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 p-r-0">
+            <button ng-disabled="form.isUpdating" type="submit" class="btn btn-success pull-right">Speichern</button>
+        </div>
+    </div>
+</form>

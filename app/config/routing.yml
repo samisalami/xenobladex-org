@@ -4,83 +4,91 @@ fos_js_routing:
 user:
     prefix: /xenobladex
     type:     rest
-    resource: "@AppBundle/Controller/RestController/UserController.php"
+    resource: "@AppBundle/Controller/UserController.php"
     options:
         expose: true
 
 mission:
     prefix: /xenobladex
     type:     rest
-    resource: "@AppBundle/Controller/RestController/MissionController.php"
+    resource: "@AppBundle/Controller/MissionController.php"
     options:
         expose: true
 
 missionType:
     prefix: /xenobladex
     type:     rest
-    resource: "@AppBundle/Controller/RestController/MissionTypeController.php"
+    resource: "@AppBundle/Controller/MissionTypeController.php"
     options:
         expose: true
 
 monster:
     prefix: /xenobladex
     type:     rest
-    resource: "@AppBundle/Controller/RestController/MonsterController.php"
+    resource: "@AppBundle/Controller/MonsterController.php"
     options:
         expose: true
 
 monsterType:
     prefix: /xenobladex
     type:     rest
-    resource: "@AppBundle/Controller/RestController/MonsterTypeController.php"
+    resource: "@AppBundle/Controller/MonsterTypeController.php"
     options:
         expose: true
 
 map:
-    prefix: /xenobladex/api
+    prefix: /xenobladex
     type:     rest
-    resource: "@AppBundle/Controller/RestController/MapController.php"
+    resource: "@AppBundle/Controller/MapController.php"
     options:
         expose: true
 
 attachment:
-    prefix: /xenobladex/api
+    prefix: /xenobladex
     type:     rest
-    resource: "@AppBundle/Controller/RestController/AttachmentController.php"
+    resource: "@AppBundle/Controller/AttachmentController.php"
     options:
         expose: true
 
 person:
-    prefix: /xenobladex/api
+    prefix: /xenobladex
     type:     rest
-    resource: "@AppBundle/Controller/RestController/PersonController.php"
+    resource: "@AppBundle/Controller/PersonController.php"
     options:
         expose: true
 
 faq:
     prefix: /xenobladex
     type:     rest
-    resource: "@AppBundle/Controller/RestController/FaqController.php"
+    resource: "@AppBundle/Controller/FaqController.php"
     options:
         expose: true
 
 mapmarker:
     prefix: /xenobladex/api
     type:     rest
-    resource: "@AppBundle/Controller/RestController/MapmarkerController.php"
+    resource: "@AppBundle/Controller/MapmarkerController.php"
     options:
         expose: true
 
 material:
     prefix: /xenobladex
     type:     rest
-    resource: "@AppBundle/Controller/RestController/MaterialController.php"
+    resource: "@AppBundle/Controller/MaterialController.php"
+    options:
+        expose: true
+
+collectible:
+    prefix: /xenobladex
+    type:     rest
+    resource: "@AppBundle/Controller/CollectibleController.php"
     options:
         expose: true
 
 show_attachment:
     path: /xenobladex/attachment/{id}
-    defaults: { _controller: AppBundle:RestController/Attachment:showAttachment }
+    methods: [GET]
+    defaults: { _controller: AppBundle:Attachment:showAttachment }
 
 
 remove_trailing_slash:

@@ -18,10 +18,16 @@ function config($routeProvider, $locationProvider) {
         templateUrl: 'views/start.html'
       })
       .when('/faq', {
-        templateUrl: 'views/faq.html'
+        templateUrl: 'js/data/faq/view/faq.html'
       })
       .when('/missionen', {
-        templateUrl: 'views/missions.html'
+        templateUrl: 'js/data/mission/view/missions.html'
+      })
+      .when('/material', {
+        templateUrl: 'js/data/material/view/materials.html'
+      })
+      .when('/impressum', {
+        templateUrl: 'views/imprint.html'
       })
       .when('/login', {
         controller: 'UserController',
@@ -35,40 +41,55 @@ function config($routeProvider, $locationProvider) {
         templateUrl: 'views/admin.html'
       })
       .when('/admin/missionen', {
-        templateUrl: 'views/admin_missions.html'
+        templateUrl: 'js/data/mission/view/admin_missions.html'
       })
       .when('/admin/missionen/was-fehlt', {
-        templateUrl: 'views/admin_missions_missing.html'
+        templateUrl: 'js/data/mission/view/admin_missions_missing.html'
       })
       .when('/admin/karten', {
-        templateUrl: 'views/admin_maps.html'
+        templateUrl: 'js/data/map/view/admin_maps.html'
       })
       .when('/admin/dateien', {
-        templateUrl: 'views/admin_attachments.html'
+        templateUrl: 'js/data/attachment/view/admin_attachments.html'
       })
       .when('/admin/personen', {
-        templateUrl: 'views/admin_persons.html'
+        templateUrl: 'js/data/person/view/admin_persons.html'
       })
       .when('/admin/personen/was-fehlt', {
-        templateUrl: 'views/admin_persons_missing.html'
+        templateUrl: 'js/data/person/view/admin_persons_missing.html'
       })
       .when('/admin/test', {
         templateUrl: 'views/admin_test.html'
       })
       .when('/admin/faq', {
-        templateUrl: 'views/admin_faqs.html'
+        templateUrl: 'js/data/faq/view/admin_faqs.html'
       })
-      .when('/admin/kartenpunkte', {
-        templateUrl: 'views/admin_mapmarkers.html'
-      })
+      //.when('/admin/kartenpunkte', {
+      //  templateUrl: 'views/admin_mapmarkers.html'
+      //})
       .when('/admin/monster', {
-        templateUrl: 'views/admin_monsters.html'
+        templateUrl: 'js/data/monster/view/admin_monsters.html'
+      })
+      .when('/admin/monster/was-fehlt', {
+        templateUrl: 'js/data/monster/view/admin_monsters_missing.html'
       })
       .when('/admin/monster_gattungen', {
-        templateUrl: 'views/admin_monsterTypes.html'
+        templateUrl: 'js/data/monster/view/admin_monsterTypes.html'
       })
       .when('/admin/material', {
-        templateUrl: 'views/admin_material.html'
+        templateUrl: 'js/data/material/view/admin_material.html'
+      })
+      .when('/admin/material/was-fehlt', {
+        templateUrl: 'js/data/material/view/admin_materials_missing.html'
+      })
+      .when('/admin/segmente', {
+          templateUrl: 'js/data/map/view/admin_mapTiles.html'
+      })
+      .when('/admin/sammelitems', {
+          templateUrl: 'js/data/collectible/view/admin_collectibles.html'
+      })
+      .when('/admin/sammelitems/was-fehlt', {
+          templateUrl: 'js/data/collectible/view/admin_collectibles_missing.html'
       })
       .otherwise({
           templateUrl: 'views/404.html'

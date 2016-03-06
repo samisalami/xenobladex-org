@@ -1,0 +1,54 @@
+<div class="missing-data-view">
+<a href="/admin/material" class="btn-primary btn">Material</a>
+    <div class="table-responsive m-t-2">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Verkaufswert
+                    </th>
+                    <th>
+                        Belohnungstickets
+                    </th>
+                    <th>
+                        Körperteil
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="elm in missingDataArray | orderBy: 'name'">
+                    <td>
+                        {{elm.name}}
+                    </td>
+                    <td>
+                        <span ng-if="elm.credit_cost" class="text-success">
+                            gepflegt
+                        </span>
+                        <span ng-if="!elm.credit_cost" class="text-danger">
+                            leer
+                        </span>
+                    </td>
+                    <td>
+                        <span ng-if="elm.ticket_cost" class="text-success">
+                            gepflegt
+                        </span>
+                        <span ng-if="!elm.ticket_cost" class="text-danger">
+                            leer
+                        </span>
+                    </td>
+                    <td>
+                        <span ng-if="elm.body_part" class="text-success">
+                            gepflegt
+                        </span>
+                        <span ng-if="!elm.body_part" class="text-danger">
+                            leer
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

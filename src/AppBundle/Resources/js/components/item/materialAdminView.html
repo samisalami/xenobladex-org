@@ -1,7 +1,0 @@
-<div class="monster-type-admin-view">
-    <div class="alert alert-warning" ng-show="deletedMaterial">
-        <a ng-click="addDeletedMaterial()" href="#">Gelöschte Zeile wiederherstellen</a>
-    </div>
-    <input type="text" class="form-control text m-b-2" ng-model="modalFilterValue" ng-model-options='{ debounce: 200 }' placeholder="Filtern..." />
-    <collapsed-table ng-if="formModel && materials" view-data="materials" form-model="formModel" modal-filter-value="modalFilterValue" add-object="newMaterial" add-item="addMaterial(item)"  update-item="updateMaterial(item)" delete-item="deleteMaterial(item)"></collapsed-table>
-</div>

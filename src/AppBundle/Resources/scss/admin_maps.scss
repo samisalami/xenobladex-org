@@ -1,0 +1,11 @@
+.map-admin {
+  .map-container {
+    position: relative;
+
+    .detail-select-overlay {
+      position: absolute;
+      left: 0;
+      top: 0;
+    }
+  }
+}

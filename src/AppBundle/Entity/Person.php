@@ -6,6 +6,7 @@ use AppBundle\Entity\PersonMapmarker;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation\Type;
+use JMS\Serializer\Annotation\MaxDepth;
 
 /**
  * Person
@@ -89,8 +90,9 @@ class Person
 
     /**
      * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="PersonMapmarker", mappedBy="person", cascade={"all"})
-     * @Type("ArrayCollection<AppBundle\Entity\PersonMapmarker>")
+     * @ORM\OneToMany(targetEntity="PersonMapmarker", mappedBy="person", fetch="EXTRA_LAZY")
+     * @Type("RelatedEntity<'AppBundle:PersonMapmarker'>")
+     * @MaxDepth(1)
      */
     private $mapmarkers;
 

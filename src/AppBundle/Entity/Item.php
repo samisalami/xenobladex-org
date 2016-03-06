@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\Groups;
 
 /**
  * Item
@@ -40,7 +41,7 @@ class Item
     /**
      * @var integer
      *
-     * @ORM\Column(name="credit_cost", type="smallint")
+     * @ORM\Column(name="credit_cost", type="integer")
      */
     protected $creditCost = 0;
 

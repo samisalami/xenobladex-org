@@ -5,6 +5,8 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation\Type;
+use JMS\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\MaxDepth;
 
 /**
  * MonsterType
@@ -45,12 +47,13 @@ class MonsterType
     private $prio=0;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Material", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="Material", fetch="EXTRA_LAZY")
      * @ORM\JoinTable(name="xenobladex_monster_type_material",
      *      joinColumns={@ORM\JoinColumn(name="monster_type_id", referencedColumnName="id", onDelete="CASCADE")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="material_id", referencedColumnName="id", onDelete="CASCADE")}
      *      )
-     * @Type("ArrayCollection<AppBundle\Entity\Material>")
+     * @Type("RelatedEntity<'AppBundle:Material'>")
+     * @MaxDepth(1)
      */
     private $materials;
 

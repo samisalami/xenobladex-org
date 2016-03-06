@@ -1,0 +1,120 @@
+<div class="missing-data-view">
+<a href="/admin/personen" class="btn-primary btn">Personen</a>
+    <div class="table-responsive m-t-2">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Alter
+                    </th>
+                    <th>
+                        Spezies
+                    </th>
+                    <th>
+                        Beruf
+                    </th>
+                    <th>
+                        Beschreibung
+                    </th>
+                    <th>
+                        Region
+                    </th>
+                    <th>
+                        Zeit
+                    </th>
+                    <th>
+                        Ortsbeschreibung
+                    </th>
+                    <th>
+                        Bedingungen
+                    </th>
+                    <th>
+                        Kartenpunkt
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="elm in missingDataArray">
+                    <td>
+                        {{elm.name}}
+                    </td>
+                    <td>
+                        <span ng-if="elm.age" class="text-success">
+                            gepflegt
+                        </span>
+                        <span ng-if="!elm.age" class="text-danger">
+                            leer
+                        </span>
+                    </td>
+                    <td>
+                        <span ng-if="elm.species" class="text-success">
+                            gepflegt
+                        </span>
+                        <span ng-if="!elm.species" class="text-danger">
+                            leer
+                        </span>
+                    </td>
+                    <td>
+                        <span ng-if="elm.job" class="text-success">
+                            gepflegt
+                        </span>
+                        <span ng-if="!elm.job" class="text-danger">
+                            leer
+                        </span>
+                    </td>
+                    <td>
+                        <span ng-if="elm.description" class="text-success">
+                            gepflegt
+                        </span>
+                        <span ng-if="!elm.description" class="text-danger">
+                            leer
+                        </span>
+                    </td>
+                    <td>
+                        <span ng-if="elm.region" class="text-success">
+                            gepflegt
+                        </span>
+                        <span ng-if="!elm.region" class="text-danger">
+                            leer
+                        </span>
+                    </td>
+                    <td>
+                        <span ng-if="elm.activity_time" class="text-success">
+                            gepflegt
+                        </span>
+                        <span ng-if="!elm.activity_time" class="text-danger">
+                            leer
+                        </span>
+                    </td>
+                    <td>
+                        <span ng-if="elm.location_note" class="text-success">
+                            gepflegt
+                        </span>
+                        <span ng-if="!elm.location_note" class="text-danger">
+                            leer
+                        </span>
+                    </td>
+                    <td>
+                        <span ng-if="elm.conditions" class="text-success">
+                            gepflegt
+                        </span>
+                        <span ng-if="!elm.conditions" class="text-danger">
+                            leer
+                        </span>
+                    </td>
+                    <td>
+                        <span ng-if="elm.mapmarkers" class="text-success">
+                            gepflegt
+                        </span>
+                        <span ng-if="!elm.mapmarkers" class="text-danger">
+                            leer
+                        </span>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

@@ -3,6 +3,7 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\Groups;
 
 /**
  * MonsterMapmarker
@@ -14,8 +15,9 @@ class MonsterMapmarker extends Mapmarker
 {
 
     /**
-     * @ORM\ManyToOne(targetEntity="Monster", inversedBy="monster", cascade={"all"})
+     * @ORM\ManyToOne(targetEntity="Monster", inversedBy="mapmarkers", cascade={"all"})
      * @ORM\JoinColumn(name="monster_id", referencedColumnName="id",onDelete="CASCADE")
+     * @Groups({"default"})
      */
     private $monster;
 

@@ -1,0 +1,29 @@
+<main role="main">
+    <div ng-include src="'views/_adminHeader.html'"></div>
+    <div class="admin-view col-md-12 p-y-1">
+        <div class="alert alert-info" role="alert">
+            <strong>Personen können jetzt als Auftraggeber an Missionen gepflegt werden</strong>
+            <ul>
+                <li>
+                    Ist eine Person mit einer Mission verknüpft kann diese Person nicht gelöscht werden (es passiert einfach nichts)
+                </li>
+            </ul>
+        </div>
+        <h1>Personen</h1>
+        <person-admin>
+            <div class="alert alert-warning m-y-2" ng-show="vm.deletedPerson">
+                <a ng-click="vm.addDeletedPerson()" href="#">Gelöschte Zeile wiederherstellen</a>
+            </div>
+            <a href="/admin/personen/was-fehlt" class="btn-primary btn">Welche Daten fehlen?</a>
+            <input type="text" class="form-control text m-y-1" ng-model="nameFilter" ng-model-options='{ debounce: 200 }' placeholder="Filtern..." />
+            <collapsed-table-list add-form="true">
+                <person-form person="newPerson">
+                </person-form>
+            </collapsed-table-list>
+            <collapsed-table-list ng-repeat="item in vm.persons | listFilter:nameFilter:'name' track by item.id" ng-if="vm.persons">
+                <person-form person="item">
+                </person-form>
+            </collapsed-table-list>
+        </person-admin>
+    </div>
+</main>

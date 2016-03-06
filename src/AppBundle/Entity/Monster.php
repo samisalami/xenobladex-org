@@ -5,6 +5,10 @@ namespace AppBundle\Entity;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation\Type;
+use JMS\Serializer\Annotation\VirtualProperty;
+use JMS\Serializer\Annotation\SerializedName;
+use JMS\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\MaxDepth;
 
 /**
  * Monster
@@ -66,11 +70,67 @@ class Monster
     private $isUnique=false;
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_story", type="boolean")
+     */
+    private $isStory=false;
+
+    /**
      * @var string
      *
      * @ORM\Column(name="ep", type="string", length=255)
      */
     private $ep='';
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="hp", type="string", length=255)
+     */
+    private $hp='';
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="res_physic", type="smallint")
+     */
+    private $resPhysic=0;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="res_laser", type="smallint")
+     */
+    private $resLaser=0;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="res_ether", type="smallint")
+     */
+    private $resEther=0;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="res_thermo", type="smallint")
+     */
+    private $resThermo=0;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="res_electric", type="smallint")
+     */
+    private $resElectric=0;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="res_gravit", type="smallint")
+     */
+    private $resGravit=0;
 
     /**
      * @var string
@@ -124,25 +184,40 @@ class Monster
     /**
      * @ORM\ManyToOne(targetEntity="MonsterType")
      * @ORM\JoinColumn(name="monster_type_id", referencedColumnName="id")
+     * @Type("RelatedEntity<'AppBundle:MonsterType'>")
+     * @MaxDepth(1)
      */
     private $monsterType;
 
     /**
      * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="MonsterMapmarker", mappedBy="monster", cascade={"all"})
-     * @Type("ArrayCollection<AppBundle\Entity\MonsterMapmarker>")
+     * @ORM\OneToMany(targetEntity="MonsterMapmarker", mappedBy="monster", fetch="EXTRA_LAZY")
+     * @Type("RelatedEntity<'AppBundle:MonsterMapmarker'>")
+     * @MaxDepth(1)
      */
     private $mapmarkers;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Material", cascade={"persist"})
+     * @ORM\ManyToMany(targetEntity="Material", fetch="EXTRA_LAZY")
      * @ORM\JoinTable(name="xenobladex_monster_material",
      *      joinColumns={@ORM\JoinColumn(name="monster_id", referencedColumnName="id", onDelete="CASCADE")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="material_id", referencedColumnName="id", onDelete="CASCADE")}
      *      )
-     * @Type("ArrayCollection<AppBundle\Entity\Material>")
+     * @Type("RelatedEntity<'AppBundle:Material'>")
+     * @MaxDepth(1)
      */
     private $materials;
+
+    /**
+     * @VirtualProperty
+     * @SerializedName("monster_type_prio")
+     */
+    public function getMonsterTypePrio() {
+        if(!$this->getMonsterType()) {
+            return null;
+        }
+        return $this->getMonsterType()->getPrio();
+    }
 
     /**
      * Monster constructor.
@@ -580,5 +655,189 @@ class Monster
     public function getRegion()
     {
         return $this->region;
+    }
+
+    /**
+     * Set isStory
+     *
+     * @param boolean $isStory
+     * @return Monster
+     */
+    public function setIsStory($isStory)
+    {
+        $this->isStory = $isStory;
+
+        return $this;
+    }
+
+    /**
+     * Get isStory
+     *
+     * @return boolean 
+     */
+    public function getIsStory()
+    {
+        return $this->isStory;
+    }
+
+    /**
+     * Set hp
+     *
+     * @param string $hp
+     * @return Monster
+     */
+    public function setHp($hp)
+    {
+        $this->hp = $hp;
+
+        return $this;
+    }
+
+    /**
+     * Get hp
+     *
+     * @return string 
+     */
+    public function getHp()
+    {
+        return $this->hp;
+    }
+
+    /**
+     * Set resPhysic
+     *
+     * @param integer $resPhysic
+     * @return Monster
+     */
+    public function setResPhysic($resPhysic)
+    {
+        $this->resPhysic = $resPhysic;
+
+        return $this;
+    }
+
+    /**
+     * Get resPhysic
+     *
+     * @return integer 
+     */
+    public function getResPhysic()
+    {
+        return $this->resPhysic;
+    }
+
+    /**
+     * Set resLaser
+     *
+     * @param integer $resLaser
+     * @return Monster
+     */
+    public function setResLaser($resLaser)
+    {
+        $this->resLaser = $resLaser;
+
+        return $this;
+    }
+
+    /**
+     * Get resLaser
+     *
+     * @return integer 
+     */
+    public function getResLaser()
+    {
+        return $this->resLaser;
+    }
+
+    /**
+     * Set resEther
+     *
+     * @param integer $resEther
+     * @return Monster
+     */
+    public function setResEther($resEther)
+    {
+        $this->resEther = $resEther;
+
+        return $this;
+    }
+
+    /**
+     * Get resEther
+     *
+     * @return integer 
+     */
+    public function getResEther()
+    {
+        return $this->resEther;
+    }
+
+    /**
+     * Set resThermo
+     *
+     * @param integer $resThermo
+     * @return Monster
+     */
+    public function setResThermo($resThermo)
+    {
+        $this->resThermo = $resThermo;
+
+        return $this;
+    }
+
+    /**
+     * Get resThermo
+     *
+     * @return integer 
+     */
+    public function getResThermo()
+    {
+        return $this->resThermo;
+    }
+
+    /**
+     * Set resElectric
+     *
+     * @param integer $resElectric
+     * @return Monster
+     */
+    public function setResElectric($resElectric)
+    {
+        $this->resElectric = $resElectric;
+
+        return $this;
+    }
+
+    /**
+     * Get resElectric
+     *
+     * @return integer 
+     */
+    public function getResElectric()
+    {
+        return $this->resElectric;
+    }
+
+    /**
+     * Set resGravit
+     *
+     * @param integer $resGravit
+     * @return Monster
+     */
+    public function setResGravit($resGravit)
+    {
+        $this->resGravit = $resGravit;
+
+        return $this;
+    }
+
+    /**
+     * Get resGravit
+     *
+     * @return integer 
+     */
+    public function getResGravit()
+    {
+        return $this->resGravit;
     }
 }
