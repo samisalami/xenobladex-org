@@ -4,6 +4,8 @@ namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation\Groups;
+use JMS\Serializer\Annotation\Type;
+use JMS\Serializer\Annotation\MaxDepth;
 
 /**
  * Map
@@ -19,7 +21,6 @@ class Map
      * @ORM\Column(name="id", type="integer")
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
-     * @Groups({"default"})
      */
     private $id;
 
@@ -27,7 +28,6 @@ class Map
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
-     * @Groups({"default"})
      */
     private $name = '';
 
@@ -83,7 +83,8 @@ class Map
     /**
      * @ORM\ManyToOne(targetEntity="Attachment")
      * @ORM\JoinColumn(name="attachment_id", referencedColumnName="id")
-     * @Groups({"default"})
+     * @Type("RelatedEntity<'AppBundle:Attachment'>")
+     * @MaxDepth(1)
      */
     private $attachment;
 

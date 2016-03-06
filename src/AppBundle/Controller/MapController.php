@@ -8,83 +8,85 @@ namespace AppBundle\Controller;
 use FOS\RestBundle\Controller\FOSRestController;
 use FOS\RestBundle\Controller\Annotations\Route;
 use AppBundle\Entity\Map;
+use JMS\Serializer\DeserializationContext;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
 class MapController extends FOSRestController {
-    protected function getJMSSerializer() {
-        return $this->get('jms_serializer');
-    }
-
-    protected function deleteMap(Map $map) {
-        $em = $this->getDoctrine()->getManager();
-        $em->remove($map);
-        $em->flush();
-    }
-
-    protected function addMap(Map $deserialized_map) {
-        $em = $this->getDoctrine()->getManager();
-        $map = $em->merge($deserialized_map);
-        $em->persist($map);
-        $em->flush();
-    }
-
-    protected function updateMap(Map $deserialized_map) {
-        $em = $this->getDoctrine()->getManager();
-        $updated_map = $em->merge($deserialized_map);
-        $em->flush();
-    }
-
     /**
-     * @return Response
+     * @Route("/map", methods={"GET"})
      */
     public function getMapsAction() {
         $em = $this->getDoctrine()->getManager();
         $maps = $em->getRepository('AppBundle:Map')->findAll();
-        $serializer = $this->getJMSSerializer();
-        $response = new Response($serializer->serialize($maps, 'json'));
-        $response->headers->set('Content-Type', 'application/json');
-        return $response;
+        $view = $this->view($maps, 200);
+        return $this->handleView($view);
     }
 
     /**
-     * @Route("/map/add", methods={"POST"})
+     * @Route("/map/{id}", methods={"GET"}, requirements={"id"="^[0-9].*$"})
+     * @param Map $map
+     * @return Map
+     */
+    public function getMapAction(Map $map) {
+        $view = $this->view($map, 200);
+        return $this->handleView($view);
+    }
+
+    /**
+     * @Route("/api/map/", methods={"POST"})
+     * @param Request $request
+     * @return Response
      */
     public function addMapAction(Request $request) {
-        $content = $request->getContent();
-        if(!empty($content)) {
-            $serializer = $this->getJMSSerializer();
-            $deserialized_map = $serializer->deserialize($content, 'AppBundle\Entity\Map', 'json');
-            $this->addMap($deserialized_map);
-        }
-        return new Response(Response::HTTP_OK);
+        $serializer = $this->get("jms_serializer");
+        $data = $request->getContent();
+
+        $map = new Map();
+        $context = new DeserializationContext();
+        $context->setAttribute('target', $map);
+        $map = $serializer->deserialize($data, 'AppBundle\Entity\Map', 'json', $context);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($map);
+        $em->flush();
+
+        $view = $this->view($map, 200);
+        return $this->handleView($view);
     }
 
     /**
-     * @Route("/map/update", methods={"POST"})
+     * @Route("/api/map/{id}", methods={"PUT"}, requirements={"id"="^[0-9].*$"})
+     * @param Request $request
+     * @param Map $map
+     * @return Response
      */
-    public function updateMapAction(Request $request) {
-        $content = $request->getContent();
-        if(!empty($content)) {
-            $serializer = $this->getJMSSerializer();
-            $deserialized_map = $serializer->deserialize($content, 'AppBundle\Entity\Map', 'json');
-            $this->updateMap($deserialized_map);
-            $response = new Response($serializer->serialize($deserialized_map, 'json'));
+    public function updateMapAction(Request $request, Map $map) {
+        $serializer = $this->get("jms_serializer");
+        $data = $request->getContent();
 
-            $response->headers->set('Content-Type', 'application/json');
-            return $response;
-        }
-        return new Response(Response::HTTP_OK);
+        $context = new DeserializationContext();
+        $context->setAttribute('target', $map);
+        $map = $serializer->deserialize($data, 'AppBundle\Entity\Map', 'json', $context);
+
+        $em = $this->getDoctrine()->getManager();
+        $em->persist($map);
+        $em->flush();
+
+        $view = $this->view($map, 200);
+        return $this->handleView($view);
     }
 
-    public function deleteMapAction($id) {
-        $map = $this->getDoctrine()
-            ->getRepository('AppBundle:Map')
-            ->find($id);
-        $this->deleteMap($map);
-        $serializer = $this->getJMSSerializer();
-        $response = new Response($serializer->serialize($map, 'json'));
-        $response->headers->set('Content-Type', 'application/json');
-        return $response;
+    /**
+     * @Route("/api/map/{id}", methods={"DELETE"}, requirements={"id"="^[0-9].*$"})
+     * @param Map $map
+     * @return Response
+     */
+    public function deleteMapAction(Map $map) {
+        $em = $this->getDoctrine()->getManager();
+        $em->remove($map);
+        $em->flush();
+
+        return new Response(Response::HTTP_OK);
     }
 }
