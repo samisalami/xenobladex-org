@@ -19,9 +19,13 @@
         <strong>Sortierung:</strong>
         <form-field form-field-bind="form.monsterType.prio" form-template="inputText"></form-field>
     </div>
+    <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <strong>Material:</strong>
+        <form-field ng-if="form.materialsData" form-field-bind="form.materials" form-select-options="form.materialsData" form-template="customMaterialInput"></form-field>
+    </div>
     <div class="row">
         <div class="col-xs-12 p-r-0">
-            <input type="submit" href="#" class="btn btn-success pull-right" value="Speichern" />
+            <button ng-disabled="form.isUpdating" type="submit" class="btn btn-success pull-right">Speichern</button>
         </div>
     </div>
 </form>

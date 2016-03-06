@@ -61,35 +61,43 @@ angular.module('app')
                 }
 
                 function setMonsterType(callback) {
-                    if(that.monsterType.id) {
-                        that.monster.monster_type = that.monsterType.id;
-                        callback();
-                    } else {
-                        MonsterTypeService.addMonsterType(that.monsterType).then(function(response) {
-                            that.monster.monster_type = response.data.id;
+                    if(that.monsterType.id || that.monsterType.name) {
+                        if(that.monsterType.id) {
+                            that.monster.monster_type = that.monsterType.id;
                             callback();
-                        });
+                        } else {
+                            MonsterTypeService.addMonsterType(that.monsterType).then(function(response) {
+                                that.monster.monster_type = response.data.id;
+                                callback();
+                            });
+                        }
+                    } else {
+                        callback();
                     }
                 }
 
                 function setMaterials(callback) {
-                    var total = that.monster.materials.length;
-                    that.monster.materials = [];
-                    that.materials.forEach(function(material, i) {
-                        if(material.id) {
-                            that.monster.materials.push(material.id);
-                            if(i == total-1) {
-                                callback();
-                            }
-                        } else {
-                            MaterialService.addMaterial(material).then(function(response){
-                                that.monster.materials.push(response.data.id);
+                    if(that.materials.length>0) {
+                        var total = that.materials.length;
+                        that.monster.materials = [];
+                        that.materials.forEach(function(material, i) {
+                            if(material.id) {
+                                that.monster.materials.push(material.id);
                                 if(i == total-1) {
                                     callback();
                                 }
-                            });
-                        }
-                    });
+                            } else {
+                                MaterialService.addMaterial(material).then(function(response){
+                                    that.monster.materials.push(response.data.id);
+                                    if(i == total-1) {
+                                        callback();
+                                    }
+                                });
+                            }
+                        });
+                    } else {
+                        callback();
+                    }
                 }
 
                 that.deleteMonster = function() {
@@ -97,16 +105,21 @@ angular.module('app')
                 };
 
                 that.updateMonster = function() {
-                    setMonsterType(function() {
-                        setMaterials(function(){
-                            if(that.monster.id) {
-                                MonsterService.updateMonster(that.monster);
-                            } else {
-                                MonsterService.addMonster(that.monster);
-                                setFormMonster($scope.monsterSealed);
-                            }
+                    if(!that.isUpdating) {
+                        that.isUpdating = true;
+                        setMonsterType(function() {
+                            setMaterials(function(){
+                                if(that.monster.id) {
+                                    MonsterService.updateMonster(that.monster);
+                                    that.isUpdating = false;
+                                } else {
+                                    MonsterService.addMonster(that.monster);
+                                    setFormMonster($scope.monsterSealed);
+                                    that.isUpdating = false;
+                                }
+                            });
                         });
-                    });
+                    }
                 }
             }],
             controllerAs: 'form'

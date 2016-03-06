@@ -49,14 +49,18 @@ angular.module('app')
                 }
 
                 function setPerson(callback) {
-                    if(that.person.id) {
-                        that.mission.person = that.person.id;
-                        callback();
-                    } else {
-                        PersonService.addPerson(that.person).then(function(response) {
-                            that.mission.person = response.data.id;
+                    if(that.person.id || that.person.name) {
+                        if(that.person.id) {
+                            that.mission.person = that.person.id;
                             callback();
-                        });
+                        } else {
+                            PersonService.addPerson(that.person).then(function(response) {
+                                that.mission.person = response.data.id;
+                                callback();
+                            });
+                        }
+                    } else {
+                        callback();
                     }
                 }
 
@@ -65,14 +69,19 @@ angular.module('app')
                 };
 
                 that.updateMission = function() {
-                    setPerson(function() {
-                        if(that.mission.id) {
-                            MissionService.updateMission(that.mission);
-                        } else {
-                            MissionService.addMission(that.mission);
-                            setFormMission($scope.missionSealed);
-                        }
-                    });
+                    if(!that.isUpdating) {
+                        that.isUpdating = true;
+                        setPerson(function () {
+                            if (that.mission.id) {
+                                MissionService.updateMission(that.mission);
+                                that.isUpdating = false;
+                            } else {
+                                MissionService.addMission(that.mission);
+                                setFormMission($scope.missionSealed);
+                                that.isUpdating = false;
+                            }
+                        });
+                    }
                 }
             }],
             controllerAs: 'form'

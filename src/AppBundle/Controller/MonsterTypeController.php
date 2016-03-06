@@ -15,7 +15,7 @@ use JMS\Serializer\SerializationContext;
 
 class MonsterTypeController extends FOSRestController {
     /**
-     * @Route("/monsterType", methods={"GET"})
+     * @Route("/monster/type", methods={"GET"})
      */
     public function getMonsterTypesAction() {
         $serializer = $this->get("jms_serializer");
@@ -32,7 +32,7 @@ class MonsterTypeController extends FOSRestController {
     }
 
     /**
-     * @Route("/monsterType/{id}", methods={"GET"}, requirements={"id"="^[0-9].*$"})
+     * @Route("/monster/type/{id}", methods={"GET"}, requirements={"id"="^[0-9].*$"})
      * @param MonsterType $monsterType
      * @return MonsterType
      */
@@ -49,7 +49,7 @@ class MonsterTypeController extends FOSRestController {
     }
 
     /**
-     * @Route("/api/monsterType/", methods={"POST"})
+     * @Route("/api/monster/type/", methods={"POST"})
      * @param Request $request
      * @return Response
      */
@@ -72,7 +72,7 @@ class MonsterTypeController extends FOSRestController {
     }
 
     /**
-     * @Route("/api/monsterType/{id}", methods={"PUT"}, requirements={"id"="^[0-9].*$"})
+     * @Route("/api/monster/type/{id}", methods={"PUT"}, requirements={"id"="^[0-9].*$"})
      * @param Request $request
      * @param MonsterType $monsterType
      * @return Response
@@ -95,7 +95,7 @@ class MonsterTypeController extends FOSRestController {
     }
 
     /**
-     * @Route("/api/monsterType/{id}", methods={"DELETE"}, requirements={"id"="^[0-9].*$"})
+     * @Route("/api/monster/type/{id}", methods={"DELETE"}, requirements={"id"="^[0-9].*$"})
      * @param MonsterType $monsterType
      * @return Response
      */
