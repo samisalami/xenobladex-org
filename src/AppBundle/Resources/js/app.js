@@ -31,11 +31,11 @@ function config($routeProvider, $locationProvider) {
       })
       .when('/login', {
         controller: 'UserController',
-        templateUrl: 'js/components/user/loginView.html'
+        templateUrl: 'js/data/user/loginView.html'
       })
       .when('/register', {
         controller: 'UserController',
-        templateUrl: 'js/components/user/registrationView.html'
+        templateUrl: 'js/data/user/registrationView.html'
       })
       .when('/admin', {
         templateUrl: 'views/admin.html'
