@@ -123,6 +123,7 @@ angular.module('app')
                                 } else {
                                     MonsterService.addMonster(that.monster);
                                     setFormMonster($scope.monsterSealed);
+                                    that.materials = [];
                                     that.isUpdating = false;
                                 }
                             });

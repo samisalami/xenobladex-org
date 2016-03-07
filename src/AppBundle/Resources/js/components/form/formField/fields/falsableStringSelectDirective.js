@@ -6,15 +6,14 @@ angular.module('app')
             restrict: 'E',
             link: function($scope, element, attrs) {
                 var prefix = attrs.falsableCheckboxPrefix;
-
-                if($scope.$parent.formFieldBind) {
-                    $scope.selectValue = $scope.$parent.formFieldBind.replace(prefix+' ', '');
-                    if($scope.$parent.formFieldBind.indexOf(prefix)!== -1) {
-                        $scope.checkboxValue = true;
-                    } else {
-                        $scope.checkboxValue = false;
+                var setFalsableStringSelect = function() {
+                    if($scope.$parent.formFieldBind) {
+                        $scope.selectValue = $scope.$parent.formFieldBind.replace(prefix+' ', '');
+                        $scope.checkboxValue = $scope.$parent.formFieldBind.indexOf(prefix) !== -1;
                     }
-                }
+                };
+
+                setFalsableStringSelect();
 
                 $scope.setModel = function() {
                     if($scope.selectValue) {

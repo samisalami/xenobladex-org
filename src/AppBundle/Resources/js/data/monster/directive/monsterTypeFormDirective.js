@@ -76,6 +76,7 @@ angular.module('app')
                             } else {
                                 MonsterTypeService.addMonsterType(that.monsterType);
                                 setFormMonsterType($scope.monsterTypeSealed);
+                                that.materials = [];
                                 that.isUpdating = false;
                             }
                         });
