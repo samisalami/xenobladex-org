@@ -19,6 +19,7 @@ angular.module('app')
                 'Noctilum',
                 'Oblivia',
                 'Sylvalum',
+                'Sonstige',
                 'Cauldros'
             ];
         }
