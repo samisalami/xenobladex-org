@@ -1,7 +1,32 @@
 <div class="admin-header">
     <loading-directive></loading-directive>
     <div class="col-xs-12 m-t-1">
-        <a href="/admin" class="btn btn-primary"><span class="fa fa-backward m-r-1"></span>Zurück zur Admin-Übersicht</a>
+        <ul class="nav nav-pills">
+            <li class="nav-item">
+                <a class="nav-link" href="/admin" highlighted-nav-item nav-item-route-equals="true" nav-item-class="active" nav-item-route="/admin">Admin</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/faq" highlighted-nav-item nav-item-class="active" nav-item-route="/admin/faq">FAQ</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/material" highlighted-nav-item nav-item-class="active" nav-item-route="/admin/material">Material</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/missionen" highlighted-nav-item nav-item-class="active" nav-item-route="/admin/missionen">Missionen</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/monster" highlighted-nav-item nav-item-route-equals="true" nav-item-class="active" nav-item-route="/admin/monster">Monster</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/monster_gattungen" highlighted-nav-item nav-item-class="active" nav-item-route="/admin/monster_gattungen">Gattungen</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/personen" highlighted-nav-item nav-item-class="active" nav-item-route="/admin/personen">Personen</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="/admin/sammelitems" highlighted-nav-item nav-item-class="active" nav-item-route="/admin/sammelitems">Sammelitems</a>
+            </li>
+        </ul>
         <div ng-show="flash.message" class="m-t-1" ng-class="{'alert alert-danger':!flash.success, 'alert alert-success':flash.success}">{{flash.message}}</div>
     </div>
 </div>
