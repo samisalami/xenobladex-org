@@ -1,0 +1,110 @@
+<header class="col-xs-12">
+    <h1>Kreaturen</h1>
+</header>
+<div class="col-xs-12">
+    <section class="content-box default-amrgin-b">
+        <p class="content-body">Kreaturen und so...</p>
+    </section>
+    <monster-view>
+        <div class="row m-b-1">
+            <div class="col-xs-12 col-lg-3 search-input m-b-1">
+                <input ng-model="namefilterValue" ng-model-options='{ debounce: 750 }' type="text" placeholder="Nach Namen filtern..." />
+                <span class="fa fa-search"></span>
+            </div>
+        </div>
+        <section class="collapse-grouped" ng-repeat="monsterGroup in groupedMonsters">
+            <h1>{{monsterGroup.name}}</h1>
+            <div class="collapse-item" ng-repeat="monster in monsterGroup.data | listFilter:namefilterValue:'name'| orderBy:['region','level_min',natural('name')]  track by monster.id">
+                <a href="#mission-{{$parent.$index}}-{{$index}}" class="collapsed content-box" onclick="return false;" data-toggle="collapse" aria-expanded="false">
+                    <strong>
+                        {{monster.name}}
+                        <span ng-if="monster.level_min || monster.level_max">
+                            (L {{monster.level_min}}<span ng-if="monster.level_max">-{{monster.level_max}}</span>)
+                        </span>
+                    </strong>
+                    <span class="collapse-arrow fa"></span>
+                    <ul class="collapse-notes">
+                        <li>
+                            {{monster.region}}
+                        </li>
+                        <li monster-type-by-id="{{monster.monster_type}}">
+                            {{monsterTypeById.name}}
+                        </li>
+                    </ul>
+                </a>
+                <div id="mission-{{$parent.$index}}-{{$index}}" class="content-box collapse">
+                    <div class="content-body">
+                        <div class="row">
+                            <div class="col-xs-12 col-md-6">
+                                <strong>Werte:</strong> <br/>
+                                {{monster.hp||'???'}} HP | {{monster.ep||'???'}} EP<br/>
+                                <br/>
+                                <strong>Wetter:</strong> {{monster.weather||'???'}}<br/>
+                                <strong>Zeit:</strong> {{monster.time||'???'}}<br/>
+                                <br/>
+                            </div>
+                            <div class="col-xs-12 col-md-6">
+                                <strong>Ortsbeschreibung:</strong><br/>
+                                {{monster.location_note||'???'}}<br/>
+                                <br/>
+                                <strong>Besonderheiten:</strong><br/>
+                                {{monster.description || '-'}}
+                            </div>
+                        </div>
+                        <div class="row m-t-1">
+                            <div class="col-xs-12">
+                                <strong>Resistenzen:</strong><br/>
+                                <div class="table-responsive">
+                                    <table class="table table-bordered">
+                                        <thead>
+                                        <tr>
+                                            <th>Physisch</th>
+                                            <th>Laser</th>
+                                            <th>Äther</th>
+                                            <th>Thermo</th>
+                                            <th>Elektro</th>
+                                            <th>Gravit</th>
+                                        </tr>
+                                        </thead>
+                                        <tbody>
+                                        <tr>
+                                            <td>
+                                                {{monster.res_physic}}
+                                            </td>
+                                            <td>
+                                                {{monster.res_laser}}
+                                            </td>
+                                            <td>
+                                                {{monster.res_ether}}
+                                            </td>
+                                            <td>
+                                                {{monster.res_thermo}}
+                                            </td>
+                                            <td>
+                                                {{monster.res_electric}}
+                                            </td>
+                                            <td>
+                                                {{monster.res_gravit}}
+                                            </td>
+                                        </tr>
+                                        </tbody>
+                                    </table>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row m-t-1">
+                            <div class="col-xs-12">
+                                <strong>Material:</strong>
+                                <ul>
+                                    <li style="float: left; max-width: 50%;" ng-repeat="material in monster.materials" material-by-id="{{material}}">
+                                        <a target="_blank" ng-href="/material#material-{{material}}">{{materialById.name}}</a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </monster-view>
+</div>

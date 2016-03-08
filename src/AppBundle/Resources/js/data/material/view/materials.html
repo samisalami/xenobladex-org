@@ -23,6 +23,7 @@ Sobald wir die Kreaturen veröffentlichen, werden diese dann hier auch verknüpf
     </div>
     <div class="materials-list row">
         <div class="material-item col-xs-12 m-b-1" ng-class="{'clear-both': $index%2==0}" ng-repeat="material in materials | filter:{name: materialfilterValue} | listFilter:monsterTypefilterValue:'monster_types':'name'| orderBy:'name' track by material.id">
+            <a name="material-{{material.id}}"></a>
             <div class="content-box p-b-1">
                 <header>
                     <h5>{{material.name}}</h5>
