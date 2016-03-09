@@ -55,14 +55,3 @@
     }
   }
 }
-
-.admin-header {
-  #loading-modal {
-    .modal-dialog {
-      position: absolute;
-      @extend .vertical-align;
-      left: 50%;
-      margin-left: -300px;
-    }
-  }
-}
