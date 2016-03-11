@@ -6,7 +6,7 @@
             <div class="alert alert-warning m-y-2" ng-show="vm.deletedMonster">
                 <a ng-click="vm.addDeletedMonster()" href="#">Gelöschte Zeile wiederherstellen</a>
             </div>
-            <a href="/admin/monster/was-fehlt" class="btn-primary btn">Welche Daten fehlen?</a>
+            <a href="/admin/kreaturen/was-fehlt" class="btn-primary btn">Welche Daten fehlen?</a>
             <input type="text" class="form-control text m-y-1" ng-model="nameFilter" ng-model-options='{ debounce: 200 }' placeholder="Filtern..." />
             <collapsed-table-list add-form="true">
                 <monster-form monster="newMonster">

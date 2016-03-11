@@ -70,10 +70,10 @@ function config($routeProvider, $locationProvider) {
       //.when('/admin/kartenpunkte', {
       //  templateUrl: 'views/admin_mapmarkers.html'
       //})
-      .when('/admin/monster', {
+      .when('/admin/kreaturen', {
         templateUrl: 'js/data/monster/view/admin_monsters.html'
       })
-      .when('/admin/monster/was-fehlt', {
+      .when('/admin/kreaturen/was-fehlt', {
         templateUrl: 'js/data/monster/view/admin_monsters_missing.html'
       })
       .when('/admin/monster_gattungen', {
