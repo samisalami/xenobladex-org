@@ -132,7 +132,7 @@ Die Kreaturen sind innerhalb dieser Trennung den Gattungen (wie in der Enzyklop√
                                 <strong ng-if="monster.materials.length>0">Material:</strong>
                                 <ul>
                                     <li ng-repeat="material in monster.materials" material-by-id="{{material}}">
-                                        <a target="_blank" href="/material#material-{{material}}">{{materialById.name}}</a>
+                                        <a ng-href="/material#material-{{material}}">{{materialById.name}}</a>
                                     </li>
                                 </ul>
                             </div>
