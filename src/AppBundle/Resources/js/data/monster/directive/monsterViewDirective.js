@@ -1,11 +1,12 @@
 'use strict';
 
 angular.module('app')
-    .directive('monsterView',['MonsterService','MonsterTypeService','$filter', function(MonsterService, MonsterTypeService, $filter) {
+    .directive('monsterView',['MonsterService','MonsterTypeService','$filter', '$timeout', '$location', '$anchorScroll', function(MonsterService, MonsterTypeService, $filter, $timeout, $location, $anchorScroll) {
         return {
             restrict: 'E',
             controller: ['$scope',function($scope) {
                 var that = this;
+                that.scrolled = false;
                 that.monsters = [];
                 that.monsterTypes = [];
                 init();
@@ -40,14 +41,25 @@ angular.module('app')
 
                         $scope.groupedMonsters = [{
                             name: 'Tyrannen',
+                            hide: false,
                             data: unique_monsters
                         }, {
                             name: 'Handlungsgegner',
+                            hide: false,
                             data: story_monsters
                         }, {
                             name: 'Kreaturen',
+                            hide: false,
                             data: usual_monsters
                         }];
+
+                        var promise = $timeout(function(){
+                            if($location.hash() && !that.scrolled) {
+                                that.scrolled = true;
+                                $anchorScroll();
+                            }
+                            $timeout.cancel(promise);
+                        },0);
                     }
                 }
             }]

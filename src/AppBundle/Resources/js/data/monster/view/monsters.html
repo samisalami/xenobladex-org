@@ -3,30 +3,53 @@
 </header>
 <div class="col-xs-12">
     <section class="content-box default-amrgin-b">
-        <p class="content-body">Kreaturen und so...</p>
+        <p class="content-body">Hier findet ihr die Kreaturen, aufgeteilt nach Tyrannen, Handlungsgegner (beinhaltet Gegner aus Missionen und Handlung) und normale Kreaturen.
+Die Kreaturen sind innerhalb dieser Trennung den Gattungen (wie in der Enzyklopädie im Spiel) nach sortiert.</p>
     </section>
     <monster-view>
         <div class="row m-b-1">
             <div class="col-xs-12 col-lg-3 search-input m-b-1">
-                <input ng-model="namefilterValue" ng-model-options='{ debounce: 750 }' type="text" placeholder="Nach Namen filtern..." />
+                <input ng-model="filter.name" ng-model-options='{ debounce: 750 }' type="text" placeholder="Nach Namen filtern..." />
                 <span class="fa fa-search"></span>
             </div>
             <div class="col-xs-12 col-lg-3 search-input m-b-1">
-                <input ng-model="regionfilterValue" ng-model-options='{ debounce: 750 }' type="text" placeholder="Nach Region filtern..." />
+                <input ng-model="filter.region" ng-model-options='{ debounce: 750 }' type="text" placeholder="Nach Region filtern..." />
                 <span class="fa fa-search"></span>
             </div>
             <div class="col-xs-12 col-lg-3 search-input m-b-1">
-                <input ng-model="monstertypefilterValue" ng-model-options='{ debounce: 750 }' type="text" placeholder="Nach Gattung filtern..." />
+                <input ng-model="filter.monster_type.name" ng-model-options='{ debounce: 750 }' type="text" placeholder="Nach Gattung filtern..." />
                 <span class="fa fa-search"></span>
             </div>
             <div class="col-xs-12 col-lg-3 search-input m-b-1">
                 <input ng-model="levelfilterValue" ng-model-options='{ debounce: 750 }' type="text" placeholder="Nach Level filtern..." />
                 <span class="fa fa-search"></span>
             </div>
+            <div class="col-xs-12 col-lg-3 m-b-1">
+                <div class="checkbox">
+                    <label>
+                        <input ng-model="groupedMonsters[0].hide" type="checkbox"/> Tyrannen ausblenden
+                    </label>
+                </div>
+            </div>
+            <div class="col-xs-12 col-lg-3 m-b-1">
+                <div class="checkbox">
+                    <label>
+                        <input ng-model="groupedMonsters[1].hide" type="checkbox"/> Handlungsgegner ausblenden
+                    </label>
+                </div>
+            </div>
+            <div class="col-xs-12 col-lg-3 m-b-1">
+                <div class="checkbox">
+                    <label>
+                        <input ng-model="groupedMonsters[2].hide" type="checkbox"/> Normale Kreaturen ausblenden
+                    </label>
+                </div>
+            </div>
         </div>
-        <section class="collapse-grouped" ng-repeat="monsterGroup in groupedMonsters">
+        <section class="collapse-grouped" ng-repeat="monsterGroup in groupedMonsters" ng-if="monsterGroup.hide !== true">
             <h1>{{monsterGroup.name}}</h1>
-            <div class="collapse-item" ng-repeat="monster in monsterGroup.data | listFilter:namefilterValue:'name'| listFilter:regionfilterValue:'region' | listFilter:monstertypefilterValue:'monster_type':'name' | range:levelfilterValue:'level_min':'level_max' | orderBy:['monster_type_prio', natural('name')]  track by monster.id">
+            <div class="collapse-item" ng-repeat="monster in monsterGroup.data | filter:filter | range:levelfilterValue:'level_min':'level_max' | orderBy:['monster_type_prio', natural('name')]  track by monster.id">
+                <a name="monster-{{monster.id}}"></a>
                 <a href="#mission-{{$parent.$index}}-{{$index}}" class="collapsed content-box" onclick="return false;" data-toggle="collapse" aria-expanded="false">
                     <strong>
                         {{monster.name}}
@@ -109,7 +132,7 @@
                                 <strong ng-if="monster.materials.length>0">Material:</strong>
                                 <ul>
                                     <li ng-repeat="material in monster.materials" material-by-id="{{material}}">
-                                        <a target="_blank" ng-href="/material#material-{{material}}">{{materialById.name}}</a>
+                                        <a target="_blank" href="/material#material-{{material}}">{{materialById.name}}</a>
                                     </li>
                                 </ul>
                             </div>

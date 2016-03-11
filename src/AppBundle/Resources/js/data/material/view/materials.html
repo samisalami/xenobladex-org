@@ -48,7 +48,7 @@ Sobald wir die Kreaturen veröffentlichen, werden diese dann hier auch verknüpf
                         <strong ng-if="material.monsters.length>0">Kreaturen:</strong>
                         <ul>
                             <li ng-repeat="monster in material.monsters" monster-by-id="{{monster}}">
-                                {{monsterById.name}}
+                                <a target="_blank" href="/kreaturen#monster-{{monster}}">{{monsterById.name}}</a>
                             </li>
                         </ul>
                     </div>

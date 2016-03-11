@@ -100,8 +100,8 @@ function config($routeProvider, $locationProvider) {
   $locationProvider.html5Mode(true);
 }
 
-run.$inject = ['$rootScope', '$location', '$cookieStore', '$http', 'editableOptions'];
-function run($rootScope, $location, $cookieStore, $http, editableOptions) {
+run.$inject = ['$rootScope', '$location', '$anchorScroll', '$cookieStore', '$http', 'editableOptions'];
+function run($rootScope, $location, $anchorScroll, $cookieStore, $http, editableOptions) {
     editableOptions.theme = 'bs3';
 
     // keep user logged in after page refresh
@@ -122,5 +122,5 @@ function run($rootScope, $location, $cookieStore, $http, editableOptions) {
         if(!restrictedPage) {
             $rootScope.frontend = true;
         }
-  });
+    });
 }
