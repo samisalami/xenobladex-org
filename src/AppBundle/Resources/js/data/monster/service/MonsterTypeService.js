@@ -105,6 +105,8 @@ angular.module('app')
             var url = Routing.generate('update_monster_type', {id: monsterType.id});
             return $http.put(url, monsterType)
                 .then(function(response){
+                    var index = monsterTypes.indexOf($filter('byId')(monsterTypes, monsterType.id));
+                    monsterTypes.splice(index, 1, response.data);
                     notifyMonsterTypesChanged(monsterTypes);
                     return response;
                   });

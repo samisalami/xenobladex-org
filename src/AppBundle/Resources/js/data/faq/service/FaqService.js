@@ -106,6 +106,8 @@ function FaqService($http, $filter) {
         var url = Routing.generate('update_faq', {id: faq.id});
         return $http.put(url, faq)
             .then(function(response){
+                var index = faqs.indexOf($filter('byId')(faqs, faq.id));
+                faqs.splice(index, 1, response.data);
                 notifyFaqsChanged(faqs);
                 return response;
             });

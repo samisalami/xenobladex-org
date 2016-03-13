@@ -160,6 +160,8 @@ function MonsterService($http, $filter) {
         var url = Routing.generate('update_monster', {id: monster.id});
         return $http.put(url, monster)
             .then(function(response){
+                var index = monsters.indexOf($filter('byId')(monsters, monster.id));
+                monsters.splice(index, 1, response.data);
                 notifyMonstersChanged(monsters);
                 return response;
             });

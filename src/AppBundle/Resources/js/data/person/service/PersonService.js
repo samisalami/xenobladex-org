@@ -121,6 +121,8 @@ function PersonService($http, $filter) {
         var url = Routing.generate('update_person', {id: person.id});
         return $http.put(url, person)
             .then(function(response){
+                var index = persons.indexOf($filter('byId')(persons, person.id));
+                persons.splice(index, 1, response.data);
                 notifyPersonsChanged(persons);
                 return response;
             });

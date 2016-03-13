@@ -106,6 +106,8 @@ function CollectibleService($http, $filter) {
         var url = Routing.generate('update_collectible', {id: collectible.id});
         return $http.put(url, collectible)
             .then(function(response){
+                var index = collectibles.indexOf($filter('byId')(collectibles, collectible.id));
+                collectibles.splice(index, 1, response.data);
                 notifyCollectiblesChanged(collectibles);
                 return response;
             });

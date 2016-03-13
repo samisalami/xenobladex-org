@@ -121,6 +121,8 @@ function MaterialService($http, $filter) {
         var url = Routing.generate('update_material', {id: material.id});
         return $http.put(url, material)
             .then(function(response){
+                var index = materials.indexOf($filter('byId')(materials, material.id));
+                materials.splice(index, 1, response.data);
                 notifyMaterialsChanged(materials);
                 return response;
             });

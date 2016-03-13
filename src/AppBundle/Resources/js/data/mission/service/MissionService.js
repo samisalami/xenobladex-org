@@ -141,6 +141,8 @@ angular.module('app')
             var url = Routing.generate('update_mission', {id: mission.id});
             return $http.put(url, mission)
                 .then(function(response){
+                    var index = missions.indexOf($filter('byId')(missions, mission.id));
+                    missions.splice(index, 1, response.data);
                     notifyMissionsChanged(missions);
                     return response;
                   });
