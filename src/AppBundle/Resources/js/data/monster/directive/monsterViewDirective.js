@@ -31,8 +31,11 @@ angular.module('app')
                 function setViewData() {
                     if(that.monsters && that.monsterTypes) {
                         var monsters = that.monsters;
+
                         monsters.forEach(function(monster, index){
-                            monster.monster_type = $filter('byId')(that.monsterTypes, monster.monster_type) || null;
+                            if($.isNumeric(monster.monster_type)) {
+                                monster.monster_type = $filter('byId')(that.monsterTypes, monster.monster_type) || null;
+                            }
                         });
 
                         var usual_monsters = $filter('filter')(monsters, {is_story:false, is_unique:false});
