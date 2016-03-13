@@ -24,21 +24,23 @@ Die Kreaturen sind innerhalb dieser Trennung den Gattungen (wie in der EnzyklopÃ
                 <input ng-model="levelfilterValue" ng-model-options='{ debounce: 750 }' type="text" placeholder="Nach Level filtern..." />
                 <span class="fa fa-search"></span>
             </div>
-            <div class="col-xs-12 col-lg-3 m-b-1">
+        </div>
+        <div class="row m-b-1 p-y-1 content-box">
+            <div class="col-xs-12 col-lg-3">
                 <div class="checkbox">
                     <label>
                         <input ng-model="groupedMonsters[0].hide" type="checkbox"/> Tyrannen ausblenden
                     </label>
                 </div>
             </div>
-            <div class="col-xs-12 col-lg-3 m-b-1">
+            <div class="col-xs-12 col-lg-3">
                 <div class="checkbox">
                     <label>
                         <input ng-model="groupedMonsters[1].hide" type="checkbox"/> Handlungsgegner ausblenden
                     </label>
                 </div>
             </div>
-            <div class="col-xs-12 col-lg-3 m-b-1">
+            <div class="col-xs-12 col-lg-3">
                 <div class="checkbox">
                     <label>
                         <input ng-model="groupedMonsters[2].hide" type="checkbox"/> Normale Kreaturen ausblenden
