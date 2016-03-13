@@ -3,9 +3,9 @@
 angular.module('app')
     .factory('CollectibleService', CollectibleService);
 
-CollectibleService.$inject = ['$http'];
+CollectibleService.$inject = ['$http', '$filter'];
 
-function CollectibleService($http) {
+function CollectibleService($http, $filter) {
     var onCollectiblesChangedCallbacks = [];
     var onCollectibleDeletedCallbacks = [];
     var collectibles = null;
@@ -96,7 +96,8 @@ function CollectibleService($http) {
         var url = Routing.generate('add_collectible');
         return $http.post(url, collectible)
             .then(function(response){
-                loadCollectibles();
+                collectibles.push(response.data);
+                notifyCollectiblesChanged(collectibles);
                 return response;
             });
     }
@@ -105,7 +106,7 @@ function CollectibleService($http) {
         var url = Routing.generate('update_collectible', {id: collectible.id});
         return $http.put(url, collectible)
             .then(function(response){
-                loadCollectibles();
+                notifyCollectiblesChanged(collectibles);
                 return response;
             });
     }
@@ -114,7 +115,9 @@ function CollectibleService($http) {
         var url = Routing.generate('delete_collectible', {id: collectible.id});
         return $http.delete(url)
             .then(function(response){
-                loadCollectibles();
+                var index = collectibles.indexOf($filter('byId')(collectibles, collectible.id));
+                collectibles.splice(index, 1);
+                notifyCollectiblesChanged(collectibles);
                 notifyCollectibleDeleted(collectible);
                 return response;
             });

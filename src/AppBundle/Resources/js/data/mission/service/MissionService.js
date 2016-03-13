@@ -3,9 +3,9 @@
 angular.module('app')
     .factory('MissionService', MissionService);
 
-    MissionService.$inject = ['$http'];
+    MissionService.$inject = ['$http', '$filter'];
 
-    function MissionService($http) {
+    function MissionService($http, $filter) {
         var onMissionsChangedCallbacks = [];
         var onMissionDeletedCallbacks = [];
         var missions = null;
@@ -131,7 +131,8 @@ angular.module('app')
             var url = Routing.generate('add_mission');
             return $http.post(url, mission)
                 .then(function(response){
-                    loadMissions();
+                    missions.push(response.data);
+                    notifyMissionsChanged(missions);
                     return response;
                 });
         }
@@ -140,7 +141,7 @@ angular.module('app')
             var url = Routing.generate('update_mission', {id: mission.id});
             return $http.put(url, mission)
                 .then(function(response){
-                    loadMissions();
+                    notifyMissionsChanged(missions);
                     return response;
                   });
         }
@@ -149,7 +150,9 @@ angular.module('app')
             var url = Routing.generate('delete_mission', {id: mission.id});
             return $http.delete(url)
                 .then(function(response){
-                    loadMissions();
+                    var index = missions.indexOf($filter('byId')(missions, mission.id));
+                    missions.splice(index, 1);
+                    notifyMissionsChanged(missions);
                     notifyMissionDeleted(mission);
                     return response;
                 });

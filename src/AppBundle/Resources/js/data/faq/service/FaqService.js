@@ -3,9 +3,9 @@
 angular.module('app')
     .factory('FaqService', FaqService);
 
-FaqService.$inject = ['$http'];
+FaqService.$inject = ['$http', '$filter'];
 
-function FaqService($http) {
+function FaqService($http, $filter) {
     var onFaqsChangedCallbacks = [];
     var onFaqDeletedCallbacks = [];
     var faqs = null;
@@ -96,7 +96,8 @@ function FaqService($http) {
         var url = Routing.generate('add_faq');
         return $http.post(url, faq)
             .then(function(response){
-                loadFaqs();
+                faqs.push(response.data);
+                notifyFaqsChanged(faqs);
                 return response;
             });
     }
@@ -105,7 +106,7 @@ function FaqService($http) {
         var url = Routing.generate('update_faq', {id: faq.id});
         return $http.put(url, faq)
             .then(function(response){
-                loadFaqs();
+                notifyFaqsChanged(faqs);
                 return response;
             });
     }
@@ -114,7 +115,9 @@ function FaqService($http) {
         var url = Routing.generate('delete_faq', {id: faq.id});
         return $http.delete(url)
             .then(function(response){
-                loadFaqs();
+                var index = faqs.indexOf($filter('byId')(faqs, faq.id));
+                faqs.splice(index, 1);
+                notifyFaqsChanged(faqs);
                 notifyFaqDeleted(faq);
                 return response;
             });

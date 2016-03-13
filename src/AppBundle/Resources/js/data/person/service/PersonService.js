@@ -3,9 +3,9 @@
 angular.module('app')
     .factory('PersonService', PersonService);
         
-PersonService.$inject = ['$http'];
+PersonService.$inject = ['$http', '$filter'];
 
-function PersonService($http) {
+function PersonService($http, $filter) {
     var onPersonsChangedCallbacks = [];
     var onPersonDeletedCallbacks = [];
     var persons = null;
@@ -111,7 +111,8 @@ function PersonService($http) {
         var url = Routing.generate('add_person');
         return $http.post(url, person)
             .then(function(response){
-                loadPersons();
+                persons.push(response.data);
+                notifyPersonsChanged(persons);
                 return response;
             });
     }
@@ -120,7 +121,7 @@ function PersonService($http) {
         var url = Routing.generate('update_person', {id: person.id});
         return $http.put(url, person)
             .then(function(response){
-                loadPersons();
+                notifyPersonsChanged(persons);
                 return response;
             });
     }
@@ -129,7 +130,9 @@ function PersonService($http) {
         var url = Routing.generate('delete_person', {id: person.id});
         return $http.delete(url)
             .then(function(response){
-                loadPersons();
+                var index = persons.indexOf($filter('byId')(persons, person.id));
+                persons.splice(index, 1);
+                notifyPersonsChanged(persons);
                 notifyPersonDeleted(person);
                 return response;
             });

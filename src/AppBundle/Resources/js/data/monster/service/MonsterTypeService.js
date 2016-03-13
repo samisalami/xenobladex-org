@@ -3,9 +3,9 @@
 angular.module('app')
     .factory('MonsterTypeService', MonsterTypeService);
 
-    MonsterTypeService.$inject = ['$http'];
+    MonsterTypeService.$inject = ['$http', '$filter'];
 
-    function MonsterTypeService($http) {
+    function MonsterTypeService($http, $filter) {
         var onMonsterTypesChangedCallbacks = [];
         var onMonsterTypeDeletedCallbacks = [];
         var monsterTypes = null;
@@ -95,7 +95,8 @@ angular.module('app')
             var url = Routing.generate('add_monster_type');
             return $http.post(url, monsterType)
                 .then(function(response){
-                    loadMonsterTypes();
+                    monsterTypes.push(response.data);
+                    notifyMonsterTypesChanged(monsterTypes);
                     return response;
                 });
         }
@@ -104,7 +105,7 @@ angular.module('app')
             var url = Routing.generate('update_monster_type', {id: monsterType.id});
             return $http.put(url, monsterType)
                 .then(function(response){
-                    loadMonsterTypes();
+                    notifyMonsterTypesChanged(monsterTypes);
                     return response;
                   });
         }
@@ -113,7 +114,9 @@ angular.module('app')
             var url = Routing.generate('delete_monster_type', {id: monsterType.id});
             return $http.delete(url)
                 .then(function(response){
-                    loadMonsterTypes();
+                    var index = monsterTypes.indexOf($filter('byId')(monsterTypes, monsterType.id));
+                    monsterTypes.splice(index, 1);
+                    notifyMonsterTypesChanged(monsterTypes);
                     notifyMonsterTypeDeleted(monsterType);
                     return response;
                 });

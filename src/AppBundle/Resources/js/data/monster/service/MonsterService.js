@@ -3,9 +3,9 @@
 angular.module('app')
     .factory('MonsterService', MonsterService);
 
-MonsterService.$inject = ['$http'];
+MonsterService.$inject = ['$http', '$filter'];
 
-function MonsterService($http) {
+function MonsterService($http, $filter) {
     var onMonstersChangedCallbacks = [];
     var onMonsterDeletedCallbacks = [];
     var monsters = null;
@@ -150,7 +150,8 @@ function MonsterService($http) {
         var url = Routing.generate('add_monster');
         return $http.post(url, monster)
             .then(function(response){
-                loadMonsters();
+                monsters.push(response.data);
+                notifyMonstersChanged(monsters);
                 return response;
             });
     }
@@ -159,7 +160,7 @@ function MonsterService($http) {
         var url = Routing.generate('update_monster', {id: monster.id});
         return $http.put(url, monster)
             .then(function(response){
-                loadMonsters();
+                notifyMonstersChanged(monsters);
                 return response;
             });
     }
@@ -168,7 +169,9 @@ function MonsterService($http) {
         var url = Routing.generate('delete_monster', {id: monster.id});
         return $http.delete(url)
             .then(function(response){
-                loadMonsters();
+                var index = monsters.indexOf($filter('byId')(monsters, monster.id));
+                monsters.splice(index, 1);
+                notifyMonstersChanged(monsters);
                 notifyMonsterDeleted(monster);
                 return response;
             });

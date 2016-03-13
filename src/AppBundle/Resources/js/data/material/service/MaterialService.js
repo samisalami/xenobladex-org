@@ -3,9 +3,9 @@
 angular.module('app')
     .factory('MaterialService', MaterialService);
 
-MaterialService.$inject = ['$http'];
+MaterialService.$inject = ['$http', '$filter'];
 
-function MaterialService($http) {
+function MaterialService($http, $filter) {
     var onMaterialsChangedCallbacks = [];
     var onMaterialDeletedCallbacks = [];
     var materials = null;
@@ -111,7 +111,8 @@ function MaterialService($http) {
         var url = Routing.generate('add_material');
         return $http.post(url, material)
             .then(function(response){
-                loadMaterials();
+                materials.push(response.data);
+                notifyMaterialsChanged(materials);
                 return response;
             });
     }
@@ -120,7 +121,7 @@ function MaterialService($http) {
         var url = Routing.generate('update_material', {id: material.id});
         return $http.put(url, material)
             .then(function(response){
-                loadMaterials();
+                notifyMaterialsChanged(materials);
                 return response;
             });
     }
@@ -129,7 +130,9 @@ function MaterialService($http) {
         var url = Routing.generate('delete_material', {id: material.id});
         return $http.delete(url)
             .then(function(response){
-                loadMaterials();
+                var index = materials.indexOf($filter('byId')(materials, material.id));
+                materials.splice(index, 1);
+                notifyMaterialsChanged(materials);
                 notifyMaterialDeleted(material);
                 return response;
             });
