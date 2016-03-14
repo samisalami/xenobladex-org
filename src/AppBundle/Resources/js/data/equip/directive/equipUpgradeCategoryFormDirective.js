@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app')
-    .directive('equipUpgradeCategoryForm',['EquipUpgradeCategoryService', function(EquipUpgradeCategoryService) {
+    .directive('equipUpgradeCategoryForm',['EquipUpgradeCategoryService', 'EquipUpgradeTypeService', function(EquipUpgradeCategoryService, EquipUpgradeTypeService) {
         return {
             restrict: 'E',
             replace: false,
@@ -16,6 +16,11 @@ angular.module('app')
 
                 function init() {
                     setFormEquipUpgradeCategory($scope.equipUpgradeCategorySealed);
+                    setEquipUpgradeTypes(EquipUpgradeTypeService.EquipUpgradeTypes);
+                }
+
+                function setEquipUpgradeTypes(equipUpgradeTypes) {
+                    that.equipUpgradeTypes = equipUpgradeTypes;
                 }
 
                 function setFormEquipUpgradeCategory(equipUpgradeCategory) {

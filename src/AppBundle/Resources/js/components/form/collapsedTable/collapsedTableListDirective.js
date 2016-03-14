@@ -8,6 +8,7 @@ angular.module('app')
             transclude: true,
             templateUrl: 'js/components/form/collapsedTable/collapsedTableListView.html',
             link: function($scope, $element, attrs) {
+                $scope.tableListLabel = attrs.tableListLabel;
                 $scope.visibleElements = [];
 
                 if(attrs.addForm) {

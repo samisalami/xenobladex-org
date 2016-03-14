@@ -26,14 +26,21 @@ class EquipUpgradeCategory
      *
      * @ORM\Column(name="name", type="string", length=255)
      */
-    private $name;
+    private $name="";
 
     /**
      * @var string
      *
      * @ORM\Column(name="description", type="text")
      */
-    private $description;
+    private $description="";
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="type", type="string", length=255)
+     */
+    private $type="Waffen";
 
 
     /**
@@ -90,5 +97,23 @@ class EquipUpgradeCategory
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * @return string
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * @param string $type
+     * @return EquipUpgradeCategory
+     */
+    public function setType($type)
+    {
+        $this->type = $type;
+        return $this;
     }
 }

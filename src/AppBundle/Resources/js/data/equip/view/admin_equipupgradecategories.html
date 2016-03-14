@@ -11,7 +11,7 @@
                 <equip-upgrade-category-form equip-upgrade-category="newEquipUpgradeCategory">
                 </equip-upgrade-category-form>
             </collapsed-table-list>
-            <collapsed-table-list ng-repeat="item in vm.equipUpgradeCategories | listFilter:nameFilter:'name' track by item.id" ng-if="vm.equipUpgradeCategories">
+            <collapsed-table-list ng-repeat="item in vm.equipUpgradeCategories | listFilter:nameFilter:'name' track by item.id" table-list-label="{{item.name}} ({{item.type}})" ng-if="vm.equipUpgradeCategories">
                 <equip-upgrade-category-form equip-upgrade-category="item">
                 </equip-upgrade-category-form>
             </collapsed-table-list>

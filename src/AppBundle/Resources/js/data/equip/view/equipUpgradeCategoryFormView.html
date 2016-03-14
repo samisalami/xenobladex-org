@@ -14,6 +14,11 @@
         <strong>Beschreibung:</strong>
         <form-field form-field-bind="form.equipUpgradeCategory.description" form-template="textarea"></form-field>
     </div>
+    <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <span class="info-icon text-primary" bs-tooltip bs-tooltip-title="Standardwert 'Waffen'"></span>
+        <strong>Typ:</strong>
+        <form-field form-field-bind="form.equipUpgradeCategory.type" form-template="stringSelect" form-select-options="form.equipUpgradeTypes"></form-field>
+    </div>
     <div class="row">
         <div class="col-xs-12 p-r-0">
             <input type="submit" href="#" class="btn btn-success pull-right" value="Speichern" />

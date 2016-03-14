@@ -26,11 +26,13 @@ function EquipUpgradeCategoryService($http, $filter) {
     function EquipUpgradeCategory(
         id,
         name,
-        description)
+        description,
+        type)
     {
         this.id = id;
         this.name = name;
         this.description = description;
+        this.type = type;
 
         Object.seal(this);
     }
@@ -48,7 +50,8 @@ function EquipUpgradeCategoryService($http, $filter) {
             return new EquipUpgradeCategory(
                 equipUpgradeCategory['id'],
                 equipUpgradeCategory['name'],
-                equipUpgradeCategory['description']
+                equipUpgradeCategory['description'],
+                equipUpgradeCategory['type']
             );
         }
     }
