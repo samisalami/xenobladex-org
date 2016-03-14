@@ -11,7 +11,7 @@ angular.module('app')
                 'Waffen',
                 'Rüstungen',
                 'Skell-Waffen',
-                'Skell-Rüstungen',
+                'Skell-Panzerungen',
                 'Skell-Zusätze'
             ];
         }
