@@ -94,6 +94,9 @@ function config($routeProvider, $locationProvider) {
       .when('/admin/sammelitems/was-fehlt', {
           templateUrl: 'js/data/collectible/view/admin_collectibles_missing.html'
       })
+      .when('/admin/erweiterungen', {
+          templateUrl: 'js/data/equip/view/admin_equipupgrades.html'
+      })
       .when('/admin/erweiterungen/kategorien', {
           templateUrl: 'js/data/equip/view/admin_equipupgradecategories.html'
       })

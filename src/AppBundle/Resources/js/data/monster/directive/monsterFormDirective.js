@@ -119,10 +119,14 @@ angular.module('app')
                             setMaterials(function(){
                                 if(that.monster.id) {
                                     MonsterService.updateMonster(that.monster);
+                                    setMonsterTypeData(that.monsterTypes);
+                                    setMaterialData(that.materialsData);
                                     that.isUpdating = false;
                                 } else {
                                     MonsterService.addMonster(that.monster);
                                     setFormMonster($scope.monsterSealed);
+                                    setMonsterTypeData(that.monsterTypes);
+                                    setMaterialData(that.materialsData);
                                     that.materials = [];
                                     that.isUpdating = false;
                                 }

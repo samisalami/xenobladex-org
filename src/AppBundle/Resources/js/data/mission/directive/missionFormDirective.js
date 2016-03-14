@@ -74,10 +74,12 @@ angular.module('app')
                         setPerson(function () {
                             if (that.mission.id) {
                                 MissionService.updateMission(that.mission);
+                                setPersonData(that.persons);
                                 that.isUpdating = false;
                             } else {
                                 MissionService.addMission(that.mission);
                                 setFormMission($scope.missionSealed);
+                                setPersonData(that.persons);
                                 that.isUpdating = false;
                             }
                         });

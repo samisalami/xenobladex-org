@@ -85,6 +85,13 @@ collectible:
     options:
         expose: true
 
+equip_upgrade:
+    prefix: /xenobladex
+    type:     rest
+    resource: "@AppBundle/Controller/EquipUpgradeController.php"
+    options:
+        expose: true
+
 equip_upgrade_category:
     prefix: /xenobladex
     type:     rest

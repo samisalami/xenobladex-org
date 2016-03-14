@@ -72,10 +72,12 @@ angular.module('app')
                         setMaterials(function () {
                             if (that.monsterType.id) {
                                 MonsterTypeService.updateMonsterType(that.monsterType);
+                                setMaterialData(that.materialsData);
                                 that.isUpdating = false;
                             } else {
                                 MonsterTypeService.addMonsterType(that.monsterType);
                                 setFormMonsterType($scope.monsterTypeSealed);
+                                setMaterialData(that.materialsData);
                                 that.materials = [];
                                 that.isUpdating = false;
                             }

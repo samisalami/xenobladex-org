@@ -1,0 +1,27 @@
+<div class="row">
+    <div class="col-md-offset-9 col-md-3 col-xs-offset-6 col-xs-6 p-r-0 p-b-1">
+        <button href="#" class="btn btn-danger pull-right" ng-click="form.deleteEquipUpgrade()">
+            Löschen
+        </button>
+    </div>
+</div>
+<form ng-submit="form.updateEquipUpgrade()">
+    <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <strong>Name:</strong>
+        <form-field form-field-bind="form.equipUpgrade.name" form-template="inputText"></form-field>
+    </div>
+    <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <strong>Beschreibung:</strong>
+        <form-field form-field-bind="form.equipUpgrade.description" form-template="textarea"></form-field>
+    </div>
+    <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <span class="info-icon text-primary" bs-tooltip bs-tooltip-title="Standardwert 'Waffen'"></span>
+        <strong>Kategorie:</strong>
+        <form-field ng-if="form.equipUpgradeCategories" form-field-label="type" form-field-bind="form.equipUpgradeCategory" form-select-options="form.equipUpgradeCategories" form-template="customAutoCompleteSelect"></form-field>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 p-r-0">
+            <input type="submit" href="#" class="btn btn-success pull-right" value="Speichern" />
+        </div>
+    </div>
+</form>

@@ -1,14 +1,15 @@
 'use strict';
 
 angular.module('app')
-    .directive('autocompleteSelect',['$timeout',function($timeout) {
+    .directive('autocompleteSelect',['$timeout', '$filter',function($timeout, $filter) {
         return {
             templateUrl:'js/components/form/autocompleteSelect/autocompleteSelectView.html',
             replace: true,
             scope: {
                 autocompleteList: '=',
                 autocompleteBind: '=',
-                autocompleteCallback: '&'
+                autocompleteCallback: '&',
+                autocompleteLabel: '@'
             },
             link: function($scope, element, attrs) {
                 var domIndex = angular.element('.autocomplete-select-input').length;
@@ -44,7 +45,17 @@ angular.module('app')
                             $timeout.cancel(promise);
                         }, 100);
                     }
-                });
+                }).data("ui-autocomplete")._renderItem = function(ul, item){
+                    var label = '';
+                    if($scope.autocompleteLabel) {
+                        var listItem = $filter('byId')($scope.autocompleteList, item.id);
+                        label = '('+listItem[$scope.autocompleteLabel]+')';
+                    }
+                    return $('<li>')
+                        .data('item.autocomplete', item)
+                        .append(item.value + ' '+label)
+                        .appendTo(ul);
+                };
 
                 $scope.selectOption = function(listItem) {
                     $selectInputElm.val(listItem[$scope.autocompleteOptionName]);
