@@ -1,0 +1,20 @@
+<main role="main">
+    <div ng-include src="'views/_adminHeader.html'"></div>
+    <div class="admin-view col-md-12 p-y-1">
+        <h1>Erweiterungen - Kategorien</h1>
+        <equip-upgrade-category-admin>
+            <div class="alert alert-warning m-y-2" ng-show="vm.deletedEquipUpgradeCategory">
+                <a ng-click="vm.addDeletedEquipUpgradeCategory()" href="#">Gelöschte Zeile wiederherstellen</a>
+            </div>
+            <input type="text" class="form-control text m-y-1" ng-model="nameFilter" ng-model-options='{ debounce: 200 }' placeholder="Filtern..." />
+            <collapsed-table-list add-form="true">
+                <equip-upgrade-category-form equip-upgrade-category="newEquipUpgradeCategory">
+                </equip-upgrade-category-form>
+            </collapsed-table-list>
+            <collapsed-table-list ng-repeat="item in vm.equipUpgradeCategories | listFilter:nameFilter:'name' track by item.id" ng-if="vm.equipUpgradeCategories">
+                <equip-upgrade-category-form equip-upgrade-category="item">
+                </equip-upgrade-category-form>
+            </collapsed-table-list>
+        </equip-upgrade-category-admin>
+    </div>
+</main>
