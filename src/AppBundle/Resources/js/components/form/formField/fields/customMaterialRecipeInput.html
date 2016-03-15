@@ -1,0 +1,9 @@
+<multi-field>
+    <autocomplete-select autocomplete-list="formSelectOptions" autocomplete-option-name="name" autocomplete-option-value="id" autocomplete-bind="newItem" autocomplete-callback="formFieldCallback()"></autocomplete-select>
+    <button type="button" ng-click="multiFieldAdd()" class="btn btn-success m-y-1">Hinzufügen <span class="fa fa-plus-circle"></span></button>
+    <div class="clear-both" ng-repeat="materialRecipe in formFieldBind">
+        <autocomplete-select autocomplete-list="formSelectOptions" autocomplete-option-name="name" autocomplete-option-value="id" autocomplete-bind="materialRecipe.material" autocomplete-callback="formFieldCallback()"></autocomplete-select>
+        <form-field form-field-bind="materialRecipe.count" form-template="inputText"></form-field>
+        <button type="button" ng-click="multiFieldDelete(materialRecipe)" class="btn btn-danger pull-right m-b-1">Löschen <span class="fa fa-minus-circle"></span></button>
+    </div>
+</multi-field>

@@ -2,6 +2,7 @@
 
 namespace AppBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation\MaxDepth;
 use JMS\Serializer\Annotation\Type;
@@ -45,6 +46,21 @@ class EquipUpgrade
      */
     private $category;
 
+    /**
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="EquipUpgradeTier", mappedBy="equipUpgrade", fetch="EXTRA_LAZY")
+     * @Type("RelatedEntity<'AppBundle:EquipUpgradeTier'>")
+     * @MaxDepth(1)
+     */
+    private $equipUpgradeTiers;
+
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->equipUpgradeTiers = new ArrayCollection();
+    }
 
     /**
      * Get id
@@ -123,5 +139,38 @@ class EquipUpgrade
     public function getCategory()
     {
         return $this->category;
+    }
+
+    /**
+     * Add equipUpgradeTiers
+     *
+     * @param \AppBundle\Entity\EquipUpgradeTier $equipUpgradeTier
+     * @return EquipUpgrade
+     */
+    public function addEquipUpgradeTier(\AppBundle\Entity\EquipUpgradeTier $equipUpgradeTier)
+    {
+        $this->equipUpgradeTiers[] = $equipUpgradeTier;
+
+        return $this;
+    }
+
+    /**
+     * Remove equipUpgradeTiers
+     *
+     * @param \AppBundle\Entity\EquipUpgradeTier $equipUpgradeTier
+     */
+    public function removeEquipUpgradeTier(\AppBundle\Entity\EquipUpgradeTier $equipUpgradeTier)
+    {
+        $this->equipUpgradeTiers->removeElement($equipUpgradeTier);
+    }
+
+    /**
+     * Get equipUpgradeTiers
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getEquipUpgradeTiers()
+    {
+        return $this->equipUpgradeTiers;
     }
 }

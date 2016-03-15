@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app')
-    .directive('equipUpgradeForm',['EquipUpgradeService', 'EquipUpgradeCategoryService', '$filter', function(EquipUpgradeService, EquipUpgradeCategoryService, $filter) {
+    .directive('equipUpgradeForm',['EquipUpgradeService', 'EquipUpgradeCategoryService', 'EquipUpgradeTierService', '$filter', function(EquipUpgradeService, EquipUpgradeCategoryService, EquipUpgradeTierService, $filter) {
         return {
             restrict: 'E',
             replace: false,
@@ -18,11 +18,18 @@ angular.module('app')
                     setFormEquipUpgrade($scope.equipUpgradeSealed);
                     EquipUpgradeCategoryService.onEquipUpgradeCategoriesChanged(setEquipUpgradeCategoriesData);
                     setEquipUpgradeCategoriesData(EquipUpgradeCategoryService.getEquipUpgradeCategories());
+
+                    EquipUpgradeTierService.onEquipUpgradeTiersChanged(setEquipUpgradeTiers);
+                    setEquipUpgradeTiers(EquipUpgradeTierService.getEquipUpgradeTiers());
                 }
 
                 function setEquipUpgradeCategoriesData(equipUpgradeCategories) {
                     that.equipUpgradeCategories = equipUpgradeCategories;
                     that.equipUpgradeCategory = that.equipUpgrade.category ? $.extend({},$filter('byId')(equipUpgradeCategories, that.equipUpgrade.category),true) : {};
+                }
+
+                function setEquipUpgradeTiers(equipUpgradeTiers) {
+                    that.equipUpgradeTiers = equipUpgradeTiers;
                 }
 
                 function setFormEquipUpgrade(equipUpgrade) {
@@ -44,6 +51,45 @@ angular.module('app')
                         callback();
                     }
                 }
+
+                that.createEquipUpgradeTiers = function() {
+                    if(that.equipUpgrade.equip_upgrade_tiers.length == 0) {
+                        that.equipUpgrade.equip_upgrade_tiers = [];
+                        var equipUpgradeTiers = [
+                            {
+                                name: "I",
+                                equip_upgrade: that.equipUpgrade.id
+                            },{
+                                name: "V",
+                                equip_upgrade: that.equipUpgrade.id
+                            }, {
+                                name: "X",
+                                equip_upgrade: that.equipUpgrade.id
+                            }, {
+                                name: "XV",
+                                equip_upgrade: that.equipUpgrade.id
+                            }, {
+                                name: "XX",
+                                equip_upgrade: that.equipUpgrade.id
+                            }
+                        ];
+
+                        var count = equipUpgradeTiers.length;
+                        for(var i=0;i<count;i++) {
+                            EquipUpgradeTierService.addEquipUpgradeTier(equipUpgradeTiers[i]);
+                        }
+                    }
+                };
+
+                that.deleteEquipUpgradeTiers = function() {
+                    if(that.equipUpgrade.equip_upgrade_tiers.length>0) {
+                        var count = that.equipUpgrade.equip_upgrade_tiers.length;
+                        for(var i=0;i<count;i++) {
+                            var equipUpgradeTier = $filter('byId')(that.equipUpgradeTiers, that.equipUpgrade.equip_upgrade_tiers[i]);
+                            EquipUpgradeTierService.deleteEquipUpgradeTier(equipUpgradeTier);
+                        }
+                    }
+                };
 
                 that.deleteEquipUpgrade = function() {
                     EquipUpgradeService.deleteEquipUpgrade(that.equipUpgrade);

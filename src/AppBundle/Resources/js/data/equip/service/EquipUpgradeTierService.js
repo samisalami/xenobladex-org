@@ -26,13 +26,13 @@ function EquipUpgradeTierService($http, $filter) {
     function EquipUpgradeTier(
         id,
         name,
-        description,
-        type)
+        material_recipes,
+        equip_upgrade)
     {
         this.id = id;
         this.name = name;
-        this.description = description;
-        this.type = type;
+        this.material_recipes = material_recipes;
+        this.equip_upgrade = equip_upgrade;
 
         Object.seal(this);
     }
@@ -45,13 +45,13 @@ function EquipUpgradeTierService($http, $filter) {
         }
     }
 
-    function createFromResponse(EquipUpgradeTier) {
-        if (EquipUpgradeTier) {
+    function createFromResponse(equipUpgradeTier) {
+        if (equipUpgradeTier) {
             return new EquipUpgradeTier(
-                EquipUpgradeTier['id'],
-                EquipUpgradeTier['name'],
-                EquipUpgradeTier['description'],
-                EquipUpgradeTier['type']
+                equipUpgradeTier['id'],
+                equipUpgradeTier['name'],
+                equipUpgradeTier['material_recipes'],
+                equipUpgradeTier['equip_upgrade']
             );
         }
     }

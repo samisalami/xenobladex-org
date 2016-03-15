@@ -29,8 +29,7 @@ angular.module('app')
                     }
                 };
 
-                $scope.multiFieldDelete = function(id){
-                    var item = $filter('byId')($scope.formFieldBind, id);
+                $scope.multiFieldDelete = function(item){
                     var index = $scope.formFieldBind.indexOf(item);
                     if(index !== -1) {
                         $scope.formFieldBind.splice(index,1);

@@ -16,6 +16,7 @@ angular.module('app')
         customAttachmentInput: 'js/components/form/formField/fields/customAttachmentInput.html',
         customMapmarkerInput: 'js/components/form/formField/fields/customMapmarkerInput.html',
         customMaterialInput: 'js/components/form/formField/fields/customMaterialInput.html',
+        customMaterialRecipeInput: 'js/components/form/formField/fields/customMaterialRecipeInput.html',
         falsableStringSelect: 'js/components/form/formField/fields/customfalsableStringSelectView.html'
     };
 });

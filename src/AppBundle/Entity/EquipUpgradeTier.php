@@ -38,7 +38,7 @@ class EquipUpgradeTier
      *      joinColumns={@ORM\JoinColumn(name="monster_id", referencedColumnName="id", onDelete="CASCADE")},
      *      inverseJoinColumns={@ORM\JoinColumn(name="material_recipe_id", referencedColumnName="id", onDelete="CASCADE")}
      *      )
-     * @Type("ArrayCollection<'AppBundle:MaterialRecipe'>")
+     * @Type("RelatedEntity<'AppBundle:MaterialRecipe'>")
      * @MaxDepth(1)
      */
     private $materialRecipes;
@@ -140,7 +140,7 @@ class EquipUpgradeTier
     /**
      * Get equipUpgrade
      *
-     * @return \AppBundle\Entity\EquipUpgrade 
+     * @return \AppBundle\Entity\EquipUpgrade
      */
     public function getEquipUpgrade()
     {
