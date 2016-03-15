@@ -19,6 +19,9 @@
         <strong>Kategorie:</strong>
         <form-field ng-if="form.equipUpgradeCategories" form-field-label="type" form-field-bind="form.equipUpgradeCategory" form-select-options="form.equipUpgradeCategories" form-template="customAutoCompleteSelect"></form-field>
     </div>
+    <div class="clear-both"></div>
+    <strong>Stufen:</strong>
+    <equip-upgrade-tiers-form equip-upgrade="form.equipUpgrade"></equip-upgrade-tiers-form>
     <div class="row">
         <div class="col-xs-12 p-r-0">
             <input type="submit" href="#" class="btn btn-success pull-right" value="Speichern" />

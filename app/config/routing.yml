@@ -99,6 +99,13 @@ equip_upgrade_category:
     options:
         expose: true
 
+equip_upgrade_tier:
+    prefix: /xenobladex
+    type:     rest
+    resource: "@AppBundle/Controller/EquipUpgradeTierController.php"
+    options:
+        expose: true
+
 show_attachment:
     path: /xenobladex/attachment/{id}
     methods: [GET]

@@ -1,0 +1,10 @@
+<div class="collapsed-table-cell-wrapper" ng-repeat="equipUpgradeTier in form.equipUpgradeTiers" collapsed-table-cell>
+    <strong>Name:</strong>
+    <form-field form-field-bind="equipUpgradeTier.name" form-template="inputText"></form-field>
+    <form-field ng-if="form.materialsData" form-field-bind="equipUpgradeTier.materials" form-select-options="form.materialsData" form-template="customMaterialInput"></form-field>
+</div>
+<div class="row m-b-2">
+    <div class="col-xs-12 p-r-0">
+        <button type="button" href="#" class="btn btn-success pull-right">Speichern</button>
+    </div>
+</div>
