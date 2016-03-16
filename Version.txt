@@ -1,2 +1,2 @@
-0.3
-refactored all entities, controller, services and templates (excluding map + mapmarkers)
+0.4
+equip upgrades
