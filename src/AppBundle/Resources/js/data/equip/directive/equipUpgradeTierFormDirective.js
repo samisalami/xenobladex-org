@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app')
-    .directive('equipUpgradeTierForm',['EquipUpgradeTierService', 'MaterialService','$filter', function(EquipUpgradeTierService, MaterialService, $filter) {
+    .directive('equipUpgradeTierForm',['EquipUpgradeTierService', 'MaterialRecipeService','$filter', function(EquipUpgradeTierService, MaterialRecipeService, $filter) {
         return {
             restrict: 'E',
             replace: false,
@@ -14,28 +14,23 @@ angular.module('app')
                 init();
 
                 function init() {
-                    that.equipUpgradeTier = $scope.equipUpgradeTier;
-                    MaterialService.onMaterialsChanged(setMaterialData);
-                    setMaterialData(MaterialService.getMaterials());
+                    setFormEquipUpgradeTier($scope.equipUpgradeTier);
+                    setFormNewMaterialRecipe(MaterialRecipeService.MaterialRecipe);
+                    MaterialRecipeService.onMaterialRecipesChanged(setMaterialRecipeData);
+                    setMaterialRecipeData(MaterialRecipeService.getMaterialRecipes());
                 }
 
-                function setMaterialData(materials) {
-                    that.materialsData = materials;
+                function setMaterialRecipeData(materialRecipes) {
+                    that.materialRecipes = materialRecipes;
                 }
 
-                that.updateEquipUpgradeTier = function() {
-                    console.log(that.equipUpgradeTier);
-                    //if(!that.isUpdating) {
-                    //    that.isUpdating = true;
-                    //    if(that.equipUpgradeTiers.id) {
-                    //        EquipUpgradeTierService.updateEquipUpgradeTier(that.equipUpgradeTiers);
-                    //        that.isUpdating = false;
-                    //    } else {
-                    //        EquipUpgradeTierService.addEquipUpgradeTier(that.equipUpgradeTiers);
-                    //        //setFormequipUpgradeTiers($scope.equipUpgradeTiersSealed);
-                    //        that.isUpdating = false;
-                    //    }
-                    //}
+                function setFormEquipUpgradeTier(equipUpgrade) {
+                    that.equipUpgradeTier = $.extend({}, equipUpgrade, true);
+                }
+
+                function setFormNewMaterialRecipe(materialRecipe) {
+                    that.newMaterialRecipe = $.extend({}, materialRecipe, true);
+                    that.newMaterialRecipe.equip_upgrade_tier = that.equipUpgradeTier.id;
                 }
             }],
             controllerAs: 'form'

@@ -33,11 +33,8 @@ class EquipUpgradeTier
     private $name;
 
     /**
-     * @ORM\ManyToMany(targetEntity="MaterialRecipe", fetch="EXTRA_LAZY")
-     * @ORM\JoinTable(name="xenobladex_equipupgrade_tier_material_recipe",
-     *      joinColumns={@ORM\JoinColumn(name="monster_id", referencedColumnName="id", onDelete="CASCADE")},
-     *      inverseJoinColumns={@ORM\JoinColumn(name="material_recipe_id", referencedColumnName="id", onDelete="CASCADE")}
-     *      )
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="MaterialRecipe", mappedBy="equipUpgradeTier", fetch="EXTRA_LAZY")
      * @Type("RelatedEntity<'AppBundle:MaterialRecipe'>")
      * @MaxDepth(1)
      */

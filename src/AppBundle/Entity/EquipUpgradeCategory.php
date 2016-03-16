@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * EquipUpgradeCategory
  *
- * @ORM\Table()
+ * @ORM\Table(name="xenobladex_equip_upgrade_category")
  * @ORM\Entity
  */
 class EquipUpgradeCategory

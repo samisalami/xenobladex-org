@@ -1,6 +1,5 @@
-<strong>Name:</strong>
-<form-field form-field-bind="form.equipUpgradeTier.name" form-template="inputText"></form-field>
-<form-field ng-if="form.materialsData" form-field-bind="form.equipUpgradeTier.material_recipes" form-select-options="form.materialsData" form-template="customMaterialRecipeInput"></form-field>
-<div class="col-xs-12 p-r-0">
-    <button type="button" ng-click="form.updateEquipUpgradeTier()" class="btn btn-success pull-right">Speichern</button>
-</div>
+<h5 class="m-b-1">Stufe {{form.equipUpgradeTier.name}}:</h5>
+<h5 class="m-y-2">Hinzufügen:</h5>
+<material-recipe-form class="col-xs-6 col-lg-3" add-form="true" material-recipe="form.newMaterialRecipe"></material-recipe-form>
+<hr class="clear-both"/>
+<material-recipe-form class="col-xs-6 col-lg-3" ng-if="form.materialRecipes" ng-repeat="materialRecipe in form.materialRecipes | filter:{equip_upgrade_tier: form.equipUpgradeTier.id} track by materialRecipe.id" material-recipe="materialRecipe"></material-recipe-form>

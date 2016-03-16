@@ -25,26 +25,14 @@ function MaterialRecipeService($http, $filter) {
 
     function MaterialRecipe(
         id,
-        name,
-        ticket_cost,
-        credit_cost,
-        body_part,
-        is_not_buyable,
-        rarity,
-        show_monsters,
-        monster_types,
-        monsters)
+        count,
+        material,
+        equip_upgrade_tier)
     {
         this.id = id;
-        this.name = name;
-        this.ticket_cost = ticket_cost;
-        this.credit_cost = credit_cost;
-        this.body_part = body_part;
-        this.is_not_buyable = is_not_buyable;
-        this.rarity = rarity;
-        this.show_monsters = show_monsters;
-        this.monster_types = monster_types;
-        this.monsters = monsters;
+        this.count = count;
+        this.material = material;
+        this.equip_upgrade_tier = equip_upgrade_tier;
 
         Object.seal(this);
     }
@@ -61,15 +49,9 @@ function MaterialRecipeService($http, $filter) {
         if (materialRecipe) {
             return new MaterialRecipe(
                 materialRecipe['id'],
-                materialRecipe['name'],
-                materialRecipe['ticket_cost'],
-                materialRecipe['credit_cost'],
-                materialRecipe['body_part'],
-                materialRecipe['is_not_buyable'],
-                materialRecipe['rarity'],
-                materialRecipe['show_monsters'],
-                materialRecipe['monster_types'],
-                materialRecipe['monsters']
+                materialRecipe['count'],
+                materialRecipe['material'],
+                materialRecipe['equip_upgrade_tier']
             );
         }
     }

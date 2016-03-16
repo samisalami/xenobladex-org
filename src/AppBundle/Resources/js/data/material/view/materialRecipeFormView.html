@@ -1,0 +1,19 @@
+<div ng-if="!addForm" class="col-md-offset-9 col-md-3 col-xs-offset-6 col-xs-6 p-r-0 p-y-1">
+    <button type="button" class="btn btn-danger pull-right" ng-click="form.deleteMaterialRecipe()">
+        Löschen
+    </button>
+</div>
+<div class="collapsed-table-cell-wrapper col-xs-12">
+    <span class="info-icon text-primary" bs-tooltip bs-tooltip-title="Nur Zahlen erlaubt."></span>
+    <strong>Anzahl:</strong>
+    <form-field form-field-bind="form.materialRecipe.count" form-template="inputText"></form-field>
+</div>
+<div class="collapsed-table-cell-wrapper col-xs-12">
+    <strong>Material:</strong>
+    <form-field ng-if="form.materials" form-field-bind="form.material" form-select-options="form.materials" form-template="customAutoCompleteSelect"></form-field>
+</div>
+<div class="row">
+    <div class="col-xs-12 m-y-1 p-r-0">
+        <button type="button" ng-click="form.updateMaterialRecipe()" href="#" class="btn btn-success pull-right">Speichern</button>
+    </div>
+</div>

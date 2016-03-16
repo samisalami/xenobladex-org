@@ -10,7 +10,7 @@ use JMS\Serializer\Annotation\Type;
 /**
  * EquipUpgrade
  *
- * @ORM\Table()
+ * @ORM\Table(name="xenobladex_equip_upgrade")
  * @ORM\Entity
  */
 class EquipUpgrade

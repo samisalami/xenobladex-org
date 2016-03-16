@@ -53,7 +53,7 @@ angular.module('app')
                 }
 
                 that.createEquipUpgradeTiers = function() {
-                    if(that.equipUpgrade.equip_upgrade_tiers.length == 0) {
+                    if($filter('filter')(that.equipUpgradeTiers, {equip_upgrade: that.equipUpgrade.id}).length == 0) {
                         that.equipUpgrade.equip_upgrade_tiers = [];
                         var equipUpgradeTiers = [
                             {
@@ -82,11 +82,11 @@ angular.module('app')
                 };
 
                 that.deleteEquipUpgradeTiers = function() {
-                    if(that.equipUpgrade.equip_upgrade_tiers.length>0) {
-                        var count = that.equipUpgrade.equip_upgrade_tiers.length;
+                    var equipUpgradeTiers = $filter('filter')(that.equipUpgradeTiers, {equip_upgrade: that.equipUpgrade.id});
+                    if(equipUpgradeTiers.length>0) {
+                        var count = equipUpgradeTiers.length;
                         for(var i=0;i<count;i++) {
-                            var equipUpgradeTier = $filter('byId')(that.equipUpgradeTiers, that.equipUpgrade.equip_upgrade_tiers[i]);
-                            EquipUpgradeTierService.deleteEquipUpgradeTier(equipUpgradeTier);
+                            EquipUpgradeTierService.deleteEquipUpgradeTier(equipUpgradeTiers[i]);
                         }
                     }
                 };

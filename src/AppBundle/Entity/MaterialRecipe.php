@@ -9,7 +9,7 @@ use JMS\Serializer\Annotation\Type;
 /**
  * MaterialRecipe
  *
- * @ORM\Table()
+ * @ORM\Table(name="xenobladex_material_recipe")
  * @ORM\Entity
  */
 class MaterialRecipe
@@ -37,6 +37,14 @@ class MaterialRecipe
      * @MaxDepth(1)
      */
     private $material;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="EquipUpgradeTier")
+     * @ORM\JoinColumn(name="equip_upgrade_tier_id", referencedColumnName="id")
+     * @Type("RelatedEntity<'AppBundle:EquipUpgradeTier'>")
+     * @MaxDepth(1)
+     */
+    private $equipUpgradeTier;
 
 
 
@@ -94,5 +102,28 @@ class MaterialRecipe
     public function getMaterial()
     {
         return $this->material;
+    }
+
+    /**
+     * Set equipUpgradeTier
+     *
+     * @param \AppBundle\Entity\EquipUpgradeTier $equipUpgradeTier
+     * @return MaterialRecipe
+     */
+    public function setEquipUpgradeTier(\AppBundle\Entity\EquipUpgradeTier $equipUpgradeTier = null)
+    {
+        $this->equipUpgradeTier = $equipUpgradeTier;
+
+        return $this;
+    }
+
+    /**
+     * Get equipUpgradeTier
+     *
+     * @return \AppBundle\Entity\EquipUpgradeTier 
+     */
+    public function getEquipUpgradeTier()
+    {
+        return $this->equipUpgradeTier;
     }
 }
