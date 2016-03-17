@@ -32,6 +32,15 @@ angular.module('app')
                     that.newMaterialRecipe = $.extend({}, materialRecipe, true);
                     that.newMaterialRecipe.equip_upgrade_tier = that.equipUpgradeTier.id;
                 }
+
+                that.updateEquipUpgradeTier = function() {
+                    if(that.equipUpgradeTier.id) {
+                        EquipUpgradeTierService.updateEquipUpgradeTier(that.equipUpgradeTier);
+                    } else {
+                        EquipUpgradeTierService.addEquipUpgradeTier(that.equipUpgradeTier);
+                        setFormEquipUpgradeTier($scope.equipUpgradeTier);
+                    }
+                }
             }],
             controllerAs: 'form'
         }

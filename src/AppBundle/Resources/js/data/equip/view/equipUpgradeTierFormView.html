@@ -1,5 +1,14 @@
 <h5 class="m-b-1">Stufe {{form.equipUpgradeTier.name}}:</h5>
-<h5 class="m-y-2">Hinzufügen:</h5>
+<strong>Verkaufswert:</strong>
+<div class="row m-t-1">
+    <div class="col-xs-12 col-md-6 col-lg-4">
+        <form-field form-field-bind="form.equipUpgradeTier.credit_cost" form-template="inputText"></form-field>
+    </div>
+    <div class="col-xs-12 col-md-6 col-lg-8">
+        <button type="button" ng-click="form.updateEquipUpgradeTier()" class="btn btn-success">Speichern</button>
+    </div>
+</div>
+<h5 class="m-y-2">Material Hinzufügen:</h5>
 <material-recipe-form class="col-xs-6 col-lg-3" add-form="true" material-recipe="form.newMaterialRecipe"></material-recipe-form>
 <hr class="clear-both"/>
 <material-recipe-form class="col-xs-6 col-lg-3" ng-if="form.materialRecipes" ng-repeat="materialRecipe in form.materialRecipes | filter:{equip_upgrade_tier: form.equipUpgradeTier.id} track by materialRecipe.id" material-recipe="materialRecipe"></material-recipe-form>

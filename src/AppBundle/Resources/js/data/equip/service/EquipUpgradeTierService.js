@@ -27,12 +27,14 @@ function EquipUpgradeTierService($http, $filter) {
         id,
         name,
         material_recipes,
-        equip_upgrade)
+        equip_upgrade,
+        credit_cost)
     {
         this.id = id;
         this.name = name;
         this.material_recipes = material_recipes;
         this.equip_upgrade = equip_upgrade;
+        this.credit_cost = credit_cost;
 
         Object.seal(this);
     }
@@ -51,7 +53,8 @@ function EquipUpgradeTierService($http, $filter) {
                 equipUpgradeTier['id'],
                 equipUpgradeTier['name'],
                 equipUpgradeTier['material_recipes'],
-                equipUpgradeTier['equip_upgrade']
+                equipUpgradeTier['equip_upgrade'],
+                equipUpgradeTier['credit_cost']
             );
         }
     }

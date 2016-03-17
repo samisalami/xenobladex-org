@@ -19,6 +19,11 @@
         <strong>Kategorie:</strong>
         <form-field ng-if="form.equipUpgradeCategories" form-field-label="type" form-field-bind="form.equipUpgradeCategory" form-select-options="form.equipUpgradeCategories" form-template="customAutoCompleteSelect"></form-field>
     </div>
+    <div class="row">
+        <div class="col-xs-12 p-r-0">
+            <button type="button" ng-click="form.updateEquipUpgrade()" class="btn btn-success pull-right">Speichern</button>
+        </div>
+    </div>
     <div ng-if="form.equipUpgrade.id">
         <div class="clear-both"></div>
         <h4 class="m-b-2">Stufen:</h4>
@@ -29,10 +34,5 @@
         <div class="clear-both"></div>
         <button ng-if="(form.equipUpgradeTiers | filter: {equip_upgrade: form.equipUpgrade.id}).length==0" class="btn btn-success" type="button" ng-click="form.createEquipUpgradeTiers()">Stufen anlegen</button>
         <button ng-if="(form.equipUpgradeTiers | filter: {equip_upgrade: form.equipUpgrade.id}).length>0" class="btn btn-danger" type="button" ng-click="form.deleteEquipUpgradeTiers()">Stufen löschen</button>
-    </div>
-    <div class="row">
-        <div class="col-xs-12 p-r-0">
-            <button type="button" ng-click="form.updateEquipUpgrade()" class="btn btn-success pull-right">Speichern</button>
-        </div>
     </div>
 </form>

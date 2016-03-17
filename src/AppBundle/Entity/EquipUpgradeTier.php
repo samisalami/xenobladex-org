@@ -33,6 +33,13 @@ class EquipUpgradeTier
     private $name;
 
     /**
+     * @var integer
+     *
+     * @ORM\Column(name="credit_cost", type="integer")
+     */
+    protected $creditCost = 0;
+
+    /**
      * @var ArrayCollection
      * @ORM\OneToMany(targetEntity="MaterialRecipe", mappedBy="equipUpgradeTier", fetch="EXTRA_LAZY")
      * @Type("RelatedEntity<'AppBundle:MaterialRecipe'>")
@@ -142,5 +149,28 @@ class EquipUpgradeTier
     public function getEquipUpgrade()
     {
         return $this->equipUpgrade;
+    }
+
+    /**
+     * Set creditCost
+     *
+     * @param integer $creditCost
+     * @return EquipUpgradeTier
+     */
+    public function setCreditCost($creditCost)
+    {
+        $this->creditCost = $creditCost;
+
+        return $this;
+    }
+
+    /**
+     * Get creditCost
+     *
+     * @return integer 
+     */
+    public function getCreditCost()
+    {
+        return $this->creditCost;
     }
 }
