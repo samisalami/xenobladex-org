@@ -26,10 +26,11 @@ Im Allgemeinen ist das BLADE-Level nur eine Voraussetzung für Nebenjobs und kei
                 <span class="fa fa-search"></span>
             </div>
         </div>
-        <section class="collapse-grouped" ng-repeat="missionGroup in groupedMissions | orderBy:'name'">
+        <collapsed-content>
+            <section class="collapse-grouped" ng-repeat="missionGroup in groupedMissions | orderBy:'name'">
             <h1>{{missionGroup.name || 'Nicht zugeordnet'}}</h1>
             <div class="collapse-item" ng-repeat="mission in missionGroup.rows | filter:filter | orderBy:[natural('name'), 'blade_level', 'chapter']  track by mission.id">
-                <a href="#mission-{{$parent.$index}}-{{$index}}" class="collapsed content-box" onclick="return false;" data-toggle="collapse" aria-expanded="false">
+                <a href="#mission-{{$parent.$index}}-{{$index}}" ng-click="visible('mission-'+$parent.$index+'-'+$index)" class="collapsed content-box" onclick="return false;" data-toggle="collapse" aria-expanded="false">
                     <strong>{{mission.name}}</strong><span class="collapse-arrow fa"></span>
                     <ul class="collapse-notes">
                         <li ng-if="mission.blade_level">
@@ -44,7 +45,7 @@ Im Allgemeinen ist das BLADE-Level nur eine Voraussetzung für Nebenjobs und kei
                     </ul>
                 </a>
                 <div id="mission-{{$parent.$index}}-{{$index}}" class="content-box collapse">
-                    <div class="content-body">
+                    <div ng-if="isVisible('mission-'+$parent.$index+'-'+$index)" class="content-body">
                         <div class="complete-row" ng-if="mission.person.name || mission.person_unrelated || mission.location_note">
                             <div class="row">
                                 <div ng-if="mission.person.name || mission.person_unrelated" class="col-xs-12 col-md-6">
@@ -143,5 +144,6 @@ Im Allgemeinen ist das BLADE-Level nur eine Voraussetzung für Nebenjobs und kei
                 </div>
             </div>
         </section>
+        </collapsed-content>
     </mission-view>
 </div>

@@ -48,11 +48,12 @@ Die Kreaturen sind innerhalb dieser Trennung den Gattungen (wie in der EnzyklopÃ
                 </div>
             </div>
         </div>
-        <section class="collapse-grouped" ng-repeat="monsterGroup in groupedMonsters" ng-if="monsterGroup.hide !== true">
+        <collapsed-content>
+            <section class="collapse-grouped" ng-repeat="monsterGroup in groupedMonsters" ng-if="monsterGroup.hide !== true">
             <h1>{{monsterGroup.name}}</h1>
             <div class="collapse-item" ng-repeat="monster in monsterGroup.data | filter:filter | range:levelfilterValue:'level_min':'level_max' | orderBy:['monster_type_prio', natural('name')]  track by monster.id">
                 <a name="monster-{{monster.id}}"></a>
-                <a href="#mission-{{$parent.$index}}-{{$index}}" class="collapsed content-box" onclick="return false;" data-toggle="collapse" aria-expanded="false">
+                <a href="#monster-{{$parent.$index}}-{{$index}}" ng-click="visible('monster-'+$parent.$index+'-'+$index)" class="collapsed content-box" onclick="return false;" data-toggle="collapse" aria-expanded="false">
                     <strong>
                         {{monster.name}}
                         <span ng-if="monster.level_min || monster.level_max">
@@ -69,8 +70,8 @@ Die Kreaturen sind innerhalb dieser Trennung den Gattungen (wie in der EnzyklopÃ
                         </li>
                     </ul>
                 </a>
-                <div id="mission-{{$parent.$index}}-{{$index}}" class="content-box collapse">
-                    <div class="content-body">
+                <div id="monster-{{$parent.$index}}-{{$index}}" class="content-box collapse">
+                    <div ng-if="isVisible('monster-'+$parent.$index+'-'+$index)" class="content-body">
                         <div class="row">
                             <div class="col-xs-12 col-md-6">
                                 <strong>Werte:</strong> <br/>
@@ -143,5 +144,6 @@ Die Kreaturen sind innerhalb dieser Trennung den Gattungen (wie in der EnzyklopÃ
                 </div>
             </div>
         </section>
+        </collapsed-content>
     </monster-view>
 </div>
