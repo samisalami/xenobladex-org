@@ -92,6 +92,20 @@ collectible:
     options:
         expose: true
 
+collection:
+    prefix: /xenobladex
+    type:     rest
+    resource: "@AppBundle/Controller/CollectionController.php"
+    options:
+        expose: true
+
+collection_group:
+    prefix: /xenobladex
+    type:     rest
+    resource: "@AppBundle/Controller/CollectionGroupController.php"
+    options:
+        expose: true
+
 equip_upgrade:
     prefix: /xenobladex
     type:     rest
