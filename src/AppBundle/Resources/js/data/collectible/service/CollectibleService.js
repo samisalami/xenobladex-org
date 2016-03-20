@@ -28,13 +28,15 @@ function CollectibleService($http, $filter) {
         name,
         description,
         rarity,
-        location_note)
+        location_note,
+        is_lucky_field)
     {
         this.id = id;
         this.name = name;
         this.description = description;
         this.rarity = rarity;
         this.location_note = location_note;
+        this.is_lucky_field = is_lucky_field;
 
         Object.seal(this);
     }
@@ -54,7 +56,8 @@ function CollectibleService($http, $filter) {
                 collectible['name'],
                 collectible['description'],
                 collectible['rarity'],
-                collectible['location_note']
+                collectible['location_note'],
+                collectible['is_lucky_field']
             );
         }
     }
