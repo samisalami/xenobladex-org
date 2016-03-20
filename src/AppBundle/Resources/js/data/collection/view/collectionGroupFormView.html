@@ -1,0 +1,42 @@
+<tr>
+    <td collection-category-by-id="{{form.collectionGroup.collection_category}}">
+        <strong>{{collectionCategoryById}}</strong>
+    </td>
+    <td>
+        <form-field ng-if="form.collectibles" form-field-bind="form.collectionGroup.collectible1" form-select-options="form.collectibles" form-template="customAutoCompleteSelect"></form-field>
+    </td>
+    <td>
+        <form-field ng-if="form.collectibles" form-field-bind="form.collectionGroup.collectible2" form-select-options="form.collectibles" form-template="customAutoCompleteSelect"></form-field>
+    </td>
+    <td>
+        <form-field ng-if="form.collectibles" form-field-bind="form.collectionGroup.collectible3" form-select-options="form.collectibles" form-template="customAutoCompleteSelect"></form-field>
+    </td>
+    <td>
+        <form-field ng-if="form.collectibles" form-field-bind="form.collectionGroup.collectible4" form-select-options="form.collectibles" form-template="customAutoCompleteSelect"></form-field>
+    </td>
+    <td>
+        <form-field ng-if="form.collectibles" form-field-bind="form.collectionGroup.collectible5" form-select-options="form.collectibles" form-template="customAutoCompleteSelect"></form-field>
+    </td>
+    <td>
+        <form-field ng-if="form.collectibles" form-field-bind="form.collectionGroup.collectible6" form-select-options="form.collectibles" form-template="customAutoCompleteSelect"></form-field>
+    </td>
+    <td>
+        <form-field ng-if="form.collectibles" form-field-bind="form.collectionGroup.collectible7" form-select-options="form.collectibles" form-template="customAutoCompleteSelect"></form-field>
+    </td>
+    <td>
+        <form-field ng-if="form.collectibles" form-field-bind="form.collectionGroup.collectible8" form-select-options="form.collectibles" form-template="customAutoCompleteSelect"></form-field>
+    </td>
+    <td>
+        <strong>TP-Belohnung:</strong>
+        <form-field form-field-bind="form.collectionGroup.reward_sp" form-template="inputText"></form-field>
+    </td>
+    <td>
+        <strong>Item-Belohnung:</strong>
+        <form-field form-field-bind="form.collectionGroup.reward_item" form-template="inputText"></form-field>
+    </td>
+    <td>
+        <div class="col-xs-12 p-r-0">
+            <button type="button" ng-click="form.updateCollectionGroup()" href="#" class="btn btn-success pull-right">Speichern</button>
+        </div>
+    </td>
+</tr>

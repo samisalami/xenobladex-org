@@ -58,21 +58,6 @@ class Collectible
      */
     private $isLuckyField=false;
 
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="collection_group_prio", type="smallint")
-     */
-    private $collectionGroupPrio = 0;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="CollectionGroup")
-     * @ORM\JoinColumn(name="collection_group_id", referencedColumnName="id")
-     * @Type("RelatedEntity<'AppBundle:CollectionGroup'>")
-     * @MaxDepth(1)
-     */
-    private $collectionGroup;
-
 
     /**
      * Get id
@@ -197,51 +182,5 @@ class Collectible
     public function getIsLuckyField()
     {
         return $this->isLuckyField;
-    }
-
-    /**
-     * Set collectionGroupPrio
-     *
-     * @param integer $collectionGroupPrio
-     * @return Collectible
-     */
-    public function setCollectionGroupPrio($collectionGroupPrio)
-    {
-        $this->collectionGroupPrio = $collectionGroupPrio;
-
-        return $this;
-    }
-
-    /**
-     * Get collectionGroupPrio
-     *
-     * @return integer 
-     */
-    public function getCollectionGroupPrio()
-    {
-        return $this->collectionGroupPrio;
-    }
-
-    /**
-     * Set collectionGroup
-     *
-     * @param \AppBundle\Entity\CollectionGroup $collectionGroup
-     * @return Collectible
-     */
-    public function setCollectionGroup(\AppBundle\Entity\CollectionGroup $collectionGroup = null)
-    {
-        $this->collectionGroup = $collectionGroup;
-
-        return $this;
-    }
-
-    /**
-     * Get collectionGroup
-     *
-     * @return \AppBundle\Entity\CollectionGroup 
-     */
-    public function getCollectionGroup()
-    {
-        return $this->collectionGroup;
     }
 }

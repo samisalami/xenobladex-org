@@ -26,7 +26,7 @@ class Collection
      *
      * @ORM\Column(name="region", type="string", length=255)
      */
-    private $region;
+    private $region = "";
 
     /**
      * @var integer
@@ -40,7 +40,7 @@ class Collection
      *
      * @ORM\Column(name="reward_item", type="string", length=255)
      */
-    private $rewardItem;
+    private $rewardItem = "";
 
 
     /**

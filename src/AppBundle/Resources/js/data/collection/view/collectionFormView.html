@@ -1,0 +1,75 @@
+<div class="row">
+    <div class="col-md-offset-9 col-md-3 col-xs-offset-6 col-xs-6 p-r-0 p-b-1">
+        <button type="button" class="btn btn-danger pull-right" ng-click="form.deleteCollection()">
+            Löschen
+        </button>
+    </div>
+</div>
+<div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+    <strong>Region:</strong>
+    <form-field form-field-bind="form.collection.region" form-template="stringSelect" form-select-options="form.regions"></form-field>
+</div>
+<div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+    <strong>TP-Belohnung:</strong>
+    <form-field form-field-bind="form.collection.reward_sp" form-template="inputText"></form-field>
+</div>
+<div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+    <strong>Item-Belohnung:</strong>
+    <form-field form-field-bind="form.collection.reward_item" form-template="inputText"></form-field>
+</div>
+<div class="row">
+    <div class="col-xs-12 p-r-0">
+        <button type="button" ng-click="form.updateCollection()" href="#" class="btn btn-success pull-right">Speichern</button>
+    </div>
+</div>
+<div ng-if="form.collection.id && form.collectionCategories">
+    <div class="clear-both"></div>
+    <h4 class="m-b-2">Kategorien:</h4>
+    <hr/>
+    <table class="table-bordered">
+        <thead>
+        <tr>
+            <th>
+
+            </th>
+            <th>
+                Slot 1
+            </th>
+            <th>
+                Slot 2
+            </th>
+            <th>
+                Slot 3
+            </th>
+            <th>
+                Slot 4
+            </th>
+            <th>
+                Slot 5
+            </th>
+            <th>
+                Slot 6
+            </th>
+            <th>
+                Slot 7
+            </th>
+            <th>
+                Slot 8
+            </th>
+            <th>
+            </th>
+            <th>
+            </th>
+            <th>
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+            <tr ng-repeat="collectionGroup in form.collectionGroups | filter: {collection: form.collection.id} | orderBy:'collection_category_prio' track by collectionGroup.id" collection-group-form collection-group="collectionGroup">
+            </tr>
+        </tbody>
+    </table>
+    <div class="clear-both"></div>
+    <button ng-if="(form.collectionGroups | filter: {equip_upgrade: form.collection.id}).length==0" class="btn btn-success" type="button" ng-click="form.createCollectionGroups()">Kategorien anlegen</button>
+    <button ng-if="(form.collectionGroups | filter: {equip_upgrade: form.collection.id}).length>0" class="btn btn-danger" type="button" ng-click="form.deleteCollectionGroups()">Kategorien löschen</button>
+</div>

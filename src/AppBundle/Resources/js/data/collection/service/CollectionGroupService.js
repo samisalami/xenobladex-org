@@ -28,13 +28,31 @@ function CollectionGroupService($http, $filter) {
         reward_sp,
         reward_item,
         collection,
-        collection_category)
+        collection_category,
+        collection_category_prio,
+        collectible1,
+        collectible2,
+        collectible3,
+        collectible4,
+        collectible5,
+        collectible6,
+        collectible7,
+        collectible8)
     {
         this.id = id;
         this.reward_sp = reward_sp;
         this.reward_item = reward_item;
         this.collection = collection;
         this.collection_category = collection_category;
+        this.collection_category_prio = collection_category_prio;
+        this.collectible1 = collectible1;
+        this.collectible2 = collectible2;
+        this.collectible3 = collectible3;
+        this.collectible4 = collectible4;
+        this.collectible5 = collectible5;
+        this.collectible6 = collectible6;
+        this.collectible7 = collectible7;
+        this.collectible8 = collectible8;
 
         Object.seal(this);
     }
@@ -54,7 +72,16 @@ function CollectionGroupService($http, $filter) {
                 collectionGroup['reward_sp'],
                 collectionGroup['reward_item'],
                 collectionGroup['collection'],
-                collectionGroup['collection_category']
+                collectionGroup['collection_category'],
+                collectionGroup['collection_category_prio'],
+                collectionGroup['collectible1'],
+                collectionGroup['collectible2'],
+                collectionGroup['collectible3'],
+                collectionGroup['collectible4'],
+                collectionGroup['collectible5'],
+                collectionGroup['collectible6'],
+                collectionGroup['collectible7'],
+                collectionGroup['collectible8']
             );
         }
     }

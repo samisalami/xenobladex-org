@@ -17,15 +17,15 @@ class CollectionCategoryController extends FOSRestController {
     /**
      * @Route("/collection/category", methods={"GET"})
      */
-    public function getCollectionCategoryiesAction() {
+    public function getCollectionCategoriesAction() {
         $serializer = $this->get("jms_serializer");
         $em = $this->getDoctrine()->getManager();
-        $collectionCategoryies = $em->getRepository('AppBundle:CollectionCategory')->findAll();
+        $collectionCategories = $em->getRepository('AppBundle:CollectionCategory')->findAll();
 
         $context = new SerializationContext();
         $context->enableMaxDepthChecks();
 
-        $response = new Response($serializer->serialize($collectionCategoryies, 'json', $context));
+        $response = new Response($serializer->serialize($collectionCategories, 'json', $context));
         $response->headers->set('Content-Type', 'application/json');
         return $response;
     }
