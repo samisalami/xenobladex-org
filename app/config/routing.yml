@@ -99,6 +99,13 @@ collection:
     options:
         expose: true
 
+collection_category:
+    prefix: /xenobladex
+    type:     rest
+    resource: "@AppBundle/Controller/CollectionCategoryController.php"
+    options:
+        expose: true
+
 collection_group:
     prefix: /xenobladex
     type:     rest
