@@ -3,6 +3,8 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JMS\Serializer\Annotation\Type;
+use JMS\Serializer\Annotation\MaxDepth;
 
 /**
  * CollectionGroup
@@ -22,13 +24,6 @@ class CollectionGroup
     private $id;
 
     /**
-     * @var string
-     *
-     * @ORM\Column(name="name", type="string", length=255)
-     */
-    private $name;
-
-    /**
      * @var integer
      *
      * @ORM\Column(name="reward_sp", type="smallint")
@@ -42,6 +37,22 @@ class CollectionGroup
      */
     private $rewardItem;
 
+    /**
+     * @ORM\ManyToOne(targetEntity="Collection")
+     * @ORM\JoinColumn(name="collection_id", referencedColumnName="id")
+     * @Type("RelatedEntity<'AppBundle:Collection'>")
+     * @MaxDepth(1)
+     */
+    private $collection;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="CollectionCategory")
+     * @ORM\JoinColumn(name="collection_category_id", referencedColumnName="id")
+     * @Type("RelatedEntity<'AppBundle:CollectionCategory'>")
+     * @MaxDepth(1)
+     */
+    private $collectionCategory;
+
 
     /**
      * Get id
@@ -51,29 +62,6 @@ class CollectionGroup
     public function getId()
     {
         return $this->id;
-    }
-
-    /**
-     * Set name
-     *
-     * @param string $name
-     * @return CollectionGroup
-     */
-    public function setName($name)
-    {
-        $this->name = $name;
-
-        return $this;
-    }
-
-    /**
-     * Get name
-     *
-     * @return string 
-     */
-    public function getName()
-    {
-        return $this->name;
     }
 
     /**
@@ -120,5 +108,51 @@ class CollectionGroup
     public function getRewardItem()
     {
         return $this->rewardItem;
+    }
+
+    /**
+     * Set collection
+     *
+     * @param \AppBundle\Entity\Collection $collection
+     * @return CollectionGroup
+     */
+    public function setCollection(\AppBundle\Entity\Collection $collection = null)
+    {
+        $this->collection = $collection;
+
+        return $this;
+    }
+
+    /**
+     * Get collection
+     *
+     * @return \AppBundle\Entity\Collection 
+     */
+    public function getCollection()
+    {
+        return $this->collection;
+    }
+
+    /**
+     * Set collectionCategory
+     *
+     * @param \AppBundle\Entity\CollectionCategory $collectionCategory
+     * @return CollectionGroup
+     */
+    public function setCollectionCategory(\AppBundle\Entity\CollectionCategory $collectionCategory = null)
+    {
+        $this->collectionCategory = $collectionCategory;
+
+        return $this;
+    }
+
+    /**
+     * Get collectionCategory
+     *
+     * @return \AppBundle\Entity\CollectionCategory 
+     */
+    public function getCollectionCategory()
+    {
+        return $this->collectionCategory;
     }
 }
