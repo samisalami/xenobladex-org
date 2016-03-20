@@ -89,10 +89,10 @@ function config($routeProvider, $locationProvider) {
           templateUrl: 'js/data/map/view/admin_mapTiles.html'
       })
       .when('/admin/sammelitems', {
-          templateUrl: 'js/data/collectible/view/admin_collectibles.html'
+          templateUrl: 'js/data/collection/view/admin_collectibles.html'
       })
       .when('/admin/sammelitems/was-fehlt', {
-          templateUrl: 'js/data/collectible/view/admin_collectibles_missing.html'
+          templateUrl: 'js/data/collection/view/admin_collectibles_missing.html'
       })
       .when('/admin/erweiterungen', {
           templateUrl: 'js/data/equip/view/admin_equipupgrades.html'
