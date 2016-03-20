@@ -49,6 +49,13 @@ class Collectible
      */
     private $locationNote = '';
 
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_lucky_field", type="boolean")
+     */
+    private $isLuckyField=false;
+
 
     /**
      * Get id
@@ -150,5 +157,28 @@ class Collectible
     public function getRarity()
     {
         return $this->rarity;
+    }
+
+    /**
+     * Set isLuckyField
+     *
+     * @param boolean $isLuckyField
+     * @return Collectible
+     */
+    public function setIsLuckyField($isLuckyField)
+    {
+        $this->isLuckyField = $isLuckyField;
+
+        return $this;
+    }
+
+    /**
+     * Get isLuckyField
+     *
+     * @return boolean 
+     */
+    public function getIsLuckyField()
+    {
+        return $this->isLuckyField;
     }
 }
