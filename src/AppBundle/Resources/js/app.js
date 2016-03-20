@@ -70,6 +70,9 @@ function config($routeProvider, $locationProvider) {
       //.when('/admin/kartenpunkte', {
       //  templateUrl: 'views/admin_mapmarkers.html'
       //})
+      .when('/admin/kollektion', {
+        templateUrl: 'js/data/collection/view/admin_collections.html'
+      })
       .when('/admin/kreaturen', {
         templateUrl: 'js/data/monster/view/admin_monsters.html'
       })
