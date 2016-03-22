@@ -47,12 +47,10 @@ angular.module('app')
                         for(var x=0; x<categoryCount; x++) {
                             var category = that.collectionCategories[x];
 
-                            var collectionGroup = [
-                                {
-                                    collection_category: category.id,
-                                    collection: that.collection.id
-                                }
-                            ];
+                            var collectionGroup = {
+                                collection_category: category.id,
+                                collection: that.collection.id
+                            };
 
                             CollectionGroupService.addCollectionGroup(collectionGroup);
                         }

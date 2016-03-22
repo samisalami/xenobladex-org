@@ -58,48 +58,64 @@ class CollectionGroup
     /**
      * @ORM\OneToOne(targetEntity="Collectible")
      * @ORM\JoinColumn(name="collectible1_id", referencedColumnName="id")
+     * @Type("RelatedEntity<'AppBundle:Collectible'>")
+     * @MaxDepth(1)
      */
     private $collectible1;
 
     /**
      * @ORM\OneToOne(targetEntity="Collectible")
      * @ORM\JoinColumn(name="collectible2_id", referencedColumnName="id")
+     * @Type("RelatedEntity<'AppBundle:Collectible'>")
+     * @MaxDepth(1)
      */
     private $collectible2;
 
     /**
      * @ORM\OneToOne(targetEntity="Collectible")
      * @ORM\JoinColumn(name="collectible3_id", referencedColumnName="id")
+     * @Type("RelatedEntity<'AppBundle:Collectible'>")
+     * @MaxDepth(1)
      */
     private $collectible3;
 
     /**
      * @ORM\OneToOne(targetEntity="Collectible")
      * @ORM\JoinColumn(name="collectible4_id", referencedColumnName="id")
+     * @Type("RelatedEntity<'AppBundle:Collectible'>")
+     * @MaxDepth(1)
      */
     private $collectible4;
 
     /**
      * @ORM\OneToOne(targetEntity="Collectible")
      * @ORM\JoinColumn(name="collectible5_id", referencedColumnName="id")
+     * @Type("RelatedEntity<'AppBundle:Collectible'>")
+     * @MaxDepth(1)
      */
     private $collectible5;
 
     /**
      * @ORM\OneToOne(targetEntity="Collectible")
      * @ORM\JoinColumn(name="collectible6_id", referencedColumnName="id")
+     * @Type("RelatedEntity<'AppBundle:Collectible'>")
+     * @MaxDepth(1)
      */
     private $collectible6;
 
     /**
      * @ORM\OneToOne(targetEntity="Collectible")
      * @ORM\JoinColumn(name="collectible7_id", referencedColumnName="id")
+     * @Type("RelatedEntity<'AppBundle:Collectible'>")
+     * @MaxDepth(1)
      */
     private $collectible7;
 
     /**
      * @ORM\OneToOne(targetEntity="Collectible")
      * @ORM\JoinColumn(name="collectible8_id", referencedColumnName="id")
+     * @Type("RelatedEntity<'AppBundle:Collectible'>")
+     * @MaxDepth(1)
      */
     private $collectible8;
 

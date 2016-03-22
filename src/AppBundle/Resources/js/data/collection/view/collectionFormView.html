@@ -10,11 +10,11 @@
     <form-field form-field-bind="form.collection.region" form-template="stringSelect" form-select-options="form.regions"></form-field>
 </div>
 <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
-    <strong>TP-Belohnung:</strong>
+    <strong>TP-Belohnung - Gesamt:</strong>
     <form-field form-field-bind="form.collection.reward_sp" form-template="inputText"></form-field>
 </div>
 <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
-    <strong>Item-Belohnung:</strong>
+    <strong>Item-Belohnung - Gesamt:</strong>
     <form-field form-field-bind="form.collection.reward_item" form-template="inputText"></form-field>
 </div>
 <div class="row">
@@ -24,9 +24,8 @@
 </div>
 <div ng-if="form.collection.id && form.collectionCategories">
     <div class="clear-both"></div>
-    <h4 class="m-b-2">Kategorien:</h4>
-    <hr/>
-    <table class="table-bordered">
+    <h4 class="m-b-2">Sammelitems:</h4>
+    <table class="table table-bordered">
         <thead>
         <tr>
             <th>
