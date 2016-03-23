@@ -41,7 +41,7 @@ class CollectionGroup
 
     /**
      * @ORM\ManyToOne(targetEntity="Collection")
-     * @ORM\JoinColumn(name="collection_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="collection_id", referencedColumnName="id", onDelete="CASCADE")
      * @Type("RelatedEntity<'AppBundle:Collection'>")
      * @MaxDepth(1)
      */

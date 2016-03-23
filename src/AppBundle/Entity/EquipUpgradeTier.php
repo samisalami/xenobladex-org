@@ -49,7 +49,7 @@ class EquipUpgradeTier
 
     /**
      * @ORM\ManyToOne(targetEntity="EquipUpgrade")
-     * @ORM\JoinColumn(name="equipupgrade_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="equipupgrade_id", referencedColumnName="id", onDelete="CASCADE")
      * @Type("RelatedEntity<'AppBundle:EquipUpgrade'>")
      * @MaxDepth(1)
      */

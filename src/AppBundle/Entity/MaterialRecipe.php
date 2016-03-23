@@ -32,7 +32,7 @@ class MaterialRecipe
 
     /**
      * @ORM\ManyToOne(targetEntity="Material")
-     * @ORM\JoinColumn(name="material_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="material_id", referencedColumnName="id", onDelete="CASCADE")
      * @Type("RelatedEntity<'AppBundle:Material'>")
      * @MaxDepth(1)
      */
@@ -40,7 +40,7 @@ class MaterialRecipe
 
     /**
      * @ORM\ManyToOne(targetEntity="EquipUpgradeTier")
-     * @ORM\JoinColumn(name="equip_upgrade_tier_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="equip_upgrade_tier_id", referencedColumnName="id", onDelete="CASCADE")
      * @Type("RelatedEntity<'AppBundle:EquipUpgradeTier'>")
      * @MaxDepth(1)
      */
