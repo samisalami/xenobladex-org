@@ -24,35 +24,35 @@
 </div>
 <div ng-if="form.collection.id && form.collectionCategories">
     <div class="clear-both"></div>
-    <h4 class="m-b-2">Sammelitems:</h4>
-    <table class="table table-bordered">
+    <h4 class="m-b-2">Kategorien:</h4>
+    <table class="table table-bordered table-not-fixed text-sm-center">
         <thead>
         <tr>
             <th>
 
             </th>
-            <th>
+            <th style="text-align: center">
                 Slot 1
             </th>
-            <th>
+            <th style="text-align: center">
                 Slot 2
             </th>
-            <th>
+            <th style="text-align: center">
                 Slot 3
             </th>
-            <th>
+            <th style="text-align: center">
                 Slot 4
             </th>
-            <th>
+            <th style="text-align: center">
                 Slot 5
             </th>
-            <th>
+            <th style="text-align: center">
                 Slot 6
             </th>
-            <th>
+            <th style="text-align: center">
                 Slot 7
             </th>
-            <th>
+            <th style="text-align: center">
                 Slot 8
             </th>
             <th>
@@ -69,6 +69,6 @@
         </tbody>
     </table>
     <div class="clear-both"></div>
-    <button ng-if="(form.collectionGroups | filter: {equip_upgrade: form.collection.id}).length==0" class="btn btn-success" type="button" ng-click="form.createCollectionGroups()">Kategorien anlegen</button>
-    <button ng-if="(form.collectionGroups | filter: {equip_upgrade: form.collection.id}).length>0" class="btn btn-danger" type="button" ng-click="form.deleteCollectionGroups()">Kategorien löschen</button>
+    <button ng-if="(form.collectionGroups | filter: {collection: form.collection.id}).length==0" class="btn btn-success" type="button" ng-click="form.createCollectionGroups()">Kategorien anlegen</button>
+    <button ng-if="(form.collectionGroups | filter: {collection: form.collection.id}).length>0" class="btn btn-danger" type="button" ng-click="form.deleteCollectionGroups()">Kategorien löschen</button>
 </div>

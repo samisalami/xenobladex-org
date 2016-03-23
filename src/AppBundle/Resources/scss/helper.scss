@@ -37,3 +37,7 @@
 .table-cell {
   float: none !important;
 }
+
+.table-not-fixed {
+  table-layout: auto !important;
+}

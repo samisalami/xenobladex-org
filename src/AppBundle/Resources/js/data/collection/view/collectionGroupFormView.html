@@ -3,40 +3,40 @@
         <strong>{{collectionCategoryById.name}}</strong>
     </td>
     <td>
-        <form-field ng-if="form.collectibles" form-field-bind="form.collectionGroup.collectible1" form-select-options="form.collectibles" form-template="customAutoCompleteSelect"></form-field>
+        <collectible-autocomplete ng-if="form.collectibles" bind-collectible="form.collectionGroup.collectible1" options="form.collectibles"></collectible-autocomplete>
     </td>
     <td>
-        <form-field ng-if="form.collectibles" form-field-bind="form.collectionGroup.collectible2" form-select-options="form.collectibles" form-template="customAutoCompleteSelect"></form-field>
+        <collectible-autocomplete ng-if="form.collectibles" bind-collectible="form.collectionGroup.collectible2" options="form.collectibles"></collectible-autocomplete>
     </td>
     <td>
-        <form-field ng-if="form.collectibles" form-field-bind="form.collectionGroup.collectible3" form-select-options="form.collectibles" form-template="customAutoCompleteSelect"></form-field>
+        <collectible-autocomplete ng-if="form.collectibles" bind-collectible="form.collectionGroup.collectible3" options="form.collectibles"></collectible-autocomplete>
     </td>
     <td>
-        <form-field ng-if="form.collectibles" form-field-bind="form.collectionGroup.collectible4" form-select-options="form.collectibles" form-template="customAutoCompleteSelect"></form-field>
+        <collectible-autocomplete ng-if="form.collectibles" bind-collectible="form.collectionGroup.collectible4" options="form.collectibles"></collectible-autocomplete>
     </td>
     <td>
-        <form-field ng-if="form.collectibles" form-field-bind="form.collectionGroup.collectible5" form-select-options="form.collectibles" form-template="customAutoCompleteSelect"></form-field>
+        <collectible-autocomplete ng-if="form.collectibles" bind-collectible="form.collectionGroup.collectible5" options="form.collectibles"></collectible-autocomplete>
     </td>
     <td>
-        <form-field ng-if="form.collectibles" form-field-bind="form.collectionGroup.collectible6" form-select-options="form.collectibles" form-template="customAutoCompleteSelect"></form-field>
+        <collectible-autocomplete ng-if="form.collectibles" bind-collectible="form.collectionGroup.collectible6" options="form.collectibles"></collectible-autocomplete>
     </td>
     <td>
-        <form-field ng-if="form.collectibles" form-field-bind="form.collectionGroup.collectible7" form-select-options="form.collectibles" form-template="customAutoCompleteSelect"></form-field>
+        <collectible-autocomplete ng-if="form.collectibles" bind-collectible="form.collectionGroup.collectible7" options="form.collectibles"></collectible-autocomplete>
     </td>
     <td>
-        <form-field ng-if="form.collectibles" form-field-bind="form.collectionGroup.collectible8" form-select-options="form.collectibles" form-template="customAutoCompleteSelect"></form-field>
+        <collectible-autocomplete ng-if="form.collectibles" bind-collectible="form.collectionGroup.collectible8" options="form.collectibles"></collectible-autocomplete>
     </td>
-    <td>
+    <td style="width:20px;">
         <strong>TP-Belohnung:</strong>
         <form-field form-field-bind="form.collectionGroup.reward_sp" form-template="inputText"></form-field>
     </td>
-    <td>
+    <td style="width:20px;">
         <strong>Item-Belohnung:</strong>
         <form-field form-field-bind="form.collectionGroup.reward_item" form-template="inputText"></form-field>
     </td>
-    <td>
+    <td style="width:20px;">
         <div class="col-xs-12 p-r-0">
-            <button type="button" ng-click="form.updateCollectionGroup()" href="#" class="btn btn-success pull-right">Speichern</button>
+            <button type="button" ng-click="form.updateCollectionGroup()" href="#" class="btn btn-success pull-right"><span class="fa fa-check"></span></button>
         </div>
     </td>
 </tr>
