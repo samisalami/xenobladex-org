@@ -25,10 +25,6 @@
             <div class="alert alert-warning m-y-2" ng-show="vm.deletedCollectionCategory">
                 <a ng-click="vm.addDeletedCollectionCategory()" href="#">Gelöschte Zeile wiederherstellen</a>
             </div>
-            <collapsed-table-list id-prefix="category" add-form="true">
-                <collection-category-form collection-category="newCollectionCategory">
-                </collection-category-form>
-            </collapsed-table-list>
             <collapsed-table-list id-prefix="category" ng-repeat="item in vm.collectionCategories | orderBy:'prio' track by item.id" ng-if="vm.collectionCategories">
                 <collection-category-form collection-category="item">
                 </collection-category-form>
@@ -40,10 +36,6 @@
                 <a ng-click="vm.addDeletedCollection()" href="#">Gelöschte Zeile wiederherstellen</a>
             </div>
             <input type="text" class="form-control text m-y-1" ng-model="filter.name" ng-model-options='{ debounce: 200 }' placeholder="Filtern..." />
-            <collapsed-table-list id-prefix="collection" add-form="true">
-                <collection-form collection="newCollection">
-                </collection-form>
-            </collapsed-table-list>
             <collapsed-table-list id-prefix="collection" ng-repeat="item in vm.collections | filter:filter track by item.id" table-list-label="{{item.region}}" ng-if="vm.collections">
                 <collection-form collection="item">
                 </collection-form>
