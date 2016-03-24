@@ -12,8 +12,6 @@ use JMS\Serializer\Annotation\MaxDepth;
 /**
  * Material
  *
- * http://stackoverflow.com/questions/33399403/symfony2-entity-findall-return-large-response-on-api
- *
  * @ORM\Table(name="xenobladex_item_material")
  * @ORM\Entity
  */

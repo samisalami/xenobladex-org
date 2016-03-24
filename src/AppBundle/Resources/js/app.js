@@ -103,6 +103,9 @@ function config($routeProvider, $locationProvider) {
       .when('/admin/erweiterungen/kategorien', {
           templateUrl: 'js/data/equip/view/admin_equipupgradecategories.html'
       })
+      .when('/admin/ressourcen', {
+          templateUrl: 'js/data/resource/view/admin_resources.html'
+      })
       .otherwise({
           templateUrl: 'views/404.html'
       });

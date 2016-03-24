@@ -48,6 +48,14 @@ class EquipUpgradeTier
     private $materialRecipes;
 
     /**
+     * @var ArrayCollection
+     * @ORM\OneToMany(targetEntity="ResourceRecipe", mappedBy="equipUpgradeTier", fetch="EXTRA_LAZY")
+     * @Type("RelatedEntity<'AppBundle:ResourceRecipe'>")
+     * @MaxDepth(1)
+     */
+    private $resourceRecipes;
+
+    /**
      * @ORM\ManyToOne(targetEntity="EquipUpgrade")
      * @ORM\JoinColumn(name="equipupgrade_id", referencedColumnName="id", onDelete="CASCADE")
      * @Type("RelatedEntity<'AppBundle:EquipUpgrade'>")
@@ -61,6 +69,7 @@ class EquipUpgradeTier
     public function __construct()
     {
         $this->materialRecipes = new ArrayCollection();
+        $this->resourceRecipes = new ArrayCollection();
     }
 
     /**
@@ -172,5 +181,38 @@ class EquipUpgradeTier
     public function getCreditCost()
     {
         return $this->creditCost;
+    }
+
+    /**
+     * Add resourceRecipes
+     *
+     * @param \AppBundle\Entity\ResourceRecipe $resourceRecipes
+     * @return EquipUpgradeTier
+     */
+    public function addResourceRecipe(\AppBundle\Entity\ResourceRecipe $resourceRecipes)
+    {
+        $this->resourceRecipes[] = $resourceRecipes;
+
+        return $this;
+    }
+
+    /**
+     * Remove resourceRecipes
+     *
+     * @param \AppBundle\Entity\ResourceRecipe $resourceRecipes
+     */
+    public function removeResourceRecipe(\AppBundle\Entity\ResourceRecipe $resourceRecipes)
+    {
+        $this->resourceRecipes->removeElement($resourceRecipes);
+    }
+
+    /**
+     * Get resourceRecipes
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getResourceRecipes()
+    {
+        return $this->resourceRecipes;
     }
 }

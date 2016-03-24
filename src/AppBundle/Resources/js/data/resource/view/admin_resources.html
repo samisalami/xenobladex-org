@@ -1,0 +1,20 @@
+<main role="main">
+    <div ng-include src="'views/_adminHeader.html'"></div>
+    <div class="admin-view col-md-12 p-y-1">
+        <h1>Ressourcen</h1>
+        <resource-admin>
+            <div class="alert alert-warning m-y-2" ng-show="vm.deletedResource">
+                <a ng-click="vm.addDeletedResource()" href="#">Gelöschte Zeile wiederherstellen</a>
+            </div>
+            <input type="text" class="form-control text m-y-1" ng-model="nameFilter" ng-model-options='{ debounce: 200 }' placeholder="Filtern..." />
+            <collapsed-table-list add-form="true">
+                <resource-form resource="newResource">
+                </resource-form>
+            </collapsed-table-list>
+            <collapsed-table-list ng-repeat="item in vm.resources | listFilter:nameFilter:'name' track by item.id" ng-if="vm.resources">
+                <resource-form resource="item">
+                </resource-form>
+            </collapsed-table-list>
+        </resource-admin>
+    </div>
+</main>
