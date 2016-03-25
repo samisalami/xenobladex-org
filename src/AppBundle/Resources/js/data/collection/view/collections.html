@@ -3,28 +3,19 @@
 </header>
 <div class="col-xs-12">
     <section class="content-box m-b-1">
-        <p class="content-body">Hier findet ihr das Material und von welchen Gattungen/Kreaturen ihr es erhaltet.
-Material gibt es entweder von mehreren Gattungen (und all deren Kreaturen) oder nur von spezifischen Kreaturen einer Gattung, entsprechend wird nur eins vom beiden angezeigt. Alles Material gibt es auch vom Körper, die Wahrscheinlichkeit ist aber bei ggf. anders genannten Körperteilen höher.
-Sobald wir die Kreaturen veröffentlichen, werden diese dann hier auch verknüpft.</p>
+        <p class="content-body">Hier findet ihr das Kollektikon. Es gibt Belohnungen für:
+- Den Abschluss einer Region
+- Den Abschluss einer Kategorie innerhalb einer Region
+- Das Sammeln aller Items einer Kategorie regionsübergreifend <strong>(immer 16 TP)</strong>
+- Das Sammeln eines Glücksfelds, welche gelb hinterlegt sind <strong>(immer 2 TP)</strong></p>
     </section>
 </div>
-<div class="page-collection" collection-view>
-    <!--<div class="row">-->
-        <!--<div class="col-xs-12 m-b-1">-->
-            <!--<div class="col-xs-12 col-lg-4 search-input m-b-1">-->
-                <!--<input ng-model="materialfilterValue" ng-model-options='{ debounce: 750 }' type="text" placeholder="Nach Name filtern..." />-->
-                <!--<span class="fa fa-search"></span>-->
-            <!--</div>-->
-            <!--<div class="col-xs-12 col-lg-4 search-input m-b-1">-->
-                <!--<input ng-model="monsterTypefilterValue" ng-model-options='{ debounce: 750 }' type="text" placeholder="Nach Gattung filtern..." />-->
-                <!--<span class="fa fa-search"></span>-->
-            <!--</div>-->
-        <!--</div>-->
-    <!--</div>-->
-    <div class="collection row" ng-repeat="collection in collections track by collection.id">
-        <h2>{{collection.name}}</h2>
-        <div class="table-responsive">
-            <table class="table table-bordered">
+<div class="page-collection col-xs-12" collection-view>
+    <div class="collection m-b-2" ng-repeat="collection in collections track by collection.id">
+        <h2>{{collection.region}}</h2>
+        <strong>Gesamtbelohnung:</strong> {{collection.reward_sp}} TP, {{collection.reward_item}}
+        <div class="table-responsive m-t-1">
+            <table class="table table-bordered table-not-fixed">
                 <thead>
                 <tr>
                     <th></th>
@@ -40,24 +31,36 @@ Sobald wir die Kreaturen veröffentlichen, werden diese dann hier auch verknüpf
                 </tr>
                 </thead>
                 <tbody>
-                    <tr ng-if="collectionGroups" ng-repeat="collectionGroup in collectionGroups | filter:{collection: collection.id} track by collectionGroup.id">
+                    <tr ng-if="collectionGroups" ng-repeat="collectionGroup in collectionGroups | filter:{collection: collection.id} | orderBy: 'collection_category_prio' track by collectionGroup.id">
                         <td collection-category-by-id="{{collectionGroup.collection_category}}">
-                            {{collectionCategoryById.name}}
+                            <strong>{{collectionCategoryById.name}}</strong>
                         </td>
-                        <td collectible-by-id="{{collectionGroup.collectible1}}">
+                        <td collectible-by-id="{{collectionGroup.collectible1}}" ng-class="{'lucky-field': collectibleById.is_lucky_field}">
                             {{collectibleById.name}}
                         </td>
-                        <td collectible-by-id="{{collectionGroup.collectible2}}">
+                        <td collectible-by-id="{{collectionGroup.collectible2}}" ng-class="{'lucky-field': collectibleById.is_lucky_field}">
                             {{collectibleById.name}}
                         </td>
-                        <td collectible-by-id="{{collectionGroup.collectible3}}">
+                        <td collectible-by-id="{{collectionGroup.collectible3}}" ng-class="{'lucky-field': collectibleById.is_lucky_field}">
                             {{collectibleById.name}}
                         </td>
-                        <td collectible-by-id="{{collectionGroup.collectible4}}">
+                        <td collectible-by-id="{{collectionGroup.collectible4}}" ng-class="{'lucky-field': collectibleById.is_lucky_field}">
                             {{collectibleById.name}}
                         </td>
-                        <td collectible-by-id="{{collectionGroup.collectible5}}">
+                        <td collectible-by-id="{{collectionGroup.collectible5}}" ng-class="{'lucky-field': collectibleById.is_lucky_field}">
                             {{collectibleById.name}}
+                        </td>
+                        <td collectible-by-id="{{collectionGroup.collectible6}}" ng-class="{'lucky-field': collectibleById.is_lucky_field}">
+                            {{collectibleById.name}}
+                        </td>
+                        <td collectible-by-id="{{collectionGroup.collectible7}}" ng-class="{'lucky-field': collectibleById.is_lucky_field}">
+                            {{collectibleById.name}}
+                        </td>
+                        <td collectible-by-id="{{collectionGroup.collectible8}}" ng-class="{'lucky-field': collectibleById.is_lucky_field}">
+                            {{collectibleById.name}}
+                        </td>
+                        <td>
+                            {{collectionGroup.reward_sp}} TP, {{collectionGroup.reward_item}}
                         </td>
                     </tr>
                 </tbody>

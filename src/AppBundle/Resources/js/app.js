@@ -26,6 +26,9 @@ function config($routeProvider, $locationProvider) {
       .when('/material', {
         templateUrl: 'js/data/material/view/materials.html'
       })
+      .when('/kollektikon', {
+        templateUrl: 'js/data/collection/view/collections.html'
+      })
       .when('/kreaturen', {
         templateUrl: 'js/data/monster/view/monsters.html'
       })
