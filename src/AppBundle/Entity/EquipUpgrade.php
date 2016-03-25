@@ -39,6 +39,13 @@ class EquipUpgrade
     private $description="";
 
     /**
+     * @var boolean
+     *
+     * @ORM\Column(name="is_not_manufacturable", type="boolean")
+     */
+    private $isNotManufacturable = false;
+
+    /**
      * @ORM\ManyToOne(targetEntity="EquipUpgradeCategory")
      * @ORM\JoinColumn(name="equip_upgrade_category_id", referencedColumnName="id")
      * @Type("RelatedEntity<'AppBundle:EquipUpgradeCategory'>")
@@ -172,5 +179,28 @@ class EquipUpgrade
     public function getEquipUpgradeTiers()
     {
         return $this->equipUpgradeTiers;
+    }
+
+    /**
+     * Set isNotManufacturable
+     *
+     * @param boolean $isNotManufacturable
+     * @return EquipUpgrade
+     */
+    public function setIsNotManufacturable($isNotManufacturable)
+    {
+        $this->isNotManufacturable = $isNotManufacturable;
+
+        return $this;
+    }
+
+    /**
+     * Get isNotManufacturable
+     *
+     * @return boolean 
+     */
+    public function getIsNotManufacturable()
+    {
+        return $this->isNotManufacturable;
     }
 }

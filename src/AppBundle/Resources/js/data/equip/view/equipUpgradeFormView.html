@@ -15,6 +15,10 @@
         <form-field form-field-bind="form.equipUpgrade.description" form-template="textarea"></form-field>
     </div>
     <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <strong>Kann nicht hergestellt werden?</strong>
+        <form-field form-field-bind="form.equipUpgrade.is_not_manufacturable" form-template="inputCheckbox"></form-field>
+    </div>
+    <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
         <span class="info-icon text-primary" bs-tooltip bs-tooltip-title="Standardwert 'Waffen'"></span>
         <strong>Kategorie:</strong>
         <form-field ng-if="form.equipUpgradeCategories" form-field-label="type" form-field-bind="form.equipUpgradeCategory" form-select-options="form.equipUpgradeCategories" form-template="customAutoCompleteSelect"></form-field>
