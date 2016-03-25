@@ -26,8 +26,31 @@ Im Allgemeinen ist das BLADE-Level nur eine Voraussetzung für Nebenjobs und kei
                 <span class="fa fa-search"></span>
             </div>
         </div>
+        <div class="row m-b-1 p-y-1 content-box">
+            <div class="col-xs-12 col-lg-3">
+                <div class="checkbox">
+                    <label>
+                        <input ng-model="groupedMissions[1].hide" type="checkbox"/> Handlungsmissionen ausblenden
+                    </label>
+                </div>
+            </div>
+            <div class="col-xs-12 col-lg-3">
+                <div class="checkbox">
+                    <label>
+                        <input ng-model="groupedMissions[2].hide" type="checkbox"/> Nebenjobs ausblenden
+                    </label>
+                </div>
+            </div>
+            <div class="col-xs-12 col-lg-3">
+                <div class="checkbox">
+                    <label>
+                        <input ng-model="groupedMissions[0].hide" type="checkbox"/> Standardmissionen ausblenden
+                    </label>
+                </div>
+            </div>
+        </div>
         <collapsed-content>
-            <section class="collapse-grouped" ng-repeat="missionGroup in groupedMissions | orderBy:'name'">
+            <section class="collapse-grouped" ng-repeat="missionGroup in groupedMissions | orderBy:'name'" ng-if="missionGroup.hide !== true">
             <h1>{{missionGroup.name || 'Nicht zugeordnet'}}</h1>
             <div class="collapse-item" ng-repeat="mission in missionGroup.rows | filter:filter | orderBy:[natural('name'), 'blade_level', 'chapter']  track by mission.id">
                 <a href="#mission-{{$parent.$index}}-{{$index}}" ng-click="visible('mission-'+$parent.$index+'-'+$index)" class="collapsed content-box" onclick="return false;" data-toggle="collapse" aria-expanded="false">
