@@ -25,6 +25,12 @@ class Resource extends Item
     private $region = "";
 
     /**
+     * @var string
+     * @ORM\Column(name="location_note", type="text")
+     */
+    private $locationNote;
+
+    /**
      * @return string
      */
     public function getRegion()
@@ -42,4 +48,27 @@ class Resource extends Item
         return $this;
     }
 
+
+    /**
+     * Set locationNote
+     *
+     * @param string $locationNote
+     * @return Resource
+     */
+    public function setLocationNote($locationNote)
+    {
+        $this->locationNote = $locationNote;
+
+        return $this;
+    }
+
+    /**
+     * Get locationNote
+     *
+     * @return string 
+     */
+    public function getLocationNote()
+    {
+        return $this->locationNote;
+    }
 }

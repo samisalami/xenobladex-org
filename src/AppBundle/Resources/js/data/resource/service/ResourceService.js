@@ -29,6 +29,7 @@ function ResourceService($http, $filter) {
         region,
         credit_cost,
         description,
+        location_note,
         rarity)
     {
         this.id = id;
@@ -36,6 +37,7 @@ function ResourceService($http, $filter) {
         this.region = region;
         this.credit_cost = credit_cost;
         this.description = description;
+        this.location_note = location_note;
         this.rarity = rarity;
 
         Object.seal(this);
@@ -57,6 +59,7 @@ function ResourceService($http, $filter) {
                 resource['region'],
                 resource['credit_cost'],
                 resource['description'],
+                resource['location_note'],
                 resource['rarity']
             );
         }
