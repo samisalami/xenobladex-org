@@ -1,0 +1,67 @@
+<header class="col-xs-12">
+    <h1>Kollektikon</h1>
+</header>
+<div class="col-xs-12">
+    <section class="content-box m-b-1">
+        <p class="content-body">Hier findet ihr das Material und von welchen Gattungen/Kreaturen ihr es erhaltet.
+Material gibt es entweder von mehreren Gattungen (und all deren Kreaturen) oder nur von spezifischen Kreaturen einer Gattung, entsprechend wird nur eins vom beiden angezeigt. Alles Material gibt es auch vom Körper, die Wahrscheinlichkeit ist aber bei ggf. anders genannten Körperteilen höher.
+Sobald wir die Kreaturen veröffentlichen, werden diese dann hier auch verknüpft.</p>
+    </section>
+</div>
+<div class="page-collection" collection-view>
+    <!--<div class="row">-->
+        <!--<div class="col-xs-12 m-b-1">-->
+            <!--<div class="col-xs-12 col-lg-4 search-input m-b-1">-->
+                <!--<input ng-model="materialfilterValue" ng-model-options='{ debounce: 750 }' type="text" placeholder="Nach Name filtern..." />-->
+                <!--<span class="fa fa-search"></span>-->
+            <!--</div>-->
+            <!--<div class="col-xs-12 col-lg-4 search-input m-b-1">-->
+                <!--<input ng-model="monsterTypefilterValue" ng-model-options='{ debounce: 750 }' type="text" placeholder="Nach Gattung filtern..." />-->
+                <!--<span class="fa fa-search"></span>-->
+            <!--</div>-->
+        <!--</div>-->
+    <!--</div>-->
+    <div class="collection row" ng-repeat="collection in collections track by collection.id">
+        <h2>{{collection.name}}</h2>
+        <div class="table-responsive">
+            <table class="table table-bordered">
+                <thead>
+                <tr>
+                    <th></th>
+                    <th style="text-align: center;">Slot 1</th>
+                    <th style="text-align: center;">Slot 2</th>
+                    <th style="text-align: center;">Slot 3</th>
+                    <th style="text-align: center;">Slot 4</th>
+                    <th style="text-align: center;">Slot 5</th>
+                    <th style="text-align: center;">Slot 6</th>
+                    <th style="text-align: center;">Slot 7</th>
+                    <th style="text-align: center;">Slot 8</th>
+                    <th style="text-align: center;">Belohnung</th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr ng-if="collectionGroups" ng-repeat="collectionGroup in collectionGroups | filter:{collection: collection.id} track by collectionGroup.id">
+                        <td collection-category-by-id="{{collectionGroup.collection_category}}">
+                            {{collectionCategoryById.name}}
+                        </td>
+                        <td collectible-by-id="{{collectionGroup.collectible1}}">
+                            {{collectibleById.name}}
+                        </td>
+                        <td collectible-by-id="{{collectionGroup.collectible2}}">
+                            {{collectibleById.name}}
+                        </td>
+                        <td collectible-by-id="{{collectionGroup.collectible3}}">
+                            {{collectibleById.name}}
+                        </td>
+                        <td collectible-by-id="{{collectionGroup.collectible4}}">
+                            {{collectibleById.name}}
+                        </td>
+                        <td collectible-by-id="{{collectionGroup.collectible5}}">
+                            {{collectibleById.name}}
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
