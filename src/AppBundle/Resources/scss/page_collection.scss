@@ -5,12 +5,20 @@
   }
 
   table {
-    font-size: 14px;
+    font-size: 13px;
+
+    @media (min-width: #{$screen-md-min}) {
+      font-size: 14px;
+    }
 
     td, th {
-      padding: $default-padding;
+      padding: $default-padding/2;
       width: 20px;
       vertical-align: middle;
+
+      @media (min-width: #{$screen-md-min}) {
+        padding: $default-padding;
+      }
     }
   }
 }
