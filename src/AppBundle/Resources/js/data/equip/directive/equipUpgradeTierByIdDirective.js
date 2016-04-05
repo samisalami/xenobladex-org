@@ -8,7 +8,6 @@ angular.module('app')
                 if(equipUpgradeTierId) {
                     EquipUpgradeTierService.onEquipUpgradeTiersChanged(setEquipUpgradeTierById);
                     setEquipUpgradeTierById(EquipUpgradeTierService.getEquipUpgradeTiers());
-
                 }
 
                 function setEquipUpgradeTierById(equipUpgradeTiers) {

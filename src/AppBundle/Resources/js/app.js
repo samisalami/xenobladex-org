@@ -103,7 +103,13 @@ function config($routeProvider, $locationProvider) {
       .when('/admin/erweiterungen', {
           templateUrl: 'js/data/equip/view/admin_equipupgrades.html'
       })
-      .when('/admin/erweiterungen/kategorien', {
+      //.when('/admin/erweiterungen/:equipUpgradeId', {
+      //    templateUrl: 'js/data/equip/view/admin_equipupgrade.html'
+      //})
+      .when('/admin/erweiterungen/:equipUpgradeId/stufen/:equipUpgradeTierId', {
+          templateUrl: 'js/data/equip/view/form_equipUpgradeTier.html'
+      })
+      .when('/admin/erweiterungs-kategorien', {
           templateUrl: 'js/data/equip/view/admin_equipupgradecategories.html'
       })
       .when('/admin/ressourcen', {
