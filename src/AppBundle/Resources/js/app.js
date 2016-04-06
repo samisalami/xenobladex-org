@@ -107,7 +107,7 @@ function config($routeProvider, $locationProvider) {
       //    templateUrl: 'js/data/equip/view/admin_equipupgrade.html'
       //})
       .when('/admin/erweiterungen/:equipUpgradeId/stufen', {
-          templateUrl: 'js/data/equip/view/form_equipUpgradeTiers.html'
+          templateUrl: 'js/data/equip/view/admin_equipUpgradeTiers.html'
       })
       .when('/admin/erweiterungs-kategorien', {
           templateUrl: 'js/data/equip/view/admin_equipupgradecategories.html'

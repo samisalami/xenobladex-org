@@ -6,14 +6,11 @@
                 <a href="/admin/erweiterungen" class="btn btn-primary m-b-1"><span class="fa fa-arrow-circle-left"></span> Erweiterungen</a>
                 <div ng-if="equipUpgradeById">
                     <h2 class="m-b-1">{{equipUpgradeById.name}}</h2>
-                    <collapsed-table-list add-form="true">
-                        <equip-upgrade-tier-form equip-upgrade-tier="newEquipUpgradeTier"></equip-upgrade-tier-form>
-                    </collapsed-table-list>
-                    <div ng-repeat="item in equipUpgradeById.equip_upgrade_tiers" equip-upgrade-tier-by-id="{{item}}">
-                        <collapsed-table-list ng-if="equipUpgradeTierById" table-list-label="{{equipUpgradeTierById.name}}">
-                            <equip-upgrade-tier-form equip-upgrade-tier="equipUpgradeTierById"></equip-upgrade-tier-form>
+                    <equip-upgrade-tier-admin>
+                        <collapsed-table-list ng-repeat="item in vm.equipUpgradeTiers | filter: {equip_upgrade: paramFromUrl} | orderBy:'name' track by item.id">
+                            <equip-upgrade-tier-form equip-upgrade-tier="item"></equip-upgrade-tier-form>
                         </collapsed-table-list>
-                    </div>
+                    </equip-upgrade-tier-admin>
                 </div>
             </div>
         </div>

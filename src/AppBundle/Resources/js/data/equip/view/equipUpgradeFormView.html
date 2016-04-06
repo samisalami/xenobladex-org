@@ -5,7 +5,7 @@
         </button>
     </div>
 </div>
-<form ng-submit="">
+<form>
     <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
         <strong>Name:</strong>
         <form-field form-field-bind="form.equipUpgrade.name" form-template="inputText"></form-field>
@@ -30,8 +30,9 @@
     </div>
     <div ng-if="form.equipUpgrade.id">
         <div class="clear-both"></div>
-        <a class="btn btn-primary" href="/admin/erweiterungen/{{form.equipUpgrade.id}}/stufen">Stufen <span class="fa fa-arrow-circle-right"></span></a>
+        <a ng-if="(form.equipUpgradeTiers | filter: {equip_upgrade: form.equipUpgrade.id}).length>0" class="btn btn-primary" href="/admin/erweiterungen/{{form.equipUpgrade.id}}/stufen">Stufen <span class="fa fa-arrow-circle-right"></span></a>
         <button ng-if="(form.equipUpgradeTiers | filter: {equip_upgrade: form.equipUpgrade.id}).length==0" class="btn btn-success" type="button" ng-click="form.createEquipUpgradeTiers()">Stufen anlegen</button>
+        <div class="clear-both m-y-1"></div>
         <button ng-if="(form.equipUpgradeTiers | filter: {equip_upgrade: form.equipUpgrade.id}).length>0" class="btn btn-danger" type="button" ng-click="form.deleteEquipUpgradeTiers()">Stufen löschen</button>
     </div>
 </form>
