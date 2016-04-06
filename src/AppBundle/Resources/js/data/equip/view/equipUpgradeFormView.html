@@ -32,7 +32,7 @@
         <div class="clear-both"></div>
         <a ng-if="(form.equipUpgradeTiers | filter: {equip_upgrade: form.equipUpgrade.id}).length>0" class="btn btn-primary" href="/admin/erweiterungen/{{form.equipUpgrade.id}}/stufen">Stufen <span class="fa fa-arrow-circle-right"></span></a>
         <button ng-if="(form.equipUpgradeTiers | filter: {equip_upgrade: form.equipUpgrade.id}).length==0" class="btn btn-success" type="button" ng-click="form.createEquipUpgradeTiers()">Stufen anlegen</button>
-        <div class="clear-both m-y-1"></div>
+        <div class="clear-both m-y-3"></div>
         <button ng-if="(form.equipUpgradeTiers | filter: {equip_upgrade: form.equipUpgrade.id}).length>0" class="btn btn-danger" type="button" ng-click="form.deleteEquipUpgradeTiers()">Stufen löschen</button>
     </div>
 </form>
