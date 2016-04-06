@@ -30,14 +30,7 @@
     </div>
     <div ng-if="form.equipUpgrade.id">
         <div class="clear-both"></div>
-        <h4 class="m-b-2">Stufen:</h4>
-        <hr/>
-        <ul>
-            <li ng-repeat="equipUpgradeTier in form.equipUpgradeTiers | filter: {equip_upgrade: form.equipUpgrade.id} | orderBy:'name' track by equipUpgradeTier.id">
-                <a href="admin/erweiterungen/{{form.equipUpgrade.id}}/stufen/{{equipUpgradeTier.id}}">Stufe {{equipUpgradeTier.name}}</a>
-            </li>
-        </ul>
-        <div class="clear-both"></div>
+        <a class="btn btn-primary" href="/admin/erweiterungen/{{form.equipUpgrade.id}}/stufen">Stufen <span class="fa fa-arrow-circle-right"></span></a>
         <button ng-if="(form.equipUpgradeTiers | filter: {equip_upgrade: form.equipUpgrade.id}).length==0" class="btn btn-success" type="button" ng-click="form.createEquipUpgradeTiers()">Stufen anlegen</button>
         <button ng-if="(form.equipUpgradeTiers | filter: {equip_upgrade: form.equipUpgrade.id}).length>0" class="btn btn-danger" type="button" ng-click="form.deleteEquipUpgradeTiers()">Stufen löschen</button>
     </div>

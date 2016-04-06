@@ -1,0 +1,22 @@
+<main role="main">
+    <div ng-include src="'views/_adminHeader.html'"></div>
+    <div class="admin-view col-md-12 p-y-1">
+        <div class="m-b-2" param-from-url param-name="equipUpgradeId">
+            <div ng-if="paramFromUrl" equip-upgrade-by-id="{{paramFromUrl}}">
+                <a href="/admin/erweiterungen" class="btn btn-primary m-b-1"><span class="fa fa-arrow-circle-left"></span> Erweiterungen</a>
+                <div ng-if="equipUpgradeById">
+                    <h2 class="m-b-1">{{equipUpgradeById.name}}</h2>
+                    <collapsed-table-list add-form="true">
+                        <equip-upgrade-tier-form equip-upgrade-tier="newEquipUpgradeTier"></equip-upgrade-tier-form>
+                    </collapsed-table-list>
+                    <div ng-repeat="item in equipUpgradeById.equip_upgrade_tiers" equip-upgrade-tier-by-id="{{item}}">
+                        <collapsed-table-list ng-if="equipUpgradeTierById" table-list-label="{{equipUpgradeTierById.name}}">
+                            <equip-upgrade-tier-form equip-upgrade-tier="equipUpgradeTierById"></equip-upgrade-tier-form>
+                        </collapsed-table-list>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
+</main>

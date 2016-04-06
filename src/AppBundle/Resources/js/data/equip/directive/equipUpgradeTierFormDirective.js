@@ -45,6 +45,10 @@ angular.module('app')
                     that.newResourceRecipe.equip_upgrade_tier = that.equipUpgradeTier.id;
                 }
 
+                that.deleteEquipUpgradeTier = function() {
+                    EquipUpgradeTierService.deleteEquipUpgradeTier(that.equipUpgradeTier);
+                };
+
                 that.updateEquipUpgradeTier = function() {
                     if(that.equipUpgradeTier.id) {
                         EquipUpgradeTierService.updateEquipUpgradeTier(that.equipUpgradeTier);
