@@ -7,19 +7,20 @@
         <form-field form-field-bind="form.equipUpgradeTier.credit_cost" form-template="inputText"></form-field>
     </div>
 </div>
+<div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+    <strong>Material 1:</strong>
+    <collectible-autocomplete ng-if="form.collectibles" bind-collectible="form.equipUpgradeTier.material1" options="form.collectibles"></collectible-autocomplete>
+</div>
+<div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+    <strong>Material 2:</strong>
+    <collectible-autocomplete ng-if="form.collectibles" bind-collectible="form.equipUpgradeTier.material2" options="form.collectibles"></collectible-autocomplete>
+</div>
+<div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+    <strong>Material 3:</strong>
+    <collectible-autocomplete ng-if="form.collectibles" bind-collectible="form.equipUpgradeTier.material3" options="form.collectibles"></collectible-autocomplete>
+</div>
 <div class="row">
     <div class="col-xs-12 col-md-6 col-lg-10 m-y-1">
         <button type="button" ng-click="form.updateEquipUpgradeTier()" class="btn btn-success">Speichern</button>
-    </div>
-</div>
-<div class="row" ng-if="form.equipUpgradeTier.id">
-    <div class="col-xs-12">
-        <h6 class="m-y-2"><strong>Material/Ressource Hinzufügen:</strong></h6>
-        <material-recipe-form class="col-xs-6 col-lg-2" add-form="true" material-recipe="form.newMaterialRecipe"></material-recipe-form>
-        <resource-recipe-form class="col-xs-6 col-lg-2" add-form="true" resource-recipe="form.newResourceRecipe"></resource-recipe-form>
-        <hr class="clear-both"/>
-        <material-recipe-form class="col-xs-6 col-lg-2" ng-if="form.materialRecipes" ng-repeat="materialRecipe in form.materialRecipes | filter:{equip_upgrade_tier: form.equipUpgradeTier.id} track by materialRecipe.id" material-recipe="materialRecipe"></material-recipe-form>
-        <resource-recipe-form class="col-xs-6 col-lg-2" ng-if="form.resourceRecipes" ng-repeat="resourceRecipe in form.resourceRecipes | filter:{equip_upgrade_tier: form.equipUpgradeTier.id} track by resourceRecipe.id" resource-recipe="resourceRecipe"></resource-recipe-form>
-        <div class="clear-both"></div>
     </div>
 </div>

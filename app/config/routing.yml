@@ -78,24 +78,10 @@ material:
     options:
         expose: true
 
-material_recipe:
-    prefix: /xenobladex
-    type:     rest
-    resource: "@AppBundle/Controller/MaterialRecipeController.php"
-    options:
-        expose: true
-
 resource:
     prefix: /xenobladex
     type:     rest
     resource: "@AppBundle/Controller/ResourceController.php"
-    options:
-        expose: true
-
-resource_recipe:
-    prefix: /xenobladex
-    type:     rest
-    resource: "@AppBundle/Controller/ResourceRecipeController.php"
     options:
         expose: true
 
