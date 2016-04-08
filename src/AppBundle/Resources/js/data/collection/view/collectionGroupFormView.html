@@ -3,7 +3,9 @@
         <strong>{{collectionCategoryById.name}}</strong>
     </td>
     <td>
-        <form-field ng-if="form.collectibles" form-field-bind="form.collectionGroup.collectible1" form-select-options="form.collectibles" form-template="customBindAutocompleteAsId"></form-field>
+        <bind-autocomplete-as-id bind-item="form.collectionGroup.collectible1" options="form.collectibles">
+        </bind-autocomplete-as-id>
+        <!--<form-field ng-if="form.collectibles" form-field-bind="form.collectionGroup.collectible1" form-select-options="form.collectibles" form-template="customBindAutocompleteAsId"></form-field>-->
     </td>
     <!--<td>-->
         <!--<form-field ng-if="form.collectibles" form-field-bind="form.collectionGroup.collectible2" form-select-options="form.collectibles" form-template="customBindAutocompleteAsId"></form-field>-->
