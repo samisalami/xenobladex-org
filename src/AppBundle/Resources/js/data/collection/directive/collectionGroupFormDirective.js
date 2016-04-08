@@ -35,12 +35,13 @@ angular.module('app')
                 }
 
                 that.updateCollectionGroup = function() {
-                    if(that.collectionGroup.id) {
-                        CollectionGroupService.updateCollectionGroup(that.collectionGroup);
-                    } else {
-                        CollectionGroupService.addCollectionGroup(that.collectionGroup);
-                        setFormCollectionGroup($scope.collectionGroupSealed);
-                    }
+                    console.log(that.collectionGroup.collectible1);
+                    //if(that.collectionGroup.id) {
+                    //    CollectionGroupService.updateCollectionGroup(that.collectionGroup);
+                    //} else {
+                    //    CollectionGroupService.addCollectionGroup(that.collectionGroup);
+                    //    setFormCollectionGroup($scope.collectionGroupSealed);
+                    //}
                 }
             }],
             controllerAs: 'form'
