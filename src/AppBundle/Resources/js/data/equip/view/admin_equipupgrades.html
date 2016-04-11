@@ -17,6 +17,7 @@
             <div class="alert alert-warning m-y-2" ng-show="vm.deletedEquipUpgrade">
                 <a ng-click="vm.addDeletedEquipUpgrade()" href="#">Gelöschte Zeile wiederherstellen</a>
             </div>
+            <a href="/admin/erweiterungen/was-fehlt" class="btn-primary btn">Welche Daten fehlen?</a>
             <input type="text" class="form-control text m-y-1" ng-model="nameFilter" ng-model-options='{ debounce: 200 }' placeholder="Filtern..." />
             <collapsed-table-list add-form="true">
                 <equip-upgrade-form equip-upgrade="newEquipUpgrade">

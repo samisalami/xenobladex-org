@@ -1,0 +1,85 @@
+<div class="missing-data-view">
+    <a href="/admin/erweiterungen" class="btn-primary btn">Erweiterungen</a>
+    <div class="table-responsive m-t-2">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>
+                        Name
+                    </th>
+                    <th>
+                        Beschreibung
+                    </th>
+                    <th>
+                        Nicht herstellbar?
+                    </th>
+                    <th>
+                        Kategorie
+                    </th>
+                    <th>
+                        I
+                    </th>
+                    <th>
+                        V
+                    </th>
+                    <th>
+                        X
+                    </th>
+                    <th>
+                        XV
+                    </th>
+                    <th>
+                        XX
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="equipUpgrade in equipUpgrades | orderBy:['name'] track by equipUpgrade.id">
+                    <td>
+                        {{equipUpgrade.name}}
+                    </td>
+                    <td>
+                        {{equipUpgrade.description}}
+                    </td>
+                    <td>
+                        <span ng-if="equipUpgrade.is_not_manufacturable">
+                            Ja
+                        </span>
+                        <span ng-if="!equipUpgrade.is_not_manufacturable">
+                            Nein
+                        </span>
+                    </td>
+                    <td>
+                        {{equipUpgrade.category_name}}
+                    </td>
+                    <td style="text-align: left; vertical-align: top" ng-repeat="equipUpgradeTier in equipUpgradeTiers | orderBy: 'name' | filter: {equip_upgrade: equipUpgrade.id} track by equipUpgradeTier.id">
+                        {{equipUpgradeTier.credit_cost}} Credits
+                        <ul>
+                            <li material-by-id="{{equipUpgrade.material_small1}}" ng-if="equipUpgrade.material_small1 && (equipUpgradeTier.name == 'I' || equipUpgradeTier.name == 'V')">
+                                {{materialById.name}} ({{equipUpgrade.material_small1_count}})
+                            </li>
+                            <li material-by-id="{{equipUpgrade.material_small2}}" ng-if="equipUpgrade.materia2_small1 && (equipUpgradeTier.name == 'I' || equipUpgradeTier.name == 'V')">
+                                {{materialById.name}} ({{equipUpgrade.material_small2_count}})
+                            </li>
+                            <li material-by-id="{{equipUpgrade.material_small3}}" ng-if="equipUpgrade.materia3_small1 && (equipUpgradeTier.name == 'I' || equipUpgradeTier.name == 'V')">
+                                {{materialById.name}} ({{equipUpgrade.material_small3_count}})
+                            </li>
+                            <li material-by-id="{{equipUpgrade.material_large1}}" ng-if="equipUpgrade.material_large1 && (equipUpgradeTier.name == 'X' || equipUpgradeTier.name == 'XV' || equipUpgradeTier.name == 'XX')">
+                                {{materialById.name}} ({{equipUpgrade.material_large1_count}})
+                            </li>
+                            <li material-by-id="{{equipUpgrade.material_large2}}" ng-if="equipUpgrade.material_large2 && (equipUpgradeTier.name == 'X' || equipUpgradeTier.name == 'XV' || equipUpgradeTier.name == 'XX')">
+                                {{materialById.name}} ({{equipUpgrade.material_large2_count}})
+                            </li>
+                            <li material-by-id="{{equipUpgrade.material_large3}}" ng-if="equipUpgrade.material_large3 && (equipUpgradeTier.name == 'X' || equipUpgradeTier.name == 'XV' || equipUpgradeTier.name == 'XX')">
+                                {{materialById.name}} ({{equipUpgrade.material_large3_count}})
+                            </li>
+                            <li resource-by-id="{{equipUpgradeTier.resource}}" ng-if="equipUpgradeTier.resource">
+                                {{resourceById.name}}
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
