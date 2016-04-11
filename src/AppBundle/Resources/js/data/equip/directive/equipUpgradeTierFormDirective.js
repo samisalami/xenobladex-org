@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app')
-    .directive('equipUpgradeTierForm',['EquipUpgradeTierService', 'MaterialRecipeService', 'ResourceRecipeService', '$filter', function(EquipUpgradeTierService, MaterialRecipeService, ResourceRecipeService, $filter) {
+    .directive('equipUpgradeTierForm',['EquipUpgradeTierService', 'ResourceService', '$filter', function(EquipUpgradeTierService, ResourceService, $filter) {
         return {
             restrict: 'E',
             replace: false,
@@ -15,34 +15,17 @@ angular.module('app')
 
                 function init() {
                     setFormEquipUpgradeTier($scope.equipUpgradeTier);
-                    setFormNewMaterialRecipe(MaterialRecipeService.MaterialRecipe);
-                    MaterialRecipeService.onMaterialRecipesChanged(setMaterialRecipeData);
-                    setMaterialRecipeData(MaterialRecipeService.getMaterialRecipes());
 
-                    setFormNewResourceRecipe(ResourceRecipeService.ResourceRecipe);
-                    ResourceRecipeService.onResourceRecipesChanged(setResourceRecipeData);
-                    setResourceRecipeData(ResourceRecipeService.getResourceRecipes());
-                }
-
-                function setMaterialRecipeData(materialRecipes) {
-                    that.materialRecipes = materialRecipes;
-                }
-                function setResourceRecipeData(resourceRecipes) {
-                    that.resourceRecipes = resourceRecipes;
+                    ResourceService.onResourcesChanged(setResources);
+                    setResources(ResourceService.getResources());
                 }
 
                 function setFormEquipUpgradeTier(equipUpgrade) {
                     that.equipUpgradeTier = $.extend({}, equipUpgrade, true);
                 }
 
-                function setFormNewMaterialRecipe(materialRecipe) {
-                    that.newMaterialRecipe = $.extend({}, materialRecipe, true);
-                    that.newMaterialRecipe.equip_upgrade_tier = that.equipUpgradeTier.id;
-                }
-
-                function setFormNewResourceRecipe(resourceRecipe) {
-                    that.newResourceRecipe = $.extend({}, resourceRecipe, true);
-                    that.newResourceRecipe.equip_upgrade_tier = that.equipUpgradeTier.id;
+                function setResources(resources) {
+                    that.resources = resources;
                 }
 
                 that.updateEquipUpgradeTier = function() {

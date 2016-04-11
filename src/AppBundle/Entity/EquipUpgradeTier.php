@@ -40,64 +40,19 @@ class EquipUpgradeTier
     protected $creditCost = 0;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Material")
-     * @ORM\JoinColumn(name="material1_id", referencedColumnName="id")
-     * @Type("RelatedEntity<'AppBundle:Material'>")
-     * @MaxDepth(1)
-     */
-    private $material1;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Material")
-     * @ORM\JoinColumn(name="material2_id", referencedColumnName="id")
-     * @Type("RelatedEntity<'AppBundle:Material'>")
-     * @MaxDepth(1)
-     */
-    private $material2;
-
-    /**
-     * @ORM\ManyToOne(targetEntity="Material")
-     * @ORM\JoinColumn(name="material3_id", referencedColumnName="id")
-     * @Type("RelatedEntity<'AppBundle:Material'>")
-     * @MaxDepth(1)
-     */
-    private $material3;
-
-    /**
      * @ORM\ManyToOne(targetEntity="Resource")
-     * @ORM\JoinColumn(name="resource1_id", referencedColumnName="id")
+     * @ORM\JoinColumn(name="resource_id", referencedColumnName="id")
      * @Type("RelatedEntity<'AppBundle:Resource'>")
      * @MaxDepth(1)
      */
-    private $resource1;
+    private $resource;
 
     /**
      * @var integer
      *
-     * @ORM\Column(name="material1_count", type="integer")
+     * @ORM\Column(name="resource_count", type="integer")
      */
-    private $material1_count;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="material2_count", type="integer")
-     */
-    private $material2_count;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="material3_count", type="integer")
-     */
-    private $material3_count;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="resource1_count", type="integer")
-     */
-    private $resource1_count;
+    private $resource_count;
 
     /**
      * @ORM\ManyToOne(targetEntity="EquipUpgrade")
@@ -196,186 +151,48 @@ class EquipUpgradeTier
     }
 
     /**
-     * Set material1_count
+     * Set resource_count
      *
-     * @param integer $material1Count
+     * @param integer $resourceCount
      * @return EquipUpgradeTier
      */
-    public function setMaterial1Count($material1Count)
+    public function setResource1Count($resourceCount)
     {
-        $this->material1_count = $material1Count;
+        $this->resource_count = $resourceCount;
 
         return $this;
     }
 
     /**
-     * Get material1_count
-     *
-     * @return integer 
-     */
-    public function getMaterial1Count()
-    {
-        return $this->material1_count;
-    }
-
-    /**
-     * Set material2_count
-     *
-     * @param integer $material2Count
-     * @return EquipUpgradeTier
-     */
-    public function setMaterial2Count($material2Count)
-    {
-        $this->material2_count = $material2Count;
-
-        return $this;
-    }
-
-    /**
-     * Get material2_count
-     *
-     * @return integer 
-     */
-    public function getMaterial2Count()
-    {
-        return $this->material2_count;
-    }
-
-    /**
-     * Set material3_count
-     *
-     * @param integer $material3Count
-     * @return EquipUpgradeTier
-     */
-    public function setMaterial3Count($material3Count)
-    {
-        $this->material3_count = $material3Count;
-
-        return $this;
-    }
-
-    /**
-     * Get material3_count
-     *
-     * @return integer 
-     */
-    public function getMaterial3Count()
-    {
-        return $this->material3_count;
-    }
-
-    /**
-     * Set resource1_count
-     *
-     * @param integer $resource1Count
-     * @return EquipUpgradeTier
-     */
-    public function setResource1Count($resource1Count)
-    {
-        $this->resource1_count = $resource1Count;
-
-        return $this;
-    }
-
-    /**
-     * Get resource1_count
+     * Get resource_count
      *
      * @return integer 
      */
     public function getResource1Count()
     {
-        return $this->resource1_count;
+        return $this->resource_count;
     }
 
     /**
-     * Set material1
+     * Set resource
      *
-     * @param \AppBundle\Entity\Material $material1
+     * @param \AppBundle\Entity\Resource $resource
      * @return EquipUpgradeTier
      */
-    public function setMaterial1(\AppBundle\Entity\Material $material1 = null)
+    public function setResource1(\AppBundle\Entity\Resource $resource = null)
     {
-        $this->material1 = $material1;
+        $this->resource = $resource;
 
         return $this;
     }
 
     /**
-     * Get material1
-     *
-     * @return \AppBundle\Entity\Material 
-     */
-    public function getMaterial1()
-    {
-        return $this->material1;
-    }
-
-    /**
-     * Set material2
-     *
-     * @param \AppBundle\Entity\Material $material2
-     * @return EquipUpgradeTier
-     */
-    public function setMaterial2(\AppBundle\Entity\Material $material2 = null)
-    {
-        $this->material2 = $material2;
-
-        return $this;
-    }
-
-    /**
-     * Get material2
-     *
-     * @return \AppBundle\Entity\Material 
-     */
-    public function getMaterial2()
-    {
-        return $this->material2;
-    }
-
-    /**
-     * Set material3
-     *
-     * @param \AppBundle\Entity\Material $material3
-     * @return EquipUpgradeTier
-     */
-    public function setMaterial3(\AppBundle\Entity\Material $material3 = null)
-    {
-        $this->material3 = $material3;
-
-        return $this;
-    }
-
-    /**
-     * Get material3
-     *
-     * @return \AppBundle\Entity\Material 
-     */
-    public function getMaterial3()
-    {
-        return $this->material3;
-    }
-
-    /**
-     * Set resource1
-     *
-     * @param \AppBundle\Entity\Resource $resource1
-     * @return EquipUpgradeTier
-     */
-    public function setResource1(\AppBundle\Entity\Resource $resource1 = null)
-    {
-        $this->resource1 = $resource1;
-
-        return $this;
-    }
-
-    /**
-     * Get resource1
+     * Get resource
      *
      * @return \AppBundle\Entity\Resource 
      */
     public function getResource1()
     {
-        return $this->resource1;
+        return $this->resource;
     }
 }

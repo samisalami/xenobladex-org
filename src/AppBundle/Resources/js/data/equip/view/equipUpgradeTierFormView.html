@@ -8,19 +8,15 @@
     </div>
 </div>
 <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
-    <strong>Material 1:</strong>
-    <collectible-autocomplete ng-if="form.collectibles" bind-collectible="form.equipUpgradeTier.material1" options="form.collectibles"></collectible-autocomplete>
-</div>
-<div class="collapsed-table-cell-wrapper" collapsed-table-cell>
-    <strong>Material 2:</strong>
-    <collectible-autocomplete ng-if="form.collectibles" bind-collectible="form.equipUpgradeTier.material2" options="form.collectibles"></collectible-autocomplete>
-</div>
-<div class="collapsed-table-cell-wrapper" collapsed-table-cell>
-    <strong>Material 3:</strong>
-    <collectible-autocomplete ng-if="form.collectibles" bind-collectible="form.equipUpgradeTier.material3" options="form.collectibles"></collectible-autocomplete>
+    <strong>Resource:</strong>
+    <bind-autocomplete-as-id ng-if="form.resources" bind-item="form.equipUpgradeTier.resource" options="form.resources">
+    </bind-autocomplete-as-id>
+    <div class="clear-both"></div>
+    <strong>Anzahl:</strong>
+    <form-field form-field-bind="form.equipUpgradeTier.resource_count" form-template="inputText"></form-field>
 </div>
 <div class="row">
-    <div class="col-xs-12 col-md-6 col-lg-10 m-y-1">
-        <button type="button" ng-click="form.updateEquipUpgradeTier()" class="btn btn-success">Speichern</button>
+    <div class="col-xs-12 m-y-1">
+        <button type="button" ng-click="form.updateEquipUpgradeTier()" class="btn btn-success pull-right">Speichern</button>
     </div>
 </div>

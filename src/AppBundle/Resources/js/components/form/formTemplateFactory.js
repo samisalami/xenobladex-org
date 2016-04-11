@@ -16,7 +16,6 @@ angular.module('app')
         customAttachmentInput: 'js/components/form/formField/fields/customAttachmentInput.html',
         customMapmarkerInput: 'js/components/form/formField/fields/customMapmarkerInput.html',
         customMaterialInput: 'js/components/form/formField/fields/customMaterialInput.html',
-        falsableStringSelect: 'js/components/form/formField/fields/customfalsableStringSelectView.html',
-        customBindAutocompleteAsId: 'js/components/form/formField/fields/customBindAutocompleteAsId.html'
+        falsableStringSelect: 'js/components/form/formField/fields/customfalsableStringSelectView.html'
     };
 });

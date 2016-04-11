@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app')
-    .directive('equipUpgradeForm',['EquipUpgradeService', 'EquipUpgradeCategoryService', 'EquipUpgradeTierService', '$filter', function(EquipUpgradeService, EquipUpgradeCategoryService, EquipUpgradeTierService, $filter) {
+    .directive('equipUpgradeForm',['EquipUpgradeService', 'EquipUpgradeCategoryService', 'EquipUpgradeTierService', 'MaterialService', '$filter', function(EquipUpgradeService, EquipUpgradeCategoryService, EquipUpgradeTierService, MaterialService, $filter) {
         return {
             restrict: 'E',
             replace: false,
@@ -21,6 +21,9 @@ angular.module('app')
 
                     EquipUpgradeTierService.onEquipUpgradeTiersChanged(setEquipUpgradeTiers);
                     setEquipUpgradeTiers(EquipUpgradeTierService.getEquipUpgradeTiers());
+
+                    MaterialService.onMaterialsChanged(setMaterials);
+                    setMaterials(MaterialService.getMaterials());
                 }
 
                 function setEquipUpgradeCategoriesData(equipUpgradeCategories) {
@@ -30,6 +33,10 @@ angular.module('app')
 
                 function setEquipUpgradeTiers(equipUpgradeTiers) {
                     that.equipUpgradeTiers = equipUpgradeTiers;
+                }
+
+                function setMaterials(materials) {
+                    that.materials = materials;
                 }
 
                 function setFormEquipUpgrade(equipUpgrade) {
@@ -81,15 +88,15 @@ angular.module('app')
                     }
                 };
 
-                that.deleteEquipUpgradeTiers = function() {
-                    var equipUpgradeTiers = $filter('filter')(that.equipUpgradeTiers, {equip_upgrade: that.equipUpgrade.id});
-                    if(equipUpgradeTiers.length>0) {
-                        var count = equipUpgradeTiers.length;
-                        for(var i=0;i<count;i++) {
-                            EquipUpgradeTierService.deleteEquipUpgradeTier(equipUpgradeTiers[i]);
-                        }
-                    }
-                };
+                //that.deleteEquipUpgradeTiers = function() {
+                //    var equipUpgradeTiers = $filter('filter')(that.equipUpgradeTiers, {equip_upgrade: that.equipUpgrade.id});
+                //    if(equipUpgradeTiers.length>0) {
+                //        var count = equipUpgradeTiers.length;
+                //        for(var i=0;i<count;i++) {
+                //            EquipUpgradeTierService.deleteEquipUpgradeTier(equipUpgradeTiers[i]);
+                //        }
+                //    }
+                //};
 
                 that.deleteEquipUpgrade = function() {
                     EquipUpgradeService.deleteEquipUpgrade(that.equipUpgrade);

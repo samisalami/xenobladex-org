@@ -26,13 +26,15 @@ function EquipUpgradeTierService($http, $filter) {
     function EquipUpgradeTier(
         id,
         name,
-        material_recipes,
+        resource,
+        resource_count,
         equip_upgrade,
         credit_cost)
     {
         this.id = id;
         this.name = name;
-        this.material_recipes = material_recipes;
+        this.resource = resource;
+        this.resource_count = resource_count;
         this.equip_upgrade = equip_upgrade;
         this.credit_cost = credit_cost;
 
@@ -52,7 +54,8 @@ function EquipUpgradeTierService($http, $filter) {
             return new EquipUpgradeTier(
                 equipUpgradeTier['id'],
                 equipUpgradeTier['name'],
-                equipUpgradeTier['material_recipes'],
+                equipUpgradeTier['resource'],
+                equipUpgradeTier['resource_count'],
                 equipUpgradeTier['equip_upgrade'],
                 equipUpgradeTier['credit_cost']
             );

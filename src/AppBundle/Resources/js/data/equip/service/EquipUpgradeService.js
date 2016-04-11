@@ -29,6 +29,20 @@ function EquipUpgradeService($http, $filter) {
         description,
         is_not_manufacturable,
         category,
+        material_small1,
+        material_small2,
+        material_small3,
+        material_small1_count,
+        material_small2_count,
+        material_small3_count,
+        material_large1,
+        material_large2,
+        material_large3,
+        material_large1_count,
+        material_large2_count,
+        material_large3_count,
+        category_name,
+        category_description,
         equip_upgrade_tiers)
     {
         this.id = id;
@@ -36,6 +50,20 @@ function EquipUpgradeService($http, $filter) {
         this.description = description;
         this.is_not_manufacturable = is_not_manufacturable;
         this.category = category;
+        this.material_small1 = material_small1;
+        this.material_small2 = material_small2;
+        this.material_small3 = material_small3;
+        this.material_small1_count = material_small1_count;
+        this.material_small2_count = material_small2_count;
+        this.material_small3_count = material_small3_count;
+        this.material_large1 = material_large1;
+        this.material_large2 = material_large2;
+        this.material_large3 = material_large3;
+        this.material_large1_count = material_large1_count;
+        this.material_large2_count = material_large2_count;
+        this.material_large3_count = material_large3_count;
+        this.category_name = category_name;
+        this.category_description = category_description;
         this.equip_upgrade_tiers = equip_upgrade_tiers;
 
         Object.seal(this);
@@ -57,6 +85,20 @@ function EquipUpgradeService($http, $filter) {
                 equipUpgrade['description'],
                 equipUpgrade['is_not_manufacturable'],
                 equipUpgrade['category'],
+                equipUpgrade['material_small1'],
+                equipUpgrade['material_small2'],
+                equipUpgrade['material_small3'],
+                equipUpgrade['material_small1_count'],
+                equipUpgrade['material_small2_count'],
+                equipUpgrade['material_small3_count'],
+                equipUpgrade['material_large1'],
+                equipUpgrade['material_large2'],
+                equipUpgrade['material_large3'],
+                equipUpgrade['material_large1_count'],
+                equipUpgrade['material_large2_count'],
+                equipUpgrade['material_large3_count'],
+                equipUpgrade['category_name'],
+                equipUpgrade['category_description'],
                 equipUpgrade['equip_upgrade_tiers']
             );
         }
