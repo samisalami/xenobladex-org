@@ -84,21 +84,21 @@ class EquipUpgrade
      *
      * @ORM\Column(name="material_small1_count", type="integer")
      */
-    private $material_small1_count;
+    private $material_small1_count=0;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="material_small2_count", type="integer")
      */
-    private $material_small2_count;
+    private $material_small2_count=0;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="material_small3_count", type="integer")
      */
-    private $material_small3_count;
+    private $material_small3_count=0;
 
     /**
      * @ORM\ManyToOne(targetEntity="Material")
@@ -129,21 +129,21 @@ class EquipUpgrade
      *
      * @ORM\Column(name="material_large1_count", type="integer")
      */
-    private $material_large1_count;
+    private $material_large1_count=0;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="material_large2_count", type="integer")
      */
-    private $material_large2_count;
+    private $material_large2_count=0;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="material_large3_count", type="integer")
      */
-    private $material_large3_count;
+    private $material_large3_count=0;
 
     /**
      * @var ArrayCollection

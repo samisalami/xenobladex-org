@@ -52,7 +52,7 @@ class EquipUpgradeTier
      *
      * @ORM\Column(name="resource_count", type="integer")
      */
-    private $resource_count;
+    private $resource_count=0;
 
     /**
      * @ORM\ManyToOne(targetEntity="EquipUpgrade")

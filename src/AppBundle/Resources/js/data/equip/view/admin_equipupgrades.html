@@ -23,7 +23,7 @@
                 <equip-upgrade-form equip-upgrade="newEquipUpgrade">
                 </equip-upgrade-form>
             </collapsed-table-list>
-            <collapsed-table-list ng-repeat="item in vm.equipUpgrades | listFilter:nameFilter:'name' track by item.id" ng-if="vm.equipUpgrades">
+            <collapsed-table-list ng-repeat="item in vm.equipUpgrades | listFilter:nameFilter:'name' | orderBy: 'name' track by item.id" ng-if="vm.equipUpgrades">
                 <equip-upgrade-form equip-upgrade="item">
                 </equip-upgrade-form>
             </collapsed-table-list>
