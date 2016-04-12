@@ -34,7 +34,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="equipUpgrade in equipUpgrades | orderBy:['category_name','name'] track by equipUpgrade.id">
+                <tr ng-repeat="equipUpgrade in equipUpgrades | orderBy:['name'] track by equipUpgrade.id">
                     <td>
                         {{equipUpgrade.name}}
                     </td>
