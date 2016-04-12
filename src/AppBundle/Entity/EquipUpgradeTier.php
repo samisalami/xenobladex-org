@@ -33,6 +33,13 @@ class EquipUpgradeTier
     private $name;
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="description", type="text")
+     */
+    private $description="";
+
+    /**
      * @var integer
      *
      * @ORM\Column(name="credit_cost", type="integer")
@@ -53,6 +60,13 @@ class EquipUpgradeTier
      * @ORM\Column(name="resource_count", type="integer")
      */
     private $resource_count=0;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="material_count", type="integer")
+     */
+    private $material_count=0;
 
     /**
      * @ORM\ManyToOne(targetEntity="EquipUpgrade")
@@ -194,5 +208,97 @@ class EquipUpgradeTier
     public function getResource1()
     {
         return $this->resource;
+    }
+
+    /**
+     * Set resource_count
+     *
+     * @param integer $resourceCount
+     * @return EquipUpgradeTier
+     */
+    public function setResourceCount($resourceCount)
+    {
+        $this->resource_count = $resourceCount;
+
+        return $this;
+    }
+
+    /**
+     * Get resource_count
+     *
+     * @return integer 
+     */
+    public function getResourceCount()
+    {
+        return $this->resource_count;
+    }
+
+    /**
+     * Set material_count
+     *
+     * @param integer $materialCount
+     * @return EquipUpgradeTier
+     */
+    public function setMaterialCount($materialCount)
+    {
+        $this->material_count = $materialCount;
+
+        return $this;
+    }
+
+    /**
+     * Get material_count
+     *
+     * @return integer 
+     */
+    public function getMaterialCount()
+    {
+        return $this->material_count;
+    }
+
+    /**
+     * Set resource
+     *
+     * @param \AppBundle\Entity\Resource $resource
+     * @return EquipUpgradeTier
+     */
+    public function setResource(\AppBundle\Entity\Resource $resource = null)
+    {
+        $this->resource = $resource;
+
+        return $this;
+    }
+
+    /**
+     * Get resource
+     *
+     * @return \AppBundle\Entity\Resource 
+     */
+    public function getResource()
+    {
+        return $this->resource;
+    }
+
+    /**
+     * Set description
+     *
+     * @param string $description
+     * @return EquipUpgradeTier
+     */
+    public function setDescription($description)
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    /**
+     * Get description
+     *
+     * @return string 
+     */
+    public function getDescription()
+    {
+        return $this->description;
     }
 }

@@ -34,7 +34,7 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="equipUpgrade in equipUpgrades | orderBy:['name'] track by equipUpgrade.id">
+                <tr ng-repeat="equipUpgrade in equipUpgrades | orderBy:['category_name','name'] track by equipUpgrade.id">
                     <td>
                         {{equipUpgrade.name}}
                     </td>
@@ -56,25 +56,25 @@
                         {{equipUpgradeTier.credit_cost}} Credits
                         <ul>
                             <li material-by-id="{{equipUpgrade.material_small1}}" ng-if="equipUpgrade.material_small1 && (equipUpgradeTier.name == 'I' || equipUpgradeTier.name == 'V')">
-                                {{materialById.name}} ({{equipUpgrade.material_small1_count}})
+                                {{materialById.name}} ({{equipUpgradeTier.material_count}})
                             </li>
-                            <li material-by-id="{{equipUpgrade.material_small2}}" ng-if="equipUpgrade.materia2_small2 && (equipUpgradeTier.name == 'I' || equipUpgradeTier.name == 'V')">
-                                {{materialById.name}} ({{equipUpgrade.material_small2_count}})
+                            <li material-by-id="{{equipUpgrade.material_small2}}" ng-if="equipUpgrade.material_small2 && (equipUpgradeTier.name == 'I' || equipUpgradeTier.name == 'V')">
+                                {{materialById.name}} ({{equipUpgradeTier.material_count}})
                             </li>
-                            <li material-by-id="{{equipUpgrade.material_small3}}" ng-if="equipUpgrade.materia3_small3 && (equipUpgradeTier.name == 'I' || equipUpgradeTier.name == 'V')">
-                                {{materialById.name}} ({{equipUpgrade.material_small3_count}})
+                            <li material-by-id="{{equipUpgrade.material_small3}}" ng-if="equipUpgrade.material_small3 && (equipUpgradeTier.name == 'I' || equipUpgradeTier.name == 'V')">
+                                {{materialById.name}} ({{equipUpgradeTier.material_count}})
                             </li>
                             <li material-by-id="{{equipUpgrade.material_large1}}" ng-if="equipUpgrade.material_large1 && (equipUpgradeTier.name == 'X' || equipUpgradeTier.name == 'XV' || equipUpgradeTier.name == 'XX')">
-                                {{materialById.name}} ({{equipUpgrade.material_large1_count}})
+                                {{materialById.name}} ({{equipUpgradeTier.material_count}})
                             </li>
                             <li material-by-id="{{equipUpgrade.material_large2}}" ng-if="equipUpgrade.material_large2 && (equipUpgradeTier.name == 'X' || equipUpgradeTier.name == 'XV' || equipUpgradeTier.name == 'XX')">
-                                {{materialById.name}} ({{equipUpgrade.material_large2_count}})
+                                {{materialById.name}} ({{equipUpgradeTier.material_count}})
                             </li>
                             <li material-by-id="{{equipUpgrade.material_large3}}" ng-if="equipUpgrade.material_large3 && (equipUpgradeTier.name == 'X' || equipUpgradeTier.name == 'XV' || equipUpgradeTier.name == 'XX')">
-                                {{materialById.name}} ({{equipUpgrade.material_large3_count}})
+                                {{materialById.name}} ({{equipUpgradeTier.material_count}})
                             </li>
                             <li resource-by-id="{{equipUpgradeTier.resource}}" ng-if="equipUpgradeTier.resource">
-                                {{resourceById.name}}
+                                {{resourceById.name}} ({{equipUpgradeTier.resource_count}})
                             </li>
                         </ul>
                     </td>

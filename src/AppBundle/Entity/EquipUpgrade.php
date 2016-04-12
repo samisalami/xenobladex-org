@@ -80,27 +80,6 @@ class EquipUpgrade
     private $material_small3;
 
     /**
-     * @var integer
-     *
-     * @ORM\Column(name="material_small1_count", type="integer")
-     */
-    private $material_small1_count=0;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="material_small2_count", type="integer")
-     */
-    private $material_small2_count=0;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="material_small3_count", type="integer")
-     */
-    private $material_small3_count=0;
-
-    /**
      * @ORM\ManyToOne(targetEntity="Material")
      * @ORM\JoinColumn(name="material_large1_id", referencedColumnName="id")
      * @Type("RelatedEntity<'AppBundle:Material'>")
@@ -123,27 +102,6 @@ class EquipUpgrade
      * @MaxDepth(1)
      */
     private $material_large3;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="material_large1_count", type="integer")
-     */
-    private $material_large1_count=0;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="material_large2_count", type="integer")
-     */
-    private $material_large2_count=0;
-
-    /**
-     * @var integer
-     *
-     * @ORM\Column(name="material_large3_count", type="integer")
-     */
-    private $material_large3_count=0;
 
     /**
      * @var ArrayCollection
@@ -316,144 +274,6 @@ class EquipUpgrade
     public function getIsNotManufacturable()
     {
         return $this->isNotManufacturable;
-    }
-
-    /**
-     * Set material_small1_count
-     *
-     * @param integer $materialSmall1Count
-     * @return EquipUpgrade
-     */
-    public function setMaterialSmall1Count($materialSmall1Count)
-    {
-        $this->material_small1_count = $materialSmall1Count;
-
-        return $this;
-    }
-
-    /**
-     * Get material_small1_count
-     *
-     * @return integer 
-     */
-    public function getMaterialSmall1Count()
-    {
-        return $this->material_small1_count;
-    }
-
-    /**
-     * Set material_small2_count
-     *
-     * @param integer $materialSmall2Count
-     * @return EquipUpgrade
-     */
-    public function setMaterialSmall2Count($materialSmall2Count)
-    {
-        $this->material_small2_count = $materialSmall2Count;
-
-        return $this;
-    }
-
-    /**
-     * Get material_small2_count
-     *
-     * @return integer 
-     */
-    public function getMaterialSmall2Count()
-    {
-        return $this->material_small2_count;
-    }
-
-    /**
-     * Set material_small3_count
-     *
-     * @param integer $materialSmall3Count
-     * @return EquipUpgrade
-     */
-    public function setMaterialSmall3Count($materialSmall3Count)
-    {
-        $this->material_small3_count = $materialSmall3Count;
-
-        return $this;
-    }
-
-    /**
-     * Get material_small3_count
-     *
-     * @return integer 
-     */
-    public function getMaterialSmall3Count()
-    {
-        return $this->material_small3_count;
-    }
-
-    /**
-     * Set material_large1_count
-     *
-     * @param integer $materialLarge1Count
-     * @return EquipUpgrade
-     */
-    public function setMaterialLarge1Count($materialLarge1Count)
-    {
-        $this->material_large1_count = $materialLarge1Count;
-
-        return $this;
-    }
-
-    /**
-     * Get material_large1_count
-     *
-     * @return integer 
-     */
-    public function getMaterialLarge1Count()
-    {
-        return $this->material_large1_count;
-    }
-
-    /**
-     * Set material_large2_count
-     *
-     * @param integer $materialLarge2Count
-     * @return EquipUpgrade
-     */
-    public function setMaterialLarge2Count($materialLarge2Count)
-    {
-        $this->material_large2_count = $materialLarge2Count;
-
-        return $this;
-    }
-
-    /**
-     * Get material_large2_count
-     *
-     * @return integer 
-     */
-    public function getMaterialLarge2Count()
-    {
-        return $this->material_large2_count;
-    }
-
-    /**
-     * Set material_large3_count
-     *
-     * @param integer $materialLarge3Count
-     * @return EquipUpgrade
-     */
-    public function setMaterialLarge3Count($materialLarge3Count)
-    {
-        $this->material_large3_count = $materialLarge3Count;
-
-        return $this;
-    }
-
-    /**
-     * Get material_large3_count
-     *
-     * @return integer 
-     */
-    public function getMaterialLarge3Count()
-    {
-        return $this->material_large3_count;
     }
 
     /**

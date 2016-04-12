@@ -1,11 +1,15 @@
-<div class="row">
-    <div class="col-xs-6 col-md-2 p-y-1">
-        <strong>Verkaufswert:</strong>
-    </div>
-    <div class="col-xs-6 col-md-2 p-y-1">
-        <span class="info-icon text-primary" bs-tooltip bs-tooltip-title="Nur Zahlen erlaubt."></span>
-        <form-field form-field-bind="form.equipUpgradeTier.credit_cost" form-template="inputText"></form-field>
-    </div>
+<div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+    <span class="info-icon text-primary" bs-tooltip bs-tooltip-title="Nur Zahlen erlaubt."></span>
+    <strong>Verkaufswert:</strong>
+    <form-field form-field-bind="form.equipUpgradeTier.credit_cost" form-template="inputText"></form-field>
+</div>
+<div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+    <strong>Beschreibung:</strong>
+    <form-field form-field-bind="form.equipUpgradeTier.description" form-template="textarea"></form-field>
+</div>
+<div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+    <strong>Material - Anzahl:</strong>
+    <form-field form-field-bind="form.equipUpgradeTier.material_count" form-template="inputText"></form-field>
 </div>
 <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
     <strong>Resource:</strong>
