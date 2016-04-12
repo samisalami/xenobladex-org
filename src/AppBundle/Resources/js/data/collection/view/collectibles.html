@@ -1,0 +1,40 @@
+<header class="col-xs-12">
+    <h1>Sammelitems</h1>
+</header>
+<div class="col-xs-12">
+    <section class="content-box m-b-1">
+        <p class="content-body">Hier findet ihr alle Sammelitems aufgelistet. Aktuell haben wir leider noch keine Kartenintegration, aber solange haben wir für euch schonmal schriftlich die Orte erfasst.</p>
+    </section>
+</div>
+<div class="page-collectible" collectible-view="">
+    <div class="row">
+        <div class="col-xs-12 m-b-1">
+            <div class="col-xs-12 col-lg-4 search-input m-b-1">
+                <input ng-model="filter.name" ng-model-options='{ debounce: 750 }' type="text" placeholder="Nach Name filtern..." />
+                <span class="fa fa-search"></span>
+            </div>
+        </div>
+    </div>
+    <div class="collectibles-list row">
+        <div class="collectible-item col-xs-12 col-md-6 m-b-1" ng-class="{'clear-both': $index%2==0}" ng-repeat="collectible in collectibles | filter:filter | orderBy:'name' track by collectible.id">
+            <a name="collectible-{{collectible.id}}"></a>
+            <div class="content-box p-b-1">
+                <header>
+                    <h5>{{collectible.name}}</h5>
+                    <span class="rarity" ng-class="getValidCssClass(collectible.rarity)">{{collectible.rarity}}</span>
+                </header>
+                <hr class="m-x-1" />
+                <div class="row">
+                    <div class="col-xs-12 col-sm-6">
+                        <strong>Beschreibung:</strong><br/>
+                        {{collectible.description || '???'}}
+                    </div>
+                    <div class="col-xs-12 col-sm-6">
+                        <strong>Ort:</strong><br/>
+                        {{collectible.location_note || '???'}}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -4,8 +4,7 @@
 <div class="col-xs-12">
     <section class="content-box m-b-1">
         <p class="content-body">Hier findet ihr das Material und von welchen Gattungen/Kreaturen ihr es erhaltet.
-Material gibt es entweder von mehreren Gattungen (und all deren Kreaturen) oder nur von spezifischen Kreaturen einer Gattung, entsprechend wird nur eins vom beiden angezeigt. Alles Material gibt es auch vom Körper, die Wahrscheinlichkeit ist aber bei ggf. anders genannten Körperteilen höher.
-Sobald wir die Kreaturen veröffentlichen, werden diese dann hier auch verknüpft.</p>
+Material gibt es entweder von mehreren Gattungen (und all deren Kreaturen) oder nur von spezifischen Kreaturen einer Gattung, entsprechend wird nur eins vom beiden angezeigt. Alles Material gibt es auch vom Körper, die Wahrscheinlichkeit ist aber bei ggf. anders genannten Körperteilen höher.</p>
     </section>
 </div>
 <div class="page-material" material-view>
@@ -15,14 +14,10 @@ Sobald wir die Kreaturen veröffentlichen, werden diese dann hier auch verknüpf
                 <input ng-model="materialfilterValue" ng-model-options='{ debounce: 750 }' type="text" placeholder="Nach Name filtern..." />
                 <span class="fa fa-search"></span>
             </div>
-            <div class="col-xs-12 col-lg-4 search-input m-b-1">
-                <input ng-model="monsterTypefilterValue" ng-model-options='{ debounce: 750 }' type="text" placeholder="Nach Gattung filtern..." />
-                <span class="fa fa-search"></span>
-            </div>
         </div>
     </div>
     <div class="materials-list row">
-        <div class="material-item col-xs-12 m-b-1" ng-class="{'clear-both': $index%2==0}" ng-repeat="material in materials | filter:{name: materialfilterValue} | listFilter:monsterTypefilterValue:'monster_types':'name'| orderBy:'name' track by material.id">
+        <div class="material-item col-xs-12 m-b-1" ng-class="{'clear-both': $index%2==0}" ng-repeat="material in materials | filter:{name: materialfilterValue} | orderBy:'name' track by material.id">
             <a name="material-{{material.id}}"></a>
             <div class="content-box p-b-1">
                 <header>
