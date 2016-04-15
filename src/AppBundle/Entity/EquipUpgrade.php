@@ -132,13 +132,13 @@ class EquipUpgrade
 
     /**
      * @VirtualProperty
-     * @SerializedName("category_description")
+     * @SerializedName("category_type")
      */
-    public function getCategoryDescription() {
+    public function getCategoryType() {
         if(!$this->getCategory()) {
             return null;
         }
-        return $this->getCategory()->getDescription();
+        return $this->getCategory()->getType();
     }
 
     /**

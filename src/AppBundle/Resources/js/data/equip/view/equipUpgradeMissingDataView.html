@@ -50,7 +50,7 @@
                         </span>
                     </td>
                     <td>
-                        {{equipUpgrade.category_name}}
+                        {{equipUpgrade.category_name}} ({{equipUpgrade.category_type}})
                     </td>
                     <td style="text-align: left; vertical-align: top" ng-repeat="equipUpgradeTier in equipUpgradeTiers | orderBy: 'name' | filter: {equip_upgrade: equipUpgrade.id} track by equipUpgradeTier.id">
                         {{equipUpgradeTier.credit_cost}} Credits

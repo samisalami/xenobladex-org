@@ -5,7 +5,7 @@
             <div ng-if="paramFromUrl" equip-upgrade-by-id="{{paramFromUrl}}">
                 <a href="/admin/erweiterungen" class="btn btn-primary m-b-1"><span class="fa fa-arrow-circle-left"></span> Erweiterungen</a>
                 <div ng-if="equipUpgradeById">
-                    <h2 class="m-b-1">{{equipUpgradeById.name}} ({{equipUpgradeById.category_name}})</h2>
+                    <h2 class="m-b-1">{{equipUpgradeById.name}} ({{equipUpgradeById.category_type}})</h2>
                     <p>{{equipUpgradeById.description}}</p>
                     <equip-upgrade-tier-admin>
                         <collapsed-table-list ng-repeat="item in vm.equipUpgradeTiers | filter: {equip_upgrade: paramFromUrl} | orderBy:'name' track by item.id">

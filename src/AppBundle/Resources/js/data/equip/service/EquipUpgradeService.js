@@ -36,7 +36,7 @@ function EquipUpgradeService($http, $filter) {
         material_large2,
         material_large3,
         category_name,
-        category_description,
+        category_type,
         equip_upgrade_tiers)
     {
         this.id = id;
@@ -51,7 +51,7 @@ function EquipUpgradeService($http, $filter) {
         this.material_large2 = material_large2;
         this.material_large3 = material_large3;
         this.category_name = category_name;
-        this.category_description = category_description;
+        this.category_type = category_type;
         this.equip_upgrade_tiers = equip_upgrade_tiers;
 
         Object.seal(this);
@@ -80,7 +80,7 @@ function EquipUpgradeService($http, $filter) {
                 equipUpgrade['material_large2'],
                 equipUpgrade['material_large3'],
                 equipUpgrade['category_name'],
-                equipUpgrade['category_description'],
+                equipUpgrade['category_type'],
                 equipUpgrade['equip_upgrade_tiers']
             );
         }

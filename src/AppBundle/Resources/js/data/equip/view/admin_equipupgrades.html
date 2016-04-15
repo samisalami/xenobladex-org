@@ -10,6 +10,9 @@
                 <li>
                     Öffnet ihr eine bestehende Erweiterung, welche noch keine Stufen hat, könnt ihr diese über einen Button erzeugen (Stufen anlegen)
                 </li>
+                <li>
+                    Ändert man die Kategorie an einer Erweiterung aktualisiert sich die Anzeige des Typs in der Liste erst nach einem Seiten-Reload!
+                </li>
             </ul>
         </div>
         <h1>Erweiterungen</h1>
@@ -23,7 +26,7 @@
                 <equip-upgrade-form equip-upgrade="newEquipUpgrade">
                 </equip-upgrade-form>
             </collapsed-table-list>
-            <collapsed-table-list ng-repeat="item in vm.equipUpgrades | listFilter:nameFilter:'name' | orderBy: ['name'] track by item.id" ng-if="vm.equipUpgrades">
+            <collapsed-table-list ng-repeat="item in vm.equipUpgrades | listFilter:nameFilter:'name' | orderBy: ['name'] track by item.id" ng-if="vm.equipUpgrades" table-list-label="{{item.name}} ({{item.category_type}})">
                 <equip-upgrade-form equip-upgrade="item">
                 </equip-upgrade-form>
             </collapsed-table-list>
