@@ -28,6 +28,10 @@ angular.module('app')
                     that.resources = resources;
                 }
 
+                that.deleteEquipUpgradeTier = function() {
+                    EquipUpgradeTierService.deleteEquipUpgradeTier(that.equipUpgradeTier);
+                };
+
                 that.updateEquipUpgradeTier = function() {
                     if(that.equipUpgradeTier.id) {
                         EquipUpgradeTierService.updateEquipUpgradeTier(that.equipUpgradeTier);

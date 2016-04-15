@@ -1,6 +1,14 @@
 <main role="main">
     <div ng-include src="'views/_adminHeader.html'"></div>
     <div class="admin-view col-md-12 p-y-1">
+        <div class="alert alert-info" role="alert">
+            <strong>Stufen pflegen:</strong>
+            <ul>
+                <li>
+                    Stufen nur löschen, wenn irgendwie zu viele angelegt wurden! (Ansonsten muss man alle wieder löschen, zum neu generieren)
+                </li>
+            </ul>
+        </div>
         <div class="m-b-2" param-from-url param-name="equipUpgradeId">
             <div ng-if="paramFromUrl" equip-upgrade-by-id="{{paramFromUrl}}">
                 <a href="/admin/erweiterungen" class="btn btn-primary m-b-1"><span class="fa fa-arrow-circle-left"></span> Erweiterungen</a>

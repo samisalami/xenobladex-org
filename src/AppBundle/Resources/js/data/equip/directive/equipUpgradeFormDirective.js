@@ -12,6 +12,7 @@ angular.module('app')
             },
             controller: ['$scope',function($scope) {
                 var that = this;
+                that.createsTiers = false;
                 init();
 
                 function init() {
@@ -60,7 +61,8 @@ angular.module('app')
                 }
 
                 that.createEquipUpgradeTiers = function() {
-                    if($filter('filter')(that.equipUpgradeTiers, {equip_upgrade: that.equipUpgrade.id}).length == 0) {
+                    if($filter('filter')(that.equipUpgradeTiers, {equip_upgrade: that.equipUpgrade.id}).length == 0 && !that.createsTiers) {
+                        that.createsTiers = true;
                         that.equipUpgrade.equip_upgrade_tiers = [];
                         var equipUpgradeTiers = [
                             {
