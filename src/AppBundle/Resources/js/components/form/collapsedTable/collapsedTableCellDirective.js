@@ -5,6 +5,7 @@ angular.module('app')
         return {
             restrict: 'EA',
             transclude: true,
+            replace: true,
             templateUrl: 'js/components/form/collapsedTable/collapsedTableCellView.html'
         }
     }]);

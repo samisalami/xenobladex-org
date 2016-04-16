@@ -16,6 +16,10 @@
                     <h2 class="m-b-1">{{equipUpgradeById.name}} ({{equipUpgradeById.category_type}})</h2>
                     <p>{{equipUpgradeById.description}}</p>
                     <equip-upgrade-tier-admin>
+                        <collapsed-table-list add-form="true">
+                            <equip-upgrade-tier-form equip-upgrade-tier="newEquipUpgradeTier">
+                            </equip-upgrade-tier-form>
+                        </collapsed-table-list>
                         <collapsed-table-list ng-repeat="item in vm.equipUpgradeTiers | filter: {equip_upgrade: paramFromUrl} | orderBy:'name' track by item.id">
                             <equip-upgrade-tier-form equip-upgrade-tier="item"></equip-upgrade-tier-form>
                         </collapsed-table-list>

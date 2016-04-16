@@ -77,15 +77,6 @@ class EquipUpgradeTier
     private $equipUpgrade;
 
     /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->materialRecipes = new ArrayCollection();
-        $this->resourceRecipes = new ArrayCollection();
-    }
-
-    /**
      * Get id
      *
      * @return integer 
