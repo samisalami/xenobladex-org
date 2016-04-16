@@ -33,7 +33,7 @@ Es gibt Belohnungen für:
                 </tr>
                 </thead>
                 <tbody>
-                    <tr ng-if="collectionGroups" ng-repeat="collectionGroup in collectionGroups | filter:{collection: collection.id} | orderBy: 'collection_category_prio' track by collectionGroup.id">
+                    <tr ng-if="collectionGroups" ng-repeat="collectionGroup in collectionGroups | filter:{collection: collection.id} : true | orderBy: 'collection_category_prio' track by collectionGroup.id">
                         <td collection-category-by-id="{{collectionGroup.collection_category}}">
                             <strong>{{collectionCategoryById.name}}</strong>
                         </td>

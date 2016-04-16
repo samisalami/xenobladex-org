@@ -57,7 +57,7 @@
         </tr>
         </thead>
         <tbody>
-            <tr ng-repeat="collectionGroup in form.collectionGroups | filter: {collection: form.collection.id} | orderBy:'collection_category_prio' track by collectionGroup.id" collection-group-form collection-group="collectionGroup">
+            <tr ng-repeat="collectionGroup in form.collectionGroups | filter: {collection: form.collection.id} : true | orderBy:'collection_category_prio' track by collectionGroup.id" collection-group-form collection-group="collectionGroup">
             </tr>
         </tbody>
     </table>
