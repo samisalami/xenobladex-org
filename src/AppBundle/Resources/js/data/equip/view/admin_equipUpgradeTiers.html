@@ -20,7 +20,7 @@
                             <equip-upgrade-tier-form equip-upgrade-tier="newEquipUpgradeTier">
                             </equip-upgrade-tier-form>
                         </collapsed-table-list>
-                        <collapsed-table-list ng-repeat="item in vm.equipUpgradeTiers | filter : {equip_upgrade: paramFromUrl} : true | orderBy:'name' track by item.id">
+                        <collapsed-table-list ng-repeat="item in vm.equipUpgradeTiers | filter : {equip_upgrade: equipUpgradeById.id} : true | orderBy:'name' track by item.id">
                             <equip-upgrade-tier-form equip-upgrade-tier="item"></equip-upgrade-tier-form>
                         </collapsed-table-list>
                     </equip-upgrade-tier-admin>
