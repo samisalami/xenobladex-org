@@ -42,7 +42,6 @@ angular.module('app')
                             var collectionArray = {name: collection.region, collectibles: []};
                             var collectionGroups = $filter('filter')(that.collectionGroups, {collection: collection.id},true);
                             var sortedCollectionGroups = $filter('orderBy')(collectionGroups, 'collection_category_prio');
-                            console.log(sortedCollectionGroups);
                             sortedCollectionGroups.forEach(function(collectionGroup, gindex){
                                 for(var i=1; i<=8; i++) {
                                     var collectible = $filter('byId')(that.collectibles, collectionGroup['collectible'+i]);

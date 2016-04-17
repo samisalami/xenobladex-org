@@ -3,7 +3,8 @@
 </header>
 <div class="col-xs-12">
     <section class="content-box m-b-1">
-        <p class="content-body">Hier findet ihr alle Sammelitems aufgelistet. Aktuell haben wir leider noch keine Kartenintegration, aber solange haben wir für euch schonmal schriftlich die Orte erfasst.</p>
+        <p class="content-body">Hier findet ihr alle Sammelitems aufgelistet. Aktuell haben wir leider noch keine Kartenintegration, aber solange haben wir für euch schonmal schriftlich die Orte erfasst.
+Die Wahrscheinlichkeit ein Sammelitem zu finden, ist mit höherer Wertigkeit umso niedriger.</p>
     </section>
 </div>
 <div class="page-collectible" collectible-view="">
@@ -35,6 +36,14 @@
                 </header>
                 <hr class="m-x-1" />
                 <div class="row">
+                    <div ng-switch="collectible.rarity" class="col-xs-12">
+                        <span ng-switch-when="Gewöhnlich">100</span>
+                        <span ng-switch-when="Wertvoll">200</span>
+                        <span ng-switch-when="Sehr wertvoll">300</span>
+                        <span ng-switch-when="Extrem wertvoll">400</span>
+                        <span ng-switch-default="">???</span>
+                        Credits
+                    </div>
                     <div class="col-xs-12 col-sm-6">
                         <strong>Beschreibung:</strong><br/>
                         {{collectible.description || '???'}}
