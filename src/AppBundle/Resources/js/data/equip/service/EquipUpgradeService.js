@@ -26,6 +26,7 @@ function EquipUpgradeService($http, $filter) {
     function EquipUpgrade(
         id,
         name,
+        alternative_name,
         description,
         is_not_manufacturable,
         category,
@@ -41,6 +42,7 @@ function EquipUpgradeService($http, $filter) {
     {
         this.id = id;
         this.name = name;
+        this.alternative_name = alternative_name;
         this.description = description;
         this.is_not_manufacturable = is_not_manufacturable;
         this.category = category;
@@ -70,6 +72,7 @@ function EquipUpgradeService($http, $filter) {
             return new EquipUpgrade(
                 equipUpgrade['id'],
                 equipUpgrade['name'],
+                equipUpgrade['alternative_name'],
                 equipUpgrade['description'],
                 equipUpgrade['is_not_manufacturable'],
                 equipUpgrade['category'],

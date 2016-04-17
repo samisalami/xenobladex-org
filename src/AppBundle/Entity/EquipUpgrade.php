@@ -36,6 +36,13 @@ class EquipUpgrade
     /**
      * @var string
      *
+     * @ORM\Column(name="alternative_name", type="string", length=255)
+     */
+    private $alternativeName="";
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="description", type="text")
      */
     private $description="";
@@ -412,5 +419,28 @@ class EquipUpgrade
     public function getMaterialLarge3()
     {
         return $this->material_large3;
+    }
+
+    /**
+     * Set alternativeName
+     *
+     * @param string $alternativeName
+     * @return EquipUpgrade
+     */
+    public function setAlternativeName($alternativeName)
+    {
+        $this->alternativeName = $alternativeName;
+
+        return $this;
+    }
+
+    /**
+     * Get alternativeName
+     *
+     * @return string 
+     */
+    public function getAlternativeName()
+    {
+        return $this->alternativeName;
     }
 }
