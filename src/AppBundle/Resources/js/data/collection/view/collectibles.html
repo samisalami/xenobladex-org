@@ -30,7 +30,7 @@
             <div class="content-box p-b-1">
                 <header>
                     <h5>{{collectible.name}}</h5>
-                    <span><i>{{collectible.category_name}} - {{collectible.slot}}</i></span>
+                    <span><a ng-href="/kollektikon#kollektikon-kategorie-{{collectible.collection_group}}">{{collectible.category_name}} - {{collectible.slot}}</a></span>
                     <span class="rarity clear-both" ng-class="getValidCssClass(collectible.rarity)">{{collectible.rarity}}</span>
                 </header>
                 <hr class="m-x-1" />

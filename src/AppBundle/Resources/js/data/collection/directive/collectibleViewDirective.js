@@ -50,6 +50,7 @@ angular.module('app')
                                         collectible = $.extend({}, collectible, true);
                                         collectible.slot = i;
                                         collectible.category_name = collectionGroup.collection_category_name;
+                                        collectible.collection_group = collectionGroup.id;
                                         collectionArray.collectibles.push(collectible);
                                     }
                                 }

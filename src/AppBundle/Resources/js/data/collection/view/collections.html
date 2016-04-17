@@ -35,6 +35,7 @@ Es gibt Belohnungen für:
                 <tbody>
                     <tr ng-if="collectionGroups" ng-repeat="collectionGroup in collectionGroups | filter:{collection: collection.id} : true | orderBy: 'collection_category_prio' track by collectionGroup.id">
                         <td collection-category-by-id="{{collectionGroup.collection_category}}">
+                            <a name="kollektikon-kategorie-{{collectionGroup.id}}"></a>
                             <strong>{{collectionCategoryById.name}}</strong>
                         </td>
                         <td style="text-align: center;" collectible-by-id="{{collectionGroup.collectible1}}" ng-class="{'lucky-field': collectibleById.is_lucky_field}">
