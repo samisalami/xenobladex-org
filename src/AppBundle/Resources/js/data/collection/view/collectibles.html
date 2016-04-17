@@ -13,15 +13,25 @@
                 <input ng-model="filter.name" ng-model-options='{ debounce: 750 }' type="text" placeholder="Nach Name filtern..." />
                 <span class="fa fa-search"></span>
             </div>
+            <div class="col-xs-12 col-lg-4 search-input m-b-1">
+                <input ng-model="regionFilter.name" ng-model-options='{ debounce: 750 }' type="text" placeholder="Nach Region filtern..." />
+                <span class="fa fa-search"></span>
+            </div>
+            <div class="col-xs-12 col-lg-4 search-input m-b-1">
+                <input ng-model="filter.category_name" ng-model-options='{ debounce: 750 }' type="text" placeholder="Nach Kategorie filtern..." />
+                <span class="fa fa-search"></span>
+            </div>
         </div>
     </div>
-    <div class="collectibles-list row">
-        <div class="collectible-item col-xs-12 col-md-6 m-b-1" ng-class="{'clear-both': $index%2==0}" ng-repeat="collectible in collectibles | filter:filter | orderBy:'name' track by collectible.id">
-            <a name="collectible-{{collectible.id}}"></a>
+    <div class="collectibles-list row" ng-repeat="region in groupedCollectibles | filter:regionFilter">
+        <h1 class="col-xs-12">{{region.name}}</h1>
+        <div class="collectible-item col-xs-12 col-md-6 m-b-1" ng-class="{'clear-both': $index%2==0}" ng-repeat="collectible in region.collectibles | filter:filter track by collectible.id">
+            <a name="sammelitem-{{collectible.id}}"></a>
             <div class="content-box p-b-1">
                 <header>
                     <h5>{{collectible.name}}</h5>
-                    <span class="rarity" ng-class="getValidCssClass(collectible.rarity)">{{collectible.rarity}}</span>
+                    <span><i>{{collectible.category_name}} - {{collectible.slot}}</i></span>
+                    <span class="rarity clear-both" ng-class="getValidCssClass(collectible.rarity)">{{collectible.rarity}}</span>
                 </header>
                 <hr class="m-x-1" />
                 <div class="row">

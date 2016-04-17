@@ -30,6 +30,7 @@ function CollectionGroupService($http, $filter) {
         collection,
         collection_category,
         collection_category_prio,
+        collection_category_name,
         collectible1,
         collectible2,
         collectible3,
@@ -45,6 +46,7 @@ function CollectionGroupService($http, $filter) {
         this.collection = collection;
         this.collection_category = collection_category;
         this.collection_category_prio = collection_category_prio;
+        this.collection_category_name = collection_category_name;
         this.collectible1 = collectible1;
         this.collectible2 = collectible2;
         this.collectible3 = collectible3;
@@ -74,6 +76,7 @@ function CollectionGroupService($http, $filter) {
                 collectionGroup['collection'],
                 collectionGroup['collection_category'],
                 collectionGroup['collection_category_prio'],
+                collectionGroup['collection_category_name'],
                 collectionGroup['collectible1'],
                 collectionGroup['collectible2'],
                 collectionGroup['collectible3'],

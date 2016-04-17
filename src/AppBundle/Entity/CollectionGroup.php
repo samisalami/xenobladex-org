@@ -124,11 +124,22 @@ class CollectionGroup
      * @VirtualProperty
      * @SerializedName("collection_category_prio")
      */
-    public function getMonsterTypePrio() {
+    public function getCategoryPrio() {
         if(!$this->getCollectionCategory()) {
             return null;
         }
         return $this->getCollectionCategory()->getPrio();
+    }
+
+    /**
+     * @VirtualProperty
+     * @SerializedName("collection_category_name")
+     */
+    public function getCategoryName() {
+        if(!$this->getCollectionCategory()) {
+            return null;
+        }
+        return $this->getCollectionCategory()->getName();
     }
 
     /**

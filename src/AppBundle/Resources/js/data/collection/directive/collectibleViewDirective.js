@@ -21,22 +21,42 @@ angular.module('app')
                 }
 
                 function setCollections(collections) {
-                    $scope.collections = collections;
+                    that.collections = collections;
                     setViewData();
                 }
 
                 function setCollectionGroups(collectionGroups) {
-                    $scope.collectionGroups = collectionGroups;
+                    that.collectionGroups = collectionGroups;
                     setViewData();
                 }
 
                 function setCollectibles(collectibles) {
-                    $scope.collectibles = collectibles;
+                    that.collectibles = collectibles;
                     setViewData();
                 }
 
                 function setViewData() {
-                    if($scope.collectibles && $scope.collections && $scope.collectionGroups) {
+                    if(that.collectibles && that.collections && that.collectionGroups) {
+                        $scope.groupedCollectibles = [];
+                        that.collections.forEach(function(collection, index){
+                            var collectionArray = {name: collection.region, collectibles: []};
+                            var collectionGroups = $filter('filter')(that.collectionGroups, {collection: collection.id},true);
+                            var sortedCollectionGroups = $filter('orderBy')(collectionGroups, 'collection_category_prio');
+                            console.log(sortedCollectionGroups);
+                            sortedCollectionGroups.forEach(function(collectionGroup, gindex){
+                                for(var i=1; i<=8; i++) {
+                                    var collectible = $filter('byId')(that.collectibles, collectionGroup['collectible'+i]);
+                                    if(collectible) {
+                                        collectible = $.extend({}, collectible, true);
+                                        collectible.slot = i;
+                                        collectible.category_name = collectionGroup.collection_category_name;
+                                        collectionArray.collectibles.push(collectible);
+                                    }
+                                }
+                            });
+                            $scope.groupedCollectibles.push(collectionArray);
+                        });
+
                         var promise = $timeout(function(){
                             if($scope.collectibles) {
                                 if($location.hash() && !that.scrolled) {
@@ -53,6 +73,7 @@ angular.module('app')
                     var regExp = new RegExp("[^A-Za-z0-9\-_]", "g");
                     return string.replace(regExp, '').toLowerCase();
                 };
-            }]
+            }],
+            controllerAs: 'vm'
         }
     }]);
