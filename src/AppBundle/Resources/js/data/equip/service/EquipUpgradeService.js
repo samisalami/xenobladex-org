@@ -29,6 +29,7 @@ function EquipUpgradeService($http, $filter) {
         alternative_name,
         description,
         is_not_manufacturable,
+        has_no_tiers,
         category,
         material_small1,
         material_small2,
@@ -45,6 +46,7 @@ function EquipUpgradeService($http, $filter) {
         this.alternative_name = alternative_name;
         this.description = description;
         this.is_not_manufacturable = is_not_manufacturable;
+        this.has_no_tiers = has_no_tiers;
         this.category = category;
         this.material_small1 = material_small1;
         this.material_small2 = material_small2;
@@ -75,6 +77,7 @@ function EquipUpgradeService($http, $filter) {
                 equipUpgrade['alternative_name'],
                 equipUpgrade['description'],
                 equipUpgrade['is_not_manufacturable'],
+                equipUpgrade['has_no_tiers'],
                 equipUpgrade['category'],
                 equipUpgrade['material_small1'],
                 equipUpgrade['material_small2'],
