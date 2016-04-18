@@ -32,7 +32,15 @@
         <a href="/material" highlighted-nav-item nav-item-class="active" nav-item-route="/material">Material</a>
       </li>
       <li>
-        <a href="/missionen" highlighted-nav-item nav-item-class="active" nav-item-route="/missionen">Missionen</a>
+        <a href="#missions-submenu" highlighted-nav-item nav-item-class="active" nav-item-route="/missionen" class="collapsed" data-toggle="collapse" aria-expanded="false" onclick="return false;">Missionen <span class="fa fa-arrow-circle-down"></span></a>
+        <ul id="missions-submenu" class="collapse">
+          <li>
+            <a href="/missionen" highlighted-nav-item nav-item-class="active" nav-item-route="/missionen">Alle</a>
+          </li>
+          <li>
+            <a href="/missionen/standard" highlighted-nav-item nav-item-class="active" nav-item-route="/missionen/standard">Standard</a>
+          </li>
+        </ul>
       </li>
       <li>
         <a href="/sammelitems" highlighted-nav-item nav-item-class="active" nav-item-route="/sammelitems">Sammelitems</a>

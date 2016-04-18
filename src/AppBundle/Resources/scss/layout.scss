@@ -113,15 +113,36 @@ body {
       margin: 0;
       padding: 0;
 
+      span.fa {
+        position: absolute;
+        top: 50%;
+        right: $default-margin;
+        transform: translateY(-50%);
+      }
+
       li {
+        position: relative;
         border-bottom: 1px $color-dark-darkened solid;
 
         & + li {
           border-top: 1px $color-dark-lightened solid;
         }
+
+        > ul {
+          background-color: lighten($color-dark-darkened, 5);
+          li {
+            padding-left: $default-margin;
+            border: none;
+
+            a {
+              line-height: normal;
+            }
+          }
+        }
       }
 
       a {
+        position: relative;
         display: block;
         padding: $default-padding $default-margin;
         color: $font-color-bright;
