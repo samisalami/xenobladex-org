@@ -59,14 +59,42 @@ class EquipUpgradeTier
      *
      * @ORM\Column(name="resource_count", type="integer")
      */
-    private $resource_count=0;
+    private $resourceCount=0;
 
     /**
      * @var integer
      *
      * @ORM\Column(name="material_count", type="integer")
      */
-    private $material_count=0;
+    private $materialCount=0;
+
+    /**
+     * @var boolean
+     *
+     * @ORM\Column(name="material_count_individual", type="boolean")
+     */
+    private $materialCountIndividual=false;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="material1_count", type="integer")
+     */
+    private $material1Count=0;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="material2_count", type="integer")
+     */
+    private $material2Count=0;
+
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="material3_count", type="integer")
+     */
+    private $material3Count=0;
 
     /**
      * @ORM\ManyToOne(targetEntity="EquipUpgrade")
@@ -163,7 +191,7 @@ class EquipUpgradeTier
      */
     public function setResource1Count($resourceCount)
     {
-        $this->resource_count = $resourceCount;
+        $this->resourceCount = $resourceCount;
 
         return $this;
     }
@@ -175,7 +203,7 @@ class EquipUpgradeTier
      */
     public function getResource1Count()
     {
-        return $this->resource_count;
+        return $this->resourceCount;
     }
 
     /**
@@ -209,7 +237,7 @@ class EquipUpgradeTier
      */
     public function setResourceCount($resourceCount)
     {
-        $this->resource_count = $resourceCount;
+        $this->resourceCount = $resourceCount;
 
         return $this;
     }
@@ -221,7 +249,7 @@ class EquipUpgradeTier
      */
     public function getResourceCount()
     {
-        return $this->resource_count;
+        return $this->resourceCount;
     }
 
     /**
@@ -232,7 +260,7 @@ class EquipUpgradeTier
      */
     public function setMaterialCount($materialCount)
     {
-        $this->material_count = $materialCount;
+        $this->materialCount = $materialCount;
 
         return $this;
     }
@@ -244,7 +272,7 @@ class EquipUpgradeTier
      */
     public function getMaterialCount()
     {
-        return $this->material_count;
+        return $this->materialCount;
     }
 
     /**
@@ -291,5 +319,97 @@ class EquipUpgradeTier
     public function getDescription()
     {
         return $this->description;
+    }
+
+    /**
+     * Set materialCountIndividual
+     *
+     * @param boolean $materialCountIndividual
+     * @return EquipUpgradeTier
+     */
+    public function setMaterialCountIndividual($materialCountIndividual)
+    {
+        $this->materialCountIndividual = $materialCountIndividual;
+
+        return $this;
+    }
+
+    /**
+     * Get materialCountIndividual
+     *
+     * @return boolean 
+     */
+    public function getMaterialCountIndividual()
+    {
+        return $this->materialCountIndividual;
+    }
+
+    /**
+     * Set material1Count
+     *
+     * @param integer $material1Count
+     * @return EquipUpgradeTier
+     */
+    public function setMaterial1Count($material1Count)
+    {
+        $this->material1Count = $material1Count;
+
+        return $this;
+    }
+
+    /**
+     * Get material1Count
+     *
+     * @return integer 
+     */
+    public function getMaterial1Count()
+    {
+        return $this->material1Count;
+    }
+
+    /**
+     * Set material2Count
+     *
+     * @param integer $material2Count
+     * @return EquipUpgradeTier
+     */
+    public function setMaterial2Count($material2Count)
+    {
+        $this->material2Count = $material2Count;
+
+        return $this;
+    }
+
+    /**
+     * Get material2Count
+     *
+     * @return integer 
+     */
+    public function getMaterial2Count()
+    {
+        return $this->material2Count;
+    }
+
+    /**
+     * Set material3Count
+     *
+     * @param integer $material3Count
+     * @return EquipUpgradeTier
+     */
+    public function setMaterial3Count($material3Count)
+    {
+        $this->material3Count = $material3Count;
+
+        return $this;
+    }
+
+    /**
+     * Get material3Count
+     *
+     * @return integer 
+     */
+    public function getMaterial3Count()
+    {
+        return $this->material3Count;
     }
 }

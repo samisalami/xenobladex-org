@@ -19,8 +19,24 @@
         <form-field form-field-bind="form.equipUpgradeTier.description" form-template="textarea"></form-field>
     </div>
     <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <strong>Individuelle Material-Anzahl?</strong>
+        <form-field form-field-bind="form.equipUpgradeTier.material_count_individual" form-template="inputCheckbox"></form-field>
+    </div>
+    <div ng-if="!form.equipUpgradeTier.material_count_individual" class="collapsed-table-cell-wrapper" collapsed-table-cell>
         <strong>Material - Anzahl:</strong>
         <form-field form-field-bind="form.equipUpgradeTier.material_count" form-template="inputText"></form-field>
+    </div>
+    <div ng-if="form.equipUpgradeTier.material_count_individual" class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <strong>Material 1 - Anzahl:</strong>
+        <form-field form-field-bind="form.equipUpgradeTier.material1_count" form-template="inputText"></form-field>
+    </div>
+    <div ng-if="form.equipUpgradeTier.material_count_individual" class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <strong>Material 2 - Anzahl:</strong>
+        <form-field form-field-bind="form.equipUpgradeTier.material2_count" form-template="inputText"></form-field>
+    </div>
+    <div ng-if="form.equipUpgradeTier.material_count_individual" class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <strong>Material 3 - Anzahl:</strong>
+        <form-field form-field-bind="form.equipUpgradeTier.material3_count" form-template="inputText"></form-field>
     </div>
     <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
         <strong>Resource:</strong>
