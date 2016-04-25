@@ -71,6 +71,37 @@ class EquipUpgradeTier
     /**
      * @var boolean
      *
+     * @ORM\Column(name="material_individual", type="boolean")
+     */
+    private $materialIndividual=false;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Material")
+     * @ORM\JoinColumn(name="material1_id", referencedColumnName="id")
+     * @Type("RelatedEntity<'AppBundle:Material'>")
+     * @MaxDepth(1)
+     */
+    private $material1;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Material")
+     * @ORM\JoinColumn(name="material2_id", referencedColumnName="id")
+     * @Type("RelatedEntity<'AppBundle:Material'>")
+     * @MaxDepth(1)
+     */
+    private $material2;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Material")
+     * @ORM\JoinColumn(name="material3_id", referencedColumnName="id")
+     * @Type("RelatedEntity<'AppBundle:Material'>")
+     * @MaxDepth(1)
+     */
+    private $material3;
+
+    /**
+     * @var boolean
+     *
      * @ORM\Column(name="material_count_individual", type="boolean")
      */
     private $materialCountIndividual=false;
@@ -411,5 +442,97 @@ class EquipUpgradeTier
     public function getMaterial3Count()
     {
         return $this->material3Count;
+    }
+
+    /**
+     * Set materialIndividual
+     *
+     * @param boolean $materialIndividual
+     * @return EquipUpgradeTier
+     */
+    public function setMaterialIndividual($materialIndividual)
+    {
+        $this->materialIndividual = $materialIndividual;
+
+        return $this;
+    }
+
+    /**
+     * Get materialIndividual
+     *
+     * @return boolean 
+     */
+    public function getMaterialIndividual()
+    {
+        return $this->materialIndividual;
+    }
+
+    /**
+     * Set material1
+     *
+     * @param \AppBundle\Entity\Material $material1
+     * @return EquipUpgradeTier
+     */
+    public function setMaterial1(\AppBundle\Entity\Material $material1 = null)
+    {
+        $this->material1 = $material1;
+
+        return $this;
+    }
+
+    /**
+     * Get material1
+     *
+     * @return \AppBundle\Entity\Material 
+     */
+    public function getMaterial1()
+    {
+        return $this->material1;
+    }
+
+    /**
+     * Set material2
+     *
+     * @param \AppBundle\Entity\Material $material2
+     * @return EquipUpgradeTier
+     */
+    public function setMaterial2(\AppBundle\Entity\Material $material2 = null)
+    {
+        $this->material2 = $material2;
+
+        return $this;
+    }
+
+    /**
+     * Get material2
+     *
+     * @return \AppBundle\Entity\Material 
+     */
+    public function getMaterial2()
+    {
+        return $this->material2;
+    }
+
+    /**
+     * Set material3
+     *
+     * @param \AppBundle\Entity\Material $material3
+     * @return EquipUpgradeTier
+     */
+    public function setMaterial3(\AppBundle\Entity\Material $material3 = null)
+    {
+        $this->material3 = $material3;
+
+        return $this;
+    }
+
+    /**
+     * Get material3
+     *
+     * @return \AppBundle\Entity\Material 
+     */
+    public function getMaterial3()
+    {
+        return $this->material3;
     }
 }

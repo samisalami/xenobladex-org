@@ -22,21 +22,46 @@
         <strong>Individuelle Material-Anzahl?</strong>
         <form-field form-field-bind="form.equipUpgradeTier.material_count_individual" form-template="inputCheckbox"></form-field>
     </div>
+    <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <strong>Individuelles Material?</strong>
+        <form-field form-field-bind="form.equipUpgradeTier.material_individual" form-template="inputCheckbox"></form-field>
+    </div>
     <div ng-if="!form.equipUpgradeTier.material_count_individual" class="collapsed-table-cell-wrapper" collapsed-table-cell>
         <strong>Material - Anzahl:</strong>
         <form-field form-field-bind="form.equipUpgradeTier.material_count" form-template="inputText"></form-field>
     </div>
-    <div ng-if="form.equipUpgradeTier.material_count_individual" class="collapsed-table-cell-wrapper" collapsed-table-cell>
-        <strong>Material 1 - Anzahl:</strong>
-        <form-field form-field-bind="form.equipUpgradeTier.material1_count" form-template="inputText"></form-field>
+    <div ng-if="form.equipUpgradeTier.material_count_individual || form.equipUpgradeTier.material_individual" class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <strong>Material 1</strong>
+        <div ng-if="form.equipUpgradeTier.material_individual" class="m-b-1">
+            <bind-autocomplete-as-id ng-if="form.materials" bind-item="form.equipUpgradeTier.material1" options="form.materials">
+            </bind-autocomplete-as-id>
+        </div>
+        <div ng-if="form.equipUpgradeTier.material_count_individual" class="clear-both">
+            <strong>Anzahl:</strong>
+            <form-field form-field-bind="form.equipUpgradeTier.material1_count" form-template="inputText"></form-field>
+        </div>
     </div>
-    <div ng-if="form.equipUpgradeTier.material_count_individual" class="collapsed-table-cell-wrapper" collapsed-table-cell>
-        <strong>Material 2 - Anzahl:</strong>
-        <form-field form-field-bind="form.equipUpgradeTier.material2_count" form-template="inputText"></form-field>
+    <div ng-if="form.equipUpgradeTier.material_count_individual || form.equipUpgradeTier.material_individual" class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <strong>Material 2</strong>
+        <div ng-if="form.equipUpgradeTier.material_individual" class="m-b-1">
+            <bind-autocomplete-as-id ng-if="form.materials" bind-item="form.equipUpgradeTier.material2" options="form.materials">
+            </bind-autocomplete-as-id>
+        </div>
+        <div ng-if="form.equipUpgradeTier.material_count_individual" class="clear-both">
+            <strong>Anzahl:</strong>
+            <form-field form-field-bind="form.equipUpgradeTier.material2_count" form-template="inputText"></form-field>
+        </div>
     </div>
-    <div ng-if="form.equipUpgradeTier.material_count_individual" class="collapsed-table-cell-wrapper" collapsed-table-cell>
-        <strong>Material 3 - Anzahl:</strong>
-        <form-field form-field-bind="form.equipUpgradeTier.material3_count" form-template="inputText"></form-field>
+    <div ng-if="form.equipUpgradeTier.material_count_individual || form.equipUpgradeTier.material_individual" class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <strong>Material 3</strong>
+        <div ng-if="form.equipUpgradeTier.material_individual" class="m-b-1">
+            <bind-autocomplete-as-id ng-if="form.materials" bind-item="form.equipUpgradeTier.material3" options="form.materials">
+            </bind-autocomplete-as-id>
+        </div>
+        <div ng-if="form.equipUpgradeTier.material_count_individual" class="clear-both">
+            <strong>Anzahl:</strong>
+            <form-field form-field-bind="form.equipUpgradeTier.material3_count" form-template="inputText"></form-field>
+        </div>
     </div>
     <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
         <strong>Resource:</strong>

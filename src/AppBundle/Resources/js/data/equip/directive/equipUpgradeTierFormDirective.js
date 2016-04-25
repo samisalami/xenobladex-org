@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app')
-    .directive('equipUpgradeTierForm',['EquipUpgradeTierService', 'ResourceService', '$filter', function(EquipUpgradeTierService, ResourceService, $filter) {
+    .directive('equipUpgradeTierForm',['EquipUpgradeTierService', 'ResourceService', 'MaterialService', '$filter', function(EquipUpgradeTierService, ResourceService, MaterialService, $filter) {
         return {
             restrict: 'E',
             replace: false,
@@ -18,6 +18,9 @@ angular.module('app')
 
                     ResourceService.onResourcesChanged(setResources);
                     setResources(ResourceService.getResources());
+
+                    MaterialService.onMaterialsChanged(setMaterials);
+                    setMaterials(MaterialService.getMaterials());
                 }
 
                 function setFormEquipUpgradeTier(equipUpgrade) {
@@ -26,6 +29,10 @@ angular.module('app')
 
                 function setResources(resources) {
                     that.resources = resources;
+                }
+
+                function setMaterials(materials) {
+                    that.materials = materials;
                 }
 
                 that.deleteEquipUpgradeTier = function() {
