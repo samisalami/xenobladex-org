@@ -55,7 +55,7 @@
                     <td style="text-align: left; vertical-align: top" ng-repeat="equipUpgradeTier in equipUpgradeTiers | orderBy: 'name' | filter: {equip_upgrade: equipUpgrade.id} : true track by equipUpgradeTier.id">
                         {{equipUpgradeTier.credit_cost}} Credits
                         <ul>
-                            <li ng-repeat="i in [1,2,3] track by $index" material-by-id="{{getEquipUpgradeTierMaterial(equipUpgrade, equipUpgradeTier, i)}}">
+                            <li ng-repeat="i in [1,2,3] track by $index" material-by-id="{{getEquipUpgradeTierMaterial(equipUpgrade, equipUpgradeTier, i)}}" ng-if="getEquipUpgradeTierMaterial(equipUpgrade, equipUpgradeTier, i)">
                                 {{materialById.name}}
                                 <span ng-if="!equipUpgradeTier.material_count_individual">
                                     ({{equipUpgradeTier.material_count}})
