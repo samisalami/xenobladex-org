@@ -47,7 +47,7 @@ Unter den jeweiligen Gebieten findet ihr die Kreaturen nach Typ seperiert und Le
                     </label>
                 </div>
             </div>
-            <div ng.-if="!paramFromUrl" class="col-xs-12 col-lg-3">
+            <div ng-if="!paramFromUrl" class="col-xs-12 col-lg-3">
                 <div class="checkbox">
                     <label>
                         <input ng-model="groupedByType" ng-change="groupByType()" type="checkbox"/> Nach Typ gruppiert anzeigen
