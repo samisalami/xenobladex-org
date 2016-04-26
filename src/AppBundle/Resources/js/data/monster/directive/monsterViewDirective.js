@@ -64,32 +64,41 @@ angular.module('app')
                             monsters.push(monster);
                         }
 
+                        var usual_monsters = $filter('filter')(monsters, {is_story:false, is_unique:false, region:region});
+                        var story_monsters = $filter('filter')(monsters, {is_story:true, region: region});
+                        var unique_monsters = $filter('filter')(monsters, {is_unique:true, region: region});
+
+                        var groupedByTypeMonsters = [{
+                            name: 'Tyrannen',
+                            data: unique_monsters
+                        }, {
+                            name: 'Handlungsgegner',
+                            data: story_monsters
+                        }, {
+                            name: 'Kreaturen',
+                            data: usual_monsters
+                        }];
+
+                        groupedByTypeMonsters.forEach(function(elm, i) {
+                            elm.data = $filter('orderBy')(elm.data, ['level_min', 'name']);
+                        });
+
+                        var allMonsters = $filter('orderBy')(monsters, ['monster_type_prio', 'name']);
+
                         var region = $routeParams['region'];
                         if(region) {
-                            var usual_monsters = $filter('filter')(monsters, {is_story:false, is_unique:false, region:region});
-                            var story_monsters = $filter('filter')(monsters, {is_story:true, region: region});
-                            var unique_monsters = $filter('filter')(monsters, {is_unique:true, region: region});
-
-                            $scope.groupedMonsters = [{
-                                name: 'Tyrannen',
-                                data: unique_monsters
-                            }, {
-                                name: 'Handlungsgegner',
-                                data: story_monsters
-                            }, {
-                                name: 'Kreaturen',
-                                data: usual_monsters
-                            }];
-
-                            $scope.groupedMonsters.forEach(function(elm, i) {
-                               elm.data = $filter('orderBy')(elm.data, ['level_min', 'name']);
-                            });
+                            $scope.groupedMonsters = groupedByTypeMonsters;
                         } else {
-                            $scope.groupedMonsters = [
-                                //{data: $filter('orderBy')(monsters, ['monster_type_prio', 'regionIndex', 'is_unique','is_story','level_min'])}
-                                {data: $filter('orderBy')(monsters, ['monster_type_prio', 'name'])}
-                            ]
+                            $scope.groupedMonsters = [{data: allMonsters}];
                         }
+
+                        $scope.groupByType = function() {
+                            if($scope.groupedByType) {
+                                $scope.groupedMonsters = groupedByTypeMonsters;
+                            } else {
+                                $scope.groupedMonsters = [{data: allMonsters}];
+                            }
+                        };
 
                         var promise = $timeout(function(){
                             if($location.hash() && !that.scrolled) {

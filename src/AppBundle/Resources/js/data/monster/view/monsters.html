@@ -29,28 +29,35 @@ Unter den jeweiligen Gebieten findet ihr die Kreaturen nach Typ seperiert und Le
             <div class="col-xs-12 col-lg-3">
                 <div class="checkbox">
                     <label>
-                        <input ng-model="uniqueMonsters" type="checkbox"/> Tyrannen verbergen
+                        <input ng-model="uniqueMonsters" type="checkbox"/> Tyrannen ausblenden
                     </label>
                 </div>
             </div>
             <div class="col-xs-12 col-lg-3">
                 <div class="checkbox">
                     <label>
-                        <input ng-model="storyMonsters" type="checkbox"/> Handlungsgegner verbergen
+                        <input ng-model="storyMonsters" type="checkbox"/> Handlungsgegner ausblenden
                     </label>
                 </div>
             </div>
             <div class="col-xs-12 col-lg-3">
                 <div class="checkbox">
                     <label>
-                        <input ng-model="usualMonsters" type="checkbox"/> Normale Kreaturen verbergen
+                        <input ng-model="usualMonsters" type="checkbox"/> Normale Kreaturen ausblenden
+                    </label>
+                </div>
+            </div>
+            <div ng.-if="!paramFromUrl" class="col-xs-12 col-lg-3">
+                <div class="checkbox">
+                    <label>
+                        <input ng-model="groupedByType" ng-change="groupByType()" type="checkbox"/> Nach Typ gruppiert anzeigen
                     </label>
                 </div>
             </div>
         </div>
         <collapsed-content>
             <section class="collapse-grouped" ng-repeat="monsterGroup in groupedMonsters" ng-if="monsterGroup.hide !== true">
-            <h1 ng-if="paramFromUrl">{{monsterGroup.name}}</h1>
+            <h1 ng-if="groupedByType || paramFromUrl">{{monsterGroup.name}}</h1>
             <div class="collapse-item" ng-repeat="monster in monsterGroup.data | filter:filter  | range:levelfilterValue:'level_min':'level_max' track by monster.id"
                  ng-if="(!uniqueMonsters && monster.is_unique) || (!storyMonsters && monster.is_story) || (!usualMonsters && !monster.is_story && !monster.is_unique)">
                 <a name="monster-{{monster.id}}"></a>
