@@ -1,10 +1,10 @@
-<header class="col-xs-12">
-    <h1>Kreaturen</h1>
+<header param-from-url param-name="region" class="col-xs-12">
+    <h1>Kreaturen <span ng-if="paramFromUrl">- {{paramFromUrl}}</span></h1>
 </header>
-<div class="col-xs-12">
+<div param-from-url param-name="region" class="col-xs-12">
     <section class="content-box default-amrgin-b">
-        <p class="content-body">Hier findet ihr die Kreaturen, aufgeteilt nach Tyrannen, Handlungsgegner (beinhaltet Gegner aus Missionen und Handlung) und normale Kreaturen.
-Die Kreaturen sind innerhalb dieser Trennung den Gattungen (wie in der EnzyklopÃ¤die im Spiel) nach sortiert.</p>
+        <p class="content-body">Unter "Alle" findet ihr sÃ¤mtliche Kreaturen, sortiert wie in der EnzyklopÃ¤die im Spiel.
+Unter den jeweiligen Gebieten findet ihr die Kreaturen nach Typ seperiert und Level sortiert</p>
     </section>
     <monster-view>
         <div class="row m-b-1">
@@ -25,7 +25,7 @@ Die Kreaturen sind innerhalb dieser Trennung den Gattungen (wie in der EnzyklopÃ
                 <span class="fa fa-search"></span>
             </div>
         </div>
-        <div class="row m-b-1 p-y-1 content-box">
+        <div ng-if="paramFromUrl" class="row m-b-1 p-y-1 content-box">
             <div class="col-xs-12 col-lg-3">
                 <div class="checkbox">
                     <label>
@@ -50,8 +50,8 @@ Die Kreaturen sind innerhalb dieser Trennung den Gattungen (wie in der EnzyklopÃ
         </div>
         <collapsed-content>
             <section class="collapse-grouped" ng-repeat="monsterGroup in groupedMonsters" ng-if="monsterGroup.hide !== true">
-            <h1>{{monsterGroup.name}}</h1>
-            <div class="collapse-item" ng-repeat="monster in monsterGroup.data | filter:filter | range:levelfilterValue:'level_min':'level_max' | orderBy:['monster_type_prio', natural('name')]  track by monster.id">
+            <h1 ng-if="paramFromUrl">{{monsterGroup.name}}</h1>
+            <div class="collapse-item" ng-repeat="monster in monsterGroup.data | filter:filter | range:levelfilterValue:'level_min':'level_max' track by monster.id">
                 <a name="monster-{{monster.id}}"></a>
                 <a href="#monster-{{$parent.$index}}-{{$index}}" ng-click="visible('monster-'+$parent.$index+'-'+$index)" class="collapsed content-box" onclick="return false;" data-toggle="collapse" aria-expanded="false">
                     <strong>
@@ -62,7 +62,7 @@ Die Kreaturen sind innerhalb dieser Trennung den Gattungen (wie in der EnzyklopÃ
                     </strong>
                     <span class="collapse-arrow fa"></span>
                     <ul class="collapse-notes">
-                        <li>
+                        <li ng-if="!paramFromUrl">
                             {{monster.region}}
                         </li>
                         <li>

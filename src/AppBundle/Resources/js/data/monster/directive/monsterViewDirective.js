@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app')
-    .directive('monsterView',['MonsterService','MonsterTypeService','$filter', '$timeout', '$location', '$anchorScroll', function(MonsterService, MonsterTypeService, $filter, $timeout, $location, $anchorScroll) {
+    .directive('monsterView',['MonsterService','MonsterTypeService','$filter', '$timeout', '$location', '$anchorScroll', '$routeParams', function(MonsterService, MonsterTypeService, $filter, $timeout, $location, $anchorScroll, $routeParams) {
         return {
             restrict: 'E',
             controller: ['$scope',function($scope) {
@@ -38,23 +38,34 @@ angular.module('app')
                             }
                         });
 
-                        var usual_monsters = $filter('filter')(monsters, {is_story:false, is_unique:false});
-                        var story_monsters = $filter('filter')(monsters, {is_story:true});
-                        var unique_monsters = $filter('filter')(monsters, {is_unique:true});
+                        var region = $routeParams['region'];
+                        if(region) {
+                            var usual_monsters = $filter('filter')(monsters, {is_story:false, is_unique:false, region:region});
+                            var story_monsters = $filter('filter')(monsters, {is_story:true, region: region});
+                            var unique_monsters = $filter('filter')(monsters, {is_unique:true, region: region});
 
-                        $scope.groupedMonsters = [{
-                            name: 'Tyrannen',
-                            hide: false,
-                            data: unique_monsters
-                        }, {
-                            name: 'Handlungsgegner',
-                            hide: false,
-                            data: story_monsters
-                        }, {
-                            name: 'Kreaturen',
-                            hide: false,
-                            data: usual_monsters
-                        }];
+                            $scope.groupedMonsters = [{
+                                name: 'Tyrannen',
+                                hide: false,
+                                data: unique_monsters
+                            }, {
+                                name: 'Handlungsgegner',
+                                hide: false,
+                                data: story_monsters
+                            }, {
+                                name: 'Kreaturen',
+                                hide: false,
+                                data: usual_monsters
+                            }];
+
+                            $scope.groupedMonsters.forEach(function(elm, i) {
+                               elm.data = $filter('orderBy')(elm.data, ['level_min', 'name']);
+                            });
+                        } else {
+                            $scope.groupedMonsters = [
+                                {data: $filter('orderBy')(monsters, ['monster_type_prio', 'name'])}
+                            ]
+                        }
 
                         var promise = $timeout(function(){
                             if($location.hash() && !that.scrolled) {

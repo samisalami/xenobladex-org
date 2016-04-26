@@ -32,7 +32,7 @@ function config($routeProvider, $locationProvider) {
       .when('/kollektikon', {
         templateUrl: 'js/data/collection/view/collections.html'
       })
-      .when('/kreaturen', {
+      .when('/kreaturen/:region?', {
         templateUrl: 'js/data/monster/view/monsters.html'
       })
       .when('/impressum', {

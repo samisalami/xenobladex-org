@@ -26,7 +26,27 @@
         <a href="/kollektikon" highlighted-nav-item nav-item-class="active" nav-item-route="/kollektikon">Kollektikon</a>
       </li>
       <li>
-        <a href="/kreaturen" highlighted-nav-item nav-item-class="active" nav-item-route="/kreaturen">Kreaturen</a>
+        <a href="#monsters-submenu" class="collapsed" data-toggle="collapse" aria-expanded="false" onclick="return false;" highlighted-nav-item nav-item-class="active" nav-item-route="/kreaturen">Kreaturen <span class="fa fa-arrow-circle-down"></span></a>
+        <ul class="collapse" id="monsters-submenu" highlighted-nav-item nav-item-class="in" nav-item-route="/kreaturen">
+          <li>
+            <a href="/kreaturen" highlighted-nav-item nav-item-route-equals="true" nav-item-class="active" nav-item-route="/kreaturen">Alle</a>
+          </li>
+          <li>
+            <a href="/kreaturen/primordia" highlighted-nav-item nav-item-route-equals="true" nav-item-class="active" nav-item-route="/kreaturen/primordia">Primordia</a>
+          </li>
+          <li>
+            <a href="/kreaturen/noctilum" highlighted-nav-item nav-item-route-equals="true" nav-item-class="active" nav-item-route="/kreaturen/noctilum">Noctilum</a>
+          </li>
+          <li>
+            <a href="/kreaturen/oblivia" highlighted-nav-item nav-item-route-equals="true" nav-item-class="active" nav-item-route="/kreaturen/oblivia">Oblivia</a>
+          </li>
+          <li>
+            <a href="/kreaturen/sylvalum" highlighted-nav-item nav-item-route-equals="true" nav-item-class="active" nav-item-route="/kreaturen/sylvalum">Sylvalum</a>
+          </li>
+          <li>
+            <a href="/kreaturen/cauldros" highlighted-nav-item nav-item-route-equals="true" nav-item-class="active" nav-item-route="/kreaturen/cauldros">Cauldros</a>
+          </li>
+        </ul>
       </li>
       <li>
         <a href="/material" highlighted-nav-item nav-item-class="active" nav-item-route="/material">Material</a>
