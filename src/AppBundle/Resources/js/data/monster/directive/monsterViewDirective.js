@@ -68,7 +68,7 @@ angular.module('app')
                         var story_monsters = $filter('filter')(monsters, {is_story:true, region: region});
                         var unique_monsters = $filter('filter')(monsters, {is_unique:true, region: region});
 
-                        var groupedByTypeMonsters = [{
+                        that.groupedByTypeMonsters = [{
                             name: 'Tyrannen',
                             data: unique_monsters
                         }, {
@@ -79,26 +79,18 @@ angular.module('app')
                             data: usual_monsters
                         }];
 
-                        groupedByTypeMonsters.forEach(function(elm, i) {
+                        that.groupedByTypeMonsters.forEach(function(elm, i) {
                             elm.data = $filter('orderBy')(elm.data, ['level_min', 'name']);
                         });
 
-                        var allMonsters = $filter('orderBy')(monsters, ['monster_type_prio', 'name']);
+                        that.allMonsters = $filter('orderBy')(monsters, ['monster_type_prio', 'name']);
 
                         var region = $routeParams['region'];
                         if(region) {
-                            $scope.groupedMonsters = groupedByTypeMonsters;
+                            $scope.groupedMonsters = that.groupedByTypeMonsters;
                         } else {
-                            $scope.groupedMonsters = [{data: allMonsters}];
+                            $scope.groupedMonsters = [{data: that.allMonsters}];
                         }
-
-                        $scope.groupByType = function() {
-                            if($scope.groupedByType) {
-                                $scope.groupedMonsters = groupedByTypeMonsters;
-                            } else {
-                                $scope.groupedMonsters = [{data: allMonsters}];
-                            }
-                        };
 
                         var promise = $timeout(function(){
                             if($location.hash() && !that.scrolled) {
@@ -109,6 +101,17 @@ angular.module('app')
                         },0);
                     }
                 }
+
+                $scope.groupByType = function() {
+                    if(that.groupedByTypeMonsters && that.allMonsters) {
+                        console.log($scope.groupedByType);
+                        if ($scope.groupedByType) {
+                            $scope.groupedMonsters = that.groupedByTypeMonsters;
+                        } else {
+                            $scope.groupedMonsters = [{data: that.allMonsters}];
+                        }
+                    }
+                };
             }]
         }
     }]);
