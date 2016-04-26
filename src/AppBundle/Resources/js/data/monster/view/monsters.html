@@ -3,7 +3,7 @@
 </header>
 <div param-from-url param-name="region" class="col-xs-12">
     <section class="content-box default-amrgin-b">
-        <p class="content-body">Unter "Alle" findet ihr sämtliche Kreaturen nach Gattung (selbe Reihenfolge wie im Spiel) und unterhalb der Gattung nach Region, Level und Typ (Tyrann...) sortiert.
+        <p class="content-body">Unter "Alle" findet ihr sämtliche Kreaturen nach Gattung (selbe Reihenfolge wie im Spiel) und unterhalb der Gattung alphabetisch sortiert (im Spiel einstellbar).
 Unter den jeweiligen Gebieten findet ihr die Kreaturen nach Typ seperiert und Level sortiert</p>
     </section>
     <monster-view>
@@ -29,21 +29,21 @@ Unter den jeweiligen Gebieten findet ihr die Kreaturen nach Typ seperiert und Le
             <div class="col-xs-12 col-lg-3">
                 <div class="checkbox">
                     <label>
-                        <input ng-model="uniqueMonsters" type="checkbox"/> Tyrannen ausblenden
+                        <input ng-model="uniqueMonsters" type="checkbox"/> Tyrannen verbergen
                     </label>
                 </div>
             </div>
             <div class="col-xs-12 col-lg-3">
                 <div class="checkbox">
                     <label>
-                        <input ng-model="storyMonsters" type="checkbox"/> Handlungsgegner ausblenden
+                        <input ng-model="storyMonsters" type="checkbox"/> Handlungsgegner verbergen
                     </label>
                 </div>
             </div>
             <div class="col-xs-12 col-lg-3">
                 <div class="checkbox">
                     <label>
-                        <input ng-model="usualMonsters" type="checkbox"/> Normale Kreaturen ausblenden
+                        <input ng-model="usualMonsters" type="checkbox"/> Normale Kreaturen verbergen
                     </label>
                 </div>
             </div>
@@ -51,7 +51,8 @@ Unter den jeweiligen Gebieten findet ihr die Kreaturen nach Typ seperiert und Le
         <collapsed-content>
             <section class="collapse-grouped" ng-repeat="monsterGroup in groupedMonsters" ng-if="monsterGroup.hide !== true">
             <h1 ng-if="paramFromUrl">{{monsterGroup.name}}</h1>
-            <div class="collapse-item" ng-repeat="monster in monsterGroup.data | filter:filter | filter:uniqueMonsters:{ is_unique: false } | filter:storyMonsters:{ is_story: false } | filter:usualMonsters:{ is_story: false, is_unique: false } | range:levelfilterValue:'level_min':'level_max' track by monster.id">
+            <div class="collapse-item" ng-repeat="monster in monsterGroup.data | filter:filter  | range:levelfilterValue:'level_min':'level_max' track by monster.id"
+                 ng-if="(!uniqueMonsters && monster.is_unique) || (!storyMonsters && monster.is_story) || (!usualMonsters && !monster.is_story && !monster.is_unique)">
                 <a name="monster-{{monster.id}}"></a>
                 <a href="#monster-{{$parent.$index}}-{{$index}}" ng-click="visible('monster-'+$parent.$index+'-'+$index)" class="collapsed content-box" onclick="return false;" data-toggle="collapse" aria-expanded="false">
                     <strong>
@@ -62,12 +63,12 @@ Unter den jeweiligen Gebieten findet ihr die Kreaturen nach Typ seperiert und Le
                     </strong>
                     <span class="collapse-arrow fa"></span>
                     <ul class="collapse-notes">
-                        <li ng-if="!paramFromUrl">
-                            {{monster.region}}
-                        </li>
                         <li ng-if="!paramFromUrl && (monster.is_unique || monster.is_story)">
                             <span ng-if="monster.is_unique">Tyrann</span>
                             <span ng-if="monster.is_story">Handlung</span>
+                        </li>
+                        <li ng-if="!paramFromUrl">
+                            {{monster.region}}
                         </li>
                         <li>
                             {{monster.monster_type.name}}

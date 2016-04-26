@@ -30,13 +30,39 @@ angular.module('app')
 
                 function setViewData() {
                     if(that.monsters && that.monsterTypes) {
-                        var monsters = that.monsters;
+                        var monsters = [];
 
-                        monsters.forEach(function(monster, index){
+                        var mLength = that.monsters.length;
+                        for(var i = 0; i < mLength; i++) {
+                            var monster = $.extend({}, that.monsters[i], true);
+
                             if($.isNumeric(monster.monster_type)) {
                                 monster.monster_type = $filter('byId')(that.monsterTypes, monster.monster_type) || null;
                             }
-                        });
+
+                            switch (monster.region) {
+                                case "Primordia":
+                                    monster.regionIndex = 1;
+                                    break;
+                                case "Noctilum":
+                                    monster.regionIndex = 2;
+                                    break;
+                                case "Oblivia":
+                                    monster.regionIndex = 3;
+                                    break;
+                                case "Sylvalum":
+                                    monster.regionIndex = 4;
+                                    break;
+                                case "Cauldros":
+                                    monster.regionIndex = 5;
+                                    break;
+                                default:
+                                    monster.regionIndex = 6;
+                                    break;
+                            }
+
+                            monsters.push(monster);
+                        }
 
                         var region = $routeParams['region'];
                         if(region) {
@@ -46,15 +72,12 @@ angular.module('app')
 
                             $scope.groupedMonsters = [{
                                 name: 'Tyrannen',
-                                hide: false,
                                 data: unique_monsters
                             }, {
                                 name: 'Handlungsgegner',
-                                hide: false,
                                 data: story_monsters
                             }, {
                                 name: 'Kreaturen',
-                                hide: false,
                                 data: usual_monsters
                             }];
 
@@ -63,7 +86,8 @@ angular.module('app')
                             });
                         } else {
                             $scope.groupedMonsters = [
-                                {data: $filter('orderBy')(monsters, ['monster_type_prio', 'region', 'level_min', 'is_unique'])}
+                                //{data: $filter('orderBy')(monsters, ['monster_type_prio', 'regionIndex', 'is_unique','is_story','level_min'])}
+                                {data: $filter('orderBy')(monsters, ['monster_type_prio', 'name'])}
                             ]
                         }
 
