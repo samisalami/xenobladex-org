@@ -63,7 +63,7 @@ angular.module('app')
                             });
                         } else {
                             $scope.groupedMonsters = [
-                                {data: $filter('orderBy')(monsters, ['monster_type_prio', 'name'])}
+                                {data: $filter('orderBy')(monsters, ['monster_type_prio', 'region', 'level_min', 'is_unique'])}
                             ]
                         }
 
