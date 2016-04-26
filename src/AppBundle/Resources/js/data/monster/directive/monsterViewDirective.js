@@ -104,7 +104,6 @@ angular.module('app')
 
                 $scope.groupByType = function() {
                     if(that.groupedByTypeMonsters && that.allMonsters) {
-                        console.log($scope.groupedByType);
                         if ($scope.groupedByType) {
                             $scope.groupedMonsters = that.groupedByTypeMonsters;
                         } else {

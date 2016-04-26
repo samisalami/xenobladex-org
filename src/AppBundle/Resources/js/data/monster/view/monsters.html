@@ -56,12 +56,12 @@ Unter den jeweiligen Gebieten findet ihr die Kreaturen nach Typ seperiert und Le
             </div>
         </div>
         <collapsed-content>
-            <section class="collapse-grouped" ng-repeat="monsterGroup in groupedMonsters" ng-if="monsterGroup.hide !== true">
+            <section class="collapse-grouped" ng-repeat="monsterGroup in groupedMonsters">
             <h1 ng-if="groupedByType || paramFromUrl">{{monsterGroup.name}}</h1>
             <div class="collapse-item" ng-repeat="monster in monsterGroup.data | filter:filter  | range:levelfilterValue:'level_min':'level_max' track by monster.id"
                  ng-if="(!uniqueMonsters && monster.is_unique) || (!storyMonsters && monster.is_story) || (!usualMonsters && !monster.is_story && !monster.is_unique)">
                 <a name="monster-{{monster.id}}"></a>
-                <a href="#monster-{{$parent.$index}}-{{$index}}" ng-click="visible('monster-'+$parent.$index+'-'+$index)" class="collapsed content-box" onclick="return false;" data-toggle="collapse" aria-expanded="false">
+                <a href="#monster-{{$parent.$parent.$index}}-{{$index}}" ng-click="visible('monster-'+$parent.$parent.$index+'-'+$index)" class="collapsed content-box" onclick="return false;" data-toggle="collapse" aria-expanded="false">
                     <strong>
                         {{monster.name}}
                         <span ng-if="monster.level_min || monster.level_max">
@@ -82,8 +82,8 @@ Unter den jeweiligen Gebieten findet ihr die Kreaturen nach Typ seperiert und Le
                         </li>
                     </ul>
                 </a>
-                <div id="monster-{{$parent.$index}}-{{$index}}" class="content-box collapse">
-                    <div ng-if="isVisible('monster-'+$parent.$index+'-'+$index)" class="content-body">
+                <div id="monster-{{$parent.$parent.$index}}-{{$index}}" class="content-box collapse">
+                    <div ng-if="isVisible('monster-'+$parent.$parent.$index+'-'+$index)" class="content-body">
                         <div class="row">
                             <div class="col-xs-12 col-md-6">
                                 <strong>Werte:</strong> <br/>
