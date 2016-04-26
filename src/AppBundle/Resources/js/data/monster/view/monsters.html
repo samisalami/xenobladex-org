@@ -58,7 +58,7 @@ Unter den jeweiligen Gebieten findet ihr die Kreaturen nach Typ seperiert und Le
         <collapsed-content>
             <section class="collapse-grouped" ng-repeat="monsterGroup in groupedMonsters">
             <h1 ng-if="groupedByType || paramFromUrl">{{monsterGroup.name}}</h1>
-            <div class="collapse-item" ng-repeat="monster in monsterGroup.data | filter:filter  | range:levelfilterValue:'level_min':'level_max' track by monster.id"
+            <div class="collapse-item" ng-repeat="monster in monsterGroup.data | filter:filter | filter:{region: paramFromUrl}  | range:levelfilterValue:'level_min':'level_max' track by monster.id"
                  ng-if="(!uniqueMonsters && monster.is_unique) || (!storyMonsters && monster.is_story) || (!usualMonsters && !monster.is_story && !monster.is_unique)">
                 <a name="monster-{{monster.id}}"></a>
                 <a href="#monster-{{$parent.$parent.$index}}-{{$index}}" ng-click="visible('monster-'+$parent.$parent.$index+'-'+$index)" class="collapsed content-box" onclick="return false;" data-toggle="collapse" aria-expanded="false">
