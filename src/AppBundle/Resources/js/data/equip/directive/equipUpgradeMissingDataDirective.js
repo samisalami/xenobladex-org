@@ -22,6 +22,18 @@ angular.module('app')
                 function setEquipUpgrades(equipUpgrades) {
                     $scope.equipUpgrades = equipUpgrades;
                 }
+
+                $scope.getEquipUpgradeTierMaterial = function(equipUpgrade, equipUpgradeTier, i) {
+                    if(equipUpgradeTier.material_individual) {
+                        return equipUpgradeTier['material'+i];
+                    }
+
+                    if (equipUpgradeTier.name == 'I' || equipUpgradeTier.name == 'V') {
+                        return equipUpgrade['material_small'+i];
+                    }
+
+                    return equipUpgrade['material_large'+i];
+                };
             }
         }
     }]);
