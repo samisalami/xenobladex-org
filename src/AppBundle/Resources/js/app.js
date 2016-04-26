@@ -20,7 +20,7 @@ function config($routeProvider, $locationProvider) {
       .when('/faq', {
         templateUrl: 'js/data/faq/view/faq.html'
       })
-      .when('/missionen', {
+      .when('/missionen/:missionTypeName?', {
         templateUrl: 'js/data/mission/view/missions.html'
       })
       .when('/material', {

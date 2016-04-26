@@ -1,7 +1,7 @@
-<header class="col-xs-12">
-    <h1>Missionen</h1>
+<header param-from-url param-name="missionTypeName" class="col-xs-12">
+    <h1>Missionen <span ng-if="paramFromUrl">- {{paramFromUrl}}</span></h1>
 </header>
-<div class="col-xs-12">
+<div param-from-url param-name="missionTypeName" class="col-xs-12">
     <section class="content-box default-amrgin-b">
         <p class="content-body">Die Kapitelangaben bedeuten immer, dass ihr das Kapitel abgeschlossen haben müsst, um Zugang zu der jeweiligen Mission zu erhalten.
 Die Filter zeigen euch Einträge an, die den eingebenen Wert enthalten und können auch kombiniert werden.
@@ -26,7 +26,7 @@ Im Allgemeinen ist das BLADE-Level nur eine Voraussetzung für Nebenjobs und kei
                 <span class="fa fa-search"></span>
             </div>
         </div>
-        <div class="row m-b-1 p-y-1 content-box">
+        <div ng-if="!paramFromUrl" class="row m-b-1 p-y-1 content-box">
             <div class="col-xs-12 col-lg-3">
                 <div class="checkbox">
                     <label>
@@ -57,8 +57,8 @@ Im Allgemeinen ist das BLADE-Level nur eine Voraussetzung für Nebenjobs und kei
             </div>
         </div>
         <collapsed-content>
-            <section class="collapse-grouped" ng-repeat="missionGroup in groupedMissions | orderBy:'name'" ng-if="missionGroup.hide !== true">
-            <h1>{{missionGroup.name || 'Nicht zugeordnet'}}</h1>
+            <section class="collapse-grouped" ng-repeat="missionGroup in groupedMissions | orderBy:'name'" ng-if="missionGroup.hide !== true && groupedMissions">
+            <h1 ng-if="!paramFromUrl">{{missionGroup.name || 'Nicht zugeordnet'}}</h1>
             <div class="collapse-item" ng-repeat="mission in missionGroup.rows | filter:filter | orderBy:[natural('name'), 'blade_level', 'chapter']  track by mission.id">
                 <a href="#mission-{{$parent.$index}}-{{$index}}" ng-click="visible('mission-'+$parent.$index+'-'+$index)" class="collapsed content-box" onclick="return false;" data-toggle="collapse" aria-expanded="false">
                     <strong>{{mission.name}}</strong><span class="collapse-arrow fa"></span>
@@ -69,7 +69,7 @@ Im Allgemeinen ist das BLADE-Level nur eine Voraussetzung für Nebenjobs und kei
                         <li ng-if="mission.chapter && mission.mission_type.name!='Handlungsmission'">
                             <span>Kapitel {{mission.chapter}}</span>
                         </li>
-                        <li>
+                        <li ng-if="!paramFromUrl">
                             {{missionGroup.name}}
                         </li>
                     </ul>

@@ -32,6 +32,7 @@ angular.module('app')
             solution,
             rewards,
             mission_type,
+            mission_type_name,
             person,
             person_unrelated,
             has_person,
@@ -50,6 +51,7 @@ angular.module('app')
             this.solution = solution;
             this.rewards = rewards;
             this.mission_type = mission_type;
+            this.mission_type_name = mission_type_name;
             this.person = person;
             this.person_unrelated = person_unrelated;
             this.has_person = has_person;
@@ -82,6 +84,7 @@ angular.module('app')
                     mission['solution'],
                     mission['rewards'],
                     mission['mission_type'],
+                    mission['mission_type_name'],
                     mission['person'],
                     mission['person_unrelated'],
                     mission['has_person'],

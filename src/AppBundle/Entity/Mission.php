@@ -7,6 +7,8 @@ use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation\Type;
 use JMS\Serializer\Annotation\MaxDepth;
+use JMS\Serializer\Annotation\VirtualProperty;
+use JMS\Serializer\Annotation\SerializedName;
 
 /**
  * Mission
@@ -148,6 +150,17 @@ class Mission
 
     public function __construct() {
         $this->mapmarkers = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * @VirtualProperty
+     * @SerializedName("mission_type_name")
+     */
+    public function getMissionTypeName() {
+        if(!$this->getMissionType()) {
+            return null;
+        }
+        return $this->getMissionType()->getName();
     }
 
     /**

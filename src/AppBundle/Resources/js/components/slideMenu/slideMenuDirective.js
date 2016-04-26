@@ -6,15 +6,59 @@ angular.module('app')
             restrict: 'A',
             link: function ($scope, $elm, $attrs)
             {
+                var initialized = false;
                 var active = false;
                 var navActiveClass = 'slide-menu-open';
                 var contentSelector = '.main-view';
-                var newNav = $('<aside class="main-aside main-aside-mobile"></aside>'),
+                var newNav = $('<aside id="js_slide-menu" class="main-aside main-aside-mobile"></aside>'),
                     navButton = $($elm),
-                    nav = $('#'+$attrs.menuId);
+                    navWrapper = $('#'+$attrs.menuId),
+                    nav = $('> nav', navWrapper);
+
+                var init = function() {
+                    if(navButton.is(':visible')) {
+                        initNewNav();
+                    } else {
+                        close();
+                        appendToOldNav()
+                    }
+                };
+
+                var initNewNav = function() {
+                    if($('#js_slide-menu').length===0) {
+                        console.log('initNewNav: append');
+                        $('body').append(newNav);
+
+                        $(contentSelector).on('click', function(e){
+                            if(active===true) {
+                                close();
+                            }
+                        });
+
+                        $(navButton).on('click', function(e){
+                            e.preventDefault();
+                            if(active === true) {
+                                close();
+                            } else {
+                                open();
+                            }
+                        });
+
+                        $rootScope.$on('$locationChangeStart', function (event, next, current) {
+                            init();
+                        });
+                    }
+                };
+
+                var appendToOldNav = function() {
+                    if($('nav', navWrapper).length == 0) {
+                        navWrapper.append(nav);
+                    }
+                };
 
                 var open = function() {
-                    newNav.html($compile(nav.html())($scope));
+                    newNav.html('');
+                    newNav.append(nav);
                     $('body').addClass(navActiveClass);
                     active = true;
                 };
@@ -24,29 +68,13 @@ angular.module('app')
                     active = false;
                 };
 
-                if(nav.length > 0) {
-                    $('body').append(newNav.append($compile(nav.html())($scope)));
+                if(nav.length==1) {
+                    init();
 
-                    $(contentSelector).on('click', function(e){
-                        if(active===true) {
-                            close();
-                        }
-                    });
-
-                    $(navButton).on('click', function(e){
-                        e.preventDefault();
-                        if(active === true) {
-                            close();
-                        } else {
-                            open();
-                        }
+                    $(window).on('resize', function(){
+                        init();
                     });
                 }
-
-                $rootScope.$on('$locationChangeStart', function (event, next, current) {
-                    close();
-                    newNav.html(nav.html());
-                });
             }
         };
     }]);

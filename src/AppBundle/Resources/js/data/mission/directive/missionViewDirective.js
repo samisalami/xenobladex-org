@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app')
-    .directive('missionView',['MissionService', 'PersonService', '$filter', function(MissionService, PersonService, $filter) {
+    .directive('missionView',['MissionService', 'PersonService', '$filter', '$routeParams', function(MissionService, PersonService, $filter, $routeParams) {
         return {
             restrict: 'E',
             controller: ['$scope',function($scope){
@@ -33,7 +33,13 @@ angular.module('app')
                                 mission.person = $filter('byId')(that.persons, mission.person) || null;
                             }
                         });
-                        $scope.groupedMissions = $filter('groupByFilter')(missions,'mission_type',true);
+
+                        var typeName = $routeParams['missionTypeName'];
+                        if(typeName) {
+                            $scope.groupedMissions = [{name: typeName, rows: $filter('filter')(that.missions, {mission_type_name: typeName})}];
+                        } else {
+                            $scope.groupedMissions = $filter('groupByFilter')(missions,'mission_type',true);
+                        }
                     }
                 }
             }]
