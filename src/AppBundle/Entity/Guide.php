@@ -31,10 +31,45 @@ class Guide
     /**
      * @var string
      *
+     * @ORM\Column(name="author", type="string", length=255)
+     */
+    private $author;
+
+    /**
+     * @var \DateTimeInterface
+     *
+     * @ORM\Column(name="last_edited", type="datetime")
+     */
+    private $lastEdited;
+
+    /**
+     * @var \DateTimeInterface
+     *
+     * @ORM\Column(name="created", type="datetime")
+     */
+    private $created;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="copy", type="text")
      */
     private $copy;
 
+
+    public function __construct()
+    {
+        $this->created = new \DateTime();
+        $this->lastEdited = new \DateTime();
+    }
+
+    /**
+     * @ORM\PrePersist()
+     * @ORM\PreUpdate()
+     */
+    public function updateLastEditedDatetime() {
+        $this->setLastEdited(new \DateTime());
+    }
 
     /**
      * Get id
@@ -90,5 +125,74 @@ class Guide
     public function getCopy()
     {
         return $this->copy;
+    }
+
+    /**
+     * Set author
+     *
+     * @param string $author
+     * @return Guide
+     */
+    public function setAuthor($author)
+    {
+        $this->author = $author;
+
+        return $this;
+    }
+
+    /**
+     * Get author
+     *
+     * @return string 
+     */
+    public function getAuthor()
+    {
+        return $this->author;
+    }
+
+    /**
+     * Set lastEdited
+     *
+     * @param \DateTime $lastEdited
+     * @return Guide
+     */
+    public function setLastEdited($lastEdited)
+    {
+        $this->lastEdited = $lastEdited;
+
+        return $this;
+    }
+
+    /**
+     * Get lastEdited
+     *
+     * @return \DateTime 
+     */
+    public function getLastEdited()
+    {
+        return $this->lastEdited;
+    }
+
+    /**
+     * Set created
+     *
+     * @param \DateTime $created
+     * @return Guide
+     */
+    public function setCreated($created)
+    {
+        $this->created = $created;
+
+        return $this;
+    }
+
+    /**
+     * Get created
+     *
+     * @return \DateTime 
+     */
+    public function getCreated()
+    {
+        return $this->created;
     }
 }

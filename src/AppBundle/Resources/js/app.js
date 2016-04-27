@@ -7,7 +7,6 @@ angular
         'ui.bootstrap',
         'xeditable',
         'naturalSort',
-        'angular-sanitize',
         'textAngular'
     ])
     .config(config)
@@ -122,6 +121,9 @@ function config($routeProvider, $locationProvider) {
       })
       .when('/admin/guides', {
           templateUrl: 'js/data/guide/view/admin_guides.html'
+      })
+      .when('/admin/guide/:guideId?', {
+          templateUrl: 'js/data/guide/view/admin_guide.html'
       })
       .otherwise({
           templateUrl: 'views/404.html'

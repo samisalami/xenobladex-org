@@ -26,10 +26,16 @@ function GuideService($http, $filter) {
     function Guide(
         id,
         name,
+        author,
+        created,
+        last_edited,
         copy)
     {
         this.id = id;
         this.name = name;
+        this.author = author;
+        this.created = created;
+        this.last_edited = last_edited;
         this.copy = copy;
 
         Object.seal(this);
@@ -48,6 +54,9 @@ function GuideService($http, $filter) {
             return new Guide(
                 guide['id'],
                 guide['name'],
+                guide['author'],
+                guide['created'],
+                guide['last_edited'],
                 guide['copy']
             );
         }

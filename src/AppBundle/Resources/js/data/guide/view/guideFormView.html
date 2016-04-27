@@ -1,0 +1,26 @@
+<div class="row">
+    <div class="col-md-offset-9 col-md-3 col-xs-offset-6 col-xs-6 p-r-0 p-b-1">
+        <button href="#" class="btn btn-danger pull-right" ng-click="form.deleteGuide()">
+            Löschen
+        </button>
+    </div>
+</div>
+<form ng-submit="form.updateGuide()">
+    <div class="row m-b-2">
+        <strong>Name:</strong>
+        <form-field form-field-bind="form.guide.name" form-template="inputText"></form-field>
+    </div>
+    <div class="row m-b-2">
+        <strong>Autor:</strong>
+        <form-field form-field-bind="form.guide.author" form-template="inputText"></form-field>
+    </div>
+    <div class="row m-b-2">
+        <strong>Inhalt:</strong>
+        <div text-angular="" ng-model="form.guide.copy"></div>
+    </div>
+    <div class="row">
+        <div class="col-xs-12 p-r-0">
+            <input type="submit" href="#" class="btn btn-success pull-right" value="Speichern" />
+        </div>
+    </div>
+</form>
