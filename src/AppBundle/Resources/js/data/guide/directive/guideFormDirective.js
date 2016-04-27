@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app')
-    .directive('guideForm',['GuideService', function(GuideService) {
+    .directive('guideForm',['GuideService', '$location', function(GuideService, $location) {
         return {
             restrict: 'E',
             replace: false,
@@ -15,7 +15,9 @@ angular.module('app')
                 init();
 
                 function init() {
-                    setFormGuide($scope.guideSealed);
+                    if($scope.guideSealed) {
+                        setFormGuide($scope.guideSealed);
+                    }
                 }
 
                 function setFormGuide(guide) {
@@ -23,15 +25,20 @@ angular.module('app')
                 }
 
                 that.deleteGuide = function() {
-                    GuideService.deleteGuide(that.guide);
+                    if(confirm("Möchtest du den Guide wirklich löschen?")) {
+                        GuideService.deleteGuide(that.guide).then(function(){
+                            $location.path('/admin/guides');
+                        });
+                    }
                 };
 
                 that.updateGuide = function() {
                     if(that.guide.id) {
                         GuideService.updateGuide(that.guide);
                     } else {
-                        GuideService.addGuide(that.guide);
-                        setFormGuide($scope.guideSealed);
+                        GuideService.addGuide(that.guide).then(function(response){
+                            $location.path('/admin/guide/'+response.data.id);
+                        });
                     }
                 }
             }],

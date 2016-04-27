@@ -1,11 +1,9 @@
 <div class="row">
-    <div class="col-md-offset-9 col-md-3 col-xs-offset-6 col-xs-6 p-r-0 p-b-1">
-        <button href="#" class="btn btn-danger pull-right" ng-click="form.deleteGuide()">
-            Löschen
-        </button>
+    <div class="col-xs-12 p-l-0 p-b-1">
+        <a href="/admin/guides" class="btn btn-primary">Guides</a>
     </div>
 </div>
-<form ng-submit="form.updateGuide()">
+<div class="content-box p-x-1 p-y-1">
     <div class="row m-b-2">
         <strong>Name:</strong>
         <form-field form-field-bind="form.guide.name" form-template="inputText"></form-field>
@@ -19,8 +17,11 @@
         <div text-angular="" ng-model="form.guide.copy"></div>
     </div>
     <div class="row">
-        <div class="col-xs-12 p-r-0">
-            <input type="submit" href="#" class="btn btn-success pull-right" value="Speichern" />
+        <div class="col-xs-12 p-x-0">
+            <input type="submit" ng-click="form.updateGuide()" href="#" class="btn btn-success pull-right" value="Speichern" />
+            <button ng-if="form.guide.id" href="#" class="btn btn-danger pull-left" ng-click="form.deleteGuide()">
+                Löschen
+            </button>
         </div>
     </div>
-</form>
+</div>

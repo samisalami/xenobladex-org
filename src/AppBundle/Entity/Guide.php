@@ -3,12 +3,14 @@
 namespace AppBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Symfony\Component\Validator\Constraints\DateTime;
 
 /**
  * Guide
  *
  * @ORM\Table(name="xenobladex_guide")
  * @ORM\Entity
+ * @ORM\HasLifecycleCallbacks()
  */
 class Guide
 {
@@ -56,15 +58,15 @@ class Guide
      */
     private $copy;
 
-
-    public function __construct()
-    {
-        $this->created = new \DateTime();
-        $this->lastEdited = new \DateTime();
+    /**
+     * @ORM\PrePersist()
+     */
+    public function createdDatetime() {
+        $this->setLastEdited(new \DateTime());
+        $this->setCreated(new \DateTime());
     }
 
     /**
-     * @ORM\PrePersist()
      * @ORM\PreUpdate()
      */
     public function updateLastEditedDatetime() {

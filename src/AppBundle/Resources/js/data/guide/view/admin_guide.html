@@ -1,8 +1,15 @@
 <main role="main" param-from-url="" param-name="guideId">
     <div ng-include src="'views/_adminHeader.html'"></div>
-    <div guide-by-id="{{paramFromUrl}}" class="admin-view col-md-12 p-y-1">
-        <h1 class="m-b-1">Guide - {{guideById.name || 'Erstellen'}}</h1>
-        <guide-form guide="guideById">
-        </guide-form>
+    <div class="admin-view col-md-12 p-y-1">
+        <div ng-if="paramFromUrl" guide-by-id="{{paramFromUrl}}">
+            <h1 class="m-b-1">Guide - {{guideById.name}}</h1>
+            <guide-form ng-if="guideById" guide="guideById">
+            </guide-form>
+        </div>
+        <div ng-if="!paramFromUrl">
+            <h1 class="m-b-1">Guide - Erstellen</h1>
+            <guide-form>
+            </guide-form>
+        </div>
     </div>
 </main>

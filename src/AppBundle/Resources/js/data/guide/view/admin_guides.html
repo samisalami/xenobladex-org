@@ -25,7 +25,7 @@
                             Zuletzt bearbeitet
                         </th>
                         <th>
-                            erstellt
+                            Erstellt
                         </th>
                         <th>
 
@@ -33,7 +33,7 @@
                     </tr>
                     </thead>
                     <tbody>
-                    <tr ng-repeat="guide in vm.guides">
+                    <tr ng-repeat="guide in vm.guides track by guide.id">
                         <td>
                             {{guide.name}}
                         </td>
@@ -41,13 +41,13 @@
                             {{guide.author}}
                         </td>
                         <td>
-                            {{guide.last_edited | date:'dd.mm.yyyy HH:mm'}} Uhr
+                            {{guide.last_edited | date:'dd.MM.yyyy HH:mm'}} Uhr
                         </td>
                         <td>
-                            {{guide.created | date:'dd.mm.yyyy HH:mm'}} Uhr
+                            {{guide.created | date:'dd.MM.yyyy HH:mm'}} Uhr
                         </td>
                         <td>
-                            <a ng-href="/admin/guide/{{guide.id}}" class="btn btn-primary">Bearbeiten</a>
+                            <a ng-href="/admin/guide/{{guide.id}}" class="btn btn-primary pull-right">Bearbeiten</a>
                         </td>
                     </tr>
                     </tbody>
