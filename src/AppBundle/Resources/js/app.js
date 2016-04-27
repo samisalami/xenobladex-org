@@ -6,7 +6,8 @@ angular
         'ngCookies',
         'ui.bootstrap',
         'xeditable',
-        'naturalSort'
+        'naturalSort',
+        'textAngular'
     ])
     .config(config)
     .run(run);
@@ -117,6 +118,12 @@ function config($routeProvider, $locationProvider) {
       })
       .when('/admin/ressourcen', {
           templateUrl: 'js/data/resource/view/admin_resources.html'
+      })
+      .when('/admin/guides', {
+          templateUrl: 'js/data/guide/view/admin_guides.html'
+      })
+      .when('/admin/guide/:guideId?', {
+          templateUrl: 'js/data/guide/view/admin_guide.html'
       })
       .otherwise({
           templateUrl: 'views/404.html'

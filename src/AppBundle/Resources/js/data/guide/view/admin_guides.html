@@ -1,0 +1,58 @@
+<main role="main">
+    <div ng-include src="'views/_adminHeader.html'"></div>
+    <div class="admin-view col-md-12 p-y-1">
+        <!--<div class="alert alert-info" role="alert">-->
+            <!--<ul>-->
+                <!--<li>-->
+
+                <!--</li>-->
+            <!--</ul>-->
+        <!--</div>-->
+        <h1 class="m-b-1">Guides</h1>
+        <guide-admin>
+            <a href="/admin/guide" class="btn btn-success m-b-2">Guide anlegen</a>
+            <div class="table-responsive">
+                <table class="table table-striped">
+                    <thead>
+                    <tr>
+                        <th>
+                            Name
+                        </th>
+                        <th>
+                            Autor
+                        </th>
+                        <th>
+                            Zuletzt bearbeitet
+                        </th>
+                        <th>
+                            Erstellt
+                        </th>
+                        <th>
+
+                        </th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr ng-repeat="guide in vm.guides track by guide.id">
+                        <td>
+                            {{guide.name}}
+                        </td>
+                        <td>
+                            {{guide.author}}
+                        </td>
+                        <td>
+                            {{guide.last_edited | date:'dd.MM.yyyy HH:mm'}} Uhr
+                        </td>
+                        <td>
+                            {{guide.created | date:'dd.MM.yyyy HH:mm'}} Uhr
+                        </td>
+                        <td>
+                            <a ng-href="/admin/guide/{{guide.id}}" class="btn btn-primary pull-right">Bearbeiten</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </guide-admin>
+    </div>
+</main>

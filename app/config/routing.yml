@@ -134,6 +134,13 @@ equip_upgrade_tier:
     options:
         expose: true
 
+guide:
+    prefix: /xenobladex
+    type:     rest
+    resource: "@AppBundle/Controller/GuideController.php"
+    options:
+        expose: true
+
 show_attachment:
     path: /xenobladex/attachment/{id}
     methods: [GET]
