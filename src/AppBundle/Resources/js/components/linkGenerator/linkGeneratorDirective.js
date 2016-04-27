@@ -48,7 +48,7 @@ angular.module('app')
                 }
 
                 function setAttachmentData(attachments) {
-                    that.attachmentsUrl = '/attachment/';
+                    that.attachmentsUrl = '/xenobladex/attachment/';
                     that.attachments = attachments;
                 }
             },
