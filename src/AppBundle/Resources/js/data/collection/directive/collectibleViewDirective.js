@@ -58,11 +58,9 @@ angular.module('app')
                         });
 
                         var promise = $timeout(function(){
-                            if($scope.collectibles) {
-                                if($location.hash() && !that.scrolled) {
-                                    that.scrolled = true;
-                                    $anchorScroll();
-                                }
+                            if($location.hash() && !that.scrolled) {
+                                that.scrolled = true;
+                                $anchorScroll();
                             }
                             $timeout.cancel(promise);
                         },0);

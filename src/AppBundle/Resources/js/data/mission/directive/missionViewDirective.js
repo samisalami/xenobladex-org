@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app')
-    .directive('missionView',['MissionService', 'PersonService', '$filter', '$routeParams', function(MissionService, PersonService, $filter, $routeParams) {
+    .directive('missionView',['MissionService', 'PersonService', '$filter', '$routeParams', '$location', '$anchorScroll', '$timeout', function(MissionService, PersonService, $filter, $routeParams, $location, $anchorScroll, $timeout) {
         return {
             restrict: 'E',
             controller: ['$scope',function($scope){
@@ -40,6 +40,14 @@ angular.module('app')
                         } else {
                             $scope.groupedMissions = $filter('groupByFilter')(missions,'mission_type',true);
                         }
+
+                        var promise = $timeout(function(){
+                            if($location.hash() && !that.scrolled) {
+                                that.scrolled = true;
+                                $anchorScroll();
+                            }
+                            $timeout.cancel(promise);
+                        },0);
                     }
                 }
             }]

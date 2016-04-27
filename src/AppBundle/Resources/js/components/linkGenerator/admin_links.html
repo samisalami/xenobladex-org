@@ -1,0 +1,96 @@
+<main role="main">
+    <div ng-include src="'views/_adminHeader.html'"></div>
+    <div class="admin-view col-md-12 p-y-1">
+        <h1>Links</h1>
+        <link-generator>
+            <table class="table table-striped">
+                <thead>
+                <tr>
+                    <th>
+                    </th>
+                    <th>
+                    </th>
+                    <th class="text-xs-center">
+                        Url
+                    </th>
+                    <th class="text-xs-center">
+                        HTML
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <th>
+                        Mission
+                    </th>
+                    <td>
+                        <form-field ng-if="vm.missions" form-field-bind="vm.mission" form-select-options="vm.missions" form-template="customAutoCompleteSelect"></form-field>
+                    </td>
+                    <td class="text-xs-center">
+                        <textarea ng-if="vm.mission" readonly>{{vm.baseUrl}}{{vm.missionsUrl}}{{vm.mission.id}}</textarea>
+                    </td>
+                    <td class="text-xs-center">
+                        <textarea ng-if="vm.mission" readonly><a href="{{vm.baseUrl}}{{vm.missionsUrl}}{{vm.mission.id}}">{{vm.mission.name}}</a></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Kreatur
+                    </th>
+                    <td>
+                        <form-field ng-if="vm.monsters" form-field-bind="vm.monster" form-select-options="vm.monsters" form-template="customAutoCompleteSelect"></form-field>
+                    </td>
+                    <td class="text-xs-center">
+                        <textarea ng-if="vm.monster" readonly>{{vm.baseUrl}}{{vm.monstersUrl}}{{vm.monster.id}}</textarea>
+                    </td>
+                    <td class="text-xs-center">
+                        <textarea ng-if="vm.monster" readonly><a href="{{vm.baseUrl}}{{vm.monstersUrl}}{{vm.monster.id}}">{{vm.monster.name}}</a></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Sammelitem
+                    </th>
+                    <td>
+                        <form-field ng-if="vm.collectibles" form-field-bind="vm.collectible" form-select-options="vm.collectibles" form-template="customAutoCompleteSelect"></form-field>
+                    </td>
+                    <td class="text-xs-center">
+                        <textarea ng-if="vm.collectible" readonly>{{vm.baseUrl}}{{vm.collectiblesUrl}}{{vm.collectible.id}}</textarea>
+                    </td>
+                    <td class="text-xs-center">
+                        <textarea ng-if="vm.collectible" readonly><a href="{{vm.baseUrl}}{{vm.collectiblesUrl}}{{vm.collectible.id}}">{{vm.collectible.name}}</a></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Material
+                    </th>
+                    <td>
+                        <form-field ng-if="vm.materials" form-field-bind="vm.material" form-select-options="vm.materials" form-template="customAutoCompleteSelect"></form-field>
+                    </td>
+                    <td class="text-xs-center">
+                        <textarea ng-if="vm.material" readonly>{{vm.baseUrl}}{{vm.materialsUrl}}{{vm.material.id}}</textarea>
+                    </td>
+                    <td class="text-xs-center">
+                        <textarea ng-if="vm.material" readonly><a href="{{vm.baseUrl}}{{vm.materialsUrl}}{{vm.material.id}}">{{vm.material.name}}</a></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <th>
+                        Dateiverwaltung
+                    </th>
+                    <td>
+                        <form-field ng-if="vm.attachments" form-field-bind="vm.attachment" form-select-options="vm.attachments" form-template="customAttachmentInput" form-field-action-param="image"></form-field>
+                    </td>
+                    <td class="text-xs-center">
+                        <textarea ng-if="vm.attachment" readonly>{{vm.baseUrl}}{{vm.attachmentsUrl}}{{vm.attachment.id}}</textarea>
+                    </td>
+                    <td class="text-xs-center">
+                        <textarea ng-if="vm.attachment" readonly><img src="{{vm.baseUrl}}{{vm.attachmentsUrl}}{{vm.attachment.id}}" alt="{{vm.attachment.name}}" /></textarea>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </link-generator>
+    </div>
+</main>

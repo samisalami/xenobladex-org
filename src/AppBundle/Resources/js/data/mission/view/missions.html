@@ -60,6 +60,7 @@ Im Allgemeinen ist das BLADE-Level nur eine Voraussetzung für Nebenjobs und kei
             <section class="collapse-grouped" ng-repeat="missionGroup in groupedMissions | orderBy:'name'" ng-if="missionGroup.hide !== true && groupedMissions">
             <h1 ng-if="!paramFromUrl">{{missionGroup.name || 'Nicht zugeordnet'}}</h1>
             <div class="collapse-item" ng-repeat="mission in missionGroup.rows | filter:filter | orderBy:[natural('name'), 'blade_level', 'chapter']  track by mission.id">
+                <a name="mission-{{mission.id}}"></a>
                 <a href="#mission-{{$parent.$index}}-{{$index}}" ng-click="visible('mission-'+$parent.$index+'-'+$index)" class="collapsed content-box" onclick="return false;" data-toggle="collapse" aria-expanded="false">
                     <strong>{{mission.name}}</strong><span class="collapse-arrow fa"></span>
                     <ul class="collapse-notes">
