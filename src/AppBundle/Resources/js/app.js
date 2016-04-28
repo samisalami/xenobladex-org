@@ -7,13 +7,14 @@ angular
         'ui.bootstrap',
         'xeditable',
         'naturalSort',
-        'textAngular'
+        'textAngular',
+        'colorpicker.module'
     ])
     .config(config)
     .run(run);
 
-config.$inject = ['$routeProvider', '$locationProvider'];
-function config($routeProvider, $locationProvider) {
+config.$inject = ['$routeProvider', '$locationProvider', '$provide'];
+function config($routeProvider, $locationProvider, $provide) {
   $routeProvider
       .when('/', {
         templateUrl: 'views/start.html'
@@ -132,6 +133,13 @@ function config($routeProvider, $locationProvider) {
           templateUrl: 'views/404.html'
       });
   $locationProvider.html5Mode(true);
+
+    //ta tools
+    $provide.decorator('taOptions', ['taRegisterTool', '$delegate', function(taRegisterTool, taOptions){
+        taRegisterTool('fontcolor', taFontColor());
+        taOptions.toolbar[1].push('fontcolor');
+        return taOptions;
+    }]);
 }
 
 run.$inject = ['$rootScope', '$location', '$anchorScroll', '$cookieStore', '$http', 'editableOptions'];
