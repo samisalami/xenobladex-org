@@ -137,7 +137,9 @@ function config($routeProvider, $locationProvider, $provide) {
     //ta tools
     $provide.decorator('taOptions', ['taRegisterTool', '$delegate', function(taRegisterTool, taOptions){
         taRegisterTool('fontcolor', taFontColor());
+        taRegisterTool('fontsize', taFontSize());
         taOptions.toolbar[1].push('fontcolor');
+        taOptions.toolbar[1].push('fontsize');
         return taOptions;
     }]);
 }
