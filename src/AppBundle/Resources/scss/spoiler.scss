@@ -1,0 +1,16 @@
+.spoiler-wrapper {
+  display: block;
+  width: 100%;
+  margin: $default-margin 0;
+  padding: $default-padding;
+  border: 1px solid #ededed;
+
+  .spoiler-label {
+    display: block;
+    margin-bottom: $default-margin;
+  }
+
+  &.active .fa-arrow-down {
+    transform: rotate(180deg);
+  }
+}

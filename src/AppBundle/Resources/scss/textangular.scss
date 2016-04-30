@@ -2,33 +2,51 @@
   min-height: 300px;
   max-height: 600px;
   overflow: auto;
-  margin:20px 0;
+  margin: 20px 0;
 }
 
-#ta-font-size-dialog {
-  position: absolute;
-  display: none;
-  z-index: 999;
-  top:100%;
-  right: 0;
-  width: 72px;
-  border: 1px solid #ededed;
+.ta-root {
+  #ta-font-size-dialog {
+    position: absolute;
+    display: none;
+    z-index: 999;
+    top:100%;
+    right: 0;
+    width: 72px;
+    border: 1px solid #ededed;
 
-  ul {
-    list-style-type: none;
-    padding: 0;
+    ul {
+      list-style-type: none;
+      padding: 0;
 
-    li {
-      text-align: center;
-      padding: 4px 8px;
+      li {
+        text-align: center;
+        padding: 4px 8px;
 
-      &:hover {
-        background-color: $color-xenobladex;
-        cursor: pointer;
+        &:hover {
+          background-color: $color-xenobladex;
+          cursor: pointer;
+        }
       }
     }
   }
+
+  .ta-spoiler {
+    display: block;
+    margin: $default-margin 0;
+    padding: $default-padding;
+    border: 1px solid #ededed;
+
+    &:before {
+      content: 'Spoiler';
+      display: block;
+      font-size: 12px;
+      color: #888888;
+      margin-bottom: $default-padding;
+    }
+  }
 }
+
 
 .ta-fontsize-10 {font-size: 10px;}
 .ta-fontsize-12 {font-size: 12px;}
