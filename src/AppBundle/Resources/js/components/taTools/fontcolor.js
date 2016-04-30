@@ -1,19 +1,16 @@
 function taFontColor() {
     return {
-        action: function(){
+        taFontcolorChange: function() {
             var that = this;
-
-            that.taFontcolorChange = function() {
-                that.$editor().wrapSelection('forecolor', that.taFontcolor);
-            };
-
+            that.$editor().wrapSelection('forecolor', that.taFontcolor);
+        },
+        action: function(){
             return false;
         },
         activeState: function(element) {
             var that = this;
             if(element) {
                 that.taFontcolor = window.getComputedStyle(element.get(0), null).getPropertyValue('color');
-                return true;
             }
 
             that.taFontcolor = '#000000';

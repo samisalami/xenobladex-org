@@ -138,8 +138,8 @@ function config($routeProvider, $locationProvider, $provide) {
     $provide.decorator('taOptions', ['taRegisterTool', '$delegate', function(taRegisterTool, taOptions){
         taRegisterTool('fontcolor', taFontColor());
         taRegisterTool('fontsize', taFontSize());
-        taOptions.toolbar[1].push('fontcolor');
-        taOptions.toolbar[1].push('fontsize');
+        taOptions.toolbar[0].push('fontcolor');
+        taOptions.toolbar[0].push('fontsize');
         return taOptions;
     }]);
 }

@@ -1,0 +1,42 @@
+.ta-editor {
+  min-height: 300px;
+  max-height: 600px;
+  overflow: auto;
+  margin:20px 0;
+}
+
+#ta-font-size-dialog {
+  position: absolute;
+  display: none;
+  z-index: 999;
+  top:100%;
+  right: 0;
+  width: 72px;
+  border: 1px solid #ededed;
+
+  ul {
+    list-style-type: none;
+    padding: 0;
+
+    li {
+      text-align: center;
+      padding: 4px 8px;
+
+      &:hover {
+        background-color: $color-xenobladex;
+        cursor: pointer;
+      }
+    }
+  }
+}
+
+.ta-fontsize-10 {font-size: 10px;}
+.ta-fontsize-12 {font-size: 12px;}
+.ta-fontsize-14 {font-size: 14px;}
+.ta-fontsize-16 {font-size: 16px;}
+.ta-fontsize-18 {font-size: 18px;}
+.ta-fontsize-20 {font-size: 20px;}
+.ta-fontsize-24 {font-size: 24px;}
+.ta-fontsize-30 {font-size: 30px;}
+.ta-fontsize-46 {font-size: 46px;}
+.ta-fontsize-72 {font-size: 72px;}
