@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app')
-    .directive('ngSpoiler',['$rootScope', function($rootScope) {
+    .directive('xcxSpoiler',['$rootScope', function($rootScope) {
         return {
             restrict: 'AE',
             transclude: true,

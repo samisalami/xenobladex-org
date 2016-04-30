@@ -7,7 +7,7 @@ function taSpoiler() {
 
             var $selectionElm = $(document.getSelection().anchorNode);
             if(!$selectionElm.hasClass('ta-spoiler') && $selectionElm.parents('.ta-spoiler').length===0) {
-                string = '<span class="ng-spoiler ta-spoiler">'+document.getSelection()+'</span>';
+                string = '<span class="xcx-spoiler ta-spoiler">'+document.getSelection()+'</span>';
             } else {
                 string = $selectionElm.html();
                 $selectionElm.parents('.ta-spoiler').remove();
