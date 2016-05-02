@@ -41,6 +41,10 @@
     padding: $default-padding;
     border: 1px solid #ededed;
 
+    .spoiler-label {
+      margin-bottom: $default-margin;
+    }
+
     &:before {
       content: 'Spoiler';
       display: block;
@@ -63,6 +67,20 @@
   table {
     width: 100%;
     table-layout: fixed;
+  }
+}
+
+.ta-view {
+  img {
+    max-width: 100%;
+  }
+
+  .table {
+    background-color: transparent;
+
+    td {
+      border-style: none;
+    }
   }
 }
 

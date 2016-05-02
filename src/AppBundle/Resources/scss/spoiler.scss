@@ -1,16 +1,24 @@
-.spoiler-wrapper {
-  display: block;
-  width: 100%;
-  margin: $default-margin 0;
-  padding: $default-padding;
-  border: 1px solid #ededed;
-
-  .spoiler-label {
+:not(.ta-editor) {
+  .spoiler-wrapper {
     display: block;
-    margin-bottom: $default-margin;
-  }
+    width: 100%;
+    margin: $default-margin 0;
+    padding: $default-padding;
+    border: 1px solid #ededed;
 
-  &.active .fa-arrow-down {
-    transform: rotate(180deg);
+    .spoiler-label {
+      margin-left: -4px;
+      display: block;
+      font-weight: bold;
+      cursor: pointer;
+
+      .fa {
+        float: right;
+      }
+    }
+
+    &.active .fa-arrow-down {
+      transform: rotate(180deg);
+    }
   }
 }

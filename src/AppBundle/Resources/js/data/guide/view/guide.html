@@ -1,0 +1,23 @@
+<header param-from-url="" param-name="guideId" class="col-xs-12">
+    <h1 ng-if="paramFromUrl" guide-by-id="{{paramFromUrl}}">{{guideById.name}}</h1>
+</header>
+<div param-from-url="" param-name="guideId" class="col-xs-12">
+    <section ng-if="paramFromUrl" guide-by-id="{{paramFromUrl}}" class="content-box m-b-1 p-x-1 p-y-1">
+        <div ng-if="guideById">
+            <div>
+                <div class="pull-left">
+                    <strong>Geschrieben von:</strong>
+                    {{guideById.author}}
+                </div>
+                <div class="pull-right text-xs-right">
+                    <strong>Zuletzt bearbeitet:</strong>
+                    {{guideById.created | date:'dd.MM.yyyy HH:mm'}} Uhr
+                </div>
+            </div>
+            <div class="clear-both"></div>
+            <hr />
+            <div class="ta-view" bind-html-compile="guideById.copy">
+            </div>
+        </div>
+    </section>
+</div>

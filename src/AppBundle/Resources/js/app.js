@@ -126,6 +126,9 @@ function config($routeProvider, $locationProvider, $provide) {
       .when('/admin/guide/:guideId?', {
           templateUrl: 'js/data/guide/view/admin_guide.html'
       })
+      .when('/guide/vorschau/:guideId?', {
+          templateUrl: 'js/data/guide/view/guide.html'
+      })
       .when('/admin/links', {
           templateUrl: 'js/components/linkGenerator/admin_links.html'
       })

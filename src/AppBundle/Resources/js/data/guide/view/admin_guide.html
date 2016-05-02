@@ -1,6 +1,9 @@
 <main role="main" param-from-url="" param-name="guideId">
     <div ng-include src="'views/_adminHeader.html'"></div>
     <div class="admin-view col-md-12 p-y-1">
+        <div class="alert alert-info" role="alert">
+            Für eine aktuelle Vorschau, muss der Inhalt gespeichert werden.
+        </div>
         <div ng-if="paramFromUrl" guide-by-id="{{paramFromUrl}}">
             <h1 class="m-b-1">Guide - {{guideById.name}}</h1>
             <guide-form ng-if="guideById" guide="guideById">
