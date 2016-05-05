@@ -67,6 +67,10 @@
   table {
     width: 100%;
     table-layout: fixed;
+
+    td:first-child {
+      padding-right: $default-margin;
+    }
   }
 }
 
