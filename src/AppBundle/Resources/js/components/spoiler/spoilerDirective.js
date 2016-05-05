@@ -6,6 +6,7 @@ angular.module('app')
             restrict: 'AEC',
             transclude: true,
             template: '<div ng-click="vm.spoiler()" class="spoiler-wrapper" ng-class="{\'active\':vm.showSpoiler}"><span class="spoiler-label"><i class="fa fa-arrow-down"></i> {{vm.spoilerLabel}}</span><div ng-if="vm.showSpoiler" ng-transclude=""></div></div>',
+            scope: true,
             controller: function ()
             {
                 var that = this;
