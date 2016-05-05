@@ -4,16 +4,20 @@
     width: 100%;
     margin: $default-margin 0;
     padding: $default-padding;
-    border: 1px solid #ededed;
+    border: 1px solid $color-xenobladex;
 
     .spoiler-label {
+      position: relative;
       margin-left: -4px;
       display: block;
       font-weight: bold;
       cursor: pointer;
 
       .fa {
-        float: right;
+        position: absolute;
+        right: $default-padding;
+        top:50%;
+        transform: translateY(-50%);
       }
     }
 
