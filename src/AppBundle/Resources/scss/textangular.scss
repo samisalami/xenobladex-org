@@ -59,6 +59,22 @@
       border: 1px solid #ededed;
     }
   }
+
+  .ta-anchor {
+    display: block;
+    width: 100%;
+    border: 1px solid #ededed;
+    padding: $default-padding;
+    text-decoration: none;
+
+    &:before {
+      content: 'Anker (Wert als Linkziel angeben - z.B. #123 ohne "http://"!)';
+      display: block;
+      font-size: 12px;
+      color: #888888;
+      margin-bottom: $default-padding;
+    }
+  }
 }
 
 .ta-two-column {
@@ -85,6 +101,12 @@
     td {
       border-style: none;
       padding: 0;
+    }
+  }
+
+  .ta-anchor {
+    span {
+      display: none;
     }
   }
 }

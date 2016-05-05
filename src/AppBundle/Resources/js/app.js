@@ -143,9 +143,11 @@ function config($routeProvider, $locationProvider, $provide) {
         taRegisterTool('fontsize', taFontSize());
         taRegisterTool('spoiler', taSpoiler());
         taRegisterTool('twocolumn', taTwoColumn());
+        taRegisterTool('anchor', taAnchor());
         taOptions.toolbar[0].push('fontcolor');
         taOptions.toolbar[0].push('fontsize');
         taOptions.toolbar[3].push('spoiler');
+        taOptions.toolbar[3].push('anchor');
         taOptions.toolbar[2].push('twocolumn');
         return taOptions;
     }]);
