@@ -26,7 +26,6 @@ angular.module('app')
 
                 var initNewNav = function() {
                     if($('#js_slide-menu').length===0) {
-                        console.log('initNewNav: append');
                         $('body').append(newNav);
 
                         $(contentSelector).on('click', function(e){

@@ -8,7 +8,6 @@ angular.module('app')
                 var cssClass = $attrs.navItemClass;
                 var route = $attrs.navItemRoute;
                 var equals = $attrs.navItemRouteEquals;
-                var renderedFirst = false;
 
                 var highlightNavItems = function() {
                     if(equals) {

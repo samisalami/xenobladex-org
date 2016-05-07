@@ -10,6 +10,7 @@ angular.module('app')
                 }, function (value) {
                     element.html(value);
                     $compile(element.contents())(scope);
+                    $(element).trigger('bindHtmlCompile.compiled');
                 });
             }
         }

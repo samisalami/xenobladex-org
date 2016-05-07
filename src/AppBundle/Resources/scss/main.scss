@@ -1,27 +1,34 @@
+//settings
 @import "font-awesome/font-awesome";
 @import "compass";
 @import "variables";
 @import "mixins";
 @import "helper";
 @import "glyphicons";
+//admin
 @import "admin_adminView";
 @import "admin_missingDataView";
 @import "admin_attachmentAdminView";
 @import "admin_attachmentInput";
 @import "admin_collapsedTableView";
 @import "admin_maps";
+//directives
 @import "textangular";
-@import 'links';
-@import 'lists';
+@import 'imagesWithOverlay';
 @import 'loading';
 @import 'spoiler';
+//main
+@import 'links';
+@import 'lists';
+@import 'table';
+@import "xcx_commons";
+@import 'layout';
+//components
+@import 'card';
 @import 'headings';
 @import 'form';
-@import 'card';
 @import 'grid';
-@import 'table';
 @import 'contentBox';
 @import 'collapse';
-@import 'layout';
-@import "xcx_commons";
+//pages
 @import "page_collection";
