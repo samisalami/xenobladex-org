@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app')
-    .directive('imagesWithOverlay',['$compile', function($compile) {
+    .directive('imagesWithOverlay', function() {
         return {
             restrict: 'A',
             link: function (scope, element, attrs) {
@@ -68,4 +68,4 @@ angular.module('app')
                 }
             }
         }
-    }]);
+    });
