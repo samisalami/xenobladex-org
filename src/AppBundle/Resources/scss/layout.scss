@@ -43,6 +43,21 @@ body {
       margin-bottom: $default-element-margin*2;
     }
 
+    .back-to-top {
+      display: block;
+      position: fixed;
+      bottom:0;
+      right: 0;
+      background-color: rgba(255,255,255,0.8);
+      padding: $default-padding;
+      text-decoration: none;
+      color: $color-dark;
+
+      &:hover {
+        color: darken($color-xenobladex,15);
+      }
+    }
+
     > nav {
       padding-top:0;
       padding-bottom:0;
