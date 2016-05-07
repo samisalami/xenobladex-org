@@ -24,6 +24,9 @@ angular.module('app')
                 var $modalContent = $('.modal-body', $modal);
                 var modalContentPadding = parseInt($modalContent.css('padding-left'))+parseInt($modalContent.css('padding-right'));
                 $modal.modal({show:false});
+                $modal.on('click', function(){
+                   $modal.modal('hide');
+                });
 
                 $(element).on('bindHtmlCompile.compiled', function(){
                     initImages();
