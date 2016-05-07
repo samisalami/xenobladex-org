@@ -23,11 +23,9 @@
   }
 }
 
-:not(#images-overlay-modal) {
-  .image-with-overlay-wrapper {
-    position: relative;
-    display: inline-block;
-  }
+.image-with-overlay-wrapper {
+  position: relative;
+  display: inline-block;
 
   .image-with-overlay {
     cursor: pointer;
