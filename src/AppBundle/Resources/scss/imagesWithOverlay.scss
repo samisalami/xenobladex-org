@@ -40,8 +40,12 @@
       right: $default-margin;
       top: $default-margin;
       color: $color-xenobladex;
-      opacity: 0.8;
+      cursor: pointer;
       font-size: 30px;
+
+      &:before {
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 1);
+      }
 
       @media (max-width: #{$screen-md-min}) {
         right: $default-padding;

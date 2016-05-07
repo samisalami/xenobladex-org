@@ -50,7 +50,7 @@ angular.module('app')
                                     $img.addClass('image-with-overlay');
                                     $wrapper.append($icon.clone());
 
-                                    $img.on('click', function(){
+                                    $wrapper.on('click', function(){
                                         $('img', $modalContent).remove();
                                         $img.clone().css({width: 'auto', height: 'auto'}).appendTo($modalContent);
                                         $('.modal-dialog', $modal).css('width',(virtualWidth+modalContentPadding)+'px');
