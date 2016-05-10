@@ -19,6 +19,7 @@ web/*.svg
 web/manifest.json
 web/browserconfig.xml
 web/css/*
+web/maps/*
 web/js/*
 web/libraries/*
 web/templates/*

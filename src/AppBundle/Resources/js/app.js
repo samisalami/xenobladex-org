@@ -132,6 +132,9 @@ function config($routeProvider, $locationProvider, $provide) {
       .when('/admin/links', {
           templateUrl: 'js/components/linkGenerator/admin_links.html'
       })
+      .when('/admin/leaflet', {
+          templateUrl: 'js/data/map/view/admin_leafletMap.html'
+      })
       .otherwise({
           templateUrl: 'views/404.html'
       });
