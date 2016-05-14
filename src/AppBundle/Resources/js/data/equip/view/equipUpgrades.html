@@ -38,55 +38,34 @@ Da die Ressourcen (Erhalt über Sonden) noch nicht auf unserer Seite gelistet si
                         </div>
                         <div class="row m-t-1">
                             <div class="col-xs-12">
-                                <div class="table-responsive" ng-if="(equipUpgradeTiers | filter: {equip_upgrade: equipUpgrade.id}: true).length == 5">
-                                    <table class="table table-bordered">
-                                        <thead>
-                                        <tr>
-                                            <th>
-                                                I
-                                                <span>Gewöhnlich</span>
-                                            </th>
-                                            <th>
-                                                V
-                                                <span class="rarity wertvoll">Wertvoll</span>
-                                            </th>
-                                            <th>
-                                                X
-                                                <span class="rarity sehrwertvoll">Sehr Wertvoll</span>
-                                            </th>
-                                            <th>
-                                                XV
-                                                <span class="rarity extremwertvoll">Extrem Wertvoll</span>
-                                            </th>
-                                            <th>
-                                                XX
-                                                <span class="rarity unbezahlbar">Unbezahlbar</span>
-                                            </th>
-                                        </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <td style="text-align: left; vertical-align: top" ng-repeat="equipUpgradeTier in equipUpgradeTiers | orderBy: 'name' | filter: {equip_upgrade: equipUpgrade.id} : true track by equipUpgradeTier.id">
-                                                    <p ng-if="equipUpgradeTier.description" class="m-b-1">{{equipUpgradeTier.description}}</p>
-                                                    {{equipUpgradeTier.credit_cost}} Credits
-                                                    <ul>
-                                                        <li ng-repeat="i in [1,2,3] track by $index" material-by-id="{{getEquipUpgradeTierMaterial(equipUpgrade, equipUpgradeTier, i)}}" ng-if="getEquipUpgradeTierMaterial(equipUpgrade, equipUpgradeTier, i)">
-                                                            <a ng-href="/material#material-{{materialById.id}}">{{materialById.name}}</a>
-                                                            <span ng-if="!equipUpgradeTier.material_count_individual">
-                                                                ({{equipUpgradeTier.material_count}})
-                                                            </span>
-                                                            <span ng-if="equipUpgradeTier.material_count_individual">
-                                                                ({{equipUpgradeTier.material1_count}})
-                                                            </span>
-                                                        </li>
-                                                        <li resource-by-id="{{equipUpgradeTier.resource}}" ng-if="equipUpgradeTier.resource">
-                                                            {{resourceById.name}} ({{equipUpgradeTier.resource_count}})
-                                                        </li>
-                                                    </ul>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                <div ng-if="(equipUpgradeTiers | filter: {equip_upgrade: equipUpgrade.id}: true).length == 5">
+                                    <div class="col-xl-3 col-lg-4 col-sm-6 col-xs-12 m-b-1" ng-repeat="equipUpgradeTier in equipUpgradeTiers | orderBy: 'name' | filter: {equip_upgrade: equipUpgrade.id} : true track by equipUpgradeTier.id">
+                                        <h6>{{equipUpgradeTier.name}}</h6>
+                                        <div style=" float: right; font-style: italic; font-weight: 500; font-size: 12px;" ng-switch="equipUpgradeTier.name">
+                                            <span ng-switch-when="I">Gewöhnlich</span>
+                                            <span ng-switch-when="V" class="rarity wertvoll">Wertvoll</span>
+                                            <span ng-switch-when="X" class="rarity sehrwertvoll">Sehr Wertvoll</span>
+                                            <span ng-switch-when="XV" class="rarity extremwertvoll">Extrem Wertvoll</span>
+                                            <span ng-switch-when="XX" class="rarity unbezahlbar">Unbezahlbar</span>
+                                        </div>
+                                        <hr/>
+                                        <p ng-if="equipUpgradeTier.description" class="m-b-1">{{equipUpgradeTier.description}}</p>
+                                        {{equipUpgradeTier.credit_cost}} Credits
+                                        <ul>
+                                            <li ng-repeat="i in [1,2,3] track by $index" material-by-id="{{getEquipUpgradeTierMaterial(equipUpgrade, equipUpgradeTier, i)}}" ng-if="getEquipUpgradeTierMaterial(equipUpgrade, equipUpgradeTier, i)">
+                                                <a ng-href="/material#material-{{materialById.id}}">{{materialById.name}}</a>
+                                                <span ng-if="!equipUpgradeTier.material_count_individual">
+                                                    ({{equipUpgradeTier.material_count}})
+                                                </span>
+                                                <span ng-if="equipUpgradeTier.material_count_individual">
+                                                    ({{equipUpgradeTier.material1_count}})
+                                                </span>
+                                            </li>
+                                            <li resource-by-id="{{equipUpgradeTier.resource}}" ng-if="equipUpgradeTier.resource">
+                                                {{resourceById.name}} ({{equipUpgradeTier.resource_count}})
+                                            </li>
+                                        </ul>
+                                    </div>
                                 </div>
                                 <div ng-if="(equipUpgradeTiers | filter: {equip_upgrade: equipUpgrade.id} : true).length == 1">
                                     <span class="rarity sehrwertvoll">Sehr Wertvoll</span>
