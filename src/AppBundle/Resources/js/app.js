@@ -19,6 +19,9 @@ function config($routeProvider, $locationProvider, $provide) {
       .when('/', {
         templateUrl: 'views/start.html'
       })
+      .when('/erweiterungen/:type?', {
+        templateUrl: 'js/data/equip/view/equipUpgrades.html'
+      })
       .when('/faq', {
         templateUrl: 'js/data/faq/view/faq.html'
       })

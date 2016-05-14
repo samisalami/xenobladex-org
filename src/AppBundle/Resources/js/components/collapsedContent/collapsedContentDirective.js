@@ -8,7 +8,7 @@ angular.module('app')
                 var visibleElements = [];
 
                 $scope.visible = function(id) {
-                    if(angular.element(id).hasClass('in')) {
+                    if($('#'+id).hasClass('in')) {
                         var index = visibleElements.indexOf(id);
                         if(index !== -1) {
                             visibleElements.splice(index,1);
@@ -18,6 +18,8 @@ angular.module('app')
                             visibleElements.push(id);
                         }
                     }
+
+                    console.log(visibleElements);
                 };
 
                 $scope.isVisible = function(id) {

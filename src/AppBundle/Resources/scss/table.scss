@@ -1,3 +1,15 @@
 .table {
   background-color: #fff;
+
+  thead th {
+    position: relative;
+
+    span {
+      font-size: 12px;
+      position: absolute;
+      right: $default-margin;
+      top: 50%;
+      transform: translateY(-50%);
+    }
+  }
 }
