@@ -16,7 +16,7 @@ Da die Ressourcen (Erhalt über Sonden) noch nicht auf unserer Seite gelistet si
         <collapsed-content>
             <section class="collapse-grouped" ng-repeat="equipUpgradeGroup in groupedEquipUpgrades">
             <h1 ng-if="(equipUpgradeGroup.rows | filter:{category_type: paramFromUrl}).length>0 && (equipUpgradeGroup.rows | filter:filter).length>0">{{equipUpgradeGroup.name}}</h1>
-            <div class="collapse-item" ng-repeat="equipUpgrade in equipUpgradeGroup.rows | filter:filter | filter: {category_type: paramFromUrl} | orderBy:'name' track by equipUpgrade.id">
+            <div class="collapse-item" ng-repeat="equipUpgrade in equipUpgradeGroup.rows | filter:filter | orderBy:'name' track by equipUpgrade.id">
                 <a name="equipUpgrade-{{equipUpgrade.id}}"></a>
                 <a href="#equipUpgrade-{{$parent.$index}}-{{$index}}" ng-click="visible('equipUpgrade-'+$parent.$index+'-'+$index)" class="collapsed content-box" onclick="return false;" data-toggle="collapse" aria-expanded="false">
                     <strong>

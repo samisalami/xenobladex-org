@@ -30,6 +30,19 @@ angular.module('app')
 
                 function setViewData() {
                     if(that.equipUpgrades && that.equipUpgradeTiers) {
+                        var type = $routeParams['type'];
+
+                        if(type) {
+                            that.equipUpgrades = $.map(that.equipUpgrades, function(item, i){
+                                if(item.category_type) {
+                                    if(item.category_type.toLowerCase() == type) {
+                                        return item;
+                                    }
+                                }
+
+                                return null;
+                            });
+                        }
 
                         $scope.groupedEquipUpgrades = $filter('groupByFilter')(that.equipUpgrades, 'category_name');
                         $scope.equipUpgradeTiers = that.equipUpgradeTiers;

@@ -18,8 +18,6 @@ angular.module('app')
                             visibleElements.push(id);
                         }
                     }
-
-                    console.log(visibleElements);
                 };
 
                 $scope.isVisible = function(id) {
