@@ -64,7 +64,7 @@ angular.module('app')
                         return true;
                     }
 
-                    return equipUpgrade.name.indexOf($scope.nameQuery) != -1 || equipUpgrade.alternative_name.indexOf($scope.nameQuery) != -1;
+                    return equipUpgrade.name.toLowerCase().indexOf($scope.nameQuery.toLowerCase()) != -1 || equipUpgrade.alternative_name.toLowerCase().indexOf($scope.nameQuery.toLowerCase()) != -1;
                 };
 
                 $scope.getEquipUpgradeTierMaterial = function(equipUpgrade, equipUpgradeTier, i) {
