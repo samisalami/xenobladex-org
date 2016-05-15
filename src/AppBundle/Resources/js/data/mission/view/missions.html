@@ -110,7 +110,8 @@ Im Allgemeinen ist das BLADE-Level nur eine Voraussetzung für Nebenjobs und kei
                                 <div ng-if="mission.conditions || mission.blade_level || mission.chapter" class="col-xs-12 col-md-6">
                                     <span ng-if="mission.blade_level">BLADE-Level: {{mission.blade_level}}<br/></span>
                                     <span ng-if="mission.chapter">Abschluss Kapitel: {{mission.chapter}}</span>
-                                    <p ng-if="mission.conditions"><br ng-if="mission.chapter || mission.blade_level" />{{mission.conditions}}</p>
+                                    <br ng-if="mission.chapter || mission.blade_level" />
+                                    <p ng-if="mission.conditions" ng-bind-html="mission.conditions"></p>
                                 </div>
                                 <div ng-if="mission.rewards" class="col-xs-12 col-md-6">
                                     <p>{{mission.rewards}}</p>
@@ -146,7 +147,7 @@ Im Allgemeinen ist das BLADE-Level nur eine Voraussetzung für Nebenjobs und kei
                             </div>
                             <div class="row">
                                 <div ng-if="mission.description" class="col-xs-12 col-md-6">
-                                    <p>{{mission.description}}</p>
+                                    <p ng-bind-html="mission.description"></p>
                                 </div>
                             </div>
                         </div>
@@ -164,10 +165,10 @@ Im Allgemeinen ist das BLADE-Level nur eine Voraussetzung für Nebenjobs und kei
                             </div>
                             <div class="row">
                                 <div ng-if="mission.tasks" class="col-xs-12 col-md-6">
-                                    <p>{{mission.tasks}}</p>
+                                    <p ng-bind-html="mission.tasks"></p>
                                 </div>
                                 <div ng-if="mission.solution" class="col-xs-12 col-md-6">
-                                    <p>{{mission.solution}}</p>
+                                    <p ng-bind-html="mission.solution"></p>
                                 </div>
                             </div>
                         </div>
