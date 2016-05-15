@@ -9,18 +9,18 @@ Da die Ressourcen (Erhalt über Sonden) noch nicht auf unserer Seite gelistet si
     <equip-upgrade-view>
         <div class="row m-b-1">
             <div class="col-xs-12 col-lg-3 search-input m-b-1">
-                <input ng-model="filter.name" ng-model-options='{ debounce: 750 }' type="text" placeholder="Nach Namen filtern..." />
+                <input ng-model="nameQuery" ng-change="filter.alternative_name = filter.name" ng-model-options='{ debounce: 750 }' type="text" placeholder="Nach Namen filtern..." />
                 <span class="fa fa-search"></span>
             </div>
         </div>
         <collapsed-content>
             <section class="collapse-grouped" ng-repeat="equipUpgradeGroup in groupedEquipUpgrades">
-            <h1 ng-if="(equipUpgradeGroup.rows | filter:{category_type: paramFromUrl}).length>0 && (equipUpgradeGroup.rows | filter:filter).length>0">{{equipUpgradeGroup.name}}</h1>
-            <div class="collapse-item" ng-repeat="equipUpgrade in equipUpgradeGroup.rows | filter:filter | orderBy:'name' track by equipUpgrade.id">
+            <h1 ng-if="(equipUpgradeGroup.rows | filter:{category_type: paramFromUrl}).length>0 && (equipUpgradeGroup.rows | filter:filterNames).length>0">{{equipUpgradeGroup.name}}</h1>
+            <div class="collapse-item" ng-repeat="equipUpgrade in equipUpgradeGroup.rows | filter:filterNames | orderBy:'name' track by equipUpgrade.id">
                 <a name="equipUpgrade-{{equipUpgrade.id}}"></a>
                 <a href="#equipUpgrade-{{$parent.$index}}-{{$index}}" ng-click="visible('equipUpgrade-'+$parent.$index+'-'+$index)" class="collapsed content-box" onclick="return false;" data-toggle="collapse" aria-expanded="false">
                     <strong>
-                        {{equipUpgrade.name}} <span ng-if="equipUpgrade.is_not_manufacturable" style="font-size: 14px;">(Nicht herstellbar)</span>
+                        {{equipUpgrade.name}} <span ng-if="equipUpgrade.alternative_name">/ {{equipUpgrade.alternative_name}}</span><span ng-if="equipUpgrade.is_not_manufacturable" style="font-size: 14px; font-style: italic; font-weight: normal">(Nicht herstellbar)</span>
                     </strong>
                     <span class="collapse-arrow fa"></span>
                     <ul class="collapse-notes">
@@ -68,7 +68,7 @@ Da die Ressourcen (Erhalt über Sonden) noch nicht auf unserer Seite gelistet si
                                     </div>
                                 </div>
                                 <div ng-if="(equipUpgradeTiers | filter: {equip_upgrade: equipUpgrade.id} : true).length == 1">
-                                    <span class="rarity sehrwertvoll">Sehr Wertvoll</span>
+                                    <span ng-if="!equipUpgrade.is_not_manufacturable" class="rarity sehrwertvoll">Sehr Wertvoll</span>
                                     <div ng-repeat="equipUpgradeTier in equipUpgradeTiers | orderBy: 'name' | filter: {equip_upgrade: equipUpgrade.id} : true track by equipUpgradeTier.id">
                                         <p ng-if="equipUpgradeTier.description" class="m-y-1">{{equipUpgradeTier.description}}</p>
                                         {{equipUpgradeTier.credit_cost}} Credits

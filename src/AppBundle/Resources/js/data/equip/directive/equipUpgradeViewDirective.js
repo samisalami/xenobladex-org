@@ -57,6 +57,16 @@ angular.module('app')
                     }
                 }
 
+                $scope.nameQuery = '';
+
+                $scope.filterNames = function(equipUpgrade) {
+                    if(!$scope.nameQuery) {
+                        return true;
+                    }
+
+                    return equipUpgrade.name.indexOf($scope.nameQuery) != -1 || equipUpgrade.alternative_name.indexOf($scope.nameQuery) != -1;
+                };
+
                 $scope.getEquipUpgradeTierMaterial = function(equipUpgrade, equipUpgradeTier, i) {
                     if(equipUpgradeTier.material_individual) {
                         return equipUpgradeTier['material'+i];
