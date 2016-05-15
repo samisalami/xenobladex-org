@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('app')
-    .directive('linkGenerator',['MaterialService', 'MissionService', 'MonsterService', 'CollectibleService', 'AttachmentService', function(MaterialService, MissionService, MonsterService, CollectibleService, AttachmentService) {
+    .directive('linkGenerator',['MaterialService', 'MissionService', 'MonsterService', 'CollectibleService', 'AttachmentService', 'EquipUpgradeService', function(MaterialService, MissionService, MonsterService, CollectibleService, AttachmentService, EquipUpgradeService) {
         return {
             restrict: 'EA',
             controller: function(){
@@ -21,6 +21,9 @@ angular.module('app')
 
                     MaterialService.onMaterialsChanged(setMaterials);
                     setMaterials(MaterialService.getMaterials());
+
+                    EquipUpgradeService.onEquipUpgradesChanged(setEquipUpgrades);
+                    setEquipUpgrades(EquipUpgradeService.getEquipUpgrades());
 
                     AttachmentService.getAttachments(function(attachments){
                         setAttachmentData(attachments);
@@ -45,6 +48,11 @@ angular.module('app')
                 function setMaterials(materials) {
                     that.materialsUrl = '/material/#material-';
                     that.materials = materials;
+                }
+
+                function setEquipUpgrades(equipUpgrades) {
+                    that.equipUpgradesUrl = '/erweiterungen/#equipUpgrade-';
+                    that.equipUpgrades = equipUpgrades;
                 }
 
                 function setAttachmentData(attachments) {

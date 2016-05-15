@@ -77,6 +77,20 @@
                 </tr>
                 <tr>
                     <th>
+                        Erweiterung
+                    </th>
+                    <td>
+                        <form-field ng-if="vm.equipUpgrades" form-field-bind="vm.equipUpgrade" form-select-options="vm.equipUpgrades" form-template="customAutoCompleteSelect"></form-field>
+                    </td>
+                    <td class="text-xs-center">
+                        <textarea ng-if="vm.equipUpgrade" readonly>{{vm.baseUrl}}{{vm.equipUpgradesUrl}}{{vm.equipUpgrade.id}}</textarea>
+                    </td>
+                    <td class="text-xs-center">
+                        <textarea ng-if="vm.equipUpgrade" readonly><a href="{{vm.baseUrl}}{{vm.equipUpgradesUrl}}{{vm.equipUpgrade.id}}">{{vm.equipUpgrade.name}}</a></textarea>
+                    </td>
+                </tr>
+                <tr>
+                    <th>
                         Dateiverwaltung
                     </th>
                     <td>
