@@ -11,6 +11,24 @@
         <form-field form-field-bind="form.mission.name" form-template="inputText"></form-field>
     </div>
     <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <strong>Typ:</strong>
+        <form-field ng-if="form.missionTypes" form-field-bind="form.mission.mission_type" form-template="objectSelect" form-select-options="form.missionTypes"></form-field>
+    </div>
+    <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <strong>Erhalt wo?</strong>
+        <form-field form-field-bind="form.mission.location_note" form-template="textarea"></form-field>
+    </div>
+    <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <span class="info-icon text-primary" bs-tooltip bs-tooltip-title="Nur Zahlen erlaubt."></span>
+        <strong>Bedingung - BLADE-Level:</strong>
+        <form-field form-field-bind="form.mission.blade_level" form-template="inputText"></form-field>
+    </div>
+    <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <span class="info-icon text-primary" bs-tooltip bs-tooltip-title="Nur Zahlen erlaubt."></span>
+        <strong>Bedingung - Kapitel:</strong>
+        <form-field form-field-bind="form.mission.chapter" form-template="inputText"></form-field>
+    </div>
+    <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
         <strong>Richtige Person?</strong>
         <form-field form-field-bind="form.mission.has_person" form-template="inputCheckbox"></form-field>
     </div>
@@ -23,21 +41,20 @@
         <form-field form-field-bind="form.mission.person_unrelated" form-template="inputText"></form-field>
     </div>
     <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
-        <strong>Beschreibung:</strong>
-        <form-field form-field-bind="form.mission.description" form-template="textarea"></form-field>
-    </div>
-    <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
-        <span class="info-icon text-primary" bs-tooltip bs-tooltip-title="Nur Zahlen erlaubt."></span>
-        <strong>Bedingung - Kapitel:</strong>
-        <form-field form-field-bind="form.mission.chapter" form-template="inputText"></form-field>
-    </div>
-    <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
         <strong>Bedingungen:</strong>
         <form-field form-field-bind="form.mission.conditions" form-template="textarea"></form-field>
     </div>
     <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
-        <strong>Erhalt wo?</strong>
-        <form-field form-field-bind="form.mission.location_note" form-template="textarea"></form-field>
+        <strong>Nebenjob-Zielregion</strong>
+        <form-field form-field-bind="form.mission.target_area" form-template="stringSelect" form-select-options="form.regions"></form-field>
+    </div>
+    <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <strong>Nebenjob-Typ</strong>
+        <form-field form-field-bind="form.mission.sidejob_type" form-template="stringSelect" form-select-options="form.sideJobTypes"></form-field>
+    </div>
+    <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <strong>Beschreibung:</strong>
+        <form-field form-field-bind="form.mission.description" form-template="textarea"></form-field>
     </div>
     <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
         <strong>Aufgaben:</strong>
@@ -50,23 +67,6 @@
     <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
         <strong>Belohnung:</strong>
         <form-field form-field-bind="form.mission.rewards" form-template="textarea"></form-field>
-    </div>
-    <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
-        <strong>Typ:</strong>
-        <form-field ng-if="form.missionTypes" form-field-bind="form.mission.mission_type" form-template="objectSelect" form-select-options="form.missionTypes"></form-field>
-    </div>
-    <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
-        <span class="info-icon text-primary" bs-tooltip bs-tooltip-title="Nur Zahlen erlaubt."></span>
-        <strong>Bedingung - BLADE-Level:</strong>
-        <form-field form-field-bind="form.mission.blade_level" form-template="inputText"></form-field>
-    </div>
-    <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
-        <strong>Nebenjob-Zielregion</strong>
-        <form-field form-field-bind="form.mission.target_area" form-template="stringSelect" form-select-options="form.regions"></form-field>
-    </div>
-    <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
-        <strong>Nebenjob-Typ</strong>
-        <form-field form-field-bind="form.mission.sidejob_type" form-template="stringSelect" form-select-options="form.sideJobTypes"></form-field>
     </div>
     <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
         <span class="info-icon text-primary" bs-tooltip bs-tooltip-title="Nur Zahlen erlaubt (kleine Sterne addieren)."></span>
