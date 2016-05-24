@@ -99,6 +99,10 @@
     max-width: 100%;
   }
 
+  a {
+    color: $color-xenobladex;
+  }
+
   .table {
     background-color: transparent;
 
@@ -118,7 +122,15 @@
 .ta-fontsize-10 {font-size: 10px;line-height: normal;}
 .ta-fontsize-12 {font-size: 12px;line-height: normal;}
 .ta-fontsize-14 {font-size: 14px;line-height: normal;}
-.ta-fontsize-16 {font-size: 16px;line-height: normal;}
+.ta-fontsize-16 {
+  font-size: $root-font-size-normal;
+  line-height: $font-line-height-copy-normal;
+
+  @media (min-width:#{$screen-xxl-min}) {
+    font-size: $root-font-size-large;
+    line-height: $font-line-height-copy-large;
+  }
+}
 .ta-fontsize-18 {font-size: 18px;line-height: normal;}
 .ta-fontsize-20 {font-size: 20px;line-height: normal;}
 .ta-fontsize-24 {font-size: 24px;line-height: normal;}
