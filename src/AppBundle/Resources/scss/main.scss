@@ -12,17 +12,17 @@
 @import "admin_attachmentInput";
 @import "admin_collapsedTableView";
 @import "admin_maps";
-//directives
-@import "textangular";
-@import 'imagesWithOverlay';
-@import 'loading';
-@import 'spoiler';
 //main
 @import 'links';
 @import 'lists';
 @import 'table';
 @import "xcx_commons";
 @import 'layout';
+//directives
+@import "textangular";
+@import 'imagesWithOverlay';
+@import 'loading';
+@import 'spoiler';
 //components
 @import 'card';
 @import 'headings';
