@@ -29,13 +29,13 @@ angular.module('app')
                 var northEast = map.unproject([8192,0], map.getMaxZoom());
                 map.setMaxBounds(new L.LatLngBounds(southWest, northEast));
 
-                var marker = L.marker([51.5,-0.09], {icon: monsterIcon}).addTo(map);
+                var marker = L.marker([51.5,-0.09]).addTo(map);
                 marker.bindPopup("In einer Höhle");
 
                 map.on('click', addMarker);
 
                 function addMarker(event) {
-                    var newMarker = L.marker(event.latlng, {icon: monsterIcon}).addTo(map);
+                    var newMarker = L.marker(event.latlng).addTo(map);
                 }
             }],
             link: function() {
