@@ -28,14 +28,14 @@ class Guide
      *
      * @ORM\Column(name="name", type="string", length=255)
      */
-    private $name;
+    private $name = '';
 
     /**
      * @var string
      *
      * @ORM\Column(name="author", type="string", length=255)
      */
-    private $author;
+    private $author = '';
 
     /**
      * @var \DateTimeInterface
@@ -56,7 +56,7 @@ class Guide
      *
      * @ORM\Column(name="copy", type="text")
      */
-    private $copy;
+    private $copy = '';
 
     /**
      * @ORM\PrePersist()
