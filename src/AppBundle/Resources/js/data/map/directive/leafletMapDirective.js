@@ -113,30 +113,92 @@ angular.module('app')
                     }
                 });
 
-                //var missions = L.layerGroup(missionMarker);
-                //var monsters = L.layerGroup(monsterMarker);
+                var mapWidth = 8192;
+                var mapHeight = 8192;
+
+                var hexHeight,
+                    hexRadius,
+                    hexRectangleHeight,
+                    hexRectangleWidth,
+                    hexagonAngle = 0.523598776, // 30 degrees in radians
+                    sideLength = 300,
+                    boardWidth = 8192,
+                    boardHeight = 8192,
+                    coordinates = [];
+
+                hexHeight = Math.sin(hexagonAngle) * sideLength;
+                hexRadius = Math.cos(hexagonAngle) * sideLength;
+                hexRectangleHeight = sideLength + 2 * hexHeight;
+                hexRectangleWidth = 2 * hexRadius;
+
+                var hexCount = Math.floor(boardWidth/(sideLength*1.5));
+
+                for(var i = 0; i < hexCount; ++i) {
+                    for(var j = 0; j < hexCount; ++j) {
+                        drawHexagon(
+                            i * hexRectangleWidth + ((j % 2) * hexRadius),
+                            j * (sideLength + hexHeight)
+                        );
+                    }
+                }
+
+                function drawHexagon(x, y) {
+                    coordinates.push(
+                        [
+                            [x + hexRadius, y],
+                            [x + hexRectangleWidth, y + hexHeight],
+                            [x + hexRectangleWidth, y + hexHeight + sideLength],
+                            [x + hexRadius, y + hexRectangleHeight],
+                            [x, y + sideLength + hexHeight],
+                            [x, y + hexHeight]
+                        ]
+                    );
+                }
+
+                var segmentData = {
+                    type: 'FeatureCollection',
+                    features: [
+                        {
+                            type: 'Feature',
+                            geometry: {
+                                type:  'MultiPolygon',
+                                coordinates: [coordinates]
+                            }
+                        }
+                    ]
+                };
+
 
                 var map = L.map('map', {
                     zoom: 2,
+                    minZoom: 1,
+                    maxZoom: 5,
                     center: [0,0],
                     layers: [monsterMarker, missionMarker]
                 });
 
+                var segments = L.geoJson(segmentData, {
+                    coordsToLatLng: function(coordinates) {
+                        return (map.unproject([coordinates[1], coordinates[0]], map.getMaxZoom()));
+                    },
+                    pointToLayer: function (feature, coords) {
+                        return L.multiPolygon(coords);
+                    }
+                }).addTo(map);
+
                 L.tileLayer('https://www.xenobladex.org/maps/mira8192/{z}/{x}/{y}.png', {
-                    minZoom: 1,
-                    maxZoom: 5,
-                    continuousWorld: true,
                     attribution: '© XenobladeX.org',
                     tms: true,
                     noWrap: true
                 }).addTo(map);
-                var southWest = map.unproject([0,8192], map.getMaxZoom());
-                var northEast = map.unproject([8192,0], map.getMaxZoom());
+                var southWest = map.unproject([0,mapWidth], map.getMaxZoom());
+                var northEast = map.unproject([mapHeight,0], map.getMaxZoom());
                 map.setMaxBounds(new L.LatLngBounds(southWest, northEast));
 
                 var overlayMaps = {
-                    "Monsters": monsterMarker,
-                    "Missions": missionMarker
+                    "Kreaturen": monsterMarker,
+                    "Missionen": missionMarker,
+                    "Segmente": segments
                 };
 
                 L.control.layers(null, overlayMaps).addTo(map);
