@@ -13,29 +13,113 @@ angular.module('app')
                     iconAnchor: [6, 11]
                 });
 
-                var monsterMarkers = [
-                    L.marker([51.5,-0.09], {title: 'Monster 1', riseOnHover: true}).bindPopup('Beschreibung 1'),
-                    L.marker([50.5,-0.07], {title: 'Monster 2', riseOnHover: true}).bindPopup('Beschreibung 1'),
-                    L.marker([53, -0.1], {title: 'Monster 3', riseOnHover: true}).bindPopup('Beschreibung 1'),
-                    L.marker([52.2,-0.09], {title: 'Monster4', riseOnHover: true}).bindPopup('Beschreibung 1'),
-                    L.marker([51.5,-1.5], {title: 'Monster 5', riseOnHover: true}).bindPopup('Beschreibung 1')
+                var missionGeoJSON = [
+                    {
+                        "type": "Feature",
+                        "properties": {
+                            "name": "start",
+                            "popupContent": "Portoferraio"
+                        },
+                        "geometry": {
+                            "type": "Point",
+                            "coordinates": [51.5,-0.09]
+                        }
+                    },
+                    {
+                        "type": "Feature", "properties": { "name": "Mission 1", "popupContent": "Marciana Marina" },
+                        "geometry": { "type": "Point", "coordinates": [55.5,-4] }
+                    },
+                    {
+                        "type": "Feature", "properties": { "name": "Mission 2", "popupContent": "Bastia" },
+                        "geometry": { "type": "Point", "coordinates": [53, 5] }
+                    },
+                    {
+                        "type": "Feature", "properties": { "name": "Mission 3", "popupContent": "Campoloro" },
+                        "geometry": { "type": "Point", "coordinates": [58.2,-5] }
+                    },
+                    {
+                        "type": "Feature", "properties": { "name": "Mission 4", "popupContent": "Cavo" },
+                        "geometry": { "type": "Point", "coordinates": [52.2,-0.09] }
+                    }
                 ];
 
-                var missionMarkers = [
-                    L.marker([40.5,2], {title: 'Mission 1', riseOnHover: true}).bindPopup('Beschreibung 1'),
-                    L.marker([33.5,-0.07], {title: 'Mission 2', riseOnHover: true}).bindPopup('Beschreibung 1'),
-                    L.marker([60, 3], {title: 'Mission 3', riseOnHover: true}).bindPopup('Beschreibung 1'),
-                    L.marker([50.2,2.5], {title: 'Mission 4', riseOnHover: true}).bindPopup('Beschreibung 1'),
-                    L.marker([45,-1.5], {title: 'Mission 5', riseOnHover: true}).bindPopup('Beschreibung 1')
+                var monsterGeoJSON = [
+                    {
+                        "type": "Feature",
+                        "properties": {
+                            "name": "start",
+                            "popupContent": "Portoferraio"
+                        },
+                        "geometry": {
+                            "type": "Point",
+                            "coordinates": [51.5,-0.09]
+                        }
+                    },
+                    {
+                        "type": "Feature", "properties": { "name": "Mission 1", "popupContent": "Marciana Marina" },
+                        "geometry": { "type": "Point", "coordinates": [60.5,20] }
+                    },
+                    {
+                        "type": "Feature", "properties": { "name": "Mission 2", "popupContent": "Bastia" },
+                        "geometry": { "type": "Point", "coordinates": [20, 1] }
+                    },
+                    {
+                        "type": "Feature", "properties": { "name": "Mission 3", "popupContent": "Campoloro" },
+                        "geometry": { "type": "Point", "coordinates": [50.2,10] }
+                    },
+                    {
+                        "type": "Feature", "properties": { "name": "Mission 4", "popupContent": "Cavo" },
+                        "geometry": { "type": "Point", "coordinates": [40.2,-5] }
+                    }
                 ];
 
-                var monsters = L.layerGroup(monsterMarkers);
-                var missions = L.layerGroup(missionMarkers);
+                var missionMarker = new L.geoJson(missionGeoJSON, {
+                    onEachFeature: function(feature, layer) {
+                        if (feature.properties && feature.properties.popupContent) {
+                            layer.bindPopup(feature.properties.popupContent, {closeButton: false, offset: L.point(0, -20)});
+                            layer.on('mouseover', function() { layer.openPopup(); });
+                            layer.on('mouseout', function() { layer.closePopup(); });
+                        }
+                    },
+                    pointToLayer: function (feature, latlng) {
+                        return new L.Marker(latlng, {
+                            icon: L.divIcon({
+                                className: 'mapmarker mapmarker-mission',
+                                html: '<span>'+feature.properties.name+'</span>',
+                                iconSize: [12, 12],
+                                iconAnchor: [6, 11]
+                            })
+                        });
+                    }
+                });
+
+                var monsterMarker = new L.geoJson(monsterGeoJSON, {
+                    onEachFeature: function(feature, layer) {
+                        if (feature.properties && feature.properties.popupContent) {
+                            layer.bindPopup(feature.properties.popupContent, {closeButton: false, offset: L.point(0, -20)});
+                            layer.on('mouseover', function() { layer.openPopup(); });
+                            layer.on('mouseout', function() { layer.closePopup(); });
+                        }
+                    },
+                    pointToLayer: function (feature, latlng) {
+                        return new L.Marker(latlng, {
+                            icon: L.divIcon({
+                                className: 'mapmarker mapmarker-monster',
+                                html: '<span>'+feature.properties.name+'</span>',
+                                iconSize: [12, 12],
+                                iconAnchor: [6, 11]
+                            })
+                        });
+                    }
+                });
+
+                //var missions = L.layerGroup(missionMarker);
+                //var monsters = L.layerGroup(monsterMarker);
 
                 var map = L.map('map', {
                     zoom: 2,
                     center: [0,0],
-                    layers: [monsters, missions]
+                    layers: [monsterMarker, missionMarker]
                 });
 
                 L.tileLayer('https://www.xenobladex.org/maps/mira8192/{z}/{x}/{y}.png', {
@@ -51,8 +135,8 @@ angular.module('app')
                 map.setMaxBounds(new L.LatLngBounds(southWest, northEast));
 
                 var overlayMaps = {
-                    "Monsters": monsters,
-                    "Missions": missions
+                    "Monsters": monsterMarker,
+                    "Missions": missionMarker
                 };
 
                 L.control.layers(null, overlayMaps).addTo(map);
@@ -60,10 +144,8 @@ angular.module('app')
                 map.on('click', addMarker);
 
                 function addMarker(event) {
-                    var newMarker = L.marker(event.latlng).addTo(map);
+                    L.marker(event.latlng).addTo(map);
                 }
-            }],
-            link: function() {
-            }
+            }]
         }
     }]);
