@@ -98,6 +98,10 @@
         <strong>Material:</strong>
         <form-field ng-if="form.materialsData" form-field-bind="form.materials" form-select-options="form.materialsData" form-template="customMaterialInput"></form-field>
     </div>
+    <div ng-if="form.monster.id" class="collapsed-table-cell-wrapper" collapsed-table-cell>
+        <strong>Karte:</strong>
+        <monster-mapmarker monster="{{form.monster.id}}"></monster-mapmarker>
+    </div>
     <div class="row">
         <div class="col-xs-12 p-r-0">
             <button ng-disabled="form.isUpdating" type="submit" class="btn btn-success pull-right">Speichern</button>
