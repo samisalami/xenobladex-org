@@ -11,23 +11,17 @@ angular.module('app')
                 init();
 
                 function init() {
-
+                    that.map = leafletMapService.getMap();
                 }
             }],
             link: function($scope, element, attrs) {
                 var modalDomIndex = angular.element('.mapmarker-modal').length;
-                var leafletMapDomIndex = angular.element('.leaflet-map').length;
+                var $leafletMap = leafletMapService.getMapElement();
                 $scope.modalId = 'mapmarker-modal-' + modalDomIndex;
-                $scope.leafletMapId = 'leaflet-map-' + leafletMapDomIndex;
 
-                var map = L.map($scope.leafletMapId, {
-                    zoom: 2,
-                    minZoom: 1,
-                    maxZoom: 5,
-                    center: [0,0]
+                $('.modal', $(element)).on('show.bs.modal', function(e) {
+                    $('.leaflet-map', $(element)).append($leafletMap);
                 });
-
-                leafletMapService.tileLayer(map);
             },
             controllerAs: 'vm'
         }

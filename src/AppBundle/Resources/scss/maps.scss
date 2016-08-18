@@ -24,3 +24,18 @@
     background-color: red;
   }
 }
+
+.xenobladex-leaftlet-map-wrapper {
+  position: absolute;
+  visibility: hidden;
+  left: -3000px;
+
+  .modal & {
+    position: static;
+    visibility: visible;
+  }
+}
+
+.leaflet-map {
+    display: inline-block;
+}
