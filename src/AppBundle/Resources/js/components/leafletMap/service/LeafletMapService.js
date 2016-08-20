@@ -6,6 +6,8 @@ function LeafletMapService() {
     var map = null;
     var template = '<div class="xenobladex-leaftlet-map-wrapper"><div style="width: 800px; height: 800px; max-width: 100%;" id="'+domId+'"></div></div>';
     var $mapElement = $();
+    var drawnItems = null;
+    var drawControl = null;
 
     return {
         getMap: getMap,
@@ -37,5 +39,21 @@ function LeafletMapService() {
             tms: true,
             noWrap: true
         }).addTo(map);
+
+        drawnItems = new L.FeatureGroup();
+        map.addLayer(drawnItems);
+
+        drawControl = new L.Control.Draw({
+            edit: {
+                featureGroup: drawnItems
+            }
+        });
+        map.addControl(drawControl);
+
+        map.on('draw:created', function (e) {
+            var type = e.layerType,
+                layer = e.layer;
+            drawnItems.addLayer(layer);
+        });
     }
 }
