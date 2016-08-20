@@ -182,20 +182,19 @@ class Monster
     private $region='Primordia';
 
     /**
+     * @var string
+     *
+     * @ORM\Column(name="map_geo_json", type="text")
+     */
+    private $mapGeoJson='';
+
+    /**
      * @ORM\ManyToOne(targetEntity="MonsterType")
      * @ORM\JoinColumn(name="monster_type_id", referencedColumnName="id")
      * @Type("RelatedEntity<'AppBundle:MonsterType'>")
      * @MaxDepth(1)
      */
     private $monsterType;
-
-    /**
-     * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="MonsterMapmarker", mappedBy="monster", fetch="EXTRA_LAZY")
-     * @Type("RelatedEntity<'AppBundle:MonsterMapmarker'>")
-     * @MaxDepth(1)
-     */
-    private $mapmarkers;
 
     /**
      * @ORM\ManyToMany(targetEntity="Material", fetch="EXTRA_LAZY")
@@ -225,7 +224,6 @@ class Monster
     public function __construct()
     {
         $this->materials = new ArrayCollection();
-        $this->mapmarkers = new ArrayCollection();
     }
 
 
@@ -540,43 +538,6 @@ class Monster
     }
 
     /**
-     * Add mapmarkers
-     *
-     * @param \AppBundle\Entity\MonsterMapmarker $mapmarker
-     * @return Monster
-     */
-    public function addMapmarker(\AppBundle\Entity\MonsterMapmarker $mapmarker)
-    {
-        if (!$this->mapmarkers->contains($mapmarker)) {
-            $this->mapmarkers[] = $mapmarker;
-            $mapmarker->setMonster($this);
-        }
-
-        return $this;
-    }
-
-    /**
-     * Remove mapmarkers
-     *
-     * @param \AppBundle\Entity\MonsterMapmarker $mapmarker
-     */
-    public function removeMapmarker(\AppBundle\Entity\MonsterMapmarker $mapmarker)
-    {
-        $this->mapmarkers->removeElement($mapmarker);
-        $mapmarker->setMonster(null);
-    }
-
-    /**
-     * Get mapmarkers
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getMapmarkers()
-    {
-        return $this->mapmarkers;
-    }
-
-    /**
      * Add materials
      *
      * @param \AppBundle\Entity\Material $material
@@ -839,5 +800,23 @@ class Monster
     public function getResGravit()
     {
         return $this->resGravit;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMapGeoJson()
+    {
+        return $this->mapGeoJson;
+    }
+
+    /**
+     * @param string $mapGeoJson
+     * @return Monster
+     */
+    public function setMapGeoJson($mapGeoJson)
+    {
+        $this->mapGeoJson = $mapGeoJson;
+        return $this;
     }
 }

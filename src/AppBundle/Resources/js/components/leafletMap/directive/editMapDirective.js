@@ -1,23 +1,25 @@
 'use strict';
 
 angular.module('app')
-    .directive('mapmarker',['leafletMapService', '$filter', function(leafletMapService, $filter) {
+    .directive('editMap',['EditableLeafletMapService', '$filter', function(EditableLeafletMapService, $filter) {
         return {
             restrict: 'E',
-            templateUrl: 'js/components/leafletMap/mapmarker/mapmarkerView.html',
+            templateUrl: 'js/components/leafletMap/directive/editMapView.html',
             controller: ['$scope',function($scope) {
                 var that = this;
 
                 init();
 
                 function init() {
-                    that.map = leafletMapService.getMap();
+                    that.map = EditableLeafletMapService.getMap();
+                }
+
+                that.save = function() {
+                  console.log(JSON.stringify(EditableLeafletMapService.getGeoJson()));
                 }
             }],
             link: function($scope, element, attrs) {
-                var modalDomIndex = angular.element('.mapmarker-modal').length;
-                var $leafletMap = leafletMapService.getMapElement();
-                $scope.modalId = 'mapmarker-modal-' + modalDomIndex;
+                var $leafletMap = EditableLeafletMapService.getMapElement();
 
                 $('.modal', $(element)).on('show.bs.modal', function(e) {
                     $('.leaflet-map', $(element)).append($leafletMap);

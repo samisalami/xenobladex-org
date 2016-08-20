@@ -2,7 +2,6 @@
 
 namespace AppBundle\Entity;
 
-use AppBundle\Entity\MissionMapmarker;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation\Type;
@@ -141,16 +140,11 @@ class Mission
     private $chapter = 0;
 
     /**
-     * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="MissionMapmarker", mappedBy="mission", fetch="EXTRA_LAZY")
-     * @Type("RelatedEntity<'AppBundle:MissionMapmarker'>")
-     * @MaxDepth(1)
+     * @var string
+     *
+     * @ORM\Column(name="map_geo_json", type="text")
      */
-    private $mapmarkers;
-
-    public function __construct() {
-        $this->mapmarkers = new \Doctrine\Common\Collections\ArrayCollection();
-    }
+    private $mapGeoJson='';
 
     /**
      * @VirtualProperty
@@ -542,36 +536,20 @@ class Mission
     }
 
     /**
-     * Add mapmarkers
-     *
-     * @param MissionMapmarker $mapmarkers
-     * @return Mission
+     * @return string
      */
-    public function addMapmarker(MissionMapmarker $mapmarkers)
+    public function getMapGeoJson()
     {
-        $this->mapmarkers[] = $mapmarkers;
+        return $this->mapGeoJson;
+    }
 
+    /**
+     * @param string $mapGeoJson
+     * @return Monster
+     */
+    public function setMapGeoJson($mapGeoJson)
+    {
+        $this->mapGeoJson = $mapGeoJson;
         return $this;
-    }
-
-    /**
-     * Remove mapmarkers
-     *
-     * @param MissionMapmarker $mapmarker
-     */
-    public function removeMapmarker(MissionMapmarker $mapmarker)
-    {
-        $this->mapmarkers->removeElement($mapmarker);
-        $mapmarker->setMission(null);
-    }
-
-    /**
-     * Get mapmarkers
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getMapmarkers()
-    {
-        return $this->mapmarkers;
     }
 }

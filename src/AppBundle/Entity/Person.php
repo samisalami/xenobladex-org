@@ -2,7 +2,6 @@
 
 namespace AppBundle\Entity;
 
-use AppBundle\Entity\PersonMapmarker;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
 use JMS\Serializer\Annotation\Type;
@@ -87,22 +86,6 @@ class Person
      * @ORM\Column(name="activity_time", type="string", length=255)
      */
     private $activityTime = '';
-
-    /**
-     * @var ArrayCollection
-     * @ORM\OneToMany(targetEntity="PersonMapmarker", mappedBy="person", fetch="EXTRA_LAZY")
-     * @Type("RelatedEntity<'AppBundle:PersonMapmarker'>")
-     * @MaxDepth(1)
-     */
-    private $mapmarkers;
-
-    /**
-     * Person constructor.
-     */
-    public function __construct()
-    {
-        $this->mapmarkers = new ArrayCollection();
-    }
 
     /**
      * Get id
@@ -319,41 +302,5 @@ class Person
     public function getRegion()
     {
         return $this->region;
-    }
-
-    /**
-     * Add mapmarker
-     *
-     * @param PersonMapmarker $mapmarker
-     * @return Person
-     */
-    public function addMapmarker(PersonMapmarker $mapmarker)
-    {
-        if (!$this->mapmarkers->contains($mapmarker)) {
-            $this->mapmarkers->add($mapmarker);
-            $mapmarker->setPerson($this);
-        }
-        return $this;
-    }
-
-    /**
-     * Remove mapmarker
-     *
-     * @param PersonMapmarker $mapmarker
-     */
-    public function removeMapmarker(PersonMapmarker $mapmarker)
-    {
-        $this->mapmarkers->removeElement($mapmarker);
-        $mapmarker->setPerson(null);
-    }
-
-    /**
-     * Get mapmarkers
-     *
-     * @return ArrayCollection
-     */
-    public function getMapmarkers()
-    {
-        return $this->mapmarkers;
     }
 }
