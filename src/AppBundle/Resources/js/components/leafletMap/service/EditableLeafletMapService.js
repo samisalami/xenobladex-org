@@ -8,7 +8,14 @@ function EditableLeafletMapService(LeafletMapService) {
 
     return {
         getMap: getMap,
+        clearMap: LeafletMapService.clearMap,
+        setData: LeafletMapService.setData,
         getMapElement: LeafletMapService.getMapElement,
+        onChanged: LeafletMapService.onChanged,
+        onCreated: LeafletMapService.onCreated,
+        onDeleted: LeafletMapService.onDeleted,
+        bindCallbacks: LeafletMapService.bindCallbacks,
+        clearCallbacks: LeafletMapService.clearCallbacks,
         getGeoJson: getGeoJson
     };
 

@@ -64,13 +64,6 @@ faq:
     options:
         expose: true
 
-mapmarker:
-    prefix: /xenobladex/api
-    type:     rest
-    resource: "@AppBundle/Controller/MapmarkerController.php"
-    options:
-        expose: true
-
 material:
     prefix: /xenobladex
     type:     rest

@@ -45,9 +45,8 @@ function MonsterService($http, $filter) {
         region,
         res_thermo,
         materials,
-        mapmarkers
-    )
-    {
+        mapGeoJson
+    ) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -70,7 +69,7 @@ function MonsterService($http, $filter) {
         this.region = region;
         this.res_thermo = res_thermo;
         this.materials = materials;
-        this.mapmarkers = mapmarkers;
+        this.mapGeoJson = mapGeoJson;
 
         Object.seal(this);
     }
@@ -108,7 +107,7 @@ function MonsterService($http, $filter) {
                 monster['region'],
                 monster['res_thermo'],
                 monster['materials'],
-                monster['mapmarkers']
+                monster['mapGeoJson']
             );
         }
     }

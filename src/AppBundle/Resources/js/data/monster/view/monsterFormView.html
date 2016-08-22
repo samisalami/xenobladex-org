@@ -98,9 +98,9 @@
         <strong>Material:</strong>
         <form-field ng-if="form.materialsData" form-field-bind="form.materials" form-select-options="form.materialsData" form-template="customMaterialInput"></form-field>
     </div>
-    <div ng-if="form.monster.id" class="collapsed-table-cell-wrapper" collapsed-table-cell>
+    <div class="collapsed-table-cell-wrapper" collapsed-table-cell>
         <strong>Karte:</strong>
-        <edit-map></edit-map>
+        <edit-map bind-to="form.monster.mapGeoJson"></edit-map>
     </div>
     <div class="row">
         <div class="col-xs-12 p-r-0">
