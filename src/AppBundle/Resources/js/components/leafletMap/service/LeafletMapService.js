@@ -32,7 +32,9 @@ function LeafletMapService() {
     }
 
     function setData(geoJson) {
+        console.log('setData');
         if (map) {
+            console.log(geoJson);
             data = L.geoJson(geoJson);
             data.addTo(map);
         }

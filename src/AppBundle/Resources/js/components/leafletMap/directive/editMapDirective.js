@@ -11,30 +11,27 @@ angular.module('app')
             controller: ['$scope',function($scope) {
                 var that = this;
 
-                init();
+                that.init = function() {
+                    EditableLeafletMapService.clearMap();
+                    EditableLeafletMapService.onChanged(that.save);
+                    EditableLeafletMapService.onCreated(that.save);
+                    if ($scope.bindTo) {
+                        EditableLeafletMapService.setData(JSON.parse($scope.bindTo));
+                    }
+                };
 
-                function init() {
-
-                }
+                that.save = function() {
+                    $scope.bindTo = JSON.stringify(EditableLeafletMapService.getGeoJson());
+                };
             }],
-            link: function($scope, element, attrs) {
+            link: function($scope, element, attrs, controller) {
                 var map = EditableLeafletMapService.getMap();
                 var $leafletMap = EditableLeafletMapService.getMapElement();
 
                 $('.modal', $(element)).on('show.bs.modal', function(e) {
                     $('.leaflet-map', $(element)).append($leafletMap);
-                    EditableLeafletMapService.clearMap();
-                    EditableLeafletMapService.onChanged(save);
-                    EditableLeafletMapService.onCreated(save);
-                    if ($scope.bindTo) {
-                        console.log($scope.bindTo);
-                        EditableLeafletMapService.setData(JSON.parse($scope.bindTo));
-                    }
+                    controller.init();
                 });
-
-                function save() {
-                    $scope.bindTo = JSON.stringify(EditableLeafletMapService.getGeoJson());
-                }
             },
             controllerAs: 'vm'
         }
