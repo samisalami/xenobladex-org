@@ -30,7 +30,7 @@ function EditableLeafletMapService(LeafletMapService) {
 
     function setData(geoJson) {
         if (map) {
-            var data = L.geoJson(geoJson, {
+            L.geoJson(geoJson, {
                 onEachFeature: function (feature, layer) {
                     drawnItems.addLayer(layer);
                 }
@@ -57,13 +57,8 @@ function EditableLeafletMapService(LeafletMapService) {
         map.addControl(drawControl);
 
         LeafletMapService.globalOnCreated(function(e){
-            persistElement(e);
+            drawnItems.addLayer(e.layer);
         });
-    }
-
-    function persistElement(e) {
-        var layer = e.layer;
-        drawnItems.addLayer(layer);
     }
 
     function getGeoJson() {
