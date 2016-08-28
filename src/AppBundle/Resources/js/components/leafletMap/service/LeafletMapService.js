@@ -8,6 +8,7 @@ function LeafletMapService() {
     var $mapElement = $();
     var onChangedCallbacks = [];
     var onCreatedCallbacks = [];
+    var globalOnCreatedCallbacks = [];
     var onDeletedCallbacks = [];
     var data = null;
 
@@ -18,6 +19,7 @@ function LeafletMapService() {
         getMapElement: getMapElement,
         onChanged: onChanged,
         onCreated: onCreated,
+        globalOnCreated: globalOnCreated,
         onDeleted: onDeleted,
         bindCallbacks: bindCallbacks,
         clearCallbacks: clearCallbacks
@@ -32,9 +34,7 @@ function LeafletMapService() {
     }
 
     function setData(geoJson) {
-        console.log('setData');
         if (map) {
-            console.log(geoJson);
             data = L.geoJson(geoJson);
             data.addTo(map);
         }
@@ -71,6 +71,10 @@ function LeafletMapService() {
 
     function bindCallbacks() {
         map.on('draw:created', function (e) {
+            globalOnCreatedCallbacks.forEach(function(callback){
+                callback(e);
+            });
+
             onCreatedCallbacks.forEach(function(callback){
                 callback(e);
             });
@@ -101,6 +105,10 @@ function LeafletMapService() {
 
     function onCreated(callback) {
         onCreatedCallbacks.push(callback);
+    }
+
+    function globalOnCreated(callback) {
+        globalOnCreatedCallbacks.push(callback);
     }
 
     function onDeleted(callback) {

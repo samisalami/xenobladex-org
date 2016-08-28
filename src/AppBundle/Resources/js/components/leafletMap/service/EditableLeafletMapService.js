@@ -8,8 +8,8 @@ function EditableLeafletMapService(LeafletMapService) {
 
     return {
         getMap: getMap,
-        clearMap: LeafletMapService.clearMap,
-        setData: LeafletMapService.setData,
+        clearMap: clearMap,
+        setData: setData,
         getMapElement: LeafletMapService.getMapElement,
         onChanged: LeafletMapService.onChanged,
         onCreated: LeafletMapService.onCreated,
@@ -28,6 +28,23 @@ function EditableLeafletMapService(LeafletMapService) {
         return map;
     }
 
+    function setData(geoJson) {
+        if (map) {
+            var data = L.geoJson(geoJson, {
+                onEachFeature: function (feature, layer) {
+                    drawnItems.addLayer(layer);
+                }
+            });
+        }
+    }
+
+    function clearMap() {
+        LeafletMapService.clearCallbacks();
+        if (drawnItems) {
+            drawnItems.clearLayers();
+        }
+    }
+
     function init(map) {
         drawnItems = new L.FeatureGroup();
         map.addLayer(drawnItems);
@@ -39,11 +56,14 @@ function EditableLeafletMapService(LeafletMapService) {
         });
         map.addControl(drawControl);
 
-        map.on('draw:created', function (e) {
-            var type = e.layerType,
-                layer = e.layer;
-            drawnItems.addLayer(layer);
+        LeafletMapService.globalOnCreated(function(e){
+            persistElement(e);
         });
+    }
+
+    function persistElement(e) {
+        var layer = e.layer;
+        drawnItems.addLayer(layer);
     }
 
     function getGeoJson() {
